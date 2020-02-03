@@ -1,0 +1,47 @@
+F O R M 							E X C E L 							D A T A B A S E  
+
+student-code					= Code 					IS  S	= Code
+student-lrn						= LRN 						S	= LRN
+r1								= Prefix & Gender 		IS	S	= Gender Prefix
+first-name						= Firstname 				S	= Firstname
+middle-name						= Middlename 				S	= Middlename
+last-name						= Lastname 					S	= Lastname
+suffix							= Suffix 					S	= Suffix
+birthdate						= Birthdate 			IS	 	= Birthday
+birthplace						= Birthplace 			IS	 	= Birthplace
+school-last-attended			= School_last_attended  IS	 	= School_last_attended
+last-school-attended-year		= School_year 			IS	 	= School_year
+last-school-attended-level		= Level_Completed 		IS	 	= Level_Completed
+last-school-attended-grade		= Average_grade 		IS	 	= Average_grade
+last-school-attended-address	= School_Address 		IS	 	= School_Address
+contact-person-name				= Parentname 				S	= ContactPerson
+contact-person-phone			= ? 							= ContactMobile
+contact-person-mobile			= Mobileno 					S	= ContactPhone
+contact-person-email			= Email 					S	= ContactEmail
+mother-name						= Mother_name 			IS	 	= mother-name				
+mother-employer-name			= Employer_name 		IS	 	= mother-employer-name	
+mother-employer-address			= Employer_address 		IS	 	= mother-employer-address	
+mother-employer-phone			= Employer_telno 		IS	 	= mother-employer-phone	
+mother-employer-mobile			= Employer_Cellphone 	IS	 	= mother-employer-mobile	
+father-name						= Father_name 			IS	 	= father-name				
+father-employer-name			= Employer_name 		IS	 	= father-employer-name	
+father-employer-address			= Employer_address 		IS	 	= father-employer-address	
+father-employer-phone			= Employer_telno 		IS	 	= father-employer-phone	
+father-employer-mobile			= Employer_Cellphone 	IS	 	= father-employer-mobile	
+guardian-name					= Guardian_Name 		IS	 	= guardian-name			
+guardian-relationship			= Guardian_Relationship IS	 	= guardian-relationship	
+guardian-phone					= Guardian_Telno 		IS	 	= guardian-phone			
+guardian-mobile					= Guardian_Cellphone 	IS	 	= guardian-mobile			
+sibling1-name					= Sibling1 				IS	 	= sibling1-name		
+sibling1-level					= Sibling1_grade_level 	IS	 	= sibling1-level		
+sibling2-name					= Sibling2 				IS	 	= sibling2-name		
+sibling2-level					= Sibling2_grade_level 	IS	 	= sibling2-level		
+sibling3-name					= Sibling3 				IS	 	= sibling3-name		
+sibling3-level					= Sibling3_grade_level 	IS	 	= sibling3-level		
+isEldest						= Eldest						= isEldest
+$numberOfSiblings				= Siblings						= NoOfSiblings
+address							= Family_place					= Family_Place
+
+INSERT INTO tbl_2  (ColumnID) 
+SELECT A.ColumnID FROM tbl_1 A INNER JOIN tbl_2 B ON A.StudentID = B.StudentID WHERE B.ColumnID =''
+
