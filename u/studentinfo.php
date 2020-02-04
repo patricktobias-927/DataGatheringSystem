@@ -8,6 +8,7 @@
   $page = "studentinfo";
   require 'assets/scipts/phpfunctions.php';
   $_SESSION['CurrentSchoolYear']='S.Y. 2019-2020';
+  $_SESSION['schoolID'] ='1';
 ?>
 
 <html lang="en">
@@ -84,7 +85,10 @@ require 'includes/navAndSide.php';
           <div class="card">
             <div class="card-header">
               <p>
-              
+
+              <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
+                <span class="fa fa-undo  ref-btn ref-btn2" aria-hidden="true">&nbsp&nbsp</span>Refresh
+                </a>&nbsp&nbsp
               <button type="button" class="btn btn-danger add-button buttonDelete">
                 <span class=" fa fa-trash">&nbsp&nbsp</span>Delete Selected
                 </button>&nbsp&nbsp
@@ -159,31 +163,6 @@ require 'includes/navAndSide.php';
 
 
           ?>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                     <td class="project-actions text-right">
-       <a class="btn btn-primary btn-sm" href="#">
-           <i class="fas fa-folder">
-           </i>
-           View
-       </a>
-       <a class="btn btn-info btn-sm" href="#">
-           <i class="fas fa-pencil-alt">
-           </i>
-           Edit
-       </a>
-       <a class="btn btn-danger btn-sm" href="#">
-           <i class="fas fa-trash">
-           </i>
-           Delete
-       </a>
-   </td>
-                </tr>
                 </tbody>
                 <tfoot>
                 <tr>
@@ -494,8 +473,8 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                       <div class="form-group">
                         <label class="unrequired-field">Average Grade</label><br>
                         <div class="input-group">
-                          <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
-                          name="last-school-attended-grade" class="form-control" type="text" maxlength="3" style="text-align: center">
+                          <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['contact-person-phone'] : '' ?>"
+                            name="contact-person-phone" type="text" class="form-control" data-inputmask='"mask": "99.99   "' data-mask style="text-align:center;">
                          </div>
                        </div>
                       </div> 
@@ -1082,16 +1061,14 @@ if (isset($_POST["btn-submit"])) {
         echo "<script> console.log('contact Monile invalid'); </script>";
       }
       else{
-        if ($_POST['student-lrn']) {
-          # code...
-        }
-        echo "<script> console.log('second'); </script>";
         $lrn=$_POST['student-lrn'];
         $code=$_POST['student-code'];
         $isLRNMatch;
         $isCodeMatch;
         $gender;
         $genderprefix;
+        $noLRN=false;
+        if (cleanThis($lrn!='')|| $lrn != ' ' ) {  
         $sql = "select COUNT(LRN) as matchedLRN, COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where LRN = '".  $lrn."'";
       
         $result1 = mysqli_query($conn, $sql);
@@ -1107,11 +1084,11 @@ if (isset($_POST["btn-submit"])) {
           echo "<script> console.log('lrnNOTmatch'); </script>";
             $isLRNMatch=false;
           }
-      
+        }
         $sql = "select COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where Code ='".$code."'";
       
           $result2 = mysqli_query($conn, $sql);
-          $query2 = mysqli_fetch_assoc($result);
+          $query2 = mysqli_fetch_assoc($result2);
       
         if ($query2['matchedCode']>0) {
           echo "<script> console.log('codematch'); </script>";
@@ -1149,8 +1126,9 @@ if (isset($_POST["btn-submit"])) {
               echo "<script> console.log('more match'); </script>";
             }
           }
+
       
-          else if (!$isCodeMatch && !$isLRNMatch) {
+           if (!$isCodeMatch && !$isLRNMatch || $noLRN) {
               $isEldest;
               $numberOfSiblings=0;
           
@@ -1164,7 +1142,6 @@ if (isset($_POST["btn-submit"])) {
                 $_POST['school-last-attended']=$_POST['school-last-attended'];
                 $_POST['last-school-attended-year']=cleanThis($_POST['last-school-attended-year']);
                 $_POST['last-school-attended-level']=$_POST['last-school-attended-level'];
-                $_POST['last-school-attended-grade']=cleanThis($_POST['last-school-attended-grade']);
                 $_POST['last-school-attended-address']=$_POST['last-school-attended-address'];
                 $_POST['last-school-attended-grade']=cleanThis($_POST['last-school-attended-grade']);
               }
@@ -1256,22 +1233,22 @@ if (isset($_POST["btn-submit"])) {
      $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
      $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
-     $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-phone']));
-     $_POST['contact-person-mobile']        = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-mobile']));
+     $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-phone'])));
+     $_POST['contact-person-mobile']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-mobile'])));
      $_POST['mother-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-name']));
      $_POST['mother-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-name']));
      $_POST['mother-employer-address']      = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-address']));
-     $_POST['mother-employer-phone']        = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-phone']));
-     $_POST['mother-employer-mobile']       = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-mobile']));
+     $_POST['mother-employer-phone']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-employer-phone'])));
+     $_POST['mother-employer-mobile']       = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-employer-mobile'])));
      $_POST['father-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['father-name']));
      $_POST['father-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-name']));
      $_POST['father-employer-address']      = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-address']));
-     $_POST['father-employer-phone']        = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-phone']));
-     $_POST['father-employer-mobile']       = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-mobile']));
+     $_POST['father-employer-phone']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-employer-phone'])));
+     $_POST['father-employer-mobile']       = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-employer-mobile'])));
      $_POST['guardian-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-name']));
      $_POST['guardian-relationship']        = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-relationship']));
-     $_POST['guardian-phone']               = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-phone']));
-     $_POST['guardian-mobile']              = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-mobile']));
+     $_POST['guardian-phone']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['guardian-phone'])));
+     $_POST['guardian-mobile']              = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['guardian-mobile'])));
      $_POST['sibling1-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling1-name']));
      $_POST['sibling1-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling1-level']));
      $_POST['sibling2-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling2-name']));
@@ -1281,7 +1258,7 @@ if (isset($_POST["btn-submit"])) {
 
       $randomToken = generateNumericOTP(10);
 
-$insertQuery = "Insert into tbl_student 
+$insertQuery = "Insert into tbl_student
 (
 schoolID,
 CurrentSchoolYear,
@@ -1305,26 +1282,27 @@ VALUES
 '".$_SESSION['schoolID']."',
 '".$_SESSION['CurrentSchoolYear']."',
 '".$_POST['student-code']."',
-'".$_POST['student-lrn ']."',
-'".$_POST['Prefix']."',
+'".$_POST['student-lrn']."',
+'".$genderprefix."',
 '".$_POST['last-name']."',
 '".$_POST['first-name']."',
 '".$_POST['middle-name']."',
 '".$_POST['suffix']."',
-'".$_POST['Birthday']."',
-'".$_POST['Birthplace']."',
+'".$_POST['birthdate']."',
+'".$_POST['birthplace']."',
 '".$_POST['contact-person-name']."',
 '".$_POST['contact-person-mobile']."',
 '".$_POST['contact-person-phone']."',
 '".$_POST['contact-person-email']."',
-'".$IsEldest."'
+'".$isEldest."'
 )";
- mysqli_query($conn, $insertQuery);
-$sql = "select studentID from tbl_student where Code = ".$_POST['student-code'];
+mysqli_query($conn, $insertQuery);
+$sql = "select studentID from tbl_student where Code = '".$_POST['student-code']."'";
 
 $result = mysqli_query($conn, $sql);
 $pass_row = mysqli_fetch_assoc($result);
-$studentID = $pass_row['accountID'];
+$studentID = $pass_row['studentID'];
+
  $insertQuery2 = "Insert into tbl_studentinfo 
 (
 studentID,
@@ -1361,7 +1339,6 @@ sibling2-name,
 sibling2-level,
 sibling3-name,
 sibling3-level
-
 ) 
 VALUES
 (
@@ -1369,7 +1346,7 @@ VALUES
 '".$_SESSION['schoolID']."',
 '".$_SESSION['CurrentSchoolYear']."',
 '".$_POST['siblings-order']."',
-'".$Gender."',
+'".$gender."',
 '".$_POST['address'] ."',
 '".$_POST['student-phone'] ."',
 '".$_POST['student-mobile']."',
@@ -1400,20 +1377,15 @@ VALUES
 '".$_POST['sibling3-name'] ."',
 '".$_POST['sibling3-level']."'
 )";
- // mysqli_query($conn, $insertQuery2);
+mysqli_query($conn, $insertQuery2);
 
-              displayMessage("success","Success",$message);
-              $message1 = "try";
-              $message2 = "try2";
-               echo "<script> console.log('$insertQuery'); </script>";
-              echo "<script> console.log('$insertQuery2'); </script>";
 
-        
+  header('Location: ?insertsuccess');
+
         }
       }
 }
+  if (isset($_REQUEST['insertsuccess'])){
+     displayMessage("success","Success",$message);
+  }
 ?>
-<script>
-  var myvar = <?php echo json_encode($insertQuery2); ?>;
-  alert(myvar);
-</script>

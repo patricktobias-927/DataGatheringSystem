@@ -1,5 +1,5 @@
  <?php 
-
+ob_start();
  function isActive($page, $navtitle)
 {
 	if ($page == $navtitle) {
