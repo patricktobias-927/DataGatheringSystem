@@ -351,8 +351,8 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="input-group-prepend">
                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
                              </div>
-                            <input value="<?php echo isset($_POST['contact-person-phone']) ? $_POST['contact-person-phone'] : '' ?>"
-                            name="contact-person-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
+                            <input value="<?php echo isset($_POST['student-phone']) ? $_POST['student-phone'] : '' ?>"
+                            name="student-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
                            </div>
                          </div>
                         </div>    
@@ -364,8 +364,8 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                             <div class="input-group-prepend">
                                <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                              </div>
-                            <input value="<?php echo isset($_POST['contact-person-mobile']) ? $_POST['contact-person-mobile'] : '' ?>"
-                            name="contact-person-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                            <input value="<?php echo isset($_POST['student-mobile']) ? $_POST['student-mobile'] : '' ?>"
+                            name="student-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
                            </div>
                          </div>  
                         </div> 
@@ -783,17 +783,17 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                     <div class="tab-pane" id="tab_4">
                       <div class="row"> 
                         <div class="col-sm-2">
-                          <div class="icheck-primary d-inline">
-                            <input name ="isEldest" type="checkbox" id="checkboxPrimary1" <?php 
+                          <div class="icheck-primary d-inline ">
+                            <input class="unrequired-field" name ="isEldest" type="checkbox" id="checkboxPrimary1" <?php 
                             if (isset($_POST['isEldest'])) {echo 'checked';} ?> >
-                            <label for="checkboxPrimary1">Eldest?
+                            <label class="unrequired-field" for="checkboxPrimary1">Eldest?
                             </label>
                           </div>
                         </div>
                         <div class="col-sm-5">
                           <div class="icheck-primary d-inline">
                       <div class="input-group">
-                        <label>Chronological order of birth among his/her siblings &nbsp&nbsp&nbsp </label>
+                        <label class="unrequired-field">Chronological order of birth among his/her siblings &nbsp&nbsp&nbsp </label>
                         <input value="<?php echo isset($_POST['siblings-order']) ? $_POST['siblings-order'] : '' ?>"
                         name="siblings-order" class="form-control form-control-sm col-3" type="text" maxlength="2" style="text-align: center">
                        </div>
@@ -809,12 +809,12 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   
                         <div class="col-sm-8">
                           <div class="form-group">
-                            <label>Sibling 1 Name</label>
+                            <label class="unrequired-field">Sibling 1 Name</label>
                             <input value="<?php echo isset($_POST['sibling1-name']) ? $_POST['sibling1-name'] : '' ?>" 
                             name="sibling1-name" type="text" class="form-control" placeholder="FirstName LastName">
                           </div>
-                        </div>
-  
+                        </div
+>  
                         <div class="col-sm-3">
     
                            <div class="form-group">
@@ -867,7 +867,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   
                         <div class="col-sm-8">
                           <div class="form-group">
-                            <label>Sibling 2 Name</label>
+                            <label class="unrequired-field">Sibling 2 Name</label>
                             <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
                             name="sibling2-name" type="text" class="form-control" placeholder="FirstName LastName">
                           </div>
@@ -924,7 +924,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   
                         <div class="col-sm-8">
                           <div class="form-group">
-                            <label>Sibling 3 Name</label>
+                            <label class="unrequired-field">Sibling 3 Name</label>
                             <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
                             name="sibling3-name" type="text" class="form-control" placeholder="FirstName LastName">
                           </div>
@@ -1069,16 +1069,22 @@ if (isset($_POST["btn-submit"])) {
         displayMessage("warning","LRN is Invalid","Please try again");
         echo "<script> console.log('lrn invalid'); </script>";
         }
-      else if (substr($_POST['birthdate'],6)>date(Y) && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
+      else if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
         displayMessage("warning","Birthdate Invalid","Please try again");
         echo "<script> console.log('bday'); </script>";
         }
+      elseif (isset($_POST['student-mobile'])&& strlen(cleanThis($_POST['student-mobile']))!=11 && cleanThis($_POST['student-mobile']) != "") {
+        displayMessage("warning","Invalid Student Mobile","Student Mobile Number");
+        echo "<script> console.log('contact Monile invalid'); </script>";
+      }
       elseif (strlen(cleanThis($_POST['contact-person-mobile']))!=11) {
         displayMessage("warning","Invalid Mobile Number","Contact Person Mobile Number");
         echo "<script> console.log('contact Monile invalid'); </script>";
       }
-      
       else{
+        if ($_POST['student-lrn']) {
+          # code...
+        }
         echo "<script> console.log('second'); </script>";
         $lrn=$_POST['student-lrn'];
         $code=$_POST['student-code'];
@@ -1089,7 +1095,7 @@ if (isset($_POST["btn-submit"])) {
         $sql = "select COUNT(LRN) as matchedLRN, COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where LRN = '".  $lrn."'";
       
         $result1 = mysqli_query($conn, $sql);
-        $query1 = mysqli_fetch_assoc($result);
+        $query1 = mysqli_fetch_assoc($result1);
       
         if ($query1['matchedLRN']>0) {
           echo "<script> console.log('lrnmatch'); </script>";
@@ -1231,6 +1237,8 @@ if (isset($_POST["btn-submit"])) {
                   $genderprefix="Ms."; 
                 }
               }
+     $_POST['student-phone']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
+     $_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
      $_POST['address']                      = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['address'])));
      $_POST['siblings-order']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['siblings-order'])));
      $_POST['student-lrn']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
@@ -1264,16 +1272,12 @@ if (isset($_POST["btn-submit"])) {
      $_POST['guardian-relationship']        = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-relationship']));
      $_POST['guardian-phone']               = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-phone']));
      $_POST['guardian-mobile']              = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-mobile']));
-     $_POST['guardian-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-name']));
      $_POST['sibling1-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling1-name']));
      $_POST['sibling1-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling1-level']));
      $_POST['sibling2-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling2-name']));
      $_POST['sibling2-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling2-level']));
      $_POST['sibling3-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling3-name']));
      $_POST['sibling3-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling3-level']));
-
-
-
 
       $randomToken = generateNumericOTP(10);
 
@@ -1294,7 +1298,7 @@ ContactPerson,
 ContactMobile,
 ContactPhone,
 ContactEmail,
-IsEldest,
+IsEldest
 ) 
 VALUES
 (
@@ -1315,13 +1319,13 @@ VALUES
 '".$_POST['contact-person-email']."',
 '".$IsEldest."'
 )";
- mysqli_query($conn, $sql);
+ mysqli_query($conn, $insertQuery);
 $sql = "select studentID from tbl_student where Code = ".$_POST['student-code'];
 
 $result = mysqli_query($conn, $sql);
 $pass_row = mysqli_fetch_assoc($result);
 $studentID = $pass_row['accountID'];
- $insertQuery = "Insert into tbl_studentinfo 
+ $insertQuery2 = "Insert into tbl_studentinfo 
 (
 studentID,
 schoolID,
@@ -1367,41 +1371,49 @@ VALUES
 '".$_POST['siblings-order']."',
 '".$Gender."',
 '".$_POST['address'] ."',
-'".Telno."',
-'".Cellphone."',
-'".School_last_attended."',
-'".School_year."',
-'".School_Address."',
-'".Level_Completed."',
-'".Average_grade."',
-'".mother-name."',
-'".mother-employer-name."',
-'".mother-employer-address."',
-'".mother-employer-phone."',
-'".mother-employer-mobile."',
-'".father-name."',
-'".father-employer-name."',
-'".father-employer-address."',
-'".father-employer-phone."',
-'".father-employer-mobile."',
-'".guardian-name."',
-'".guardian-relationship."',
-'".guardian-phone."',
-'".guardian-mobile."',
-'".NoOfSiblings."',
-'".sibling1-name."',
-'".sibling1-level."',
-'".sibling2-name."',
-'".sibling2-level."',
-'".sibling3-name."',
-'".sibling3-level."'
+'".$_POST['student-phone'] ."',
+'".$_POST['student-mobile']."',
+'".$_POST['school-last-attended'] ."',
+'".$_POST['last-school-attended-year'] ."',
+'".$_POST['last-school-attended-address']."',
+'".$_POST['last-school-attended-level'] ."',
+'".$_POST['last-school-attended-grade']."',
+'".$_POST['mother-name']."',
+'".$_POST['mother-employer-name']."',
+'".$_POST['mother-employer-address']."',
+'".$_POST['mother-employer-phone']."',
+'".$_POST['mother-employer-mobile']."',
+'".$_POST['father-name']."',
+'".$_POST['father-employer-name']."',
+'".$_POST['father-employer-address']."',
+'".$_POST['father-employer-phone']."',
+'".$_POST['father-employer-mobile']."',
+'".$_POST['guardian-name']."',
+'".$_POST['guardian-relationship']."',
+'".$_POST['guardian-phone']."',
+'".$_POST['guardian-mobile']."',
+'".$numberOfSiblings."',
+'".$_POST['sibling1-name'] ."',
+'".$_POST['sibling1-level']."',
+'".$_POST['sibling2-name'] ."',
+'".$_POST['sibling2-level']."',
+'".$_POST['sibling3-name'] ."',
+'".$_POST['sibling3-level']."'
 )";
+ // mysqli_query($conn, $insertQuery2);
 
               displayMessage("success","Success",$message);
-              echo "<script> console.log('no match'); </script>";
+              $message1 = "try";
+              $message2 = "try2";
+               echo "<script> console.log('$insertQuery'); </script>";
+              echo "<script> console.log('$insertQuery2'); </script>";
 
         
         }
       }
 }
 ?>
+<script>
+  var myvar = <?php echo json_encode($insertQuery2); ?>;
+  alert(myvar);
+</script>
