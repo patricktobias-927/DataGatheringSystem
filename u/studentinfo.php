@@ -1063,12 +1063,12 @@ if (isset($_POST["btn-submit"])) {
       else{
         $lrn=$_POST['student-lrn'];
         $code=$_POST['student-code'];
-        $isLRNMatch;
+        $isLRNMatch=false;
         $isCodeMatch;
         $gender;
         $genderprefix;
         $noLRN=false;
-        if (cleanThis($lrn!='')|| $lrn != ' ' ) {  
+        if (cleanThis($_POST['student-lrn'] !='')|| $_POST['student-lrn'] != ' ' || !isset($_POST['student-lrn'])) {  
         $sql = "select COUNT(LRN) as matchedLRN, COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where LRN = '".  $lrn."'";
       
         $result1 = mysqli_query($conn, $sql);
