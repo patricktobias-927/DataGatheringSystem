@@ -6,7 +6,7 @@ Data gathering system
 
 To Fix
 
-```php
+
 <ul>
 	<li>
 		Average Grade 
@@ -15,7 +15,7 @@ To Fix
 		Birthdate
 	</li>
 </ul>
-```
+
 
 ## Feb. 06, 2020
 
