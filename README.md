@@ -6,9 +6,15 @@ Data gathering system
 
 To Fix
 
-```bash
-*Average Grade 
-*Birthdate
+```php
+<ul>
+	<li>
+		Average Grade 
+	</li>
+	<li>
+		Birthdate
+	</li>
+</ul>
 ```
 
 ## Feb. 06, 2020
