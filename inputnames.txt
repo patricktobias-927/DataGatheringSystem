@@ -45,3 +45,37 @@ address							= Family_place					= Family_Place
 INSERT INTO tbl_2  (ColumnID) 
 SELECT A.ColumnID FROM tbl_1 A INNER JOIN tbl_2 B ON A.StudentID = B.StudentID WHERE B.ColumnID =''
 
+studentID
+schoolID
+CurrentSchoolYear
+Family_Place
+Gender
+Address
+Telno
+Cellphone
+School_last_attended
+School_year
+School_Address
+Level_Completed
+Average_grade
+mother-name
+mother-employer-name
+mother-employer-address
+mother-employer-phone
+mother-employer-mobile
+father-name
+father-employer-name
+father-employer-address
+father-employer-phone
+father-employer-mobile
+guardian-name
+guardian-relationship
+guardian-phone
+guardian-mobile
+NoOfSiblings
+sibling1-name
+sibling1-level
+sibling2-name
+sibling2-level
+sibling3-name
+sibling3-level

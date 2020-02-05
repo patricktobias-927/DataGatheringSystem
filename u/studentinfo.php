@@ -185,7 +185,12 @@ require 'includes/navAndSide.php';
 
 <!-- ./wrapper -->
 <script type="text/javascript">
-  
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollY": 200,
+        "scrollX": true
+    } );
+} );
 
 </script>
 
@@ -368,7 +373,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                               <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                             </div>
                             <input value="<?php echo isset($_POST['birthdate']) ? $_POST['birthdate'] : '' ?>"
-                            name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime"data-inputmask-inputformat="mm/dd/yyyy" data-mask>
+                            name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime"data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                           </div>
                         </div>
                       </div>
@@ -473,8 +478,8 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                       <div class="form-group">
                         <label class="unrequired-field">Average Grade</label><br>
                         <div class="input-group">
-                          <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['contact-person-phone'] : '' ?>"
-                            name="contact-person-phone" type="text" class="form-control" data-inputmask='"mask": "99.99   "' data-mask style="text-align:center;">
+                          <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
+                            name="last-school-attended-grade" type="text" class="form-control" >
                          </div>
                        </div>
                       </div> 
@@ -625,7 +630,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                               <div class="input-group-prepend">
                                  <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                                </div>
-                              <input value="<?php echo isset($_POST['mother-employer-mobile']) ? $_POST['mother-employer-phone'] : '' ?>"
+                              <input value="<?php echo isset($_POST['mother-employer-mobile']) ? $_POST['mother-employer-mobile'] : '' ?>"
                               name="mother-employer-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
                             </div>
                           </div>  
@@ -682,7 +687,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
                               </div>
                              <input 
-                             value="<?php echo isset($_POST['father-employer-address']) ? $_POST['father-employer-address'] : '' ?>"
+                             value="<?php echo isset($_POST['father-employer-phone']) ? $_POST['father-employer-phone'] : '' ?>"
                              name="father-employer-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
                             </div>
                           </div>
@@ -1061,30 +1066,40 @@ if (isset($_POST["btn-submit"])) {
         echo "<script> console.log('contact Monile invalid'); </script>";
       }
       else{
-        $lrn=$_POST['student-lrn'];
-        $code=$_POST['student-code'];
+
+        $lrn=cleanThis($_POST['student-lrn']);
+        $code=cleanThis($_POST['student-code']);
         $isLRNMatch=false;
-        $isCodeMatch;
+        $isCodeMatch=false;
         $gender;
         $genderprefix;
         $noLRN=false;
-        if (cleanThis($_POST['student-lrn'] !='')|| $_POST['student-lrn'] != ' ' || !isset($_POST['student-lrn'])) {  
-        $sql = "select COUNT(LRN) as matchedLRN, COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where LRN = '".  $lrn."'";
+
+        if (strlen(cleanThis($_POST['student-lrn']))> 8) {  
+            echo "<script> console.log('has input lrn'); </script>";
+
+          $sql = "select COUNT(LRN) as matchedLRN, COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where LRN = '".  $lrn."'";
       
-        $result1 = mysqli_query($conn, $sql);
-        $query1 = mysqli_fetch_assoc($result1);
+          $result1 = mysqli_query($conn, $sql);
+          $query1 = mysqli_fetch_assoc($result1);
       
-        if ($query1['matchedLRN']>0) {
-          echo "<script> console.log('lrnmatch'); </script>";
-          $isLRNMatch=true;
-          $LRNName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
-          }
+          if ($query1['matchedLRN']>0) {
+            echo "<script> console.log('lrnmatch'); </script>";
+            $isLRNMatch=true;
+            $LRNName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
+            }
       
-        else{
-          echo "<script> console.log('lrnNOTmatch'); </script>";
-            $isLRNMatch=false;
-          }
+          else{
+            echo "<script> console.log('lrnNOTmatch'); </script>";
+              $isLRNMatch=false;
+            }
         }
+        else{
+          $noLRN=true;
+            echo "<script> console.log('no lrn'); </script>";
+
+        }
+
         $sql = "select COUNT(Code) as matchedCode, Lastname, Firstname, Middlename  from `tbl_student` where Code ='".$code."'";
       
           $result2 = mysqli_query($conn, $sql);
@@ -1130,6 +1145,10 @@ if (isset($_POST["btn-submit"])) {
       
            if (!$isCodeMatch && !$isLRNMatch || $noLRN) {
               $isEldest;
+              $xyz = $_POST['school-last-attended'];
+              echo "<script> console.log('aaaaaaaaa'".$_POST['last-school-attended-grade']."); </script>";
+              echo "<script> console.log('aaaaabbaaaa".$xyz." '); </script>";
+
               $numberOfSiblings=0;
           
               if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
@@ -1137,13 +1156,7 @@ if (isset($_POST["btn-submit"])) {
                 $_POST['last-school-attended-level']='';
                 $_POST['last-school-attended-grade']='';
                 $_POST['last-school-attended-address']='';
-              }
-              else{
-                $_POST['school-last-attended']=$_POST['school-last-attended'];
-                $_POST['last-school-attended-year']=cleanThis($_POST['last-school-attended-year']);
-                $_POST['last-school-attended-level']=$_POST['last-school-attended-level'];
-                $_POST['last-school-attended-address']=$_POST['last-school-attended-address'];
-                $_POST['last-school-attended-grade']=cleanThis($_POST['last-school-attended-grade']);
+
               }
               if ($_POST['mother-name']==''|| $_POST['mother-name']==' ' ) {
                 $_POST['mother-employer-name']='';
@@ -1214,9 +1227,12 @@ if (isset($_POST["btn-submit"])) {
                   $genderprefix="Ms."; 
                 }
               }
-     $_POST['student-phone']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
+              $formatedBirthdate = $_POST['birthdate'];
+              $date = str_replace('/', '-', $formatedBirthdate);
+              $_POST['birthdate'] = date('Y-m-d', strtotime($date));
+     $_POST['student-phone']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
      $_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
-     $_POST['address']                      = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['address'])));
+     $_POST['address']                      = mysqli_real_escape_string($conn, stripcslashes($_POST['address']));
      $_POST['siblings-order']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['siblings-order'])));
      $_POST['student-lrn']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
      $_POST['first-name']                   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
@@ -1277,7 +1293,7 @@ ContactPhone,
 ContactEmail,
 IsEldest
 ) 
-VALUES
+VALUES 
 (
 '".$_SESSION['schoolID']."',
 '".$_SESSION['CurrentSchoolYear']."',
@@ -1297,7 +1313,7 @@ VALUES
 '".$isEldest."'
 )";
 mysqli_query($conn, $insertQuery);
-$sql = "select studentID from tbl_student where Code = '".$_POST['student-code']."'";
+$sql = "select studentID from tbl_student where Code = '".cleanThis($_POST['student-code'])."'";
 
 $result = mysqli_query($conn, $sql);
 $pass_row = mysqli_fetch_assoc($result);
@@ -1318,27 +1334,27 @@ School_year,
 School_Address,
 Level_Completed,
 Average_grade,
-mother-name,
-mother-employer-name,
-mother-employer-address,
-mother-employer-phone,
-mother-employer-mobile,
-father-name,
-father-employer-name,
-father-employer-address,
-father-employer-phone,
-father-employer-mobile,
-guardian-name,
-guardian-relationship,
-guardian-phone,
-guardian-mobile,
-NoOfSiblings,
-sibling1-name,
-sibling1-level,
-sibling2-name,
-sibling2-level,
-sibling3-name,
-sibling3-level
+mother_name,
+mother_employer_name,
+mother_employer_address,
+mother_employer_phone,
+mother_employer_mobile,
+father_name,
+father_employer_name,
+father_employer_address,
+father_employer_phone,
+father_employer_mobile,
+guardian_name,
+guardian_relationship,
+guardian_phone ,
+guardian_mobile,
+NoOfSiblings ,
+sibling1_name,
+sibling1_level,
+sibling2_name,
+sibling2_level,
+sibling3_name,
+sibling3_level
 ) 
 VALUES
 (
@@ -1378,14 +1394,13 @@ VALUES
 '".$_POST['sibling3-level']."'
 )";
 mysqli_query($conn, $insertQuery2);
-
-
-  header('Location: ?insertsuccess');
+  // header('Location: ?insertsuccess');
 
         }
       }
 }
   if (isset($_REQUEST['insertsuccess'])){
      displayMessage("success","Success",$message);
+
   }
 ?>
