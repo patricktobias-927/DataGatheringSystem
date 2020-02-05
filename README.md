@@ -16,27 +16,3 @@ To Fix
 	</li>
 </ul>
 
-
-## Feb. 06, 2020
-
-To Fix
-
-```bash
--
-```
-
-## Feb. 07, 2020
-
-To Fix
-
-```bash
--
-```
-
-## Feb. 08, 2020
-
-To Fix
-
-```bash
--
-```
