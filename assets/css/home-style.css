@@ -1,0 +1,78 @@
+.main{
+	font-family: 'Montserrat', sans-serif;
+	width: 100%;
+}
+.img-school-logo{
+	width: 85px;
+	height: 85px;
+}
+.btn-home-login{
+	color: #ef7215;
+	text-decoration: underline;
+}
+@media only screen and (max-width: 600px) {
+  .btn-home-login {
+	width: 100%;
+	margin-top: 15px;
+  }
+}
+.lbl-school-name{
+	font-size: 25px;
+	white-space: nowrap;
+}
+.navbar{
+	padding-top: 20px;
+	padding: 20px 10px 0px 10px;
+}
+.home-main-body{
+	text-align: center;
+	margin-top: 170px;
+}
+.lbl-home-sub{
+	font-size: 23px;
+	padding-bottom: 20px;
+}
+.lbl-home-main{
+	font-size: 65px;
+}
+
+.lbl-home-main{
+  animation-duration: 3s;
+  animation-name: slideup;
+}
+
+@-webkit-keyframes slideup {
+  from {
+    transform: translate(1px, 30px);
+    opacity: 0%;
+    width: 300%; 
+  }
+
+  to {
+    opacity: 100%;
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+
+.btn-getstarted{
+	  animation-duration: 2s;
+  animation-name: pulse;
+}

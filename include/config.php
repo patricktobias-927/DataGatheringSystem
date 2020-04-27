@@ -1,8 +1,8 @@
 <?php 
-$database = "dgsdb";
-$host = "localhost";
-$username = "root";
-$password = "";
+$database = "dgsdb2";
+$host = "52.74.3.44";
+$username = "smsuser";
+$password = "smspass";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 

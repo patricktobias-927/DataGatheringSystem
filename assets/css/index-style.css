@@ -184,4 +184,8 @@ bottom: 10%;
   100% { transform: rotate(359deg); }
 }
 
+.brand-name{
+  font-size: 23px;
+}
+
 

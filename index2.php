@@ -33,7 +33,7 @@
 <div class="login-box">
     <img class="logoimg" src="assets/imgs/pphlogohq.png">
   <div class="login-logo">
-    <a href="#"><b>Data Collection System </b>PPH</a>
+    <a href="#"><b class="brand-name">Pre-Registration Information SysteM</b> PRISM</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

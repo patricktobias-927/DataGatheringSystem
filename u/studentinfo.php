@@ -43,8 +43,6 @@
   <link rel="stylesheet" href="../include/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="../include/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../include/dist/css/adminlte.min.css">
 
 
 </head>
@@ -107,7 +105,6 @@ require 'includes/navAndSide.php';
                   <th>Full Name</th>
                   <th>Code</th>
                   <th>LRN</th>
-                  <th>Mobile Number</th>
                   <th>Action</th>
 
                 </tr>
@@ -115,7 +112,7 @@ require 'includes/navAndSide.php';
                 <tbody>
           <?php 
 
-          $sql = "sELECT Firstname, Lastname, Middlename, Code, LRN,  ContactMobile as Mobile FROM `tbl_student` where CurrentSchoolYear ='".$_SESSION['CurrentSchoolYear']."'";
+          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN FROM tbl_student";
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {
@@ -129,9 +126,6 @@ require 'includes/navAndSide.php';
                   echo"</td>";
                   echo"<td>";
                     echo $row[4];
-                  echo"</td>";
-                  echo"<td>";
-                    echo $row[5];
                   echo"</td>";
                    echo'   <td style="width:15%; class="">';
                    echo'       <a class="btn btn-primary btn-sm" href="#">';
@@ -169,7 +163,6 @@ require 'includes/navAndSide.php';
                   <th>Full Name</th>
                   <th>Code</th>
                   <th>LRN</th>
-                  <th>Mobile Number</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>
@@ -1394,7 +1387,7 @@ VALUES
 '".$_POST['sibling3-level']."'
 )";
 mysqli_query($conn, $insertQuery2);
-  // header('Location: ?insertsuccess');
+   header('Location: ?insertsuccess');
 
         }
       }
