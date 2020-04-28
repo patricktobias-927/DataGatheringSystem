@@ -1,99 +1,221 @@
-<!doctype html>
+<!DOCTYPE html>
+
+<?php
+  require '../include/config.php';
+  require 'assets/fonts.php';
+  require 'assets/adminlte.php';
+  require '../include/config.php';
+  $page = "studentEntry";
+  require 'assets/scipts/phpfunctions.php';
+  require 'assets/generalSandC.php';
+  require 'assets/adminlte.php';
+  require '../include/schoolConfig.php';
+?>
+
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><?php echo SCHOOL_NAME; ?></title>
 
-    <?php 
-    require 'include/schoolConfig.php';
-    require 'include/config.php';
-    include 'include/fonts.php';
-    require 'assets/phpfunctions.php';
+<!-- customize css -->
+  <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
+  <!-- sweet alert -->
+  <link rel="stylesheet" type="text/css" href="assets/css/css-navAndSlide.css">
+  <script type="text/javascript" src="../include/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../include/plugins/sweetalert2/sweetalert2.min.css">
 
-    $_SESSION['CurrentSchoolYear']='1';
-    $_SESSION['userID'] ='1';
-    ob_start();
-  ?>
+  <link rel="stylesheet" href="../include/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 
-  
-        <!-- Sweetalert -->
-        <script src="assets/js/sweetalert2.all.min.js"></script>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="include/plugins/fontawesome-free/css/all.min.css">
-        <!-- Ionicons -->
-        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="include/dist/css/adminlte.min.css">
-        <!-- custom style -->
-        <link rel="stylesheet" type="text/css" href="assets/css/newstudent-style.css">
-        <!-- Jquery -->
-        <script src="include/plugins/jquery/jquery.min.js"></script>
-        <!-- Adminlte -->
-        <script src="include/dist/js/adminlte.min.js"></script>
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-        <script src="include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/css-studentinfo.css">
 
-
-
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="include/plugins/daterangepicker/daterangepicker.css">
+    <!-- daterange picker -->
+  <link rel="stylesheet" href="../include/plugins/daterangepicker/daterangepicker.css">
   <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="include/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <link rel="stylesheet" href="../include/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="include/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="../include/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
-  <link rel="stylesheet" href="include/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="include/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="../include/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="../include/plugins/select2-bootstrap4-theme/select2-bootstrap4.css">
   <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="include/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="include/dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="../include/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 
 
-
-        <title>
-            <?php echo SCHOOL_NAME?>
-        </title>
 
 </head>
 
-<body>
-  <div class=" main">
+<body class="hold-transition sidebar-mini sidebar-collapse">
+<div class="wrapper">
 
-    <div class="row navbar">
+<!-- nav bar & side bar -->
+<?php 
+require 'includes/navAndSide2.php';
+?>
+<!-- nav bar & side bar -->
 
-      <div class="col-sm-12">
-        <a href="index.php">
-      <img class="img-school-logo " src="<?php echo SCHOOL_LOGO_PATH?>">
-      <span class="lbl-school-name"><?php echo SCHOOL_NAME?></span>
-      </a>
-      </div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Student Information</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item active">Student Entry List</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
 
-    </div>
+    <!-- Main content -->
+    <section class="content">
 
-    <div class="row">
-      <div class="container home-main-body ">
+      <!-- Default box -->
+          <div class="card">
+            <div class="card-header">
+              <p>
+
+          <!--     <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
+                <span class="fa fa-undo  ref-btn ref-btn2" aria-hidden="true">&nbsp&nbsp</span>Refresh
+                </a>&nbsp&nbsp -->
+                <button 
+                data-toggle="modal" data-target="#addstudentmodal"
+                type="button" class="btn btn-primary add-button">
+                <span class=" fa fa-plus-square">&nbsp&nbsp</span>Add Student
+                </button>
+              </p>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body display nowrap" style="width:100%">
+              <table id="example1" class="table table-bordered ">
+                <thead>
+                <tr>
+                  <th>Full Name</th>
+                  <th>Code</th>
+                  <th>LRN</th>
+                  <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+          <?php 
+
+          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN FROM tbl_student";
+           $result1 = mysqli_query($conn, $sql);
+            $ctr=0;
+              if (mysqli_num_rows($result1) > 0) {
+                while($row = mysqli_fetch_array($result1)){
+          echo"<tr class='tRow' id='row".$ctr."'>";
+                  echo"<td>";
+                    echo combineName($row[0],$row[1],$row[2]);
+                  echo"</td>";
+                  echo"<td>";
+                    echo $row[3];
+                  echo"</td>";
+                  echo"<td>";
+                    echo $row[4];
+                  echo"</td>";
+                   echo'   <td style="width:15%; class="">';
+                   echo'       <a class="btn btn-primary btn-sm" href="#">';
+                   echo'           <i class="fas fa-folder">';
+                   echo'           </i>';
+                   echo'           View';
+                   echo'       </a>';
+                   echo'       <a class="btn btn-info btn-sm" href="#">';
+                   echo'           <i class="fas fa-pencil-alt">';
+                   echo'           </i>';
+                   echo'           Edit';
+                   echo'       </a>';
+                   echo'       <a class="btn btn-danger btn-sm" href="#">';
+                   echo'           <i class="fas fa-trash">';
+                   echo'           </i>';
+                   echo'           Delete';
+                   echo'       </a>';
+                   echo'   </td>';
+                  
+          echo"</tr>";
+                    $ctr++;
+
+                }
+              }
+
+              else{
+                echo "<script> swal('error'); </script>";
+              }
 
 
+          ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Full Name</th>
+                  <th>Code</th>
+                  <th>LRN</th>
+                  <th>Action</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
 
 
+<!-- ./wrapper -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollY": 200,
+        "scrollX": true
+    } );
+} );
+
+</script>
+
+<?php 
+
+require 'assets/scripts.php';
+
+?>
+<!-- customize scripts -->
+<script src="../include/plugins/datatables/jquery.dataTables.js"></script>
+
+<script src="../include/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+<script src="../include/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../include/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="../include/plugins/moment/moment.min.js"></script>
+<script src="../include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="../include/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../include/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../include/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../include/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" type="text/css" href="../include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
 
-
-
-
-
-
-
-
-
-    <!-- Modal -->
+<!-- Modal -->
+<div class="modal  fade" id="addstudentmodal" tabindex="-1" role="dialog" 
+aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -103,7 +225,7 @@
           </div>
 
           <div class="modal-body"  style="background-color: #D3D3D3 ">
-            <div class="callout callout-info">
+            <div class="callout callout-info" id="next-stud-card">
       
               <form onsubmit="return confirm('Are you sure?')" method="POST" enctype="multipart/form-data">
               <a class="modal-myheading">Student Information</a>
@@ -113,10 +235,10 @@
                       <div class="row">
                         
                             <div class="col-lg-4">
-                              <div class="form-group" style="display: none;">
+                              <div class="form-group" >
                                 <label class="unrequired-field">Student Code</label><br>
                                 <div class="input-group">
-                                  <input disabled="true" title="We will fill this up for you" value="<?php echo isset($_POST['student-code']) ? $_POST['student-code'] : '' ?>"
+                                  <input title="We will fill this up for you" value="<?php echo isset($_POST['student-code']) ? $_POST['student-code'] : '' ?>"
                                   name="student-code" type="text" class="form-control">
                                  </div>
                                </div>
@@ -286,7 +408,6 @@
                                   }
                                         $res = cleanThis($SY);
                                         $res2 = cleanThis($_POST['last-school-attended-year']);
-                                    echo "<script> console.log('".$res." and res 2 ".$res2."'); </script>";
       
                                ?>
       
@@ -362,8 +483,14 @@
                             </div>
                           </div>
                         </div>
+            <div class="modal-footer">
+              <a type="button" class="btn btn-danger" id="next-stud-cancel" data-dismiss="modal">Cancel</a>
+              <a class="btn btn-primary" onclick="nxtStud()" id="next-stud">Next</a>
+            </div>
                       </div>
-    <div class="callout callout-danger">
+
+
+    <div class="callout callout-danger hiddenCard" id="next-cont-card" >
       
                   <a class="modal-myheading">Contact Information</a>
                   <br><!-- Spaceing --><br>
@@ -417,10 +544,15 @@
                        </div>     
       
                   </div>
+            <div class="modal-footer">
+              <a type="button" class="btn btn-warning" onclick=" backCont()" id="next-cont-back">Back</a>
+              <a class="btn btn-primary" onclick=" nxtCont()" id="next-cont">Next</a>
+            </div>
+
     </div>
               <div class="row">
                 <div class="col-12">
-                  <div class="callout callout-success">
+                  <div class="callout callout-success hiddenCard" id="next-fami-card">
                   <!-- Family Information -->
 
                     <div class="card-header d-flex p-0">
@@ -838,75 +970,43 @@
                         </div>
 
                       </div>
+                                  <div class="modal-footer">
+              <a type="button" class="btn btn-warning" onclick="backFami()" id="next-cont-back">Back</a>
+              <button type="submit" name="btn-submit" class="btn btn-success">Add student</button>
+            </div>
                     </div><!-- /.card-body -->
                   </div><!-- ./card -->
                 </div><!-- /.col -->
               </div> <!-- /.row -->
              
 
-            <div class="modal-footer">
+<!--             <div class="modal-footer">
               <a href="index.php" type="button" class="btn btn-secondary" data-dilgiss="modal">Cancel</a>
               <button type="submit" name="btn-submit" class="btn btn-primary">Submit</button>
-            </div>
+            </div> -->
 
           </form>
         </div>
       </div>
-    <!-- Modal -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
     </div>
+<!-- Modal -->
 
-  </div>
 </body>
-
-<!-- jQuery -->
-<script src="include/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="include/plugins/select2/js/select2.full.min.js"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="include/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-<!-- InputMask -->
-<script src="include/plugins/moment/moment.min.js"></script>
-<script src="include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-<!-- date-range-picker -->
-<script src="include/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap color picker -->
-<script src="include/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="include/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Bootstrap Switch -->
-<script src="include/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<!-- AdminLTE App -->
-<script src="include/dist/js/adminlte.min.js"></script>
-
+<script type="text/javascript" src="assets/scipts/hideAndNext.js"></script>
 <script>
+
+  $(function () {
+    $("#example1").DataTable( {
+    } );
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
 
       //Initialize Select2 Elements
     $('.select2bs4').select2({
@@ -916,6 +1016,8 @@
     //Initialize Select2 Elements
     $('.select2bs4').select2()
 
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
 
     $('[data-mask]').inputmask()
 
@@ -924,14 +1026,36 @@ $(document).ready(function() {
     $('.yearselect').select2();
 });
 
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "scrollY": 200,
+        "scrollX": true
+    } );
+} );
+
+// $('input[name="school-last-attended"]').change(function() {
+//   if ($(this).val() == ''||$(this).val() == '  ') {
+//   $('input[name="last-school-attended-grade"]').prop("disabled",true);
+//   $('input[name="last-school-attended-grade"]').val('');
+//   $('input[name="last-school-attended-address"]').prop("disabled",true);
+//   $('input[name="last-school-attended-address"]').val('');
+//   $('input[name="last-school-attended-year"]').attr('disabled',true);
+//   $('input[name="last-school-attended-year"]').val('');
+//   $('input[name="last-school-attended-level"]').prop("disabled",true);
+//   $('input[name="last-school-attended-level"]').val('');
+
+//   }
+//   else{
+//     $('input[name="last-school-attended-grade"]').prop("disabled",false);
+//     $('input[name="last-school-attended-address"]').prop("disabled",false);
+//     $('input[name="last-school-attended-year"]').prop("disabled",false);
+//     $('input[name="last-school-attended-level"]').prop("disabled",false);
+//   }
+// });
+
 
 </script>
-
-
 </html>
-
-
-
 
 <?php 
 if (isset($_POST["btn-submit"])) { 
@@ -961,7 +1085,7 @@ if (isset($_POST["btn-submit"])) {
       else{
 
         $lrn=cleanThis($_POST['student-lrn']);
-        //$code=cleanThis($_POST['student-code']);
+        $code=cleanThis($_POST['student-code']);
         $isLRNMatch=false;
         $isCodeMatch=false;
         $gender;
@@ -1110,7 +1234,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['middle-name'])));
      $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
      $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
-     // $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-code'])));
+     $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-code'])));
      $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));
      $_POST['birthdate']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['birthdate']));
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));

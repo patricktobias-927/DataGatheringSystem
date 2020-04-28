@@ -11,6 +11,7 @@
     require 'include/config.php';
     include 'include/fonts.php';
     require 'assets/phpfunctions.php';
+    ob_start();
   ?>
 
         <!-- Sweetalert -->
@@ -79,16 +80,32 @@
         <form action="register-parent.php" method="post">
 
         <div class="row">
-          <div class="col-lg-12">
-            <div class="form-group">
-              <label>Full Name</label><br>
-              <div class="input-group">
-                <input name="name" <?php if(isset($_POST['name']))echo "value='".$_POST['name']."'"; ?>type="text" class="form-control" required="true" placeholder="Firstname MI. Lastname">
-               </div>
-             </div>
-          </div>
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="required-field">Given Name</label>
+                              <input value="<?php echo isset($_POST['first-name']) ? $_POST['first-name'] : '' ?>"
+                              name="first-name"required type="text" class="form-control" placeholder="Enter First Name">
+                            </div>
+                          </div>
+      
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="unrequired-field">Middle Name</label>
+                              <input value="<?php echo isset($_POST['middle-name']) ? $_POST['middle-name'] : '' ?>"
+                              name="middle-name"type="text" class="form-control" placeholder="Enter Middle Name">
+                            </div>
+                          </div>
+      
+                          <div class="col-lg-4">
+                            <div class="form-group">
+                              <label class="required-field">Surname/Last Name</label>
+                              <input value="<?php echo isset($_POST['last-name']) ? $_POST['last-name'] : '' ?>"
+                              name="last-name"required type="text" class="form-control" placeholder="Enter Last Name">
+                            </div>
+                          </div>
 
         </div>
+
 
         <div class="row">
             <div class="col-lg-6">
@@ -108,8 +125,13 @@
             <div class="col-lg-6">
                          <div class="form-group">
                            <label class="unrequired-field" for="exampleInputEmail1">Email address</label>
+                                           <div class="input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                   </div>
                            <input <?php if(isset($_POST['email']))echo "value='".$_POST['email']."'"; ?>
                            name="email" type="email" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Enter email" required="true"> 
+                         </div>
                          </div> 
               </div> 
             </div>
@@ -140,6 +162,30 @@
               </div> 
             </div>
 
+                    <div class="row ">
+                                      <div class="col-lg-12 " >
+      
+                              <div class="form-group clearfix" > 
+                                <label class="genderform">Gender</label><br>
+      
+                                <div class="icheck-primary d-inline">
+                                    <input <?php if(isset($_POST['r1']) && $_POST['r1']=="female") echo 'checked'; ?>
+                                    value="female" type="radio" id="radioPrimary2" name="r1" checked>
+                                    <label for="radioPrimary2">Female
+                                    </label>
+                                </div>&nbsp
+      
+                                <div class="icheck-primary d-inline">
+                                   <input <?php if(isset($_POST['r1']) && $_POST['r1']=="male") echo 'checked'; ?>
+                                   value="male" type="radio" id="radioPrimary1" name="r1" >
+                                   <label for="radioPrimary1">Male
+                                   </label>
+                                </div>
+      
+                              </div> 
+                            </div> 
+        </div>
+
             <div class="row" >
               <div class="col-sm-12" >
                 <div class="btn-cont" style="float: right;">
@@ -149,6 +195,8 @@
 </form>
               </div>
             </div>
+
+
 
         </div>
 
@@ -221,16 +269,44 @@ $(document).ready(function() {
       $message="Password is too weak";
       displayMessage("error","Invalid Entry",$message);
     }
+
     else{
-     $_POST['name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['name'])));
+
+     $_POST['first-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
+     $_POST['middle-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['middle-name'])));
+     $_POST['last-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
      $_POST['email']               = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
      $_POST['number']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'])));
      $_POST['pass1']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
+    if (isset($_POST['r1'])) {
+      if ($_POST['r1']=="male") {
+        $gender="Male";;
+      }
+      else{
+        $gender="Female";
+      }
+
+    }
+    $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['number']."'";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+
+      $message="This mobile number is already registered";
+      displayMessage("error","Invalid Entry",$message);
+
+    }
+    else{
+
 
      $insertQuery = "Insert into tbl_parentuser
 (
-fullName,
-phone,
+fname,
+mname,
+lname,
+mobile,
+sex,
 email,
 password,
 isEnabled
@@ -240,8 +316,11 @@ isEnabled
 VALUES 
 (
 
-'".$_POST['name']."',
+'".$_POST['first-name']."',
+'".$_POST['middle-name']."',
+'".$_POST['last-name']."',
 '".$_POST['number']."',
+'$gender',
 '".$_POST['email']."',
 '".$_POST['pass1']."',
 '1'
@@ -249,6 +328,10 @@ VALUES
 )";      
 
 mysqli_query($conn, $insertQuery);
+header('Location: index.php?registered');
+
+    }
+
 
     }
   }

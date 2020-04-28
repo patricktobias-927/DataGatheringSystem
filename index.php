@@ -76,19 +76,19 @@
 <form action="index.php" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Mobile Number</label>
-    <input type="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn" placeholder="Enter Mobile Number">
+    <input type="number" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn" placeholder="Enter Mobile Number">
     <small  class="form-text text-muted">We'll never share your information with anyone else.</small>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
   </div>
     <a href="#" >I forgot my Password</a>
 
       </div>
       <div class="modal-footer">
-        <a href="NewStudent.php" type="button"  class="btn btn-info" title="click here" >New student ?</a>
-        <button type="submit" class="btn btn-success">Login</button>
+        <a href="NewStudent.php" type="button"  class="btn btn-info" title="click here" >Register</a>
+        <button type="submit" name="submit" class="btn btn-success">Login</button>
        </form>
       </div>
     </div>
@@ -99,10 +99,7 @@
 <!-- Bootstrap 4 -->
 <script src="include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script>     $(window).load(function(){
-                $('#exampleModalCenter').modal('show');
-            });
-</script>
+
 
 
 </html>
@@ -115,19 +112,15 @@
 
   if (isset($_POST['submit'])) {
     if (strlen($_POST['number'])<10 || strlen($_POST['number'])>13) {
-      displayMessage("warning","Invalid Mobile Number","Please try again");
+      displayMessage("warning","Invalid Mobile Number","Please try again ");
+      echo "<script type='text/javascript'>   $('#exampleModalCenter').modal('show'); </script> ";
+
     }
     else{
       $_POST['number']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'] )));   
       $_POST['password']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['password'] )));  
       
-      $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['number']."' and $";
-      
-      
-      
-      $result = mysqli_query($conn, $sql);
-      $pass_row = mysqli_fetch_assoc($result);
-      $studentID = $pass_row['studentID'];
+      $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['number']."'";
 
     $result = mysqli_query($conn, $sql);
 
@@ -135,36 +128,33 @@
 
       if ($pass_row = mysqli_fetch_assoc($result)) {
 
-          $chkpass = $_POST['password'] ==$pass_row['Password'];
+          $chkpass = $_POST['password'] ==$pass_row['password'];
 
-          if ($chkpass == false) {
-            header('Location: index.php?noUserExist');
-            exit();
+          if (!$chkpass) {
+            displayMessage("warning","Wrong Password","Please try again ".$_POST['password']);
+            echo "<script type='text/javascript'>   $('#exampleModalCenter').modal('show'); </script> ";
           }
 
           elseif ($chkpass == true) {
-            $_SESSION['id'] = $pass_row['accountID'];
-            $_SESSION['lname'] = $pass_row['Lastname'];
-            $_SESSION['fname'] = $pass_row['Firstname'];
-            $_SESSION['mobileno'] = $pass_row['Mobileno'];
-            $_SESSION['lvl'] = $pass_row['Level'];
-            $_SESSION['userEmail'] = $pass_row['userEmail'];
-            $_SESSION['schoolID'] = $pass_row['schoolID'];
-            $_SESSION['Schoolname'] = $pass_row['Schoolname'];
-            $_SESSION['Schooladdress'] = $pass_row['Schooladdress'];
-            $_SESSION['pictureFileName'] = $pass_row['pictureFileName'];
-            $_SESSION['CurrentSchoolYear'] = $pass_row['CurrentSchoolYear'];
 
-            
-            $timeStamp = date("Y-m-d H:i:s");
-            $token = generateNumericOTP(6);
-            $accID = $_SESSION['id']; 
-            $sql = "Insert into tbl_token (token, accountID, timeGen) 
-            values ('$token','$accID','$timeStamp')";
-            mysqli_query($conn, $sql);
+            $_SESSION['userID'] = $pass_row['userID'];
+            $_SESSION['first-name'] = $pass_row['fname'];
+            $_SESSION['middle-name'] = $pass_row['mname'];
+            $_SESSION['last-name'] = $pass_row['lname'];
+            $_SESSION['lvl'] = $pass_row['mobile'];
+            $_SESSION['userEmail'] = $pass_row['sex'];
+            $_SESSION['schoolID'] = $pass_row['email'];
 
-            $_SESSION['token'] = $token;
-           
+            // $timeStamp = date("Y-m-d H:i:s");
+            // $token = generateNumericOTP(6);
+            // $accID = $_SESSION['id']; 
+            // $sql = "Insert into tbl_token (token, accountID, timeGen) 
+            // values ('$token','$accID','$timeStamp')";
+            // mysqli_query($conn, $sql);
+
+            // $_SESSION['token'] = $token;
+            header('Location: u/home.php');
+            exit();
           }
        }
 
@@ -174,18 +164,24 @@
       }
     }
     else{
-      //
+      displayMessage("warning","This phone number is not register","Please try again");
     }
 
     }
   }
+  if (isset($_REQUEST['registered'])) {
+  echo "<script>";
+    echo "Swal.fire({";
+      echo "html: 'Registration Success you can login now',";
+      echo "type: 'success',";
+      echo "title: 'Success',";
+      echo "showConfirmButton: false,";
+      echo "timer: 2700,";
+      echo "customClass: 'swal-sm'";
+    echo "});";
+  echo "$('#exampleModalCenter').modal('show');</script>";
 
-  if (isset($_REQUEST['noUserExist'])){
-    echo 
-    ' 
-    <div class="alert alert-danger notification-login swing" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><p>The Mobile Number you’ve entered doesn’t match any account or Password is incorrect</div>
-
-    ';
   }
+
   
 ?>

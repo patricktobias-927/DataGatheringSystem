@@ -7,7 +7,7 @@ function displayMessage($type,$title,$message){
       echo "type: '$type',";
       echo "title: '$title',";
       echo "showConfirmButton: false,";
-      echo "timer: 2700,";
+      echo "timer: 3400,";
       echo "customClass: 'swal-sm'";
     echo "})";
   echo "</script>";

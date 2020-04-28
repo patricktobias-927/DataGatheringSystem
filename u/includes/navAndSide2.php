@@ -18,9 +18,9 @@ function treeOpen($page, $navtitle)
 		echo "";
 	}
 }
- function titlePage($page)
+ function titlePage()
 {
-	echo "School Name Goes here, Lorem ipsum dolor sit amet.";
+	echo SCHOOL_NAME . " ~ " . SCHOOL_ADDRESS;
 }
   require '../include/getschoolyear.php';
 
@@ -35,7 +35,7 @@ function treeOpen($page, $navtitle)
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo $page.".php"?>" class="nav-link nav-link-2"><?php titlePage('page');?></a>
+        <a href="<?php echo $page.".php"?>" class="nav-link nav-link-2"><?php titlePage();?></a>
       </li>
     </ul>
 
@@ -62,9 +62,9 @@ function treeOpen($page, $navtitle)
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <span class="brand-link">
-      <img src="../assets/imgs/pphlogohq.png" alt="PPH" class="brand-image img-circle elevation-3"
+      <img src="<?PHP echo "../".SCHOOL_LOGO_PATH?>" alt="<?PHP echo SCHOOL_ABV?>" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light title-right">PPH | DGS</span>
+      <span class="brand-text font-weight-light title-right"><?PHP echo SCHOOL_ABV?> | PRISM</span>
     </span>
 
     <!-- Sidebar -->
@@ -75,7 +75,7 @@ function treeOpen($page, $navtitle)
       <nav class="mt-2">
         <ul class="nav nav-pills nav-child-indent nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="index.php" class="nav-link <?php isActive($page,"index");?>">
+            <a href="home.php" class="nav-link <?php isActive($page,"home");?>">
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Home
@@ -83,10 +83,10 @@ function treeOpen($page, $navtitle)
             </a>
           </li>
           <li class="nav-item">
-            <a href="index.php" class="nav-link">
-              <i class="nav-icon fa fa-cog"></i>
+            <a href="studentEntry.php" class="nav-link <?php isActive($page,"studentEntry");?> " >
+              <i class="nav-icon fa  fa-edit"></i>
               <p>
-                Account Settings
+                Registration
               </p>
             </a>
           </li>
@@ -144,15 +144,6 @@ function treeOpen($page, $navtitle)
                 </a>
               </li>              
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
           </li>
         </ul>
       </nav>
