@@ -11,9 +11,8 @@
     require 'include/config.php';
     include 'include/fonts.php';
     require 'assets/phpfunctions.php';
+    require 'include/getschoolyear.php';
 
-    $_SESSION['CurrentSchoolYear']='1';
-    $_SESSION['userID'] ='1';
     ob_start();
   ?>
 
@@ -372,7 +371,7 @@
       
                   <div class="col-lg-8">
                     <div class="form-group">
-                      <label class="required-field">Contact Person Full Name</label>
+                      <label class="required-field">Contact Person Full Name <?php echo $_SESSION['userID']."aaaaaa"?></label>
                       <input value="<?php echo isset($_POST['contact-person-name']) ? $_POST['contact-person-name'] : '' ?>"
                       name="contact-person-name" required type="text" class="form-control" placeholder="FirstName LastName">
                     </div>

@@ -87,7 +87,7 @@
 
       </div>
       <div class="modal-footer">
-        <a href="NewStudent.php" type="button"  class="btn btn-info" title="click here" >Register</a>
+        <a href="register-parent.php" type="button"  class="btn btn-info" title="click here" >Register</a>
         <button type="submit" name="submit" class="btn btn-success">Login</button>
        </form>
       </div>
@@ -131,11 +131,12 @@
           $chkpass = $_POST['password'] ==$pass_row['password'];
 
           if (!$chkpass) {
-            displayMessage("warning","Wrong Password","Please try again ".$_POST['password']);
+            displayMessage("warning","Wrong Password","Please try again ");
             echo "<script type='text/javascript'>   $('#exampleModalCenter').modal('show'); </script> ";
           }
 
           elseif ($chkpass == true) {
+            session_start();
 
             $_SESSION['userID'] = $pass_row['userID'];
             $_SESSION['first-name'] = $pass_row['fname'];
@@ -183,5 +184,18 @@
 
   }
 
-  
+  if (isset($_REQUEST['logout'])) {
+    session_destroy();
+  echo "<script>";
+    echo "Swal.fire({";
+      echo "html: 'Logged out',";
+      echo "type: 'info',";
+      echo "title: 'Information',";
+      echo "showConfirmButton: false,";
+      echo "timer: 2700,";
+      echo "customClass: 'swal-sm'";
+    echo "});";
+  echo "</script>";
+
+  }
 ?>

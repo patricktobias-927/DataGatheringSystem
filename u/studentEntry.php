@@ -8,15 +8,22 @@
   $page = "studentEntry";
   require 'assets/scipts/phpfunctions.php';
   require 'assets/generalSandC.php';
-  require 'assets/adminlte.php';
   require '../include/schoolConfig.php';
+  session_start();
+  $userID = $_SESSION['userID'];
+  $userFname = $_SESSION['first-name'];
+  $userMname = $_SESSION['middle-name'];
+  $userLname = $_SESSION['last-name'];
+  $userLvl = $_SESSION['lvl'];
+  $userEmail = $_SESSION['userEmail'];
+  $schoolID = $_SESSION['schoolID'];
 ?>
 
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title><?php echo SCHOOL_NAME; ?></title>
+  <title>Registraion | PRISM</title>
 
 <!-- customize css -->
   <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
@@ -30,6 +37,7 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
   <link rel="stylesheet" type="text/css" href="assets/css/css-studentinfo.css">
+
 
     <!-- daterange picker -->
   <link rel="stylesheet" href="../include/plugins/daterangepicker/daterangepicker.css">
@@ -85,9 +93,9 @@ require 'includes/navAndSide2.php';
             <div class="card-header">
               <p>
 
-          <!--     <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
+              <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
                 <span class="fa fa-undo  ref-btn ref-btn2" aria-hidden="true">&nbsp&nbsp</span>Refresh
-                </a>&nbsp&nbsp -->
+                </a>&nbsp&nbsp
                 <button 
                 data-toggle="modal" data-target="#addstudentmodal"
                 type="button" class="btn btn-primary add-button">
@@ -110,7 +118,7 @@ require 'includes/navAndSide2.php';
                 <tbody>
           <?php 
 
-          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN FROM tbl_student";
+          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN, studentID FROM tbl_student";
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {
@@ -126,7 +134,7 @@ require 'includes/navAndSide2.php';
                     echo $row[4];
                   echo"</td>";
                    echo'   <td style="width:15%; class="">';
-                   echo'       <a class="btn btn-primary btn-sm" href="#">';
+                   echo'       <a class="btn btn-primary btn-sm" href="viewDetails.php?page='.$row[5].'">';
                    echo'           <i class="fas fa-folder">';
                    echo'           </i>';
                    echo'           View';
@@ -1083,14 +1091,38 @@ if (isset($_POST["btn-submit"])) {
         echo "<script> console.log('contact Monile invalid'); </script>";
       }
       else{
-
         $lrn=cleanThis($_POST['student-lrn']);
-        $code=cleanThis($_POST['student-code']);
+        $code=$_POST['student-code'];
         $isLRNMatch=false;
         $isCodeMatch=false;
         $gender;
         $genderprefix;
         $noLRN=false;
+
+        if (isset($code)) {  
+          $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename  from `tbl_student` where studentCODE = '".$code."'";
+          $result1 = mysqli_query($conn, $sql);
+          $rowcount=mysqli_num_rows($result1);
+          //check if theres a result
+          if ($result1) {
+            $query1 = mysqli_fetch_assoc($result1);
+            
+            if ($rowcount>0) {
+            $CODEName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
+            $isCODEMatch=true;
+            $message="There is existing record <br> CODE:".$code."<br> Name: ".$CODEName;
+            displayMessage("error","Duplicate Entry",$message);
+            }
+      
+          else{
+              $isCODEMatch=false;
+            }
+          }
+
+        }
+        else{
+          $isCODEMatch=false;
+        }
 
         //check length
         if (strlen(cleanThis($_POST['student-lrn']))> 8) {  
@@ -1102,6 +1134,7 @@ if (isset($_POST["btn-submit"])) {
             $query1 = mysqli_fetch_assoc($result1);
             
             if ($rowcount>0) {
+              echo '<script>console.log("duplicate");</script>';
             $LRNName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
             $isLRNMatch=true;
             $message="There is existing record <br> LRN:".$lrn."<br> Name: ".$LRNName;
@@ -1115,11 +1148,12 @@ if (isset($_POST["btn-submit"])) {
 
         }
         else{
-          $noLRN=true;
+          $isLRNMatch=false;
         }
 
       
-           if (!$isLRNMatch) {
+           if (!$isLRNMatch && !$isCodeMatch) {
+
               $isEldest;
               $hasMother;
               $hasFather;
@@ -1234,7 +1268,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['middle-name'])));
      $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
      $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
-     $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-code'])));
+     $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
      $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));
      $_POST['birthdate']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['birthdate']));
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
@@ -1246,6 +1280,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
      $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-phone'])));
      $_POST['contact-person-mobile']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-mobile'])));
+     $_POST['contact-person-email']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-email']));
      $_POST['mother-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-name']));
      $_POST['mother-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-name']));
      $_POST['mother-employer-address']      = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-address']));
@@ -1269,12 +1304,12 @@ if (isset($_POST["btn-submit"])) {
 
       $randomToken = generateNumericOTP(10);
       $nowtime = date("Y-m-d H:i:s");
-
+session_start();
 
 $insertQuery = "Insert into tbl_student
 (
 userID,
-schoolYearID,
+studentCode,
 LRN,
 Prefix,
 Lastname,
@@ -1291,8 +1326,8 @@ dateTimeEnrolled
 ) 
 VALUES 
 (
-'".$_SESSION['userID']."',
-'".$_SESSION['CurrentSchoolYear']."',
+'".$userID."',
+'".$_POST['student-code'] ."',
 '".$_POST['student-lrn']."',
 '".$genderprefix."',
 '".$_POST['last-name']."',
@@ -1307,8 +1342,7 @@ VALUES
 '".$isEldest."',
 '".$nowtime."'
 )";      
-
-echo $insertQuery.";";
+echo '<script>console.log("huh" + "'.$insertQuery.'");</script>';
 mysqli_query($conn, $insertQuery);
 
 
@@ -1322,6 +1356,29 @@ $result = mysqli_query($conn, $sql);
 $pass_row = mysqli_fetch_assoc($result);
 $studentID = $pass_row['studentID'];
 
+ $insertQuery2 = "Insert into tbl_contact
+(
+userID,
+studentID,
+fullName,
+phone,
+mobile,
+email
+) 
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['contact-person-name']."',
+'".$_POST['contact-person-phone']."',
+'".$_POST['contact-person-mobile']."',
+'".$_POST['contact-person-email']."'
+)";
+ 
+mysqli_query($conn, $insertQuery2);
+
+
+
 if ($hasMother) {
  $insertQuery2 = "Insert into tbl_parents 
 (
@@ -1330,22 +1387,18 @@ studentID,
 fullName,
 employerName,
 employerAddress,
-employerPhone,
-employerMobile,
 isFather
 ) 
 VALUES
 (
-'".$_SESSION['userID']."',
+'".$userID."',
 '".$studentID."',
 '".$_POST['mother-name']."',
 '".$_POST['mother-employer-name']."',
 '".$_POST['mother-employer-address']."',
-'".$_POST['mother-employer-phone']."',
-'".$_POST['mother-employer-mobile']."',
 '0'
 )";
-//echo $insertQuery2.";";
+ 
 mysqli_query($conn, $insertQuery2);
 }
 
@@ -1358,22 +1411,18 @@ studentID,
 fullName,
 employerName,
 employerAddress,
-employerPhone,
-employerMobile,
 isFather
 ) 
 VALUES
 (
-'".$_SESSION['userID']."',
+'".$userID."',
 '".$studentID."',
 '".$_POST['father-name']."',
 '".$_POST['father-employer-name']."',
 '".$_POST['father-employer-address']."',
-'".$_POST['father-employer-phone']."',
-'".$_POST['father-employer-mobile']."',
 '1'
 )";
-//echo $insertQuery2.";";
+ 
 mysqli_query($conn, $insertQuery2);
 }
 
@@ -1389,14 +1438,14 @@ guardianMobile
 ) 
 VALUES
 (
-'".$_SESSION['userID']."',
+'".$userID."',
 '".$studentID."',
 '".$_POST['guardian-name']."',
 '".$_POST['guardian-relationship']."',
 '".$_POST['guardian-phone']."',
 '".$_POST['guardian-mobile']."'
 )";
-//echo $insertQuery2.";";
+ 
 mysqli_query($conn, $insertQuery2);
 }
 
@@ -1413,7 +1462,7 @@ averageGrade
 )     
 VALUES
 (
-'".$_SESSION['userID']."',
+'".$userID."',
 '".$studentID."',
 '".$_POST['school-last-attended'] ."',
 '".$_POST['last-school-attended-year'] ."',
@@ -1421,8 +1470,29 @@ VALUES
 '".$_POST['last-school-attended-level'] ."',
 '".$_POST['last-school-attended-grade']."'
 )";
-//echo $insertQuery2.";";
+ 
 mysqli_query($conn, $insertQuery2);
+}
+
+if ($hasSibling1) {
+ $insertQuery2 = "Insert into tbl_siblings
+(
+userID,
+studentID,
+fullName,
+level,
+siblingNo
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['sibling1-name'] ."',
+'".$_POST['sibling1-level']."',
+'2'
+)";
+ 
+ mysqli_query($conn, $insertQuery2);
 }
 
 if ($hasSibling2) {
@@ -1436,13 +1506,13 @@ siblingNo
 )     
 VALUES
 (
-'".$_SESSION['userID']."',
+'".$userID."',
 '".$studentID."',
 '".$_POST['sibling2-name'] ."',
 '".$_POST['sibling2-level']."',
 '2'
 )";
-//echo $insertQuery2.";";
+ 
  mysqli_query($conn, $insertQuery2);
 }
 
@@ -1458,17 +1528,17 @@ siblingNo
 )     
 VALUES
 (
-'".$_SESSION['userID']."',
+'".$userID."',
 '".$studentID."',
 '".$_POST['sibling3-name'] ."',
 '".$_POST['sibling3-level']."',
 '3'
 )";
-//echo $insertQuery2.";";
+ 
 mysqli_query($conn, $insertQuery2);
 }
 
- header('Location: index.php?insertsuccess');
+// header('Location: index.php?insertsuccess');
 
    }
   }

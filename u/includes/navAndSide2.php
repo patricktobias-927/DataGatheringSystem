@@ -50,8 +50,8 @@ function treeOpen($page, $navtitle)
           <!-- <span class="badge badge-warning navbar-badge">15</span> -->
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <button type="button" class="btn btn-block btn-outline-danger ">
-          Log Out <i class="fa fa-sign-out-alt"></i></button>
+          <a href="../index.php?logout" type="button" class="btn btn-block btn-outline-danger ">
+          Log Out <i class="fa fa-sign-out-alt"></i></a>
         </div>
       </li>
     </ul>
