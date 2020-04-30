@@ -11,6 +11,8 @@
     require 'include/config.php';
     include 'include/fonts.php';
     require 'assets/phpfunctions.php';
+    session_start();
+    ob_start();
   ?>
 
         <script src="assets/js/sweetalert2.all.min.js"></script>
@@ -36,18 +38,33 @@
 <body>
 	<div class=" main">
 
-		<div class="row navbar">
-
-			<div class="col-sm-10">
-			<img class="img-school-logo " src="<?php echo SCHOOL_LOGO_PATH?>">
-			<span class="lbl-school-name"><?php echo SCHOOL_NAME?></span>
+		<div class="row navbar" style="margin-top: -10px;">
+			<div class="col-sm-8" style="padding-left: 30px;">
+			<img class="img-school-logo " src="assets/imgs/PPH LOGO.png" style="width: 55px; height: 70px; margin-bottom: 10px">
+			<span class="lbl-school-name"><b>PRISM</b></span>
 			</div>
-			<div class="col-sm-2 cont-btn ">
-				<button type="button" class="btn btn-link btn-home-login">Admin</button>
+			<div class="col-sm-4">
+				<form  action="index.php" method="post">
+          <div class="row">
+              <div class="col-sm-5">
+                <label for="log-number" class="log-label">Mobile Number</label>
+                <input type="number" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn" placeholder="Enter Mobile Number" id="log-number">
+              </div>
+              <div class="col-sm-5">
+                <label for="input-password" class="log-label">Password</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" id="input-password">
+                <a href="#" class="fPassword">Forgot Password ?</a>
+              </div>
+              <div class="col-sm-2">
+                <label for="loginbtn" class="log-label" style="visibility: hidden;">Jernrie</label>
+                <button  type="submit" name="login" value="submit" id="loginbtn" name="login" class="btn btn-primary" >Login</button>
+              </div>
+            </div>
+        </form>
 			</div>
 		</div>
 
-		<div class="row">
+<!-- 		<div class="row">
 			<div class="container home-main-body ">
 				<div class="row d-flex justify-content-center"><div class="lbl-home-main">Enroll now</div></div>
 				<div class="row d-flex justify-content-center"><div class="lbl-home-sub">Enrollment is now more easier and more secure.</div></div>
@@ -55,13 +72,202 @@
 					<button type="button" class="btn btn-primary btn-getstarted">Get Started</button>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-	</div>
+<!--     <div class="row">
+      <div class="col-lg-7">
+        <div class="row">Welcome to Prism,</div>
+        <div class="row">
+        <div class="row">
+          <div class="col-sm-1">
+          </div>
+
+            <div class="col-sm-11"><b>Data Entry. </b>Add, Edit and View student and parent information.</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-1">
+          </div>
+
+            <div class="col-sm-11"><b>View List. </b>View Student and parent information registered in the system.</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-1">
+          </div>
+
+            <div class="col-sm-11"><b>Export Excel. </b>Export student and parent information into CSV file.</div>
+        </div>
+      </div>
+      </div>
+      <div class="col-lg-5">asdsad</div>
+    </div> -->
+  <div class="row">
+    <div class="col-lg-7 feature ">
+      <div class="col-lg-8 feature-box">        
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11"><b class="featureTitle">Welcome to Prism,</b></div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-12 fLabel">
+          <img class="fLogo" src="assets/imgs/file.png">&nbsp&nbsp&nbsp
+            <b>Data Entry. </b><span>Add, Edit and View student and parent information.</span>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-12 fLabel">
+          <img class="fLogo " src="assets/imgs/view.png" >&nbsp&nbsp&nbsp
+            <b>View List. </b><span>View Student and parent information registered in the system.</span>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-12 fLabel" >
+          <img class="fLogo " src="assets/imgs/exel.png">&nbsp&nbsp&nbsp
+           <b>Export Excel. </b><span>Export student and parent information into CSV file.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5 main-reg-form">
+<form  action="index.php" method="post">
+      <div class="container col-lg-10 reg-form"> 
+
+        <div class="row">
+          <div class="col-lg-10 signup-label" >Sign UP</div>
+          <div class="col-lg-10 signup-sublabel">Sign up to start your session</div>
+        </div>
+<br>
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label class="required-field">Given Name</label>
+              <input value="<?php echo isset($_POST['first-name']) ? $_POST['first-name'] : '' ?>"
+                name="first-name"required type="text" class="form-control" placeholder="Enter First Name">
+            </div>
+          </div>
+            
+          <div class="col-lg-5">
+            <div class="form-group">
+              <label class="required-field">Surname/Last Name</label>
+              <input value="<?php echo isset($_POST['last-name']) ? $_POST['last-name'] : '' ?>"
+                name="last-name"required type="text" class="form-control" placeholder="Enter Last Name">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              <label class="unrequired-field">Cellphone Number</label><br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                </div>
+                <input <?php if(isset($_POST['number']))echo "value='".$_POST['number']."'"; ?>
+                name="number"  type="text" class="input thisNumber form-control" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+              </div>
+            </div>
+          </div> 
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              <label class="unrequired-field" for="exampleInputEmail1">Email address</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input <?php if(isset($_POST[ 'email']))echo "value='".$_POST[ 'email']. "'"; ?> name="email" type="email" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Enter email" required="true">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              <label class="unrequired-field">Password</label><br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                </div>
+                <input name="pass1" <?php if(isset($_POST['pass1']))echo "value='".$_POST['pass1']."'"; ?>type="password" class="input form-control" required="true">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group">
+              <label class="unrequired-field">Retype Password</label><br>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                   <span class="input-group-text"><i class="fa fa-lock" ></i></span>
+                </div>
+                <input name="pass2" <?php if(isset($_POST['pass2']))echo "value='".$_POST['pass2']."'"; ?>type="password" class="input form-control" required="true">
+              </div>
+            </div>  
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="form-group clearfix" > 
+              <label class="genderform">Gender</label><br>
+      
+              <div class="icheck-primary d-inline">
+                  <input <?php if(isset($_POST['r1']) && $_POST['r1']=="female") echo 'checked'; ?>
+                  value="female" type="radio" id="radioPrimary2" name="r1" checked>
+                  <label for="radioPrimary2">Female
+                  </label>
+              </div>&nbsp
+      
+              <div class="icheck-primary d-inline">
+                 <input <?php if(isset($_POST['r1']) && $_POST['r1']=="male") echo 'checked'; ?>
+                 value="male" type="radio" id="radioPrimary1" name="r1" >
+                 <label for="radioPrimary1">Male
+                 </label>
+              </div>
+      
+            </div> 
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="icheck-primary">
+              <input name=icheckbox type="checkbox" id="remember" required <?php if(isset($_POST['remember'])){echo " checked";} ?>>
+              <label for="remember" class='lbl-datapolicy' style="font-family: sans-serif; font-weight: normal;">
+                I acknowledge that I have read and understood Phonix Publishing House, Inc. Privacy Notice. I Knowingly give my consent to Phoneix to collect,  use,  store, or process my personal data and related documents. 
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+              <div class="col-sm-4" >
+                  <br>
+                  <button type="Sign Up" value ="Signup" name="Signup" class="btn btn-info btn-block" style="float: left;">Submit</button>
+</form>
+              </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 
 
-<!-- Modal -->
+<!--  
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -88,11 +294,11 @@
       </div>
       <div class="modal-footer">
         <a href="register-parent.php" type="button"  class="btn btn-info" title="click here" >Register</a>
-        <button type="submit" name="submit" class="btn btn-success">Login</button>
+        <button type="submit" name="btn-submit" class="btn btn-success">Login</button>
        </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
  <!-- jQuery -->
 <script src="include/plugins/jquery/jquery.min.js"></script>
@@ -110,10 +316,10 @@
 
   }
 
-  if (isset($_POST['submit'])) {
+  if (isset($_POST['login'])) {
+    echo "<scirpt>alert('hey')</script>";
     if (strlen($_POST['number'])<10 || strlen($_POST['number'])>13) {
       displayMessage("warning","Invalid Mobile Number","Please try again ");
-      echo "<script type='text/javascript'>   $('#exampleModalCenter').modal('show'); </script> ";
 
     }
     else{
@@ -132,11 +338,9 @@
 
           if (!$chkpass) {
             displayMessage("warning","Wrong Password","Please try again ");
-            echo "<script type='text/javascript'>   $('#exampleModalCenter').modal('show'); </script> ";
           }
 
           elseif ($chkpass == true) {
-            session_start();
 
             $_SESSION['userID'] = $pass_row['userID'];
             $_SESSION['first-name'] = $pass_row['fname'];
@@ -170,6 +374,83 @@
 
     }
   }
+  if (isset($_POST['Signup'])) {
+    if (strlen(cleanThis($_POST['number']))<11) {
+      $message="Mobile number is invalid";
+      displayMessage("error","Invalid Entry",$message);
+    }
+    elseif ($_POST['pass1'] != $_POST['pass2']){
+      $message="Password mismatch";
+      displayMessage("error","Invalid Entry",$message);
+    }
+    elseif (strlen($_POST['pass1']) <5){
+      $message="Password is too weak";
+      displayMessage("error","Invalid Entry",$message);
+    }
+
+    else{
+
+     $_POST['first-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
+     $_POST['last-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
+     $_POST['email']               = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
+     $_POST['number']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'])));
+     $_POST['pass1']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
+    if (isset($_POST['r1'])) {
+      if ($_POST['r1']=="male") {
+        $gender="Male";;
+      }
+      else{
+        $gender="Female";
+      }
+
+    }
+    $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['number']."'";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+
+      $message="This mobile number is already registered";
+      displayMessage("error","Invalid Entry",$message);
+
+    }
+    else{
+
+
+     $insertQuery = "Insert into tbl_parentuser
+(
+fname,
+lname,
+mobile,
+sex,
+email,
+password,
+isEnabled
+
+
+) 
+VALUES 
+(
+
+'".$_POST['first-name']."',
+'".$_POST['last-name']."',
+'".$_POST['number']."',
+'$gender',
+'".$_POST['email']."',
+'".$_POST['pass1']."',
+'1'
+
+)";      
+
+mysqli_query($conn, $insertQuery);
+header('Location: index.php?registered');
+
+    }
+
+
+    }
+  }
+
   if (isset($_REQUEST['registered'])) {
   echo "<script>";
     echo "Swal.fire({";
@@ -198,4 +479,6 @@
   echo "</script>";
 
   }
+
+
 ?>
