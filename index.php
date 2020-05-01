@@ -255,6 +255,7 @@
                   <button type="Sign Up" value ="Signup" name="Signup" class="btn btn-info btn-block" style="float: left;">Submit</button>
 </form>
               </div>
+              
         </div>
 
       </div>
@@ -349,6 +350,7 @@
             $_SESSION['lvl'] = $pass_row['mobile'];
             $_SESSION['userEmail'] = $pass_row['sex'];
             $_SESSION['schoolID'] = $pass_row['email'];
+            $_SESSION['userType'] = $pass_row['userType'];
 
             // $timeStamp = date("Y-m-d H:i:s");
             // $token = generateNumericOTP(6);
@@ -358,8 +360,16 @@
             // mysqli_query($conn, $sql);
 
             // $_SESSION['token'] = $token;
-            header('Location: u/home.php');
-            exit();
+            
+            if ($_SESSION['userType']=='A') {
+              header('Location: u/index.php');
+              exit();
+            }
+            else{
+              header('Location: u/home.php');
+              exit();
+            }
+
           }
        }
 
@@ -425,7 +435,8 @@ mobile,
 sex,
 email,
 password,
-isEnabled
+isEnabled,
+userType
 
 
 ) 
@@ -438,7 +449,8 @@ VALUES
 '$gender',
 '".$_POST['email']."',
 '".$_POST['pass1']."',
-'1'
+'1',
+'P'
 
 )";      
 

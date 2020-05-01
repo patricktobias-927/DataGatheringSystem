@@ -6,6 +6,67 @@
       $sex = "Female";
     }
 
+    $hasContact;
+    $hasSchoolInfo;
+
+    $sql = "sELECT a.* FROM tbl_contact AS a WHERE a.studentID = '".$studentID."'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      if (mysqli_num_rows($result) > 0) {
+        if ($pass_row = mysqli_fetch_array ($result)) {
+            $haveContact='1';
+
+            $contactID      = $pass_row['2'];
+            $fullName       = $pass_row['3'];
+            $phone          = $pass_row['4'];
+            $mobile         = $pass_row['5'];
+            $email         = $pass_row['6'];
+        }
+        else{
+          $haveContact='0';
+        }
+            
+    }
+    else{
+      $haveContact='0';
+    }
+
+  }
+
+  else{
+      $haveContact='0';
+  }
+
+      $sql = "sELECT a.* FROM tbl_schoolinfo AS a WHERE a.studentID = '".$studentID."'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      if (mysqli_num_rows($result) > 0) {
+        if ($pass_row = mysqli_fetch_array ($result)) {
+            $hasSchoolInfo ='1';
+
+            $schoolInfoID       = $pass_row['2'];
+            $schoolLastAttended = $pass_row['3'];
+            $schoolYear         = $pass_row['4'];
+            $schoolAddress      = $pass_row['5'];
+            $levelCompleted     = $pass_row['6'];
+            $averageGrade       = $pass_row['7'];
+        }
+        else{
+          $hasSchoolInfo ='0';
+        }
+            
+    }
+    else{
+      $hasSchoolInfo ='0';
+    }
+
+  }
+
+  else{
+      $hasSchoolInfo ='0';
+  }
+
+
 
   ?>
 
@@ -109,7 +170,7 @@
                 </div> 
 
 
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <br>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
@@ -128,33 +189,36 @@
                       <!-- /.card-header -->
 
               <div class="card-body">
+              <?php if($haveContact){?>
                 <div class="row">                
                   <div class="col-lg-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>Full Name: </b> <?php echo $fullName?></div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Phone Number: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>Phone Number: </b>    <?php echo $phone?></div>
                     </div>
                   </div>
                 </div> 
                 <div class="row">                
                   <div class="col-lg-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mobile Number: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>Mobile Number: </b>   <?php echo $mobile?></div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Email: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>Email: </b>    <?php echo $email?></div>
                     </div>
                   </div>
                 </div> 
+              <?php } else{ echo'<p class="card-text">This Student dont have contact information</p>';}?>
 
 
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                <br>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
@@ -174,41 +238,40 @@
                         <!-- /.card-tools -->
                       </div>
                       <!-- /.card-header -->
-
-              <div class="card-body">
+  
+            <div class="card-body">
                 <div class="row">                
                   <div class="col-lg-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>School: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>School: </b><?php echo $schoolLastAttended ?></div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>School Year: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>School Year: </b><?php echo $schoolYear ?></div>
                     </div>
                   </div>
                 </div> 
                 <div class="row">                
                   <div class="col-lg-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>School Address: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>School Address: </b><?php echo $schoolAddress ?></div>
                     </div>
                   </div>
                 </div>
                 <div class="row">                
                   <div class="col-lg-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Average Grade: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>Average Grade: </b><?php echo $averageGrade ?></div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Level Completed: </b>Pangilinan, Jerrnie B.</div>
+                        <div class="col-sm-auto details-title"><b>Incomming Level: </b><?php echo $levelCompleted ?></div>
                     </div>
                   </div>
                 </div> 
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <br>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
@@ -288,7 +351,7 @@
                 </div> 
 
 
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <br>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>

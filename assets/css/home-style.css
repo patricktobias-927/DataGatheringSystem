@@ -94,6 +94,11 @@
   }
   .feature-box{
     margin-top: 20px;
+    margin-bottom: -20px;
+  }
+  .reg-form{
+    margin-top: 0px;
+    height: 100%;
   }
 }
 .feature{
@@ -134,12 +139,18 @@
 }
 .reg-form{
   margin-top: 50px;
+  padding-bottom: 158px;
+
 }
 .main-reg-form{
   background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+
 }
 input{
   letter-spacing: 0.001em;
   font-family: sans-serif;
   font-weight: bold;
+}
+body{
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }

@@ -396,7 +396,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       
                         <div class="col-lg-2">
                            <div class="form-group">
-                             <label class="unrequired-field">School Year</label>
+                             <label class="unrequired-field">Last School Year</label>
       
                              <select placeholder="Enter School Name" name="last-school-attended-year" class="form-control select2bs4" style="width: 100%;">
                               <option value='' <?php if(!isset($_POST['last-school-attended-year'])){ echo "Selected = 'true'";} else{}?>
@@ -423,29 +423,51 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                              </select>
                            </div>
                         </div>
+
       
                         <div class="col-lg-2">
+                          <div class="form-group">
+                            <label class="unrequired-field">Average Grade</label><br>
+                            <div class="input-group">
+                              <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
+                                name="last-school-attended-grade" type="text" class="form-control" >
+                             </div>
+                           </div>
+                          </div> 
+                        </div>
+      
+                        <div class="row">
+                          <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="unrequired-field">School Last Attended Address</label>
+                              <input value="<?php echo isset($_POST['last-school-attended-address']) ? $_POST['last-school-attended-address'] : '' ?>"
+                              name="last-school-attended-address" type="text" class="form-control" placeholder="Enter School Address">
+                            </div>
+                          </div>
+
+      
+                        <div class="col-lg-3">
       
                            <div class="form-group">
-                             <label class="unrequired-field">Level</label>
-                             <select name="last-school-attended-level" class="form-control select2bs4" style="width: 100%;">
+                             <label class="unrequired-field">Incomming School Year Level</label>
+                             <select name="inCommingLevel" class="form-control select2bs4" style="width: 100%;">
                               <?php 
-                              if (isset($_POST['last-school-attended-level'])){?>
-                              <option <?php if($_POST['last-school-attended-level']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($_POST['last-school-attended-level']=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+                              if (isset($_POST['inCommingLevel'])){?>
+                              <option <?php if($_POST['inCommingLevel']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
+                              <option <?php if($_POST['inCommingLevel']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
+                              <option <?php if($_POST['inCommingLevel']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
+                              <option <?php if($_POST['inCommingLevel']=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
 
                              <?php }
                               else{
@@ -470,26 +492,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                              </select>
                            </div>
                         </div>
-      
-                        <div class="col-lg-2">
-                          <div class="form-group">
-                            <label class="unrequired-field">Average Grade</label><br>
-                            <div class="input-group">
-                              <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
-                                name="last-school-attended-grade" type="text" class="form-control" >
-                             </div>
-                           </div>
-                          </div> 
-                        </div>
-      
-                        <div class="row">
-                          <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="unrequired-field">School Last Attended Address</label>
-                              <input value="<?php echo isset($_POST['last-school-attended-address']) ? $_POST['last-school-attended-address'] : '' ?>"
-                              name="last-school-attended-address" type="text" class="form-control" placeholder="Enter School Address">
-                            </div>
-                          </div>
+
                         </div>
             <div class="modal-footer">
               <a type="button" class="btn btn-danger" id="next-stud-cancel" data-dismiss="modal">Cancel</a>
@@ -1049,15 +1052,15 @@ $(document).ready(function() {
 //   $('input[name="last-school-attended-address"]').val('');
 //   $('input[name="last-school-attended-year"]').attr('disabled',true);
 //   $('input[name="last-school-attended-year"]').val('');
-//   $('input[name="last-school-attended-level"]').prop("disabled",true);
-//   $('input[name="last-school-attended-level"]').val('');
+//   $('input[name="inCommingLevel"]').prop("disabled",true);
+//   $('input[name="inCommingLevel"]').val('');
 
 //   }
 //   else{
 //     $('input[name="last-school-attended-grade"]').prop("disabled",false);
 //     $('input[name="last-school-attended-address"]').prop("disabled",false);
 //     $('input[name="last-school-attended-year"]').prop("disabled",false);
-//     $('input[name="last-school-attended-level"]').prop("disabled",false);
+//     $('input[name="inCommingLevel"]').prop("disabled",false);
 //   }
 // });
 
@@ -1166,7 +1169,7 @@ if (isset($_POST["btn-submit"])) {
           
               if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
                 $_POST['last-school-attended-year']='';
-                $_POST['last-school-attended-level']='';
+                $_POST['inCommingLevel']='';
                 $_POST['last-school-attended-grade']='';
                 $_POST['last-school-attended-address']='';
                 $hasSchoolAttended = false;
@@ -1274,7 +1277,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
      $_POST['school-last-attended']         = mysqli_real_escape_string($conn, stripcslashes($_POST['school-last-attended']));
      $_POST['last-school-attended-year']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-year']));
-     $_POST['last-school-attended-level']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-level']));
+     $_POST['inCommingLevel']   = mysqli_real_escape_string($conn, stripcslashes($_POST['inCommingLevel']));
      $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
      $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
@@ -1457,7 +1460,7 @@ studentID,
 schoolLastAttended,
 schoolYear,
 schoolAddress,
-levelCompleted,
+inCommingLevel,
 averageGrade
 )     
 VALUES
@@ -1467,7 +1470,7 @@ VALUES
 '".$_POST['school-last-attended'] ."',
 '".$_POST['last-school-attended-year'] ."',
 '".$_POST['last-school-attended-address']."',
-'".$_POST['last-school-attended-level'] ."',
+'".$_POST['inCommingLevel'] ."',
 '".$_POST['last-school-attended-grade']."'
 )";
  
