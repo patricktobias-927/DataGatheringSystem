@@ -20,7 +20,7 @@ function treeOpen($page, $navtitle)
 }
  function titlePage($page)
 {
-	echo "School Name Goes here, Lorem ipsum dolor sit amet.";
+	echo SCHOOL_NAME . " ~ " . SCHOOL_ADDRESS;
 }
   require '../include/getschoolyear.php';
 
@@ -42,7 +42,7 @@ function treeOpen($page, $navtitle)
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-    <strong class="nav-link-special ">S.Y. <?php echo $schoolYear ?></strong>
+    <strong class="nav-link-special ">S.Y. <?php echo $schoolYear ?> - Admin</strong>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
 
@@ -50,9 +50,9 @@ function treeOpen($page, $navtitle)
           <!-- <span class="badge badge-warning navbar-badge">15</span> -->
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <button type="button" class="btn btn-block btn-outline-danger ">
-          Log Out <i class="fa fa-sign-out-alt"></i></button>
-        </div>
+        <a href="../index.php?logout" type="button" class="btn btn-block btn-outline-danger ">
+          Log Out <i class="fa fa-sign-out-alt"></i></a>
+        </div>  
       </li>
     </ul>
   </nav>
@@ -86,7 +86,7 @@ function treeOpen($page, $navtitle)
             <a href="index.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
-                Account Settings
+                Change Password
               </p>
             </a>
           </li>
@@ -94,7 +94,7 @@ function treeOpen($page, $navtitle)
             <a href="index.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
-                Account Settings
+                Change School Year
               </p>
             </a>
           </li>
@@ -102,50 +102,25 @@ function treeOpen($page, $navtitle)
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt" aria-hidden="true"></i>
               <p>
-                Data entry
+                Report
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="../u/studentinfo.php" class="nav-link <?php isActive($page,"studentinfo");?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Student Info</p>
+                  <i class="nav-icon fas fa-file-alt"></i>
+                  <p>Filter</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Employee Info</p>
+                  <i class="nav-icon fas fa-file-alt"></i>
+                  <p>Export</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Department Info</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>              
-            </ul>
-          </li>
-          <li class="nav-item">
+             
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -153,7 +128,7 @@ function treeOpen($page, $navtitle)
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -5,6 +5,7 @@
   require 'assets/fonts.php';
   require 'assets/generalSandC.php';
   require 'assets/adminlte.php';
+  require '../include/schoolConfig.php';
 
 ?>
 
@@ -13,6 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>PPH DGS</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -24,80 +26,71 @@ require 'includes/navAndSide.php';
 ?>
 <!-- nav bar & side bar -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+
+  <div class="content-wrapper">		
     <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Home Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-              <!-- <li class="breadcrumb-item active">Starter Page</li> -->
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon white user"></i><span class="break"></span>Pre-Enrolled Students</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>Last Name</th>
+								  <th>First Name</th>
+								  <th>Middle Name</th>
+								  <th>LRN</th>
+                  					<th>Date Enrolled</th>
+									<th>Submitted</th>
+							  </tr>
+						  </thead>
+						  <tbody>
+							<?php
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
+								$sql = "SELECT * FROM tbl_student  ORDER BY firstName";
+								$result=mysqli_query($conn, $sql); //rs.open sql,con
 
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+							while ($row=mysqli_fetch_assoc($result))
+							{ ?><!--open of while -->
+							<tr>
+								<td><?php echo $row['lastName']; ?></td>
+								<td><?php echo $row['firstName']; ?></td>
+								<td><?php echo $row['middleName']; ?></td>
+								<td><?php echo $row['lrn']; ?></td>
+								<td><?php echo $row['dateTimeEnrolled']; ?></td>
+								<td><?php
+								if ($row['isSubmitted'] == 1){
+									echo "Yes";
+								}else{
+									echo "No";
+								}; ?></td>
+								<td class="center">
+									<a class="btn btn-info" href="edit_data.php?uID=<?php echo $row['id']; ?>">
+										<i class="halflings-icon white edit"></i>  
+									</a>
+									<a class="btn btn-danger" onclick="return confirmDel()" href="delete_data.php?delID=<?php echo $row['id'];?>">
+										<i class="halflings-icon white trash"></i> 
+									</a>
+								</td>
+							</tr>
+							<?php
+							   } //close of while
+							?>
+						  </tbody>
+					  </table>            
+					</div>
+				</div><!--/span-->
+			</div>
+	</div><!--/row-->
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Getting lost ?</h5>
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">
-                <i class="fa fa-book nav-icon"></i>
-                
-                Instruction</a>
-              </div> 
-              <!-- add icon delete dis /!\ -->
-            </div>
 
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+ 
 
 <!-- ./wrapper -->
 
