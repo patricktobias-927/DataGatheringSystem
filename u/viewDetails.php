@@ -125,6 +125,7 @@ else if ($haveAccess=='0'){
 
 <?php 
 
+require 'includes/modal_studentinfo.inc.php';
 require 'assets/scripts.php';
 
 if (isset($_REQUEST['print'])){
@@ -139,6 +140,24 @@ if (isset($_REQUEST['print'])){
 <script src=" ../include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../include/dist/js/adminlte.min.js"></script>
+
+<script type="text/javascript">
+document.getElementById('family-card').onclick = function changeContent() {
+
+  if (document.getElementById('family-card').value=='0') {
+   document.getElementById('family-card').value='1'  
+   document.getElementById('family-card').innerHTML = '<i class="fas fa-plus"></i> Hide';
+
+   }
+
+  else{
+  document.getElementById('family-card').value='0'  
+   document.getElementById('family-card').innerHTML = '<i class="fas fa-plus"></i> Show';
+  }
+
+}
+</script>
+
 
 
 
