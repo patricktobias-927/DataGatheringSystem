@@ -222,14 +222,11 @@ require 'assets/scripts.php';
 
 
 <!-- Modal -->
-<div class="modal  fade" id="addstudentmodal" tabindex="-1" role="dialog" 
-aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal  fade" id="addstudentmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h2 class="modal-title" id="exampleModalLongTitle">New Student Form</h2><span style="color: red;">* Required</span>
-
-
           </div>
 
           <div class="modal-body"  style="background-color: #D3D3D3 ">
@@ -450,7 +447,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       
                            <div class="form-group">
                              <label class="unrequired-field">Incomming School Year Level</label>
-                             <select name="inCommingLevel" class="form-control select2bs4" style="width: 100%;">
+                             <select name="inCommingLevel" class="form-control select2bs4 ">
                               <?php 
                               if (isset($_POST['inCommingLevel'])){?>
                               <option <?php if($_POST['inCommingLevel']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
@@ -743,7 +740,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         
                                <div class="form-group">
                                  <label class="unrequired-field">Level</label>
-                                 <select name="sibling1-level" class="form-control select2bs4" style="width: 100%;">
+                                 <select name="sibling1-level" class="form-control select2bs4">
                            <?php 
                               if (isset($_POST['sibling1-level'])){?>
                               <option <?php if($_POST['sibling1-level']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
@@ -802,7 +799,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         
                                <div class="form-group">
                                  <label class="unrequired-field">Level</label>
-                                 <select name="sibling2-level" class="form-control select2bs4" style="width: 100%;">
+                                 <select name="sibling2-level" class="form-control select2bs4">
                            <?php 
                               if (isset($_POST['sibling2-level'])){?>
                               <option <?php if($_POST['sibling2-level']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
@@ -861,7 +858,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         
                                <div class="form-group">
                                  <label class="unrequired-field">Level</label>
-                                 <select name="sibling3-level" class="form-control select2bs4" style="width: 100%;">
+                                 <select name="sibling3-level" class="form-control select2bs4">
                            <?php 
                               if (isset($_POST['sibling3-level'])){?>
                               <option <?php if($_POST['sibling3-level']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
