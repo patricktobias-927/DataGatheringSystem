@@ -127,6 +127,11 @@ else if ($haveAccess=='0'){
 
 require 'assets/scripts.php';
 
+if (isset($_REQUEST['print'])){
+    echo '<script>$(".card-body").removeClass("collapse");</script>';
+    echo '<script type="text/javascript"> window.addEventListener("load", window.print());</script>';
+  }
+
 ?>
 <!-- jQuery -->
 <script src=" ../include/plugins/jquery/jquery.min.js"></script>

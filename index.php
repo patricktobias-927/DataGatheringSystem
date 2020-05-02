@@ -48,11 +48,11 @@
           <div class="row">
               <div class="col-sm-5">
                 <label for="log-number" class="log-label">Mobile Number</label>
-                <input type="number" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn" placeholder="Enter Mobile Number" id="log-number">
+                <input type="number" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn"  id="log-number">
               </div>
               <div class="col-sm-5">
                 <label for="input-password" class="log-label">Password</label>
-                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" id="input-password">
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1" id="input-password">
                 <a href="#" class="fPassword">Forgot Password ?</a>
               </div>
               <div class="col-sm-2">
@@ -143,17 +143,15 @@
         <div class="row">
           <div class="col-lg-5">
             <div class="form-group">
-              <label class="required-field">Given Name</label>
               <input value="<?php echo isset($_POST['first-name']) ? $_POST['first-name'] : '' ?>"
-                name="first-name"required type="text" class="form-control" placeholder="Enter First Name">
+                name="first-name"required type="text" class="form-control" placeholder="First Name">
             </div>
           </div>
             
           <div class="col-lg-5">
             <div class="form-group">
-              <label class="required-field">Surname/Last Name</label>
               <input value="<?php echo isset($_POST['last-name']) ? $_POST['last-name'] : '' ?>"
-                name="last-name"required type="text" class="form-control" placeholder="Enter Last Name">
+                name="last-name"required type="text" class="form-control" placeholder="Last Name">
             </div>
           </div>
         </div>
@@ -161,13 +159,12 @@
         <div class="row">
           <div class="col-lg-10">
             <div class="form-group">
-              <label class="unrequired-field">Cellphone Number</label><br>
               <div class="input-group">
                 <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                 </div>
                 <input <?php if(isset($_POST['number']))echo "value='".$_POST['number']."'"; ?>
-                name="number"  type="text" class="input thisNumber form-control" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                name="number"  type="text" class="input thisNumber form-control" placeholder="Mobile Number" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
               </div>
             </div>
           </div> 
@@ -176,12 +173,11 @@
         <div class="row">
           <div class="col-lg-10">
             <div class="form-group">
-              <label class="unrequired-field" for="exampleInputEmail1">Email address</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                 </div>
-                <input <?php if(isset($_POST[ 'email']))echo "value='".$_POST[ 'email']. "'"; ?> name="email" type="email" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Enter email" required="true">
+                <input <?php if(isset($_POST[ 'email']))echo "value='".$_POST[ 'email']. "'"; ?> name="email" type="email" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Email Address" required="true">
               </div>
             </div>
           </div>
@@ -190,12 +186,11 @@
         <div class="row">
           <div class="col-lg-10">
             <div class="form-group">
-              <label class="unrequired-field">Password</label><br>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fa fa-lock"></i></span>
                 </div>
-                <input name="pass1" <?php if(isset($_POST['pass1']))echo "value='".$_POST['pass1']."'"; ?>type="password" class="input form-control" required="true">
+                <input name="pass1" <?php if(isset($_POST['pass1']))echo "value='".$_POST['pass1']."'"; ?>type="password" class="input form-control" required="true" placeholder="Password">
               </div>
             </div>
           </div>
@@ -204,12 +199,11 @@
         <div class="row">
           <div class="col-lg-10">
             <div class="form-group">
-              <label class="unrequired-field">Retype Password</label><br>
               <div class="input-group">
                 <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fa fa-lock" ></i></span>
                 </div>
-                <input name="pass2" <?php if(isset($_POST['pass2']))echo "value='".$_POST['pass2']."'"; ?>type="password" class="input form-control" required="true">
+                <input name="pass2" <?php if(isset($_POST['pass2']))echo "value='".$_POST['pass2']."'"; ?>type="password" class="input form-control" required="true" placeholder="Re-Type Password">
               </div>
             </div>  
           </div>

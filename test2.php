@@ -1,1 +1,9 @@
-<?php echo "test2.php";?>
+<?php
+
+  if (isset($_REQUEST['registered'])) {
+  echo "whyowhy";
+
+
+  }
+
+?>

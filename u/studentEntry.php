@@ -49,7 +49,7 @@
   <link rel="stylesheet" href="../include/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" type="text/css" href="../include/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" type="text/css" href="../include/plugins/select2-bootstrap4-theme/select2-bootstrap4.css">
+  <link rel="stylesheet" type="text/css" href="../include/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Bootstrap4 Duallistbox -->
   <link rel="stylesheet" href="../include/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 
@@ -398,7 +398,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                            <div class="form-group">
                              <label class="unrequired-field">Last School Year</label>
       
-                             <select placeholder="Enter School Name" name="last-school-attended-year" class="form-control select2bs4" style="width: 100%;">
+                             <select placeholder="Enter School Name" name="last-school-attended-year" class="form-control select2bs4">
                               <option value='' <?php if(!isset($_POST['last-school-attended-year'])){ echo "Selected = 'true'";} else{}?>
                               ></option>
                                <?php 
@@ -548,8 +548,8 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       
                       <div class="col-lg-4">
                          <div class="form-group">
-                           <label class="unrequired-field" for="exampleInputEmail1">Email address</label>
-                           <input value="<?php echo isset($_POST['contact-person-email']) ? $_POST['contact-person-email'] : '' ?>"
+                           <label class="required-field" for="exampleInputEmail1">Email address</label>
+                           <input required="true" value="<?php echo isset($_POST['contact-person-email']) ? $_POST['contact-person-email'] : '' ?>"
                            name="contact-person-email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                          </div>
                        </div>     
@@ -568,23 +568,14 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
                     <div class="card-header d-flex p-0">
                       <a class="  p-3 modal-myheading2">Family Information</a>
-                      <ul class="nav nav-pills ml-auto p-2">
-                        <li class="nav-item"><a class="nav-link active nav-link-custom" href="#tab_1" data-toggle="tab">Mother Information</a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="#tab_2" data-toggle="tab">Father Information</a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="#tab_3" data-toggle="tab">Guardian Information</a></li>
-                        <li class="nav-item"><a class="nav-link nav-link-custom" href="#tab_4" data-toggle="tab">Siblings Information</a></li>
-                        <li class="nav-item dropdown">
-                        </li>
-                      </ul>
                     </div>
 
                     <div class="card-body">
                       <div class="tab-content">
-
-                        <div class="tab-pane active" id="tab_1">
+                          <hr class="hrstyle">
+      
 
                           <div class="row">
-      
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label >Mother Full Name</label>
@@ -592,6 +583,19 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 name="mother-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
                             </div>
+
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                                <label >Mother Contact Number</label><br>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                   </div>
+                                  <input value="<?php echo isset($_POST['mother-mobile']) ? $_POST['mother-mobile'] : '' ?>"
+                                  name="mother-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                                 </div>
+                               </div>
+                            </div>    
       
                           </div>
       
@@ -599,7 +603,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Employer Name</label>
+                                <label >Mother's Employer Name</label>
                                 <input value="<?php echo isset($_POST['mother-employer-name']) ? $_POST['mother-employer-name'] : '' ?>"
                                 name="mother-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
                               </div>
@@ -607,51 +611,8 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       
                           </div> 
       
-                          <div class="row">
-      
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label >Employer Address</label>
-                                <input value="<?php echo isset($_POST['mother-employer-address']) ? $_POST['mother-employer-address'] : '' ?>"
-                                name="mother-employer-address" type="text" class="form-control" placeholder="Address">
-                              </div>
-                            </div>
-      
-                          </div>  
-      
-                          <div class="row">
-      
-                            <div class="col-lg-4">
-                              <div class="form-group">
-                                <label >Employer Phone Number</label><br>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                   </div>
-                                  <input value="<?php echo isset($_POST['mother-employer-phone']) ? $_POST['mother-employer-phone'] : '' ?>"
-                                  name="mother-employer-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
-                                 </div>
-                               </div>
-                            </div>    
-      
-                            <div class="col-lg-4">
-                              <div class="form-group">
-                                <label>Employer Mobile Number</label><br>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                     <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                                   </div>
-                                  <input value="<?php echo isset($_POST['mother-employer-mobile']) ? $_POST['mother-employer-mobile'] : '' ?>"
-                                  name="mother-employer-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
-                                </div>
-                              </div>  
-                            </div>   
 
-                          </div>
-
-                      </div>
-                        <div class="tab-pane" id="tab_2">
-
+                          <hr class="hrstyle">
                           <div class="row">
       
                             <div class="col-lg-8">
@@ -661,14 +622,28 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 name="father-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
                             </div>
+
+                            <div class="col-lg-4">
+                              <div class="form-group">
+                               <label>Father Mobile Number</label><br>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                                  </div>
+                                 <input value="<?php echo isset($_POST['father-mobile']) ? $_POST['father-mobile'] : '' ?>"
+                                 name="father-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                                </div>
+                              </div>  
+                            </div>
       
                           </div>
-      
+        
+            
                           <div class="row">
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Employer Name</label>
+                                <label >Father's Employer Name</label>
                                 <input value="<?php echo isset($_POST['father-employer-name']) ? $_POST['father-employer-name'] : '' ?>"
                                 name="father-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
                               </div>
@@ -676,53 +651,9 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
       
                           </div> 
       
-                          <div class="row">
-      
-                            <div class="col-lg-8">
-                              <div class="form-group">
-                                <label >Employer Address</label>
-                                <input value="<?php echo isset($_POST['father-employer-address']) ? $_POST['father-employer-address'] : '' ?>"
-                                name="father-employer-address" type="text" class="form-control" placeholder="Address">
-                              </div>
-                            </div>
-      
-                          </div>  
-      
-                          <div class="row">
-      
-                            <div class="col-lg-4">
-                              <div class="form-group">
-                                <label >Employer Phone Number</label><br>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                  </div>
-                                 <input 
-                                 value="<?php echo isset($_POST['father-employer-phone']) ? $_POST['father-employer-phone'] : '' ?>"
-                                 name="father-employer-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
-                                </div>
-                              </div>
-                            </div>    
-      
-                            <div class="col-lg-4">
-                              <div class="form-group">
-                               <label>Employer Mobile Number</label><br>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                                  </div>
-                                 <input value="<?php echo isset($_POST['father-employer-mobile']) ? $_POST['father-employer-mobile'] : '' ?>"
-                                 name="father-employer-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
-                                </div>
-                              </div>  
-                            </div> 
 
-                          </div>     
 
-                        </div>
-
-                        <div class="tab-pane" id="tab_3">
-      
+                          <hr class="hrstyle">
                           <div class="row">
       
                             <div class="col-lg-8">
@@ -771,11 +702,9 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                               </div>  
                             </div> 
 
-                          </div> 
 
                         </div>
-      
-                        <div class="tab-pane" id="tab_4">
+                        <hr class="hrstyle">
                           <div class="row"> 
                             <div class="col-lg-3">
                               <div class="icheck-primary d-inline ">
@@ -809,8 +738,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <input value="<?php echo isset($_POST['sibling1-name']) ? $_POST['sibling1-name'] : '' ?>" 
                                 name="sibling1-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
-                            </div
-    >  
+                            </div>  
                             <div class="col-lg-3">
         
                                <div class="form-group">
@@ -976,7 +904,6 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                </div>
                             </div>
       
-                          </div> 
 
                         </div>
 
@@ -1179,26 +1106,20 @@ if (isset($_POST["btn-submit"])) {
               }
               if ($_POST['mother-name']==''|| $_POST['mother-name']==' ' ) {
                 $_POST['mother-employer-name']='';
-                $_POST['mother-employer-address']='';
-                $_POST['mother-employer-phone']='';
-                $_POST['mother-employer-mobile']='';
+                $_POST['mother-mobile']='';
                 $hasMother = false;
               }
               else{
-                $_POST['mother-employer-phone']=cleanThis($_POST['mother-employer-phone']);
-                $_POST['mother-employer-mobile']=cleanThis($_POST['mother-employer-mobile']);
+                $_POST['mother-mobile']=cleanThis($_POST['mother-mobile']);
                 $hasMother = true;
               }
               if ($_POST['father-name']==''|| $_POST['father-name']==' ' ) {
                 $_POST['father-employer-name']='';
-                $_POST['father-employer-address']='';
-                $_POST['father-employer-phone']='';
-                $_POST['father-employer-mobile']='';
+                $_POST['father-mobile']='';
                 $hasFather = false;
               }
               else{
-                $_POST['father-employer-phone']=cleanThis($_POST['mother-employer-phone']);
-                $_POST['father-employer-mobile']=cleanThis($_POST['mother-employer-mobile']);
+                $_POST['father-mobile']=cleanThis($_POST['father-mobile']);
                 $hasFather = true;
               }
               if ($_POST['guardian-name']==''|| $_POST['guardian-name']==' ' ) {
@@ -1208,8 +1129,8 @@ if (isset($_POST["btn-submit"])) {
                 $hasGuardian = false;
               }
               else{
-                $_POST['guardian-employer-phone']=cleanThis($_POST['mother-employer-phone']);
-                $_POST['guardian-employer-mobile']=cleanThis($_POST['mother-employer-mobile']);
+                $_POST['guardian-employer-phone']=cleanThis($_POST['guardian-employer-phone']);
+                $_POST['guardian-employer-mobile']=cleanThis($_POST['guardian-employer-mobile']);
                 $hasGuardian = true;
               }
               if ($_POST['sibling1-name']==''|| $_POST['sibling1-name']==' ' ) {
@@ -1277,23 +1198,19 @@ if (isset($_POST["btn-submit"])) {
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
      $_POST['school-last-attended']         = mysqli_real_escape_string($conn, stripcslashes($_POST['school-last-attended']));
      $_POST['last-school-attended-year']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-year']));
-     $_POST['inCommingLevel']   = mysqli_real_escape_string($conn, stripcslashes($_POST['inCommingLevel']));
+     $_POST['inCommingLevel']               = mysqli_real_escape_string($conn, stripcslashes($_POST['inCommingLevel']));
      $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
      $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
      $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-phone'])));
      $_POST['contact-person-mobile']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-mobile'])));
-     $_POST['contact-person-email']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-email']));
+     $_POST['contact-person-email']         = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-email']));
      $_POST['mother-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-name']));
      $_POST['mother-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-name']));
-     $_POST['mother-employer-address']      = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-address']));
-     $_POST['mother-employer-phone']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-employer-phone'])));
-     $_POST['mother-employer-mobile']       = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-employer-mobile'])));
+     $_POST['mother-mobile']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-mobile'])));
      $_POST['father-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['father-name']));
      $_POST['father-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-name']));
-     $_POST['father-employer-address']      = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-address']));
-     $_POST['father-employer-phone']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-employer-phone'])));
-     $_POST['father-employer-mobile']       = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-employer-mobile'])));
+     $_POST['father-mobile']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-mobile'])));
      $_POST['guardian-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-name']));
      $_POST['guardian-relationship']        = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-relationship']));
      $_POST['guardian-phone']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['guardian-phone'])));
@@ -1389,7 +1306,7 @@ userID,
 studentID,
 fullName,
 employerName,
-employerAddress,
+mobileNumber,
 isFather
 ) 
 VALUES
@@ -1398,7 +1315,7 @@ VALUES
 '".$studentID."',
 '".$_POST['mother-name']."',
 '".$_POST['mother-employer-name']."',
-'".$_POST['mother-employer-address']."',
+'".$_POST['mother-mobile']."',
 '0'
 )";
  
@@ -1413,7 +1330,7 @@ userID,
 studentID,
 fullName,
 employerName,
-employerAddress,
+mobileNumber,
 isFather
 ) 
 VALUES
@@ -1422,7 +1339,7 @@ VALUES
 '".$studentID."',
 '".$_POST['father-name']."',
 '".$_POST['father-employer-name']."',
-'".$_POST['father-employer-address']."',
+'".$_POST['father-mobile']."',
 '1'
 )";
  
@@ -1492,7 +1409,7 @@ VALUES
 '".$studentID."',
 '".$_POST['sibling1-name'] ."',
 '".$_POST['sibling1-level']."',
-'2'
+'1'
 )";
  
  mysqli_query($conn, $insertQuery2);
