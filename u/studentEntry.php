@@ -907,7 +907,7 @@ require 'assets/scripts.php';
                       </div>
                                   <div class="modal-footer">
               <a type="button" class="btn btn-warning" onclick="backFami()" id="next-cont-back">Back</a>
-              <button type="submit" name="btn-submit" class="btn btn-success">Add student</button>
+              <button type="submit" name="btn-submit" class="btn btn-primary"><i class="fa fa-save" aria-hidden="true"></i> Save</button>
             </div>
                     </div><!-- /.card-body -->
                   </div><!-- ./card -->

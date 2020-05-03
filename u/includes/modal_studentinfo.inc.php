@@ -3,12 +3,12 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h2 class="modal-title" id="exampleModalLongTitle">New Student Form</h2><span style="color: red;">* Required</span>
+                <h2 class="modal-title" id="exampleModalLongTitle">Edit Student Information</h2><span style="color: red;">* Required</span>
             </div>
 
             <div class="modal-body" style="background-color: #D3D3D3 ">
                 <div class="callout callout-info" id="next-stud-card">
-                    <form onsubmit="return confirm('Are you sure?')" method="POST" enctype="multipart/form-data">
+                    <form onsubmit="return confirm('Are you sure?')" method="POST" enctype="multipart/form-data" action="viewDetails.php?page=<?php echo $studentID?>">
                         <a class="modal-myheading">Student Information</a>
                         <br>
                         <!-- Spaceing -->
@@ -154,7 +154,7 @@
 
             <div class="modal-footer">
               <a type="button" class="btn btn-danger" id="next-stud-cancel" data-dismiss="modal">Cancel</a>
-              <a class="btn btn-success" onclick="nxtStud()" id="next-stud">Save</a>
+              <button class="btn btn-success" type="submit" id="studentInformationSave">Save</button>
             </div>
                     </form>
                 </div>
