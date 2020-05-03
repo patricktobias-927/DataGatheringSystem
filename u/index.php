@@ -82,40 +82,41 @@ require 'includes/navAndSide.php';
 
 			<!-- /Dashboard -->
 			<div class="row">
-				<div class="col-lg-3">
-					<div class="card-body display nowrap" style="width:100%">
-              			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
-						  <thead>
-							  <tr>
-								  <th style="background-color:#1e73b0;">Pre-Enrolled</th>
-							  </tr>
-						  </thead>
-						  <tbody>
-							<?php
-								$sql = "select count(*) as preEnrolled from tbl_student ";
-								$result=mysqli_query($conn, $sql); //rs.open sql,con
-							while ($row=mysqli_fetch_assoc($result))
-							{ ?><!--open of while -->
-							<tr>
-								<td><?php echo $row['preEnrolled']; ?></td>
-							</tr>
-							<?php
-							   } //close of while
-							?>
-						  </tbody>
-					  </table>
+					<div class="col-lg-3">
+						<div class="card-body display nowrap" style="width:100%;">
+							<table class="table table-striped table-bordered " style="text-align:center;
+								 font-size: 150%;font-weight:bold;">	
+							<thead>
+								<tr>
+									<th style="background-color:#1e73b0;">Pre-Enrolled</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+									$sql = "select count(*) as preEnrolled from tbl_student ";
+									$result=mysqli_query($conn, $sql); //rs.open sql,con
+								while ($row=mysqli_fetch_assoc($result))
+								{ ?><!--open of while -->
+								<tr>
+									<td><?php echo $row['preEnrolled']; ?></td>
+								</tr>
+								<?php
+								} //close of while
+								?>
+							</tbody>
+							</table>
+						</div>
 					</div>
-				</div>
-	
-				<div class="col-lg-3">
-					<div class="card-body display nowrap" style="width:100%">
-              			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
-						  <thead>
-							  <tr>
-								  <th style="background-color:#b66dc0;">Submitted</th>
-							  </tr>
-						  </thead>
-						  <tbody>
+		
+					<div class="col-lg-3">
+						<div class="card-body display nowrap" style="width:100%">
+							<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
+							<thead>
+								<tr>
+									<th style="background-color:#b66dc0;">Submitted</th>
+								</tr>
+							</thead>
+							<tbody>
 							<?php
 								$sql = "select count(*) as submitted from tbl_student where isSubmitted = 1 ";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
@@ -187,13 +188,13 @@ require 'includes/navAndSide.php';
 				<div class="card">
 
 				<div class="card-header">
-					<p>
+					<!-- <p>
 						<button onclick="Export()"
 						data-toggle="modal" data-target="#addstudentmodal"
 						type="button" class="btn btn-primary add-button">
 						<span class=" fas fa-file-alt">&nbsp&nbsp</span>Export
 						</button>
-					</p>
+					</p> -->
 					</div>
 					<!-- <div class="box-header" data-original-title>
 						<h2><i class="halflings-icon white user"></i><span class="break"></span>Pre-Enrolled Students</h2>
@@ -281,7 +282,7 @@ require 'includes/navAndSide.php';
 				var conf = confirm("Export users to CSV?");
 				if(conf == true)
 				{
-					window.open("export.php", '_blank');
+					window.open("../include/export.php", '_blank');
 				}
 			}
 
