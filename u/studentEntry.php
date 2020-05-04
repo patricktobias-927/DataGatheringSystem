@@ -9,6 +9,7 @@
   require 'assets/scipts/phpfunctions.php';
   require 'assets/generalSandC.php';
   require '../include/schoolConfig.php';
+  require '../include/getschoolyear.php';
   session_start();
   $userID = $_SESSION['userID'];
   $userFname = $_SESSION['first-name'];
@@ -104,13 +105,14 @@ require 'includes/navAndSide2.php';
               </p>
             </div>
             <!-- /.card-header -->
-            <div class="card-body display nowrap" style="width:100%">
-              <table id="example1" class="table table-bordered ">
+            <div class="card-body" style="width: 100%;">
+              <table id="example1" class="table table-bordered" style="table-layout: fixed; width: 100%;">
                 <thead>
                 <tr>
                   <th>Full Name</th>
                   <th>Code</th>
                   <th>LRN</th>
+                  <th>Status</th>
                   <th>Action</th>
 
                 </tr>
@@ -118,11 +120,12 @@ require 'includes/navAndSide2.php';
                 <tbody>
           <?php 
 
-          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN, studentID FROM tbl_student";
+          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN, studentID, isSubmitted, isExported, schoolYearID FROM tbl_student where userID =".$userID;
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {
                 while($row = mysqli_fetch_array($result1)){
+                  $status='';
           echo"<tr class='tRow' id='row".$ctr."'>";
                   echo"<td>";
                     echo combineName($row[0],$row[1],$row[2]);
@@ -133,23 +136,49 @@ require 'includes/navAndSide2.php';
                   echo"<td>";
                     echo $row[4];
                   echo"</td>";
-                   echo'   <td style="width:15%; class="">';
-                   echo'       <a class="btn btn-primary btn-sm" href="viewDetails.php?page='.$row[5].'">';
+                  if ($row['isExported']) {
+                    echo '<td class="text-center" title="Your information reach the school"><span class="badge badge-success">Exported</span></td>';
+                    $status = '1';
+                  }
+                  elseif ($row['isSubmitted']&&$row['schoolYearID']==$schoolYearID) {
+                    echo '<td class="text-center" title="Your information has been save."><span class="badge badge-info">Sumitted</span></td>';
+                    $status = '2';
+                  }
+                  else{
+                    echo '<td class="text-center" title="Press submit to confirm your registration."><span class=" badge badge-danger">Un-Sumitted</span></td>';
+                    $status = '3';
+                  }
+
+                  if ($status==1||$status==2) {
+                   echo'   <td class="text-center">';
+                   echo'       <a class="btn btn-primary btn-sm " href="viewDetails.php?page='.$row[5].'">';
                    echo'           <i class="fas fa-folder">';
                    echo'           </i>';
                    echo'           View';
                    echo'       </a>';
-                   echo'       <a class="btn btn-info btn-sm" href="#">';
-                   echo'           <i class="fas fa-pencil-alt">';
+                   echo'   </td>';
+                  }
+                  else{
+                  echo"</td>";
+                   echo'   <td class="text-center">';
+                   echo'       <a class="btn btn-primary btn-sm " href="viewDetails.php?page='.$row[5].'">';
+                   echo'           <i class="fas fa-folder">';
                    echo'           </i>';
-                   echo'           Edit';
+                   echo'           View/Edit';
                    echo'       </a>';
-                   echo'       <a class="btn btn-danger btn-sm" href="#">';
+                   echo'       <a class="btn btn-info btn-sm submit " href="#" value="'.$row[5].'">';
+                   echo'           <i class="fas fa-check-square">';
+                   echo'           </i>';
+                   echo'           Submit';
+                   echo'       </a>';
+                   echo'       <a href="#" class="btn delete btn-sm btn-danger" value="'.$row[5].'" >';
                    echo'           <i class="fas fa-trash">';
                    echo'           </i>';
                    echo'           Delete';
                    echo'       </a>';
                    echo'   </td>';
+                   }
+
                   
           echo"</tr>";
                     $ctr++;
@@ -164,14 +193,6 @@ require 'includes/navAndSide2.php';
 
           ?>
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Full Name</th>
-                  <th>Code</th>
-                  <th>LRN</th>
-                  <th>Action</th>
-                </tr>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
@@ -183,15 +204,7 @@ require 'includes/navAndSide2.php';
 
 
 <!-- ./wrapper -->
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollY": 200,
-        "scrollX": true
-    } );
-} );
 
-</script>
 
 <?php 
 
@@ -925,24 +938,8 @@ require 'assets/scripts.php';
       </div>
     </div>
 <!-- Modal -->
-
 </body>
-<script type="text/javascript" src="assets/scipts/hideAndNext.js"></script>
-<script>
-
-  $(function () {
-    $("#example1").DataTable( {
-    } );
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-    });
-  });
-
+<script type="text/javascript">
       //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
@@ -961,33 +958,80 @@ $(document).ready(function() {
     $('.yearselect').select2();
 });
 
+</script>
+<script type="text/javascript" src="assets/scipts/hideAndNext.js"></script>
+<script>
+
 $(document).ready(function() {
-    $('#example').DataTable( {
-        "scrollY": 200,
-        "scrollX": true
+    $('#example1').DataTable( {
+        "scrollX": true,
     } );
 } );
 
-// $('input[name="school-last-attended"]').change(function() {
-//   if ($(this).val() == ''||$(this).val() == '  ') {
-//   $('input[name="last-school-attended-grade"]').prop("disabled",true);
-//   $('input[name="last-school-attended-grade"]').val('');
-//   $('input[name="last-school-attended-address"]').prop("disabled",true);
-//   $('input[name="last-school-attended-address"]').val('');
-//   $('input[name="last-school-attended-year"]').attr('disabled',true);
-//   $('input[name="last-school-attended-year"]').val('');
-//   $('input[name="inCommingLevel"]').prop("disabled",true);
-//   $('input[name="inCommingLevel"]').val('');
+$(document).ready(function() {
+    $('.yearselect').select2();
+});
+$(document).on("click", ".delete", function() {
+    var x = $(this).attr('value');
 
-//   }
-//   else{
-//     $('input[name="last-school-attended-grade"]').prop("disabled",false);
-//     $('input[name="last-school-attended-address"]').prop("disabled",false);
-//     $('input[name="last-school-attended-year"]').prop("disabled",false);
-//     $('input[name="inCommingLevel"]').prop("disabled",false);
-//   }
-// });
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+        $.ajax({
+            url: "remove.php",
+            type: "POST",
+            cache: false,
+            "data": 
+                {"studentidx" : x},
+            dataType: "html",
+            success: function () {
+                swal.fire("Done!", "It was succesfully deleted!", "success");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal.fire("Error deleting!", "Please try again", "error");
+            }
+        });
+  }
+})
+});
 
+$(document).on("click", ".submit", function() {
+    var x = $(this).attr('value');
+
+Swal.fire({
+  title: 'Are you sure?',
+  text: "After submission you can't revert or edit your form",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Submit my registration!'
+}).then((result) => {
+  if (result.value) {
+        $.ajax({
+            url: "submit.php",
+            type: "POST",
+            cache: false,
+            "data": 
+                {"studentidx" : x},
+            dataType: "html",
+            success: function () {
+                swal.fire("Submitted", "It was succesfully stored to the database!", "success");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal.fire("Error submitting!", "Please try again", "error");
+            }
+        });
+  }
+})
+});
 
 </script>
 </html>
@@ -1238,8 +1282,7 @@ Birthplace,
 Address,
 Telno,
 Cellphone,
-IsEldest,
-dateTimeEnrolled
+IsEldest
 ) 
 VALUES 
 (
@@ -1256,10 +1299,8 @@ VALUES
 '".$_POST['address'] ."',
 '".$_POST['student-phone'] ."',
 '".$_POST['student-mobile']."',
-'".$isEldest."',
-'".$nowtime."'
+'".$isEldest."'
 )";      
-echo '<script>console.log("huh" + "'.$insertQuery.'");</script>';
 mysqli_query($conn, $insertQuery);
 
 

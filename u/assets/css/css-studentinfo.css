@@ -1,4 +1,7 @@
-
+.dataTables_scroll
+{
+    overflow:auto;
+}
 
 .ref-btn{
   transition: transform 2s;

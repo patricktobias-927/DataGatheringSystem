@@ -3,7 +3,6 @@
 <?php
   require '../include/config.php';
   $page = "studentEntry";
-    require 'assets/adminlte.php';
       require 'assets/fonts.php';
   $haveAccess;
   require 'assets/scipts/phpfunctions.php';
@@ -86,14 +85,31 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
+  <script type="text/javascript" src="../include/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../include/plugins/sweetalert2/sweetalert2.min.css">
+
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+<link rel="stylesheet" href="../include/dist/css/adminlte.min.css">
+
+    <!-- daterange picker -->
+  <link rel="stylesheet" href="../include/plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../include/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="../include/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" type="text/css" href="../include/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="../include/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../include/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+
+
+
+
+
   <link rel="stylesheet" type="text/css" href="assets/css/css-studentinfo.css">
   <link rel="stylesheet" type="text/css" href="includes/viewDetails.css">
 
@@ -112,19 +128,13 @@ if ($haveAccess=='2') {
 }
 else if($haveAccess=='1'){
   require 'includes/viewdetails.inc.php';
+  require 'includes/modal_studentinfo.inc.php';
 
 }
 else if ($haveAccess=='0'){
   require 'includes/noAccess.php';
 }
-?>
-<!-- nav bar & side bar -->
 
-
-
-
-
-<?php 
 
 require 'assets/scripts.php';
 
@@ -132,24 +142,93 @@ if (isset($_REQUEST['print'])){
     echo '<script>$(".collapse").collapse("show");</script>';
     echo '<script type="text/javascript"> window.addEventListener("load", window.print());</script>';
   }
-
-
-
-if (isset($_POST['studentInformationSave'])) {
-  echo '<script>console.log("asd");</script>';
-}
+if (isset($_REQUEST['EditSuccess'])){
+    $message = "Information is updated";
+    displayMessage("success","Success",$message);
+  }
 
 
 
 
 ?>
-<!-- jQuery -->
-<script src=" ../include/plugins/jquery/jquery.min.js"></script>
+<script src="../include/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src=" ../include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../include/dist/js/adminlte.min.js"></script>
 
+<script src="../include/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../include/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="../include/plugins/moment/moment.min.js"></script>
+<script src="../include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- date-range-picker -->
+<script src="../include/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../include/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../include/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../include/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- iCheck for checkboxes and radio inputs -->
+<link rel="stylesheet" type="text/css" href="../include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<script>
+
+
+
+      //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2()
+
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+
+    $('[data-mask]').inputmask()
+
+
+$(document).ready(function() {
+    $('.yearselect').select2();
+});
+
+
+
+$(document).on("click", ".submit", function() {
+    var x = $(this).attr('value');
+
+Swal.fire({
+  title: 'Are you sure?',
+  text: "After submission you can't revert or edit your form",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Submit my registration!'
+}).then((result) => {
+  if (result.value) {
+        $.ajax({
+            url: "submit.php",
+            type: "POST",
+            cache: false,
+            "data": 
+                {"studentidx" : x},
+            dataType: "html",
+            success: function () {
+                swal.fire("Submitted", "It was succesfully stored to the database!", "success");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal.fire("Error submitting!", "Please try again", "error");
+            }
+        });
+  }
+})
+});
+
+</script>
 
 
 
