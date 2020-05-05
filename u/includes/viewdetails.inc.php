@@ -1,9 +1,9 @@
   <?php 
-    if ($Prefix =="Mr.") {
+    if ($Prefix =="M") {
       $sex = "Male";
     }
     else{
-      $sex = "Female";
+      $sex = "F";
     }
 
     $hasContact;

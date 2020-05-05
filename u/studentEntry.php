@@ -1296,7 +1296,7 @@ VALUES
 (
 '".$userID."',
 '".$_POST['student-lrn']."',
-'".$genderprefix."',
+'".$gender."',
 '".$_POST['last-name']."',
 '".$_POST['first-name']."',
 '".$_POST['middle-name']."',
