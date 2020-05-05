@@ -287,3 +287,425 @@ Swal.fire({
 
 </html>
 
+<?php 
+if (isset($_POST["btn-submit"])) { 
+      $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
+
+      //if lrn is not equal to 12
+      if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])!=0){
+        displayMessage("warning","LRN is Invalid","Please try again");
+        }
+
+      //bday is in future
+      else if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
+        displayMessage("warning","Birthdate Invalid","Please try again");
+        echo "<script> console.log('bday'); </script>";
+        }
+
+      //student mobile validation 
+      elseif (isset($_POST['student-mobile'])&& strlen(cleanThis($_POST['student-mobile']))!=11 && cleanThis($_POST['student-mobile']) != "") {
+        displayMessage("warning","Invalid Student Mobile","Student Mobile Number");
+        echo "<script> console.log('contact Monile invalid'); </script>";
+      }
+       //contact person mobile validation 
+      elseif (strlen(cleanThis($_POST['contact-person-mobile']))!=11) {
+        displayMessage("warning","Invalid Mobile Number","Contact Person Mobile Number");
+        echo "<script> console.log('contact Monile invalid'); </script>";
+      }
+      else{
+        $lrn=cleanThis($_POST['student-lrn']);
+       // $code=$_POST['student-code'];
+        $isLRNMatch=false;
+        $isCodeMatch=false;
+        $gender;
+        $genderprefix;
+        $noLRN=false;
+
+        if (isset($code)) {  
+          $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename  from `tbl_student` where studentCODE = '".$code."'";
+          $result1 = mysqli_query($conn, $sql);
+          $rowcount=mysqli_num_rows($result1);
+          //check if theres a result
+          if ($result1) {
+            $query1 = mysqli_fetch_assoc($result1);
+            
+            if ($rowcount>0) {
+            $CODEName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
+            $isCODEMatch=true;
+            $message="There is existing record <br> CODE:".$code."<br> Name: ".$CODEName;
+            displayMessage("error","Duplicate Entry",$message);
+            }
+      
+          else{
+              $isCODEMatch=false;
+            }
+          }
+
+        }
+        else{
+          $isCODEMatch=false;
+        }
+
+        //check length
+        if (strlen(cleanThis($_POST['student-lrn']))> 8) {  
+          $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename  from `tbl_student` where lrn = '".  $lrn."'";
+          $result1 = mysqli_query($conn, $sql);
+          $rowcount=mysqli_num_rows($result1);
+          //check if theres a result
+          if ($result1) {
+            $query1 = mysqli_fetch_assoc($result1);
+            
+            if ($rowcount>0) {
+              echo '<script>console.log("duplicate");</script>';
+            $LRNName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
+            $isLRNMatch=true;
+            $message="There is existing record <br> LRN:".$lrn."<br> Name: ".$LRNName;
+            displayMessage("error","Duplicate Entry",$message);
+            }
+      
+          else{
+              $isLRNMatch=false;
+            }
+          }
+
+        }
+        else{
+          $isLRNMatch=false;
+        }
+
+      
+           if (!$isLRNMatch && !$isCodeMatch) {
+
+              $isEldest;
+              $hasMother;
+              $hasFather;
+              $hasGuardian;
+              $hasSibling1;
+              $hasSibling2;
+              $hasSibling3;
+              $hasSchoolAttended;
+              $numberOfSiblings=0;
+          
+              if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
+                $_POST['last-school-attended-year']='';
+                $_POST['inCommingLevel']='';
+                $_POST['last-school-attended-grade']='';
+                $_POST['last-school-attended-address']='';
+                $hasSchoolAttended = false;
+              }
+              else{
+                $hasSchoolAttended = true;
+              }
+              if ($_POST['mother-name']==''|| $_POST['mother-name']==' ' ) {
+                $_POST['mother-employer-name']='';
+                $_POST['mother-mobile']='';
+                $hasMother = false;
+              }
+              else{
+                $_POST['mother-mobile']=cleanThis($_POST['mother-mobile']);
+                $hasMother = true;
+              }
+              if ($_POST['father-name']==''|| $_POST['father-name']==' ' ) {
+                $_POST['father-employer-name']='';
+                $_POST['father-mobile']='';
+                $hasFather = false;
+              }
+              else{
+                $_POST['father-mobile']=cleanThis($_POST['father-mobile']);
+                $hasFather = true;
+              }
+              if ($_POST['guardian-name']==''|| $_POST['guardian-name']==' ' ) {
+                $_POST['guardian-relationship']='';
+                $_POST['guardian-phone']='';
+                $_POST['guardian-mobile']='';
+                $hasGuardian = false;
+              }
+              else{
+                $_POST['guardian-phone'] =cleanThis($_POST['guardian-phone'] );
+                $_POST['guardian-mobile']=cleanThis($_POST['guardian-mobile']);
+                $hasGuardian = true;
+              }
+              if ($_POST['sibling1-name']==''|| $_POST['sibling1-name']==' ' ) {
+                $_POST['sibling1-level']='';
+                $hasSibling1 = false;
+              }
+              else{
+                $numberOfSiblings++;
+                $hasSibling1 = true;
+              }
+              if ($_POST['sibling2-name']==''|| $_POST['sibling2-name']==' ' ) {
+                $_POST['sibling2-level']='';
+                $hasSibling2 = false;
+              }
+              else{
+                $numberOfSiblings++;
+                $hasSibling2 = true;
+              }
+              if ($_POST['sibling3-name']==''|| $_POST['sibling3-name']==' ' ) {
+                $_POST['sibling3-level']='';
+                $hasSibling3 = false;
+              }
+              else{
+                $numberOfSiblings++;
+                $hasSibling3 = true;
+
+              }
+              if (!isset($_POST['siblings-order'])) {
+                $_POST['siblings-order']= '';
+              }
+              else{
+                $_POST['siblings-order']= cleanThis($_POST['siblings-order']);
+              }
+              if (isset($_POST['isEldest'])) {
+                $isEldest="Yes";
+              }
+              else{
+                $isEldest="No";
+              }
+              if (isset($_POST['r1'])) {
+                if ($_POST['r1']=="male") {
+                  $gender="M";;
+                  $genderprefix="Mr.";
+                }
+                else{
+                  $gender="F";
+                  $genderprefix="Ms."; 
+                }
+              }
+              $formatedBirthdate = $_POST['birthdate'];
+              $date = str_replace('/', '-', $formatedBirthdate);
+              $_POST['birthdate'] = date('Y-m-d', strtotime($date));
+     $_POST['student-phone']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
+     $_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
+     $_POST['address']                      = mysqli_real_escape_string($conn, stripcslashes($_POST['address']));
+     $_POST['siblings-order']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['siblings-order'])));
+     $_POST['student-lrn']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
+     $_POST['first-name']                   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
+     $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['middle-name'])));
+     $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
+     $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
+     //$_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
+     $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));
+     $_POST['birthdate']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['birthdate']));
+     $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
+     $_POST['school-last-attended']         = mysqli_real_escape_string($conn, stripcslashes($_POST['school-last-attended']));
+     $_POST['last-school-attended-year']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-year']));
+     $_POST['inCommingLevel']               = mysqli_real_escape_string($conn, stripcslashes($_POST['inCommingLevel']));
+     $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
+     $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
+     $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
+     $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-phone'])));
+     $_POST['contact-person-mobile']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-mobile'])));
+     $_POST['contact-person-email']         = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-email']));
+     $_POST['mother-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-name']));
+     $_POST['mother-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-name']));
+     $_POST['mother-mobile']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-mobile'])));
+     $_POST['father-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['father-name']));
+     $_POST['father-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-name']));
+     $_POST['father-mobile']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-mobile'])));
+     $_POST['guardian-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-name']));
+     $_POST['guardian-relationship']        = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-relationship']));
+     $_POST['guardian-phone']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['guardian-phone'])));
+     $_POST['guardian-mobile']              = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['guardian-mobile'])));
+     $_POST['sibling1-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling1-name']));
+     $_POST['sibling1-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling1-level']));
+     $_POST['sibling2-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling2-name']));
+     $_POST['sibling2-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling2-level']));
+     $_POST['sibling3-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling3-name']));
+     $_POST['sibling3-level']               = mysqli_real_escape_string($conn, stripcslashes($_POST['sibling3-level']));
+
+      $randomToken = generateNumericOTP(10);
+      $nowtime = date("Y-m-d H:i:s");
+
+
+$insertQuery = "update tbl_student
+set
+userID   =  '".$userID."',
+LRN   =  '".$_POST['student-lrn']."',
+Prefix   =  '".$gender."',
+Lastname   =  '".$_POST['last-name']."',
+Firstname   =  '".$_POST['first-name']."',
+Middlename   =  '".$_POST['middle-name']."',
+Suffix   =  '".$_POST['suffix']."',
+Birthdate   =  '".$_POST['birthdate']."',
+Birthplace   =  '".$_POST['birthplace']."',
+Address   =  '".$_POST['address'] ."',
+Telno   =  '".$_POST['student-phone'] ."',
+Cellphone   =  '".$_POST['student-mobile']."',
+IsEldest   =  '".$isEldest."'
+where studentID = '".$studentID."'";      
+mysqli_query($conn, $insertQuery);
+
+
+
+
+
+
+ $insertQuery2 = "update tbl_contact
+set
+userID  = '".$userID."',
+studentID  = '".$studentID."',
+fullName  = '".$_POST['contact-person-name']."',
+phone  = '".$_POST['contact-person-phone']."',
+mobile  = '".$_POST['contact-person-mobile']."',
+email  = '".$_POST['contact-person-email']."'
+where studentID = '".$studentID."'";       
+ 
+mysqli_query($conn, $insertQuery2);
+
+
+
+if ($hasMother) {
+ $insertQuery2 = "update tbl_parents 
+set
+userID  = '".$userID."',
+studentID  = '".$studentID."',
+fullName  = '".$_POST['mother-name']."',
+employerName  = '".$_POST['mother-employer-name']."',
+mobileNumber  = '".$_POST['mother-mobile']."',
+isFather  = '0'
+where studentID = '".$studentID."'"; 
+ 
+mysqli_query($conn, $insertQuery2);
+}
+
+
+if ($hasFather) {
+ $insertQuery2 = "update tbl_parents 
+set
+userID  = '".$userID."',
+studentID  = '".$studentID."',
+fullName  = '".$_POST['father-name']."',
+employerName  = '".$_POST['father-employer-name']."',
+mobileNumber  = '".$_POST['father-mobile']."',
+isFather  = '1'
+where studentID = '".$studentID."'"; 
+
+ 
+mysqli_query($conn, $insertQuery2);
+}
+
+if ($hasGuardian) {
+ $insertQuery2 = "Insert into tbl_guardian
+(
+userID,
+studentID,
+fullName,
+relationship,
+guardianPhone,
+guardianMobile
+) 
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['guardian-name']."',
+'".$_POST['guardian-relationship']."',
+'".$_POST['guardian-phone']."',
+'".$_POST['guardian-mobile']."'
+)";
+ 
+mysqli_query($conn, $insertQuery2);
+}
+
+if ($hasSchoolAttended) {
+ $insertQuery2 = "Insert into tbl_schoolinfo
+(
+userID,
+studentID,
+schoolLastAttended,
+schoolYear,
+schoolAddress,
+inCommingLevel,
+averageGrade
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['school-last-attended'] ."',
+'".$_POST['last-school-attended-year'] ."',
+'".$_POST['last-school-attended-address']."',
+'".$_POST['inCommingLevel'] ."',
+'".$_POST['last-school-attended-grade']."'
+)";
+ 
+mysqli_query($conn, $insertQuery2);
+}
+
+if ($hasSibling1) {
+ $insertQuery2 = "Insert into tbl_siblings
+(
+userID,
+studentID,
+fullName,
+level,
+siblingNo
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['sibling1-name'] ."',
+'".$_POST['sibling1-level']."',
+'1'
+)";
+ 
+ mysqli_query($conn, $insertQuery2);
+}
+
+if ($hasSibling2) {
+ $insertQuery2 = "Insert into tbl_siblings
+(
+userID,
+studentID,
+fullName,
+level,
+siblingNo
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['sibling2-name'] ."',
+'".$_POST['sibling2-level']."',
+'2'
+)";
+ 
+ mysqli_query($conn, $insertQuery2);
+}
+
+
+if ($hasSibling3) {
+ $insertQuery2 = "Insert into tbl_siblings
+(
+userID,
+studentID,
+fullName,
+level,
+siblingNo
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['sibling3-name'] ."',
+'".$_POST['sibling3-level']."',
+'3'
+)";
+ 
+mysqli_query($conn, $insertQuery2);
+}
+
+// header('Location: index.php?insertsuccess');
+
+   }
+  }
+            
+}
+  if (isset($_REQUEST['insertsuccess'])){
+  // $message = "You\'re now register";
+ // displayMessage("success","Success",$message);
+
+  }
+?>

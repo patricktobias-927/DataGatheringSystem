@@ -279,6 +279,7 @@
       
                   <a class="modal-myheading">Contact Information</a>
                   <br><!-- Spaceing --><br>
+                  <input type="hidden" name="contactID">
       
                 <div class="row">
       
@@ -361,6 +362,7 @@
                             <div class="col-lg-4">
                               <div class="form-group">
                                 <label >Mother Contact Number</label><br>
+                                <input type="hidden" name="motherID">
                                 <div class="input-group">
                                   <div class="input-group-prepend">
                                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -392,6 +394,7 @@
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label >Father Full Name</label>
+                                <input type="hidden" name="fatherID">
                                 <input value="<?php echo isset($_POST['father-name']) ? $_POST['father-name'] : '' ?>"
                                 name="father-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
@@ -509,6 +512,7 @@
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="unrequired-field">Sibling 1 Name</label>
+                                <input type="hidden" name="sib1ID">
                                 <input value="<?php echo isset($_POST['sibling1-name']) ? $_POST['sibling1-name'] : '' ?>" 
                                 name="sibling1-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
@@ -567,6 +571,7 @@
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="unrequired-field">Sibling 2 Name</label>
+                                <input type="hidden" name="sib2ID">
                                 <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
                                 name="sibling2-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
@@ -626,6 +631,7 @@
                             <div class="col-lg-8">
                               <div class="form-group">
                                 <label class="unrequired-field">Sibling 3 Name</label>
+                                <input type="hidden" name="sib3ID">
                                 <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
                                 name="sibling3-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>

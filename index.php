@@ -56,7 +56,7 @@
                 <a href="#" class="fPassword">Forgot Password ?</a>
               </div>
               <div class="col-sm-2">
-                <label for="loginbtn" class="log-label" style="visibility: hidden;">Jernrie</label>
+                <label for="loginbtn" class="log-label" style="visibility: hidden;">jxrn</label>
                 <button  type="submit" name="login" value="submit" id="loginbtn" name="login" class="btn btn-primary" >Login</button>
               </div>
             </div>

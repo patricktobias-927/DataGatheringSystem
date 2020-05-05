@@ -1278,7 +1278,6 @@ if (isset($_POST["btn-submit"])) {
 $insertQuery = "Insert into tbl_student
 (
 userID,
-studentCode,
 LRN,
 Prefix,
 Lastname,
@@ -1296,7 +1295,7 @@ VALUES
 (
 '".$userID."',
 '".$_POST['student-lrn']."',
-'".$gender."',
+'".$genderprefix."',
 '".$_POST['last-name']."',
 '".$_POST['first-name']."',
 '".$_POST['middle-name']."',
