@@ -143,16 +143,16 @@
                             </div><!-- Filename-->
 
                             <div class="row mb-4"> <!--Export button-->
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                     </div>
-                                    <div class="col-lg-6" style="display: flex;justify-content: center;
+                                    <div class="col-lg-8" style="display: flex;justify-content: center;
                                         align-items: center;">
                                         <button onclick="Export()"
                                         type="button" class="btn btn-primary add-button">
-                                        <span class=" fas fa-file-alt">&nbsp&nbsp</span>Export
+                                        <span class=" fas fa-file-alt">&nbsp&nbsp</span>Export Records
                                         </button>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                     </div>
                             </div> <!-- Export button -->
                         </div>
@@ -162,7 +162,7 @@
                 </div>
             </section>
 
-        </div> <!-- content-wrapper>
+        </div> <!-- content-wrapper-->
 
     </div>
 
@@ -177,13 +177,18 @@
     } );
 
         function Export()
-                {
-                    var conf = confirm("Export users to CSV?");
-                    if(conf == true)
-                    {
-                        window.open("../include/export.php", '_blank');
-                    }
-                }
+        {
+            var conf = confirm("Export student general info to XLS?");
+            if(conf == true)
+            {
+                window.open("../include/export.php", '_blank');
+            }
+            var conf = confirm("Export student detailed info to XLS?");
+            if(conf == true)
+            {
+                window.open("../include/exportdata.php", '_blank');
+            }
+        }
 
     </script>
 

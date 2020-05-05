@@ -222,7 +222,7 @@ require 'includes/navAndSide.php';
 						  <tbody>
 							<?php
 
-								$sql = "SELECT * FROM tbl_student  ORDER BY dateTimeEnrolled ";
+								$sql = "SELECT * FROM tbl_student  ORDER BY dateTimeSubmitted ";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 
 							while ($row=mysqli_fetch_assoc($result))
@@ -232,7 +232,7 @@ require 'includes/navAndSide.php';
 								<td><?php echo $row['firstName']; ?></td>
 								<td><?php echo $row['middleName']; ?></td>
 								<td><?php echo $row['lrn']; ?></td>
-								<td><?php echo $row['dateTimeEnrolled']; ?></td>
+								<td><?php echo $row['dateTimeSubmitted']; ?></td>
 								<td><?php
 								if ($row['isSubmitted'] == 1){
 									echo "Yes";
