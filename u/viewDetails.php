@@ -7,6 +7,9 @@
   $haveAccess;
   require 'assets/scipts/phpfunctions.php';
   require '../include/schoolConfig.php';
+  require '../include/getschoolyear.php';
+
+
   session_start();
   ob_start();
 
@@ -27,22 +30,26 @@
         if ($pass_row = mysqli_fetch_array ($result)) {
           if (trim($pass_row['userID'])==trim($_SESSION['userID'])) {
             $haveAccess='1';
+            $studentCode       = $pass_row['3'];
+            $LRN               = $pass_row['4'];
+            $Prefix            = $pass_row['5'];
+            $Lastname          = $pass_row['6'];
+            $Firstname         = $pass_row['7'];
+            $Middlename        = $pass_row['8'];
+            $Suffix            = $pass_row['9'];
+            $Birthdate         = $pass_row['10'];
+            $Birthplace        = $pass_row['11'];
+            $Address           = $pass_row['12'];
+            $Telno             = $pass_row['13'];
+            $Cellphone         = $pass_row['14'];
+            $IsEldest          = $pass_row['15'];
+            $familyPlace       = $pass_row['16'];
+            $dateTimeSubmitted = $pass_row['17'];
+            $isSubmitted       = $pass_row['18'];
+            $isExported        = $pass_row['19'];
+            $studentSchoolYearID      = $pass_row['2'];
 
-            $studentCode      = $pass_row['3'];
-            $LRN              = $pass_row['4'];
-            $Prefix           = $pass_row['5'];
-            $Lastname         = $pass_row['6'];
-            $Firstname        = $pass_row['7'];
-            $Middlename       = $pass_row['8'];
-            $Suffix           = $pass_row['9'];
-            $Birthdate        = $pass_row['10'];
-            $Birthplace       = $pass_row['11'];
-            $Address          = $pass_row['12'];
-            $Telno            = $pass_row['13'];
-            $Cellphone        = $pass_row['14'];
-            $IsEldest         = $pass_row['15'];
-            $familyPlace      = $pass_row['16'];
-            $dateTimeEnrolled = $pass_row['17'];
+
             
 
           }
@@ -84,6 +91,7 @@
   <title>Details | PRISM</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
 
   <script type="text/javascript" src="../include/plugins/sweetalert2/sweetalert2.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../include/plugins/sweetalert2/sweetalert2.min.css">
@@ -197,8 +205,17 @@ $(document).ready(function() {
 
 
 
-$(document).on("click", ".submit", function() {
+
+
+</script>
+
+
+<script type="text/javascript">
+
+$(document).on("click", "#submitBTN", function() {
     var x = $(this).attr('value');
+    var badge = $(this).attr('badgeIdentifier');
+    var ctr = $(this).attr('ctrIdentifier');
 
 Swal.fire({
   title: 'Are you sure?',
@@ -218,6 +235,11 @@ Swal.fire({
                 {"studentidx" : x},
             dataType: "html",
             success: function () {
+                $("#submitBTN").delay( 100 ).animate({ opacity: "hide" }, "slow");
+                $("#deleteBTN").delay( 100 ).animate({ opacity: "hide" }, "slow");
+                $("#submitBadge").addClass('badge-info').removeClass('badge-danger').text('Submitted') ;
+
+
                 swal.fire("Submitted", "It was succesfully stored to the database!", "success");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -228,10 +250,39 @@ Swal.fire({
 })
 });
 
+$(document).on("click", "#deleteBTN", function() {
+    var x = $(this).attr('value');
+
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+        $.ajax({
+            url: "remove.php",
+            type: "POST",
+            cache: false,
+            "data": 
+                {"studentidx" : x},
+            dataType: "html",
+            success: function () {
+                swal.fire("Done!", "It was succesfully deleted!", "success").then(function() {
+    window.location = "studentEntry.php";})
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal.fire("Error deleting!", "Please try again", "error");
+            }
+        });
+  }
+})
+});  
 </script>
-
-
-
+<script type="text/javascript" src="assets/scipts/hideAndNext.js"></script>
 </body>
 
 </html>

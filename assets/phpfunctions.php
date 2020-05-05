@@ -70,6 +70,21 @@ function generateNumericOTP($n) {
    
     return $result; 
 } 
+
+function generateStudentCode() { 
+      
+    $generator = "1357902468"; 
+    $n = rand(1,7);
+  
+    $result = "Student-"; 
+  
+    for ($i = 1; $i <= $n; $i++) { 
+        $result .= substr($generator, (rand()%(strlen($generator))), 1); 
+    } 
+  
+   
+    return $result; 
+} 
   
 
 ?>

@@ -98,53 +98,6 @@ function treeOpen($page, $navtitle)
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview <?php treeOpen($page,"info");?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-file-alt" aria-hidden="true"></i>
-              <p>
-                Data entry
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="../u/studentinfo.php" class="nav-link <?php isActive($page,"studentinfo");?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Student Info</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Employee Info</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Department Info</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-              </li>              
-            </ul>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

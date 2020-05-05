@@ -127,25 +127,25 @@ require 'includes/navAndSide2.php';
                 while($row = mysqli_fetch_array($result1)){
                   $status='';
           echo"<tr class='tRow' id='row".$ctr."'>";
-                  echo"<td>";
+                  echo"<td><h3>";
                     echo combineName($row[0],$row[1],$row[2]);
-                  echo"</td>";
-                  echo"<td>";
+                  echo"</h3></td>";
+                  echo"<td><h4>";
                     echo $row[3];
-                  echo"</td>";
-                  echo"<td>";
+                  echo"</h4></td>";
+                  echo"<td><h4>";
                     echo $row[4];
-                  echo"</td>";
+                  echo"</h4></td>";
                   if ($row['isExported']) {
-                    echo '<td class="text-center" title="Your information reach the school"><span class="badge badge-success">Exported</span></td>';
+                    echo '<td class="text-center" title="Your information reach the school"><h3><span class="badge badge-success">Exported</span></h3></td>';
                     $status = '1';
                   }
                   elseif ($row['isSubmitted']&&$row['schoolYearID']==$schoolYearID) {
-                    echo '<td class="text-center" title="Your information has been save."><span class="badge badge-info">Sumitted</span></td>';
+                    echo '<td class="text-center" title="Your information has been save."><h3><span class="badge badge-info">Submitted</span></h3></td>';
                     $status = '2';
                   }
                   else{
-                    echo '<td class="text-center" title="Press submit to confirm your registration."><span class=" badge badge-danger">Un-Sumitted</span></td>';
+                    echo '<td class="text-center" title="Press submit to confirm your registration."><h3><span id="badge'.$ctr.'" class=" badge badge-danger">Un-Submitted</span></h3></td>';
                     $status = '3';
                   }
 
@@ -161,17 +161,17 @@ require 'includes/navAndSide2.php';
                   else{
                   echo"</td>";
                    echo'   <td class="text-center">';
-                   echo'       <a class="btn btn-primary btn-sm " href="viewDetails.php?page='.$row[5].'">';
+                   echo'       <a class="btn btn-primary btn-sm "  href="viewDetails.php?page='.$row[5].'">';
                    echo'           <i class="fas fa-folder">';
                    echo'           </i>';
-                   echo'           View/Edit';
+                   echo'           <span id="view'.$ctr.'">View/Edit<span>';
                    echo'       </a>';
-                   echo'       <a class="btn btn-info btn-sm submit " href="#" value="'.$row[5].'">';
+                   echo'       <a class="btn btn-success btn-sm submit " id="submit'.$ctr.'" ctrIdentifier="'.$ctr.'" badgeIdentifier="badge'.$ctr.'" href="#" value="'.$row[5].'">';
                    echo'           <i class="fas fa-check-square">';
                    echo'           </i>';
                    echo'           Submit';
                    echo'       </a>';
-                   echo'       <a href="#" class="btn delete btn-sm btn-danger" value="'.$row[5].'" >';
+                   echo'       <a href="#" class="btn delete btn-sm btn-danger" id="delete'.$ctr.'" rowIdentifier="row'.$ctr.'"  value="'.$row[5].'" >';
                    echo'           <i class="fas fa-trash">';
                    echo'           </i>';
                    echo'           Delete';
@@ -252,7 +252,7 @@ require 'assets/scripts.php';
       
                       <div class="row">
                         
-                            <div class="col-lg-4">
+<!--                             <div class="col-lg-4">
                               <div class="form-group" >
                                 <label class="unrequired-field">Student Code</label><br>
                                 <div class="input-group">
@@ -260,7 +260,7 @@ require 'assets/scripts.php';
                                   name="student-code" type="text" class="form-control">
                                  </div>
                                </div>
-                              </div>
+                              </div> -->
       
                             <div class="col-lg-4">
                               <div class="form-group">
@@ -973,6 +973,7 @@ $(document).ready(function() {
 });
 $(document).on("click", ".delete", function() {
     var x = $(this).attr('value');
+    var row = $(this).attr('rowIdentifier');
 
 Swal.fire({
   title: 'Are you sure?',
@@ -993,6 +994,7 @@ Swal.fire({
             dataType: "html",
             success: function () {
                 swal.fire("Done!", "It was succesfully deleted!", "success");
+                $("#"+row).css({ "background-color": "#FACFCB"},"slow").delay( 200 ).animate({ opacity: "hide" }, "slow");
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 swal.fire("Error deleting!", "Please try again", "error");
@@ -1004,6 +1006,8 @@ Swal.fire({
 
 $(document).on("click", ".submit", function() {
     var x = $(this).attr('value');
+    var badge = $(this).attr('badgeIdentifier');
+    var ctr = $(this).attr('ctrIdentifier');
 
 Swal.fire({
   title: 'Are you sure?',
@@ -1023,6 +1027,11 @@ Swal.fire({
                 {"studentidx" : x},
             dataType: "html",
             success: function () {
+                $("#"+badge).addClass('badge-info').removeClass('badge-danger').text('Submitted') ;
+                $("#delete"+ctr).delay( 100 ).animate({ opacity: "hide" }, "slow");
+                $("#submit"+ctr).delay( 100 ).animate({ opacity: "hide" }, "slow");
+                $("#view"+ctr).text('View') ;
+
                 swal.fire("Submitted", "It was succesfully stored to the database!", "success");
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -1063,7 +1072,7 @@ if (isset($_POST["btn-submit"])) {
       }
       else{
         $lrn=cleanThis($_POST['student-lrn']);
-        $code=$_POST['student-code'];
+       // $code=$_POST['student-code'];
         $isLRNMatch=false;
         $isCodeMatch=false;
         $gender;
@@ -1170,8 +1179,8 @@ if (isset($_POST["btn-submit"])) {
                 $hasGuardian = false;
               }
               else{
-                $_POST['guardian-employer-phone']=cleanThis($_POST['guardian-employer-phone']);
-                $_POST['guardian-employer-mobile']=cleanThis($_POST['guardian-employer-mobile']);
+                $_POST['guardian-phone'] =cleanThis($_POST['guardian-phone'] );
+                $_POST['guardian-mobile']=cleanThis($_POST['guardian-mobile']);
                 $hasGuardian = true;
               }
               if ($_POST['sibling1-name']==''|| $_POST['sibling1-name']==' ' ) {
@@ -1233,7 +1242,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['middle-name'])));
      $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
      $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
-     $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
+     //$_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
      $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));
      $_POST['birthdate']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['birthdate']));
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
@@ -1265,7 +1274,6 @@ if (isset($_POST["btn-submit"])) {
 
       $randomToken = generateNumericOTP(10);
       $nowtime = date("Y-m-d H:i:s");
-session_start();
 
 $insertQuery = "Insert into tbl_student
 (
@@ -1287,7 +1295,6 @@ IsEldest
 VALUES 
 (
 '".$userID."',
-'".$_POST['student-code'] ."',
 '".$_POST['student-lrn']."',
 '".$genderprefix."',
 '".$_POST['last-name']."',

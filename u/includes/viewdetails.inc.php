@@ -176,10 +176,16 @@
   if (!$hasSibling1 && !$hasSibling2 && !$hasSibling3 && !$hasFather && !$hasMother) {
     $hasFamilyinformation='0';
   }
+                        $isSchoolYearMatch = $schoolYearID == $studentSchoolYearID;
 
   ?>
 
-
+<!-- 
+$dateTimeSubmitted
+$isSubmitted      
+$isExported       
+$schoolYearID     
+ -->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -187,17 +193,37 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php echo $Lastname?>'s information</h1>
+            <h1><?php echo $Lastname?>'s information <?php                   if ($isExported) {                     echo '<span class="status badge badge-success">Exported</span>';                   }                   elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {                     echo '<span class="status badge badge-info">Submitted</span>';                   }                   else{                     echo '<span id="submitBadge" class="status  badge badge-danger">Un-Submitted</span>';                   } ?></h1>
           </div>
           <div class="col-sm-6">
-            <a href="?page=<?php echo $studentID?>&print" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-            if
+            <a href="?page=<?php echo $studentID?>&print" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
+            <?php 
 
-                  echo'       <a class="btn btn-info btn-sm submit " href="#" value="'.$row[5].'">';
+            if(!$isSubmitted||!($isSchoolYearMatch&&$isSubmitted)){
+                  echo'       <a class="btn btn-success submit " id="submitBTN" href="#" value="'.$studentID.'">';
                   echo'           <i class="fas fa-check-square">';
                   echo'           </i>';
-                  echo'           Submit';
+                  echo'           &nbspSubmit';
                   echo'       </a>';
+                  echo'       </a>';
+                  echo'       <a href="#" id="deleteBTN" class="btn delete btn-danger"  value="'.$studentID.'" >';
+                  echo'           <i class="fas fa-trash">';
+                  echo'           </i>';
+                  echo'           Delete';
+                  echo'       </a>';
+                  echo'    <button ';
+echo'    data-toggle="modal" data-target="#addstudentmodal"';
+echo'    type="button" class="btn btn-primary no-print">';
+echo'    <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit';
+echo'    </button>';
+                  }
+
+            ?> 
+            
+
+            
+            
+            
 
 
             <ol class="breadcrumb float-sm-right">
@@ -290,11 +316,7 @@
 
 
                 <br>
-                <button 
-                data-toggle="modal" data-target="#studentinfo"
-                type="button" class="btn btn-primary add-button">
-                <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit
-                </button>
+
 
               </div>
             </div>
@@ -343,7 +365,11 @@
 
 
                 <br>
-                <a href="#" class="btn btn-primary no-print"><i class="fa fa-edit"></i> Edit</a>
+                <button 
+                data-toggle="modal" data-target="#contactinfo"
+                type="button" class="btn btn-primary add-button no-print">
+                <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit
+                </button>
               </div>
             </div>
       </div>
