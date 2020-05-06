@@ -83,7 +83,7 @@ function treeOpen($page, $navtitle)
             </a>
           </li>
           <li class="nav-item">
-            <a href="index.php" class="nav-link">
+            <a href="undermaintenance.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
                 Change Password
@@ -91,7 +91,7 @@ function treeOpen($page, $navtitle)
             </a>
           </li>
           <li class="nav-item">
-            <a href="index.php" class="nav-link">
+            <a href="undermaintenance.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
                 Change School Year
@@ -108,7 +108,7 @@ function treeOpen($page, $navtitle)
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../u/studentinfo.php" class="nav-link <?php isActive($page,"studentinfo");?>">
+                <a href="../u/undermaintenance.php" class="nav-link <?php isActive($page,"studentinfo");?>">
                   <i class="nav-icon fas fa-file-alt"></i>
                   <p>Filter</p>
                 </a>

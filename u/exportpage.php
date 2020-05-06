@@ -49,8 +49,27 @@
         <?php
         require 'includes/navAndSide.php';
         ?>
-        <!-- nav bar & side bar -->
 
+        <script src="../include/plugins/datatables/jquery.dataTables.js"></script>
+
+        <script src="../include/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+
+        <script src="../include/plugins/select2/js/select2.full.min.js"></script>
+        <!-- Bootstrap4 Duallistbox -->
+        <script src="../include/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+        <!-- InputMask -->
+        <script src="../include/plugins/moment/moment.min.js"></script>
+        <script src="../include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+        <!-- date-range-picker -->
+        <script src="../include/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- bootstrap color picker -->
+        <script src="../include/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="../include/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- Bootstrap Switch -->
+        <script src="../include/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+        <!-- iCheck for checkboxes and radio inputs -->
+        <link rel="stylesheet" type="text/css" href="../include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -77,17 +96,28 @@
                     <div class="col-lg-6">
                         <div class="card-body display nowrap" style="width:100%;border-radius: 25px;
                             border: 2px solid gray;text-align: center">
-                            <h3>Option to Export</h3>
-                            <div class="row mb-4"><!-- submitted-->
+                             <div class="row mb-3"> 
+                                <div class="col-lg-2">
+                                </div>
+                                 <div class="col-lg-8">
+                                    <h3>Export General info</h3>
+                                 </div>
+                                 <div class="col-lg-2">
+                                </div>
+                                
+                            </div>
+                            <form action="../include/export.php" method="post">
+                            <!-- submitted-->
+                            <!-- <div class="row mb-4">
                                 <div class="col-sm-6">
-                                    <label class="unrequired-field">Submitted From:</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        <label class="unrequired-field">Submitted From:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input value="<?php echo isset($_POST['subfrom']) ? $_POST['subfrom'] : '' ?>"
+                                            name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                         </div>
-                                        <input value="<?php echo isset($_POST['birthdate']) ? $_POST['birthdate'] : '' ?>"
-                                        name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime"data-inputmask-inputformat="dd/mm/yyyy" data-mask>
-                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="unrequired-field">To:</label>
@@ -99,28 +129,29 @@
                                         name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime"data-inputmask-inputformat="dd/mm/yyyy" data-mask>
                                     </div>
                                 </div>
-                            </div> <!-- submitted-->
+                            </div>  -->
+                            <!-- submitted-->
                             
                             <div class="row mb-4"> <!-- criteria-->
                                 <div class="col-lg-3">
                                     <div class="icheck-primary d-inline">
-                                        <input <?php if(isset($_POST['r1']) && $_POST['r1']=="all") echo 'checked'; ?>
-                                        value="all" type="radio" id="radioPrimary2" name="r1" checked>
+                                        <input 
+                                        value="all" type="radio" id="radioPrimary2" name="r1" >
                                         <label for="radioPrimary2">All Records
                                         </label>
                                     </div>&nbsp
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="icheck-primary d-inline">
-                                        <input <?php if(isset($_POST['r1']) && $_POST['r1']=="submitted") echo 'checked'; ?>
-                                        value="submitted" type="radio" id="radioPrimary1" name="r1">
+                                        <input 
+                                        value="submitted" type="radio" id="radioPrimary1" name="r1" checked>
                                         <label for="radioPrimary1">Submitted/Not yet Exported
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="icheck-primary d-inline">
-                                        <input <?php if(isset($_POST['r1']) && $_POST['r1']=="exported") echo 'checked'; ?>
+                                        <input
                                         value="exported" type="radio" id="radioPrimary3" name="r1">
                                         <label for="radioPrimary3">Exported only
                                         </label>
@@ -134,27 +165,132 @@
                                 <div class="col-lg-6">
                                     <label class="unrequired-field">File Name:</label><br>
                                     <div class="input-group">
-                                    <input title="We will fill this up for you" value="<?php echo isset($_POST['student-code']) ? $_POST['student-code'] : '' ?>"
-                                    name="student-code" type="text" class="form-control">
+                                    <input title="We will fill this up for you" value="<?php echo "RegisteredStudents_".date('Ymd')  ?>"
+                                    name="filename" value="RegisteredStudents" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                 </div>
                             </div><!-- Filename-->
 
-                            <div class="row mb-4"> <!--Export button-->
+                            <div class="row mb-2"> <!--Export button-->
                                     <div class="col-lg-2">
                                     </div>
                                     <div class="col-lg-8" style="display: flex;justify-content: center;
                                         align-items: center;">
-                                        <button onclick="Export()"
+                                        <!-- <button onclick="Export()" id="export"
                                         type="button" class="btn btn-primary add-button">
                                         <span class=" fas fa-file-alt">&nbsp&nbsp</span>Export Records
+                                        </button> -->
+                                        <button 
+                                        type="submit" class="btn btn-primary add-button">
+                                        <span class=" fas fa-file-alt">&nbsp&nbsp</span>Export General Info
                                         </button>
                                     </div>
                                     <div class="col-lg-2">
                                     </div>
                             </div> <!-- Export button -->
+                            </form>
+                        </div>
+                        <div class ="row mb-3">
+                        </div>
+                        <div class="card-body display nowrap" style="width:100%;border-radius: 25px;
+                            border: 2px solid gray;text-align: center">
+                            <div class="row mb-3"> 
+                                <div class="col-lg-2">
+                                </div>
+                                 <div class="col-lg-8">
+                                    <h3>Export Details</h3>
+                                 </div>
+                                 <div class="col-lg-2">
+                                </div>
+                                
+                            </div>
+                            <form action="../include/exportdata.php" method="post">
+                            <!-- submitted-->
+                            <!-- <div class="row mb-4">
+                                <div class="col-sm-6">
+                                        <label class="unrequired-field">Submitted From:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input value="<?php echo isset($_POST['subfrom']) ? $_POST['subfrom'] : '' ?>"
+                                            name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                        </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="unrequired-field">To:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input value="<?php echo isset($_POST['birthdate']) ? $_POST['birthdate'] : '' ?>"
+                                        name="birthdate" id="datemask2" type="text" class="form-control" data-inputmask-alias="datetime"data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                    </div>
+                                </div>
+                            </div>  -->
+                            <!-- submitted-->
+                            
+                            <div class="row mb-4"> <!-- criteria-->
+                                <div class="col-lg-3">
+                                    <div class="icheck-primary d-inline">
+                                        <input 
+                                        value="all" type="radio" id="radioPrimary22" name="r2" >
+                                        <label for="radioPrimary22">All Records
+                                        </label>
+                                    </div>&nbsp
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="icheck-primary d-inline">
+                                        <input 
+                                        value="submitted" type="radio" id="radioPrimary11" name="r2" checked>
+                                        <label for="radioPrimary11">Submitted/Not yet Exported
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="icheck-primary d-inline">
+                                        <input
+                                        value="exported" type="radio" id="radioPrimary33" name="r2">
+                                        <label for="radioPrimary33">Exported only
+                                        </label>
+                                    </div>
+                                </div>
+                            </div><!-- criteria-->
+
+                            <div class="row mb-4"> <!-- Filename-->
+                                <div class="col-lg-3">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label class="unrequired-field">File Name:</label><br>
+                                    <div class="input-group">
+                                    <input title="We will fill this up for you" value="<?php echo "RegisteredStudentsInfo_".date('Ymd')  ?>"
+                                    name="filenameinfo" value="RegisteredStudentsInfo" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                </div>
+                            </div><!-- Filename-->
+
+                            <div class="row mb-2"> <!--Export button-->
+                                    <div class="col-lg-2">
+                                    </div>
+                                    <div class="col-lg-8" style="display: flex;justify-content: center;
+                                        align-items: center;">
+                                        <!-- <button onclick="Export()" id="export"
+                                        type="button" class="btn btn-primary add-button">
+                                        <span class=" fas fa-file-alt">&nbsp&nbsp</span>Export Records
+                                        </button> -->
+                                        <button 
+                                        type="submit" class="btn btn-primary add-button">
+                                        <span class=" fas fa-file-alt">&nbsp&nbsp</span>Export Detailed Info
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                    </div>
+                            </div> <!-- Export button -->
+                            </form>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -169,12 +305,17 @@
 
     <!-- ./wrapper -->
     <script type="text/javascript">
-    $(document).ready(function() {
-        $('#example').DataTable( {
-            "scrollY": 200,
-            "scrollX": true
+        $(document).ready(function() {
+            $('#example').DataTable( {
+                "scrollY": 200,
+                "scrollX": true
+            } );
         } );
-    } );
+
+       //Datemask2 mm/dd/yyyy
+       $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+
+       $('[data-mask]').inputmask()
 
         function Export()
         {
@@ -189,6 +330,40 @@
                 window.open("../include/exportdata.php", '_blank');
             }
         }
+
+        $(document).on("click", ".export", function() {
+        // var x = $(this).attr('value');
+        var x = 1;
+        // var row = $(this).attr('rowIdentifier');
+
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to Print this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Print it!'
+        }).then((result) => {
+        if (result.value) {
+                $.ajax({
+                    url: "export.php",
+                    type: "POST",
+                    cache: false,
+                    "data": 
+                        {"studinfo" : x},
+                    dataType: "html",
+                    success: function () {
+                        swal.fire("Done!", "It was succesfully deleted!", "success");
+                        $("#"+row).css({ "background-color": "#FACFCB"},"slow").delay( 200 ).animate({ opacity: "hide" }, "slow");
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        swal.fire("Error deleting!", "Please try again", "error");
+                    }
+                });
+        }
+        })
+        });
 
     </script>
 
