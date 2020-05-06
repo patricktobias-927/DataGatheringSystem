@@ -331,40 +331,6 @@
             }
         }
 
-        $(document).on("click", ".export", function() {
-        // var x = $(this).attr('value');
-        var x = 1;
-        // var row = $(this).attr('rowIdentifier');
-
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to Print this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Print it!'
-        }).then((result) => {
-        if (result.value) {
-                $.ajax({
-                    url: "export.php",
-                    type: "POST",
-                    cache: false,
-                    "data": 
-                        {"studinfo" : x},
-                    dataType: "html",
-                    success: function () {
-                        swal.fire("Done!", "It was succesfully deleted!", "success");
-                        $("#"+row).css({ "background-color": "#FACFCB"},"slow").delay( 200 ).animate({ opacity: "hide" }, "slow");
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        swal.fire("Error deleting!", "Please try again", "error");
-                    }
-                });
-        }
-        })
-        });
-
     </script>
 
     <?php
