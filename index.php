@@ -28,6 +28,10 @@
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <!-- custom style -->
         <link rel="stylesheet" type="text/css" href="assets/css/home-style.css">
+        <!-- InputMask -->
+        <script src="include/plugins/moment/moment.min.js"></script>
+        <script src="include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+
 
         <title>
             <?php echo SCHOOL_NAME?>
@@ -48,7 +52,7 @@
           <div class="row">
               <div class="col-sm-5">
                 <label for="log-number" class="log-label">Mobile Number</label>
-                <input type="number" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn"  id="log-number">
+                <input type="text" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control numberOnly" id="txtf-lrn"  id="log-number">
               </div>
               <div class="col-sm-5">
                 <label for="input-password" class="log-label">Password</label>
@@ -144,14 +148,14 @@
           <div class="col-lg-5">
             <div class="form-group">
               <input value="<?php echo isset($_POST['first-name']) ? $_POST['first-name'] : '' ?>"
-                name="first-name"required type="text" class="form-control" placeholder="First Name">
+                name="first-name"required type="text" class="form-control textOnly" placeholder="First Name">
             </div>
           </div>
             
           <div class="col-lg-5">
             <div class="form-group">
               <input value="<?php echo isset($_POST['last-name']) ? $_POST['last-name'] : '' ?>"
-                name="last-name"required type="text" class="form-control" placeholder="Last Name">
+                name="last-name"required type="text" class="form-control textOnly" placeholder="Last Name">
             </div>
           </div>
         </div>
@@ -164,7 +168,7 @@
                    <span class="input-group-text"><i class="fas fa-mobile" style="width: 14px;"> </i></span>
                 </div>
                 <input <?php if(isset($_POST['number']))echo "value='".$_POST['number']."'"; ?>
-                name="number"  type="text" class="input thisNumber form-control" placeholder="Mobile Number" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                name="numberSignup"  type="text" class=" form-control" placeholder="Mobile Number" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
               </div>
             </div>
           </div> 
@@ -262,45 +266,62 @@
 </body>
 
 
-<!--  
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-<form action="index.php" method="post">
-  <div class="form-group">
-    <label for="exampleInputEmail1">Mobile Number</label>
-    <input type="number" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control" id="txtf-lrn" placeholder="Enter Mobile Number">
-    <small  class="form-text text-muted">We'll never share your information with anyone else.</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
-  </div>
-    <a href="#" >I forgot my Password</a>
-
-      </div>
-      <div class="modal-footer">
-        <a href="register-parent.php" type="button"  class="btn btn-info" title="click here" >Register</a>
-        <button type="submit" name="btn-submit" class="btn btn-success">Login</button>
-       </form>
-      </div>
-    </div>
-  </div> -->
 
  <!-- jQuery -->
 <script src="include/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- InputMask -->
+<script src="include/plugins/moment/moment.min.js"></script>
+<script src="include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+
+<script type="text/javascript">
+    $('[data-mask]').inputmask();
 
 
+
+(function($) {
+  $.fn.inputFilter = function(inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  };
+}(jQuery));
+
+// Install input filters.
+$(".interger").inputFilter(function(value) {
+  return /^-?\d*$/.test(value); });
+$(".numberOnly").inputFilter(function(value) {
+  return /^\d*$/.test(value); });
+$("#intLimitTextBox").inputFilter(function(value) {
+  return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500); });
+$(".decimal").inputFilter(function(value) {
+  return /^-?\d*[.]?\d*$/.test(value); });
+$("#currencyTextBox").inputFilter(function(value) {
+  return /^-?\d*[.,]?\d{0,2}$/.test(value); });
+$(".textOnly").inputFilter(function(value) {
+  return /^[a-z-' ']*$/i.test(value); });
+$(".textOnly2").inputFilter(function(value) {
+  return /^[a-z-' '-\.]*$/i.test(value); });
+$("#hexTextBox").inputFilter(function(value) {
+  return /^[0-9a-f]*$/i.test(value); });
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+
+</script>
 
 
 </html>
@@ -335,15 +356,16 @@
           }
 
           elseif ($chkpass == true) {
-           
-            $_SESSION['userID'] = $pass_row['userID'];
-            $_SESSION['first-name'] = $pass_row['fname'];
-            $_SESSION['middle-name'] = $pass_row['mname'];
-            $_SESSION['last-name'] = $pass_row['lname'];
-            $_SESSION['lvl'] = $pass_row['mobile'];
-            $_SESSION['userEmail'] = $pass_row['sex'];
-            $_SESSION['schoolID'] = $pass_row['email'];
-            $_SESSION['userType'] = $pass_row['userType'];
+
+
+            $_SESSION['userID']             = $pass_row['userID'];
+            $_SESSION['first-name']         = $pass_row['fname'];
+            $_SESSION['middle-name']        = $pass_row['mname'];
+            $_SESSION['last-name']          = $pass_row['lname'];
+            $_SESSION['lvl']                = $pass_row['mobile'];
+            $_SESSION['userEmail']          = $pass_row['sex'];
+            $_SESSION['schoolID']           = $pass_row['email'];
+            $_SESSION['usertype']           = $pass_row['usertype'];
 
             // $timeStamp = date("Y-m-d H:i:s");
             // $token = generateNumericOTP(6);
@@ -354,7 +376,7 @@
 
             // $_SESSION['token'] = $token;
             
-            if ($_SESSION['userType']='A') {
+            if ($_SESSION['usertype'] ==='A') {
               header('Location: u/index.php');
               exit();
             }
@@ -378,7 +400,7 @@
     }
   }
   if (isset($_POST['Signup'])) {
-    if (strlen(cleanThis($_POST['number']))<11) {
+    if (strlen(cleanThis($_POST['numberSignup']))<11) {
       $message="Mobile number is invalid";
       displayMessage("error","Invalid Entry",$message);
     }
@@ -396,7 +418,7 @@
      $_POST['first-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
      $_POST['last-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
      $_POST['email']               = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
-     $_POST['number']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'])));
+     $_POST['numberSignup']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'])));
      $_POST['pass1']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
     if (isset($_POST['r1'])) {
       if ($_POST['r1']=="male") {
@@ -407,7 +429,7 @@
       }
 
     }
-    $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['number']."'";
+    $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['numberSignup']."'";
 
     $result = mysqli_query($conn, $sql);
 

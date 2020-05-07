@@ -89,10 +89,9 @@
         if ($pass_row = mysqli_fetch_array ($result)) {
             $hasMother ='1';
 
-            $mother_parentID       = $pass_row['2'];
+            $motherID       = $pass_row['2'];
             $mother_fullName       = $pass_row['3'];
             $mother_employerName   = $pass_row['4'];
-            $mother_mobileNumber   = $pass_row['6'];
         }
         else{
           $hasMother ='0';
@@ -116,10 +115,9 @@
         if ($pass_row = mysqli_fetch_array ($result)) {
             $hasFather ='1';
 
-            $father_parentID       = $pass_row['2'];
+            $fatherID       = $pass_row['2'];
             $father_fullName       = $pass_row['3'];
             $father_employerName   = $pass_row['4'];
-            $father_mobileNumber   = $pass_row['6'];
         }
         else{
           $hasFather ='0';
@@ -134,6 +132,34 @@
 
   else{
       $hasFather ='0';
+  }
+
+    $sql = "sELECT a.* FROM tbl_guardian AS a WHERE a.studentID = '".$studentID."'";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+      if (mysqli_num_rows($result) > 0) {
+        if ($pass_row = mysqli_fetch_array ($result)) {
+            $hasGuardian ='1';
+
+            $guardianID              = $pass_row['2'];
+            $guardian_fullName       = $pass_row['3'];
+            $guardian_relationship   = $pass_row['4'];
+            $guardian_phone          = $pass_row['5'];
+            $guardian_mobileNumber   = $pass_row['6'];
+        }
+        else{
+          $hasGuardian ='0';
+        }
+            
+    }
+    else{
+      $hasGuardian ='0';
+    }
+
+  }
+
+  else{
+      $hasGuardian ='0';
   }
 
   $sql = "sELECT a.* FROM tbl_siblings AS a WHERE a.studentID = '".$studentID."'";
@@ -178,6 +204,8 @@
   }
                         $isSchoolYearMatch = $schoolYearID == $studentSchoolYearID;
 
+
+
   ?>
 
 <!-- 
@@ -193,7 +221,7 @@ $schoolYearID
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php echo $Lastname?>'s information <?php                   if ($isExported) {                     echo '<span class="status badge badge-success">Exported</span>';                   }                   elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {                     echo '<span class="status badge badge-info">Submitted</span>';                   }                   else{                     echo '<span id="submitBadge" class="status  badge badge-danger">Un-Submitted</span>';                   } ?></h1>
+            <h1><?php echo ucfirst(strtolower($Lastname) )?>'s information <?php                   if ($isExported) {                     echo '<span class="status badge badge-success">Exported</span>';                   }                   elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {                     echo '<span class="status badge badge-info">Submitted</span>';                   }                   else{                     echo '<span id="submitBadge" class="status  badge badge-danger">Un-Submitted</span>';                   } ?></h1>
           </div>
           <div class="col-sm-6">
             <a href="?page=<?php echo $studentID?>&print" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
@@ -212,10 +240,10 @@ $schoolYearID
                   echo'           Delete';
                   echo'       </a>';
                   echo'    <button ';
-echo'    data-toggle="modal" data-target="#addstudentmodal"';
-echo'    type="button" class="btn btn-primary no-print">';
-echo'    <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit';
-echo'    </button>';
+                  echo'    data-toggle="modal" data-target="#addstudentmodal"';
+                  echo'    type="button" id="btnEdit" class="btn btn-primary no-print">';
+                  echo'    <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit';
+                  echo'    </button>';
                   }
 
             ?> 
@@ -297,10 +325,24 @@ echo'    </button>';
                   </div>
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Address: </b><?php echo $Address ." " . $city?></div>
+                        <div class="col-sm-auto details-title"><b>Address: </b><?php echo $Address  ?></div>
                     </div>
                   </div>
                 </div> 
+
+
+                  <div class="row">
+                    <div class="col-lg-6 col-print-6">
+                      <div class="row">
+                          <div class="col-sm-auto details-title"><b>Incoming Level: </b><?php echo $levelCompleted ?></div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-print-6">
+                      <div class="row">
+                          <div class="col-sm-auto details-title"><b>City: </b><?php echo $city ?></div>
+                      </div>
+                    </div>
+                  </div>
 
 
 
@@ -403,11 +445,6 @@ echo'    </button>';
                         <div class="col-sm-auto details-title"><b>Average Grade: </b><?php echo $averageGrade ?></div>
                     </div>
                   </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>incoming Level: </b><?php echo $levelCompleted ?></div>
-                    </div>
-                  </div>
                 </div> 
 
                 <?php } else{echo "<p>Last School Attendend information is not set.</p>";}?>
@@ -429,7 +466,8 @@ echo'    </button>';
                       <!-- /.card-header -->
 
               <div class="card-body collapse">
-
+                <a class="dividerFam">Mothers's Information</a>
+                <hr class="hrstyle">
                 <?php 
 
                   if (!$hasFamilyinformation) {
@@ -443,19 +481,18 @@ echo'    </button>';
                 <div class="row">                
                   <div class="col-lg-6 col-print-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mother's Full Name: </b><?php echo $mother_fullName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $mother_fullName; ?></div>
                     </div>
                   </div>
-                </div> 
-                <div class="row">                
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mother's Employer Name: </b><?php echo $mother_employerName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Employer Name: </b><?php echo $mother_employerName; ?></div>
                     </div>
                   </div>
-                  <br>
                 </div> 
-                  <hr class="hrstyle">
+                 <br>
+                <a class="dividerFam">Father's Information</a>
+                <hr class="hrstyle">
                 
   
                   
@@ -463,23 +500,52 @@ echo'    </button>';
                     if ($hasFather) {
                   ?>
 
-                                <div class="row">                
+                <div class="row">                
                   <div class="col-lg-6 col-print-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Fathers's Full Name: </b><?php echo $father_fullName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $father_fullName; ?></div>
                     </div>
                   </div>
 
-                </div> 
-                <div class="row">                
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Fathers's Employer Name: </b><?php echo $father_employerName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Employer Name: </b><?php echo $father_employerName; ?></div>
                     </div>
                   </div>
-                  <br>
                 </div> 
-                  <hr class="hrstyle">
+                <br>
+                <a class="dividerFam">Guardian's Information</a>
+                <hr class="hrstyle">
+
+                  <?php }
+                  if ($hasGuardian) { ?>
+                <div class="row">                
+                  <div class="col-lg-6 col-print-6" > 
+                    <div class="row">
+                        <div class="col-sm-auto details-title"><b>Full Name: </b> <?php echo $guardian_fullName     ?></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-print-6">
+                    <div class="row">
+                        <div class="col-sm-auto details-title"><b>Relationship: </b>    <?php echo $guardian_relationship ?></div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="row">                
+                  <div class="col-lg-6 col-print-6" > 
+                    <div class="row">
+                        <div class="col-sm-auto details-title"><b>Mobile Number: </b>   <?php echo $guardian_phone        ?></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-print-6">
+                    <div class="row">
+                        <div class="col-sm-auto details-title"><b>Phone Nubmber: </b>    <?php echo $guardian_mobileNumber ?></div>
+                    </div>
+                  </div>
+                </div> 
+                <br>
+                <a class="dividerFam">Sibling's Information</a>
+                <hr class="hrstyle">
 
               <?php } 
                 if ($hasSibling1) {
@@ -488,12 +554,12 @@ echo'    </button>';
                 <div class="row">                
                   <div class="col-lg-6 col-print-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sibling-1's Full Name: </b><?php echo $sibling1_fullName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $sibling1_fullName; ?></div>
                     </div>
                   </div>
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sibling-1's Level: </b><?php echo $sibling1_level; ?></div>
+                        <div class="col-sm-auto details-title"><b>Level: </b><?php echo $sibling1_level; ?></div>
                     </div>
                   </div>
                 </div> 
@@ -507,12 +573,12 @@ echo'    </button>';
                 <div class="row">                
                   <div class="col-lg-6 col-print-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sibling-2's Full Name: </b><?php echo $sibling2_fullName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $sibling2_fullName; ?></div>
                     </div>
                   </div>
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sibling-2's Level: </b><?php echo $sibling2_level; ?></div>
+                        <div class="col-sm-auto details-title"><b>Level: </b><?php echo $sibling2_level; ?></div>
                     </div>
                   </div>
                 </div>
@@ -526,12 +592,12 @@ echo'    </button>';
                 <div class="row">                
                   <div class="col-lg-6 col-print-6" > 
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sibling-3's Full Name: </b><?php echo $sibling3_fullName; ?></div>
+                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $sibling3_fullName; ?></div>
                     </div>
                   </div>
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sibling-3's Level: </b><?php echo $sibling3_level; ?></div>
+                        <div class="col-sm-auto details-title"><b>Level: </b><?php echo $sibling3_level; ?></div>
                     </div>
                   </div>
                 </div> 

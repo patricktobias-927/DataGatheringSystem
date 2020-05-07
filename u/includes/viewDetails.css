@@ -15,10 +15,20 @@
 .col-print-12{width:100%; float:left;}
 
 .hrstyle{
-  border: 0;
-  border-bottom: 1px dashed #ccc;
-  background: #999;
+  border-bottom: 1px dashed green;
 }
 .status{
 	font-size: 18.72px;
+}
+    .dividerFam {
+       font-family: 'Raleway', sans-serif;
+       font-size: 23px;
+     }   
+
+
+.details-title b{
+	font-size: 20px;
+}
+.details-title {
+	font-size: 18px;
 }

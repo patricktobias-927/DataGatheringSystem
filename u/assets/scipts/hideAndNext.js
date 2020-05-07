@@ -181,7 +181,7 @@ function lastValidation(argument) {
 	}
 
 	if (noError3) {
-		return;
+		return confirm('Are you sure?')
 	}
 	else{
 	 event.preventDefault();

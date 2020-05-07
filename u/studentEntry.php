@@ -19,13 +19,21 @@
   $userLvl = $_SESSION['lvl'];
   $userEmail = $_SESSION['userEmail'];
   $schoolID = $_SESSION['schoolID'];
+
+  $user_check = $_SESSION['userID'] ;
+  $levelCheck = $_SESSION['lvl'];
+  if(!isset($user_check) && !isset($password_check))
+  {
+    session_destroy();
+    header("location: ../index.php");
+  }
 ?>
 
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Registraion | PRISM</title>
+  <title>Registration | PRISM</title>
 
  <script type='text/javascript' src='../include/plugins/tipsy/javascripts/jquery.tipsy.js'></script>
  <link rel="stylesheet" href="../include/plugins/tipsy/stylesheets/tipsy.css" type="text/css" />
@@ -1294,7 +1302,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
      $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
-     $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-phone'])));
+     $_POST['contact-person-phone']         = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-phone']));
      $_POST['contact-person-mobile']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['contact-person-mobile'])));
      $_POST['contact-person-email']         = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-email']));
      $_POST['mother-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-name']));
@@ -1328,7 +1336,8 @@ Birthdate,
 Birthplace,
 Address,
 city,
-IsEldest
+IsEldest,
+familyPlace
 ) 
 VALUES 
 (
@@ -1343,7 +1352,10 @@ VALUES
 '".$_POST['birthplace']."',
 '".$_POST['address'] ."',
 '".$_POST['city'] ."',
-'".$isEldest."'
+'".$isEldest."',
+'".$_POST['siblings-order']."'
+
+
 )";      
 mysqli_query($conn, $insertQuery);
 
