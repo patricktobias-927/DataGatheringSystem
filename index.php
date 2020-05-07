@@ -161,7 +161,7 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                   <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                   <span class="input-group-text"><i class="fas fa-mobile" style="width: 14px;"> </i></span>
                 </div>
                 <input <?php if(isset($_POST['number']))echo "value='".$_POST['number']."'"; ?>
                 name="number"  type="text" class="input thisNumber form-control" placeholder="Mobile Number" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
@@ -175,7 +175,7 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  <span class="input-group-text"><i class="fas fa-envelope" style="width: 14px;"></i></span>
                 </div>
                 <input <?php if(isset($_POST[ 'email']))echo "value='".$_POST[ 'email']. "'"; ?> name="email" type="email" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Email Address" required="true">
               </div>
@@ -188,7 +188,7 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                  <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
                 <input name="pass1" <?php if(isset($_POST['pass1']))echo "value='".$_POST['pass1']."'"; ?>type="password" class="input form-control" required="true" placeholder="Password">
               </div>
@@ -201,7 +201,7 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
-                   <span class="input-group-text"><i class="fa fa-lock" ></i></span>
+                   <span class="input-group-text"> <i class="fa fa-lock" ></i></span>
                 </div>
                 <input name="pass2" <?php if(isset($_POST['pass2']))echo "value='".$_POST['pass2']."'"; ?>type="password" class="input form-control" required="true" placeholder="Re-Type Password">
               </div>
@@ -237,7 +237,7 @@
             <div class="icheck-primary">
               <input name=icheckbox type="checkbox" id="remember" required <?php if(isset($_POST['remember'])){echo " checked";} ?>>
               <label for="remember" class='lbl-datapolicy' style="font-family: sans-serif; font-weight: normal;">
-                I acknowledge that I have read and understood Phonix Publishing House, Inc. Privacy Notice. I Knowingly give my consent to Phoneix to collect,  use,  store, or process my personal data and related documents. 
+                I acknowledge that I have read and understood PPH Inc. privacy notice and gives consent that the personal data I provided will be collected, stored, used, and processed for the purpose of enrollment
               </label>
             </div>
           </div>
@@ -312,7 +312,6 @@
   }
 
   if (isset($_POST['login'])) {
-    echo "<scirpt>alert('hey')</script>";
     if (strlen($_POST['number'])<10 || strlen($_POST['number'])>13) {
       displayMessage("warning","Invalid Mobile Number","Please try again ");
 

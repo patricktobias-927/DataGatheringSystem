@@ -96,8 +96,9 @@
 
 .hrstyle{
   border: 0;
-  border-bottom: 1px dashed #ccc;
-  background: #999;
+  border-bottom: 2px solid #ccc;
+  height: 2px;
+  background: green;
 }
 .select2-selection__rendered {
   line-height: 32px !important;

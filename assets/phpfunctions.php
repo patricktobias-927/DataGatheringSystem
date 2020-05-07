@@ -31,11 +31,11 @@ function cleanData($data)
 function combineName($fName,$lName,$mName)
 {
 	if ($mName == ' ' || $mName =='') {
-		$combinedName = $lName . ", " . $fName;
+		$combinedName = ucfirst($lName) . ", " . ucfirst($fName);
 	}
 	else{
 		$mInitial = substr($mName, 0,1);
-		$combinedName = $lName . ", " . $fName .' '. $mInitial . '.';
+		$combinedName = ucfirst(strtolower($lName)) . ", " . ucfirst(strtolower($fName)) .' '. ucfirst(strtolower($mInitial)) . '.';
 	}
 
 	return $combinedName;

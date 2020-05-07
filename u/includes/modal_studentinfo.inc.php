@@ -64,25 +64,25 @@
       
                           <div class="col-lg-4">
                             <div class="form-group">
-                              <label class="required-field">Given Name</label>
+                              <label name="first-name-lbl" class="required-field">Given Name</label>
                               <input value="<?php echo isset($_POST['first-name']) ? $_POST['first-name'] : '' ?>"
-                              name="first-name"required type="text" class="form-control" placeholder="Enter First Name">
+                              name="first-name" required type="text" class="form-control">
                             </div>
                           </div>
       
                           <div class="col-lg-4">
                             <div class="form-group">
-                              <label class="unrequired-field">Middle Name</label>
+                              <label name="first-name-lbl"  class="unrequired-field">Middle Name</label>
                               <input value="<?php echo isset($_POST['middle-name']) ? $_POST['middle-name'] : '' ?>"
-                              name="middle-name"type="text" class="form-control" placeholder="Enter Middle Name">
+                              name="middle-name"type="text" class="form-control">
                             </div>
                           </div>
       
                           <div class="col-lg-4">
-                            <div class="form-group">
+                            <div name="first-name-lbl"  class="form-group">
                               <label class="required-field">Surname/Last Name</label>
                               <input value="<?php echo isset($_POST['last-name']) ? $_POST['last-name'] : '' ?>"
-                              name="last-name"required type="text" class="form-control" placeholder="Enter Last Name">
+                              name="last-name"required type="text" class="form-control">
                             </div>
                           </div>
       
@@ -223,25 +223,25 @@
                         <div class="col-lg-3">
       
                            <div class="form-group">
-                             <label class="unrequired-field">Incomming School Year Level</label>
-                             <select name="inCommingLevel" class="form-control select2bs4 ">
+                             <label class="unrequired-field">incoming School Year Level</label>
+                             <select name="inComingLevel" class="form-control select2bs4 ">
                               <?php 
-                              if (isset($_POST['inCommingLevel'])){?>
-                              <option <?php if($_POST['inCommingLevel']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($_POST['inCommingLevel']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($_POST['inCommingLevel']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+                              if (isset($_POST['inComingLevel'])){?>
+                              <option <?php if($_POST['inComingLevel']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
 
                              <?php }
                               else{

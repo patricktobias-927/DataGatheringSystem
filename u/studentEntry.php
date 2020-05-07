@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
 <?php
   require '../include/config.php';
@@ -26,6 +27,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Registraion | PRISM</title>
 
+ <script type='text/javascript' src='../include/plugins/tipsy/javascripts/jquery.tipsy.js'></script>
+ <link rel="stylesheet" href="../include/plugins/tipsy/stylesheets/tipsy.css" type="text/css" />
 <!-- customize css -->
   <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
   <!-- sweet alert -->
@@ -128,7 +131,7 @@ require 'includes/navAndSide2.php';
                   $status='';
           echo"<tr class='tRow' id='row".$ctr."'>";
                   echo"<td><h3>";
-                    echo combineName($row[0],$row[1],$row[2]);
+                    echo ucwords(combineName($row[0],$row[1],$row[2]));
                   echo"</h3></td>";
                   echo"<td><h4>";
                     echo $row[3];
@@ -245,7 +248,7 @@ require 'assets/scripts.php';
           <div class="modal-body"  style="background-color: #D3D3D3 ">
             <div class="callout callout-info" id="next-stud-card">
       
-              <form onsubmit="return confirm('Are you sure?')" method="POST" enctype="multipart/form-data">
+              <form onsubmit="return lastValidation()" method="POST" enctype="multipart/form-data" class="noEnterOnSubmit">
               <a class="modal-myheading">Student Information</a>
               <br><!-- Spaceing --><br>
                
@@ -292,7 +295,56 @@ require 'assets/scripts.php';
                                 </div>
       
                               </div> 
-                            </div>                      
+                            </div>  
+
+                                                    <div class="col-lg-3">
+      
+                           <div class="form-group">
+                             <label class="unrequired-field">Incoming Level</label>
+                             <select name="inComingLevel" class="form-control select2bs4 ">
+                              <?php 
+                              if (isset($_POST['inComingLevel'])){?>
+                              <option <?php if($_POST['inComingLevel']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade2") {echo' selected ="true"';}?>value="Grade2">Grade 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+
+                             <?php }
+                              else{
+
+                              }
+                              ?>
+                              <option value="Nursery1">Nursery 1</option>
+                              <option value="Nursery2">Nursery 2</option>
+                              <option value="Kinder1">Kinder 1</option>
+                              <option value="Kinder2">Kinder 2</option>
+                              <option value="Grade1">Grade 1</option>
+                              <option value="Grade2">Grade 2</option>
+                              <option value="Grade3">Grade 3</option>
+                              <option value="Grade4">Grade 4</option>
+                              <option value="Grade5">Grade 5</option>
+                              <option value="Grade6">Grade 6</option>
+                              <option value="Grade7">Grade 7</option>
+                              <option value="Grade8">Grade 8</option>
+                              <option value="Grade9">Grade 9</option>
+                              <option value="Grade10">Grade 10</option>
+                              <option value="Grade11">Grade 11</option>
+                              <option value="Grade12">Grade 12</option>
+                             </select>
+                           </div>
+                        </div>                    
       
                       </div> 
       
@@ -300,40 +352,54 @@ require 'assets/scripts.php';
       
                           <div class="col-lg-4">
                             <div class="form-group">
-                              <label class="required-field">Given Name</label>
+                              <label name="first-name-lbl" class="required-field">First Name</label>
                               <input value="<?php echo isset($_POST['first-name']) ? $_POST['first-name'] : '' ?>"
-                              name="first-name"required type="text" class="form-control" placeholder="Enter First Name">
+                              name="first-name" required type="text" class="form-control textOnly">
                             </div>
                           </div>
       
                           <div class="col-lg-4">
                             <div class="form-group">
-                              <label class="unrequired-field">Middle Name</label>
+                              <label name="first-name-lbl"  class="unrequired-field">Middle Name</label>
                               <input value="<?php echo isset($_POST['middle-name']) ? $_POST['middle-name'] : '' ?>"
-                              name="middle-name"type="text" class="form-control" placeholder="Enter Middle Name">
+                              name="middle-name"type="text" class="form-control textOnly">
                             </div>
                           </div>
       
                           <div class="col-lg-4">
-                            <div class="form-group">
+                            <div name="middle-name-lbl"  class="form-group">
                               <label class="required-field">Surname/Last Name</label>
                               <input value="<?php echo isset($_POST['last-name']) ? $_POST['last-name'] : '' ?>"
-                              name="last-name"required type="text" class="form-control" placeholder="Enter Last Name">
+                              name="last-name"required type="text" class="form-control textOnly">
                             </div>
                           </div>
       
                       </div>
       
                         <div class="row">
+                          <div class="col-lg-3">
+                            <div class="form-group">
+                              <label name="last-name-lbl" class="unrequired-field ">Suffix</label>
+                              <input value="<?php echo isset($_POST['suffix']) ? $_POST['suffix'] : '' ?>"
+                              name="suffix" type="text" class="form-control textOnly" placeholder="E.g: Jr, Sr">
+                            </div>
+                          </div>
                           <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="unrequired-field">Student / Family Address</label>
+                              <label class="unrequired-field">Family Address</label>
                               <input value="<?php echo isset($_POST['address']) ? $_POST['address'] : '' ?>"
-                              name="address" type="text" class="form-control" placeholder="Enter School Address">
+                              name="address" type="text" class="form-control ">
+                            </div>
+                          </div>
+                          <div class="col-lg-3">
+                            <div class="form-group">
+                              <label class="unrequired-field ">City</label>
+                              <input value="<?php echo isset($_POST['city']) ? $_POST['city'] : '' ?>"
+                              name="city" type="text" class="form-control textOnly">
                             </div>
                           </div>
       
-                          <div class="col-lg-3">
+<!--                           <div class="col-lg-3">
                             <div class="form-group">
                               <label class="unrequired-field">Student Phone Number</label><br>
                               <div class="input-group">
@@ -357,18 +423,12 @@ require 'assets/scripts.php';
                                 name="student-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
                                </div>
                              </div>  
-                            </div> 
+                            </div>  -->
                         </div>
                         
                       <div class="row">
       
-                          <div class="col-lg-4">
-                            <div class="form-group">
-                              <label class="unrequired-field">Suffix</label>
-                              <input value="<?php echo isset($_POST['suffix']) ? $_POST['suffix'] : '' ?>"
-                              name="suffix" type="text" class="form-control" placeholder="E.g: Jr, Sr">
-                            </div>
-                          </div>
+
       
                           <div class="col-lg-4">
                             <div class="form-group">
@@ -392,13 +452,14 @@ require 'assets/scripts.php';
                           </div>
       
                       </div>
-      
-      
+                      <br>
+                      <a class="modal-myheading">Previous School Information</a>
+                      <br><br>
                       <div class="row">
                             
                         <div class="col-lg-6">
                           <div class="form-group">
-                            <label class="unrequired-field">School Last Attended</label>
+                            <label class="unrequired-field">School Name</label>
                             <input value="<?php echo isset($_POST['school-last-attended']) ? $_POST['school-last-attended'] : '' ?>"
                             name="school-last-attended" type="text" class="form-control" placeholder="Enter School Name">
                           </div>
@@ -406,26 +467,31 @@ require 'assets/scripts.php';
       
                         <div class="col-lg-2">
                            <div class="form-group">
-                             <label class="unrequired-field">Last School Year</label>
+                             <label class="unrequired-field">School Year</label>
       
                              <select placeholder="Enter School Name" name="last-school-attended-year" class="form-control select2bs4">
                               <option value='' <?php if(!isset($_POST['last-school-attended-year'])){ echo "Selected = 'true'";} else{}?>
                               ></option>
                                <?php 
                                   $start = date('Y');
-                                  $end = $start;
+                                  $end = $start-=1;
                                   $start++;
-                                  $years=10;
-                                  for ($i=0; $i <($years*2) ; $i++) { 
+                                  $instance=0;
+                                  $years=20;
+                                  for ($i=0; $i <($years) ; $i++) { 
                                     $SY= $end." - ".$start;
-                                    if(isset($_POST['last-school-attended-year']) && cleanThis($_POST['last-school-attended-year'])==cleanThis($SY)){ $selected="Selected='true'";}
-                                    else{$selected="";}
-                                    echo "<option value='". $SY."'".$selected.">". $SY."</option>";
-                                    $start--;
+                                    if (!isset($_POST['last-school-attended-year'])&&!$instance) {
+                                      echo "<option value='". $SY."' Selected='true'>". $SY."</option>";
+                                      $start--;
                                     $end--;
+                                      $instance=1;
+                                    }
+                                    elseif(isset($_POST['last-school-attended-year']) && cleanThis($_POST['last-school-attended-year'])==cleanThis($SY)){ $selected="Selected='true'";}
+                                    else{$selected="";
+                                    echo "<option value='". $SY."' ".$selected.">". $SY."</option>";
+                                    $start--;
+                                    $end--;}
                                   }
-                                        $res = cleanThis($SY);
-                                        $res2 = cleanThis($_POST['last-school-attended-year']);
       
                                ?>
       
@@ -439,8 +505,8 @@ require 'assets/scripts.php';
                           <div class="form-group">
                             <label class="unrequired-field">Average Grade</label><br>
                             <div class="input-group">
-                              <input value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
-                                name="last-school-attended-grade" type="text" class="form-control" >
+                              <input  value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
+                                name="last-school-attended-grade" type="text" class="form-control" data-inputmask='"mask": "999.99    "' data-mask>
                              </div>
                            </div>
                           </div> 
@@ -449,59 +515,13 @@ require 'assets/scripts.php';
                         <div class="row">
                           <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="unrequired-field">School Last Attended Address</label>
+                              <label class="unrequired-field">School Address</label>
                               <input value="<?php echo isset($_POST['last-school-attended-address']) ? $_POST['last-school-attended-address'] : '' ?>"
                               name="last-school-attended-address" type="text" class="form-control" placeholder="Enter School Address">
                             </div>
                           </div>
 
-      
-                        <div class="col-lg-3">
-      
-                           <div class="form-group">
-                             <label class="unrequired-field">Incomming School Year Level</label>
-                             <select name="inCommingLevel" class="form-control select2bs4 ">
-                              <?php 
-                              if (isset($_POST['inCommingLevel'])){?>
-                              <option <?php if($_POST['inCommingLevel']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($_POST['inCommingLevel']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($_POST['inCommingLevel']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($_POST['inCommingLevel']=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
 
-                             <?php }
-                              else{
-
-                              }
-                              ?>
-                              <option value="Nursery1">Nursery 1</option>
-                              <option value="Nursery2">Nursery 2</option>
-                              <option value="Kinder1">Kinder 1</option>
-                              <option value="Grade1">Grade 1</option>
-                              <option value="Grade2">Grade 2</option>
-                              <option value="Grade5">Grade 5</option>
-                              <option value="Grade3">Grade 3</option>
-                              <option value="Grade4">Grade 4</option>
-                              <option value="Grade6">Grade 6</option>
-                              <option value="Grade7">Grade 7</option>
-                              <option value="Grade8">Grade 8</option>
-                              <option value="Grade9">Grade 9</option>
-                              <option value="Grade10">Grade 10</option>
-                              <option value="Grade11">Grade 11</option>
-                              <option value="Grade12">Grade 12</option>
-                             </select>
-                           </div>
-                        </div>
 
                         </div>
             <div class="modal-footer">
@@ -520,9 +540,9 @@ require 'assets/scripts.php';
       
                   <div class="col-lg-8">
                     <div class="form-group">
-                      <label class="required-field">Contact Person Full Name</label>
+                      <label class="required-field">Full Name</label>
                       <input value="<?php echo isset($_POST['contact-person-name']) ? $_POST['contact-person-name'] : '' ?>"
-                      name="contact-person-name" required type="text" class="form-control" placeholder="FirstName LastName">
+                      name="contact-person-name" required type="text" class="form-control textOnly2" placeholder="FirstName LastName">
                     </div>
                   </div>
       
@@ -538,7 +558,7 @@ require 'assets/scripts.php';
                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                           </div>
                          <input value="<?php echo isset($_POST['contact-person-phone']) ? $_POST['contact-person-phone'] : '' ?>"
-                         name="contact-person-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
+                         name="contact-person-phone" type="text" class="form-control" data-inputmask='"mask": "(999) 9999-9999    "' data-mask>
                         </div>
                       </div>
                      </div>    
@@ -582,30 +602,20 @@ require 'assets/scripts.php';
 
                     <div class="card-body">
                       <div class="tab-content">
+                        <br>
+                        <a class=""><h4>Mother's Information</h4></a>
                           <hr class="hrstyle">
       
-
+    
                           <div class="row">
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Mother Full Name</label>
+                                <label >Full Name</label>
                                 <input value="<?php echo isset($_POST['mother-name']) ? $_POST['mother-name'] : '' ?>"
-                                name="mother-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="mother-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
                               </div>
                             </div>
-
-                            <div class="col-lg-4">
-                              <div class="form-group">
-                                <label >Mother Contact Number</label><br>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                   </div>
-                                  <input value="<?php echo isset($_POST['mother-mobile']) ? $_POST['mother-mobile'] : '' ?>"
-                                  name="mother-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
-                                 </div>
-                               </div>
-                            </div>    
+  
       
                           </div>
       
@@ -613,38 +623,26 @@ require 'assets/scripts.php';
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Mother's Employer Name</label>
+                                <label >Employer Name</label>
                                 <input value="<?php echo isset($_POST['mother-employer-name']) ? $_POST['mother-employer-name'] : '' ?>"
                                 name="mother-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
                               </div>
                             </div>
       
                           </div> 
-      
-
+                          <br>
+                          <a class=""><h4>Father's Information</h4></a>
                           <hr class="hrstyle">
                           <div class="row">
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Father Full Name</label>
+                                <label >Full Name</label>
                                 <input value="<?php echo isset($_POST['father-name']) ? $_POST['father-name'] : '' ?>"
-                                name="father-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="father-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
                               </div>
                             </div>
 
-                            <div class="col-lg-4">
-                              <div class="form-group">
-                               <label>Father Mobile Number</label><br>
-                                <div class="input-group">
-                                  <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-mobile"></i></span>
-                                  </div>
-                                 <input value="<?php echo isset($_POST['father-mobile']) ? $_POST['father-mobile'] : '' ?>"
-                                 name="father-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
-                                </div>
-                              </div>  
-                            </div>
       
                           </div>
         
@@ -653,7 +651,7 @@ require 'assets/scripts.php';
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Father's Employer Name</label>
+                                <label >Employer Name</label>
                                 <input value="<?php echo isset($_POST['father-employer-name']) ? $_POST['father-employer-name'] : '' ?>"
                                 name="father-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
                               </div>
@@ -661,24 +659,24 @@ require 'assets/scripts.php';
       
                           </div> 
       
-
-
+                          <br>
+                          <a class=""><h4>Guardian's Information</h4></a>
                           <hr class="hrstyle">
                           <div class="row">
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label >Guardian Full Name</label>
+                                <label >Full Name</label>
                                 <input value="<?php echo isset($_POST['guardian-name']) ? $_POST['guardian-name'] : '' ?>"
-                                name="guardian-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="guardian-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
                               </div>
                             </div>
       
                             <div class="col-lg-4">
                               <div class="form-group">
-                                <label >Guardian Relationship</label>
+                                <label >Relationship</label>
                                 <input value="<?php echo isset($_POST['guardian-relationship']) ? $_POST['guardian-relationship'] : '' ?>" 
-                                name="guardian-relationship" type="text" class="form-control" placeholder="Auntie / Grandmother etc.">
+                                name="guardian-relationship" type="text" class="form-control textOnly" placeholder="Auntie / Grandmother etc.">
                               </div>
                             </div>
       
@@ -694,7 +692,7 @@ require 'assets/scripts.php';
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                   </div>
                                  <input value="<?php echo isset($_POST['guardian-phone']) ? $_POST['guardian-phone'] : '' ?>" 
-                                 name="guardian-phone" type="text" class="form-control" data-inputmask='"mask": "999-99-99    "' data-mask>
+                                 name="guardian-phone" type="text" class="form-control" data-inputmask='"mask": "(999) 9999-9999    "' data-mask>
                                 </div>
                               </div>
                             </div>    
@@ -714,6 +712,8 @@ require 'assets/scripts.php';
 
 
                         </div>
+                        <br>
+                        <a class=""><h4>Sibling's Information</h4></a>
                         <hr class="hrstyle">
                           <div class="row"> 
                             <div class="col-lg-3">
@@ -728,7 +728,7 @@ require 'assets/scripts.php';
                               <div class="icheck-primary d-inline">
                               <div class="input-group">
                                 <input value="<?php echo isset($_POST['siblings-order']) ? $_POST['siblings-order'] : '' ?>"
-                               name="siblings-order" class="form-control form-control-sm col-sm-1" type="number" maxlength="2" style="text-align: center">
+                               name="siblings-order" class="form-control form-control-sm col-sm-1 numberOnly" id="siblings-order" type="text" maxlength="2" style="text-align: center">
                                 <span class="col-sm-8">&nbsp &nbspChronological order of birth among his/her siblings &nbsp&nbsp&nbsp </span>
                                 
                                 </div>
@@ -744,9 +744,9 @@ require 'assets/scripts.php';
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label class="unrequired-field">Sibling 1 Name</label>
+                                <label class="unrequired-field">Name</label>
                                 <input value="<?php echo isset($_POST['sibling1-name']) ? $_POST['sibling1-name'] : '' ?>" 
-                                name="sibling1-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="sibling1-name" type="text" class="form-control textOnly" placeholder="FirstName LastName">
                               </div>
                             </div>  
                             <div class="col-lg-3">
@@ -802,9 +802,9 @@ require 'assets/scripts.php';
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label class="unrequired-field">Sibling 2 Name</label>
+                                <label class="unrequired-field">Name</label>
                                 <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
-                                name="sibling2-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="sibling2-name" type="text" class="form-control textOnly" placeholder="FirstName LastName">
                               </div>
                             </div>
       
@@ -861,7 +861,7 @@ require 'assets/scripts.php';
       
                             <div class="col-lg-8">
                               <div class="form-group">
-                                <label class="unrequired-field">Sibling 3 Name</label>
+                                <label class="unrequired-field">Name</label>
                                 <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
                                 name="sibling3-name" type="text" class="form-control" placeholder="FirstName LastName">
                               </div>
@@ -877,11 +877,12 @@ require 'assets/scripts.php';
                               <option <?php if($_POST['sibling3-level']=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
                               <option <?php if($_POST['sibling3-level']=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
                               <option <?php if($_POST['sibling3-level']=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
+                              <option <?php if($_POST['sibling3-level']=="Kinder2") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
                               <option <?php if($_POST['sibling3-level']=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
                               <option <?php if($_POST['sibling3-level']=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($_POST['sibling3-level']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
                               <option <?php if($_POST['sibling3-level']=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
                               <option <?php if($_POST['sibling3-level']=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
+                              <option <?php if($_POST['sibling3-level']=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
                               <option <?php if($_POST['sibling3-level']=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
                               <option <?php if($_POST['sibling3-level']=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
                               <option <?php if($_POST['sibling3-level']=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
@@ -898,11 +899,12 @@ require 'assets/scripts.php';
                               <option value="Nursery1">Nursery 1</option>
                               <option value="Nursery2">Nursery 2</option>
                               <option value="Kinder1">Kinder 1</option>
+                              <option value="Kinder1">Kinder 2</option>
                               <option value="Grade1">Grade 1</option>
                               <option value="Grade2">Grade 2</option>
-                              <option value="Grade5">Grade 5</option>
                               <option value="Grade3">Grade 3</option>
                               <option value="Grade4">Grade 4</option>
+                              <option value="Grade5">Grade 5</option>
                               <option value="Grade6">Grade 6</option>
                               <option value="Grade7">Grade 7</option>
                               <option value="Grade8">Grade 8</option>
@@ -940,6 +942,13 @@ require 'assets/scripts.php';
 <!-- Modal -->
 </body>
 <script type="text/javascript">
+
+// validations
+
+
+
+
+
       //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
@@ -960,6 +969,8 @@ $(document).ready(function() {
 
 </script>
 <script type="text/javascript" src="assets/scipts/hideAndNext.js"></script>
+<!-- FastClick -->
+<script src="../include/plugins/fastclick/fastclick.js"></script>
 <script>
 
 $(document).ready(function() {
@@ -1042,6 +1053,41 @@ Swal.fire({
 })
 });
 
+
+(function($) {
+  $.fn.inputFilter = function(inputFilter) {
+    return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  };
+}(jQuery));
+
+// Install input filters.
+$(".interger").inputFilter(function(value) {
+  return /^-?\d*$/.test(value); });
+$(".numberOnly").inputFilter(function(value) {
+  return /^\d*$/.test(value); });
+$("#intLimitTextBox").inputFilter(function(value) {
+  return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500); });
+$(".decimal").inputFilter(function(value) {
+  return /^-?\d*[.]?\d*$/.test(value); });
+$("#currencyTextBox").inputFilter(function(value) {
+  return /^-?\d*[.,]?\d{0,2}$/.test(value); });
+$(".textOnly").inputFilter(function(value) {
+  return /^[a-z-' ']*$/i.test(value); });
+$(".textOnly2").inputFilter(function(value) {
+  return /^[a-z-' '-\.]*$/i.test(value); });
+$("#hexTextBox").inputFilter(function(value) {
+  return /^[0-9a-f]*$/i.test(value); });
 </script>
 </html>
 
@@ -1105,7 +1151,7 @@ if (isset($_POST["btn-submit"])) {
         }
 
         //check length
-        if (strlen(cleanThis($_POST['student-lrn']))> 8) {  
+        if (isset($_POST['student-lrn'])) {  
           $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename  from `tbl_student` where lrn = '".  $lrn."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -1146,7 +1192,7 @@ if (isset($_POST["btn-submit"])) {
           
               if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
                 $_POST['last-school-attended-year']='';
-                $_POST['inCommingLevel']='';
+                $_POST['inComingLevel']='';
                 $_POST['last-school-attended-grade']='';
                 $_POST['last-school-attended-address']='';
                 $hasSchoolAttended = false;
@@ -1156,20 +1202,16 @@ if (isset($_POST["btn-submit"])) {
               }
               if ($_POST['mother-name']==''|| $_POST['mother-name']==' ' ) {
                 $_POST['mother-employer-name']='';
-                $_POST['mother-mobile']='';
                 $hasMother = false;
               }
               else{
-                $_POST['mother-mobile']=cleanThis($_POST['mother-mobile']);
                 $hasMother = true;
               }
               if ($_POST['father-name']==''|| $_POST['father-name']==' ' ) {
                 $_POST['father-employer-name']='';
-                $_POST['father-mobile']='';
                 $hasFather = false;
               }
               else{
-                $_POST['father-mobile']=cleanThis($_POST['father-mobile']);
                 $hasFather = true;
               }
               if ($_POST['guardian-name']==''|| $_POST['guardian-name']==' ' ) {
@@ -1233,9 +1275,9 @@ if (isset($_POST["btn-submit"])) {
               $formatedBirthdate = $_POST['birthdate'];
               $date = str_replace('/', '-', $formatedBirthdate);
               $_POST['birthdate'] = date('Y-m-d', strtotime($date));
-     $_POST['student-phone']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
-     $_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
+     //$_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
      $_POST['address']                      = mysqli_real_escape_string($conn, stripcslashes($_POST['address']));
+     $_POST['city']                         = mysqli_real_escape_string($conn, stripcslashes($_POST['city']));
      $_POST['siblings-order']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['siblings-order'])));
      $_POST['student-lrn']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
      $_POST['first-name']                   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
@@ -1248,7 +1290,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
      $_POST['school-last-attended']         = mysqli_real_escape_string($conn, stripcslashes($_POST['school-last-attended']));
      $_POST['last-school-attended-year']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-year']));
-     $_POST['inCommingLevel']               = mysqli_real_escape_string($conn, stripcslashes($_POST['inCommingLevel']));
+     $_POST['inComingLevel']               = mysqli_real_escape_string($conn, stripcslashes($_POST['inComingLevel']));
      $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
      $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
@@ -1257,10 +1299,8 @@ if (isset($_POST["btn-submit"])) {
      $_POST['contact-person-email']         = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-email']));
      $_POST['mother-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-name']));
      $_POST['mother-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['mother-employer-name']));
-     $_POST['mother-mobile']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['mother-mobile'])));
      $_POST['father-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['father-name']));
      $_POST['father-employer-name']         = mysqli_real_escape_string($conn, stripcslashes($_POST['father-employer-name']));
-     $_POST['father-mobile']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['father-mobile'])));
      $_POST['guardian-name']                = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-name']));
      $_POST['guardian-relationship']        = mysqli_real_escape_string($conn, stripcslashes($_POST['guardian-relationship']));
      $_POST['guardian-phone']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['guardian-phone'])));
@@ -1287,15 +1327,14 @@ Suffix,
 Birthdate,
 Birthplace,
 Address,
-Telno,
-Cellphone,
+city,
 IsEldest
 ) 
 VALUES 
 (
 '".$userID."',
 '".$_POST['student-lrn']."',
-'".$genderprefix."',
+'".$gender."',
 '".$_POST['last-name']."',
 '".$_POST['first-name']."',
 '".$_POST['middle-name']."',
@@ -1303,8 +1342,7 @@ VALUES
 '".$_POST['birthdate']."',
 '".$_POST['birthplace']."',
 '".$_POST['address'] ."',
-'".$_POST['student-phone'] ."',
-'".$_POST['student-mobile']."',
+'".$_POST['city'] ."',
 '".$isEldest."'
 )";      
 mysqli_query($conn, $insertQuery);
@@ -1350,7 +1388,6 @@ userID,
 studentID,
 fullName,
 employerName,
-mobileNumber,
 isFather
 ) 
 VALUES
@@ -1359,7 +1396,6 @@ VALUES
 '".$studentID."',
 '".$_POST['mother-name']."',
 '".$_POST['mother-employer-name']."',
-'".$_POST['mother-mobile']."',
 '0'
 )";
  
@@ -1374,7 +1410,6 @@ userID,
 studentID,
 fullName,
 employerName,
-mobileNumber,
 isFather
 ) 
 VALUES
@@ -1383,7 +1418,6 @@ VALUES
 '".$studentID."',
 '".$_POST['father-name']."',
 '".$_POST['father-employer-name']."',
-'".$_POST['father-mobile']."',
 '1'
 )";
  
@@ -1421,7 +1455,7 @@ studentID,
 schoolLastAttended,
 schoolYear,
 schoolAddress,
-inCommingLevel,
+inComingLevel,
 averageGrade
 )     
 VALUES
@@ -1431,7 +1465,7 @@ VALUES
 '".$_POST['school-last-attended'] ."',
 '".$_POST['last-school-attended-year'] ."',
 '".$_POST['last-school-attended-address']."',
-'".$_POST['inCommingLevel'] ."',
+'".$_POST['inComingLevel'] ."',
 '".$_POST['last-school-attended-grade']."'
 )";
  
@@ -1502,15 +1536,11 @@ VALUES
 mysqli_query($conn, $insertQuery2);
 }
 
-// header('Location: index.php?insertsuccess');
+ header('Location: viewDetails.php?insertsuccess&page='.$studentID);
 
    }
   }
             
 }
-  if (isset($_REQUEST['insertsuccess'])){
-  // $message = "You\'re now register";
- // displayMessage("success","Success",$message);
 
-  }
 ?>

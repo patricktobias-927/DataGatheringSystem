@@ -21,7 +21,7 @@ if($id > 0){
 
     $schoolYearID = $pass_row['schoolYearID'];
     
-    if (strlen($getStudentID['studentCode'])<0) {
+    if (strlen(trim($getStudentID['studentCode']))<=0 ) {
     function genStudCode()
       {
         $studentCode = generateStudentCode();

@@ -3,7 +3,7 @@
       $sex = "Male";
     }
     else{
-      $sex = "F";
+      $sex = $Prefix ;
     }
 
     $hasContact;
@@ -301,18 +301,7 @@ echo'    </button>';
                     </div>
                   </div>
                 </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Telephone Number: </b><?php echo $Telno ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mobile Number: </b><?php echo $Cellphone ?></div>
-                    </div>
-                  </div>
-                </div> 
+
 
 
                 <br>
@@ -364,12 +353,7 @@ echo'    </button>';
 
 
 
-                <br>
-                <button 
-                data-toggle="modal" data-target="#contactinfo"
-                type="button" class="btn btn-primary add-button no-print">
-                <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit
-                </button>
+                
               </div>
             </div>
       </div>
@@ -421,15 +405,14 @@ echo'    </button>';
                   </div>
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Incomming Level: </b><?php echo $levelCompleted ?></div>
+                        <div class="col-sm-auto details-title"><b>incoming Level: </b><?php echo $levelCompleted ?></div>
                     </div>
                   </div>
                 </div> 
 
                 <?php } else{echo "<p>Last School Attendend information is not set.</p>";}?>
 
-                <br>
-                <a href="#" class="btn btn-primary no-print"><i class="fa fa-edit"></i> Edit</a>
+
               </div>
             </div>
       </div>
@@ -463,11 +446,6 @@ echo'    </button>';
                         <div class="col-sm-auto details-title"><b>Mother's Full Name: </b><?php echo $mother_fullName; ?></div>
                     </div>
                   </div>
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mother's Mobile Number: </b><?php echo $mother_mobileNumber; ?></div>
-                    </div>
-                  </div>
                 </div> 
                 <div class="row">                
                   <div class="col-lg-6 col-print-6">
@@ -491,11 +469,7 @@ echo'    </button>';
                         <div class="col-sm-auto details-title"><b>Fathers's Full Name: </b><?php echo $father_fullName; ?></div>
                     </div>
                   </div>
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Fathers's Mobile Number: </b><?php echo $father_mobileNumber; ?></div>
-                    </div>
-                  </div>
+
                 </div> 
                 <div class="row">                
                   <div class="col-lg-6 col-print-6">
@@ -565,9 +539,7 @@ echo'    </button>';
                 <?php }} ?>
 
 
-
-                <br>
-                <a href="#" class="btn btn-primary no-print"><i class="fa fa-edit"></i> Edit</a>
+          <br>
               </div>
             </div>
       </div>

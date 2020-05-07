@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `tbl_schoolinfo` (
   `schoolLastAttended` varchar(180) DEFAULT NULL,
   `schoolYear` varchar(25) DEFAULT NULL,
   `schoolAddress` varchar(180) DEFAULT NULL,
-  `inCommingLevel` varchar(50) DEFAULT NULL,
+  `inComingLevel` varchar(50) DEFAULT NULL,
   `averageGrade` int(3) DEFAULT NULL,
   PRIMARY KEY (`schoolInfoID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;

@@ -154,7 +154,14 @@ if (isset($_REQUEST['EditSuccess'])){
     $message = "Information is updated";
     displayMessage("success","Success",$message);
   }
-
+if (isset($_REQUEST['insertsuccess'])) {
+  echo '<script>$(".collapse").collapse("show");
+  Swal.fire(
+  "Input Save Successfully!",
+  "Review Information then submit to finalize your submission!",
+  "success"
+)</script>';
+}
 
 
 
@@ -302,11 +309,7 @@ if (isset($_POST["btn-submit"])) {
         echo "<script> console.log('bday'); </script>";
         }
 
-      //student mobile validation 
-      elseif (isset($_POST['student-mobile'])&& strlen(cleanThis($_POST['student-mobile']))!=11 && cleanThis($_POST['student-mobile']) != "") {
-        displayMessage("warning","Invalid Student Mobile","Student Mobile Number");
-        echo "<script> console.log('contact Monile invalid'); </script>";
-      }
+
        //contact person mobile validation 
       elseif (strlen(cleanThis($_POST['contact-person-mobile']))!=11) {
         displayMessage("warning","Invalid Mobile Number","Contact Person Mobile Number");
@@ -388,7 +391,7 @@ if (isset($_POST["btn-submit"])) {
           
               if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
                 $_POST['last-school-attended-year']='';
-                $_POST['inCommingLevel']='';
+                $_POST['inComingLevel']='';
                 $_POST['last-school-attended-grade']='';
                 $_POST['last-school-attended-address']='';
                 $hasSchoolAttended = false;
@@ -475,8 +478,8 @@ if (isset($_POST["btn-submit"])) {
               $formatedBirthdate = $_POST['birthdate'];
               $date = str_replace('/', '-', $formatedBirthdate);
               $_POST['birthdate'] = date('Y-m-d', strtotime($date));
-     $_POST['student-phone']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
-     $_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
+     // $_POST['student-phone']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));                   
+     // $_POST['student-mobile']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-mobile'])));        
      $_POST['address']                      = mysqli_real_escape_string($conn, stripcslashes($_POST['address']));
      $_POST['siblings-order']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['siblings-order'])));
      $_POST['student-lrn']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
@@ -490,7 +493,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
      $_POST['school-last-attended']         = mysqli_real_escape_string($conn, stripcslashes($_POST['school-last-attended']));
      $_POST['last-school-attended-year']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-year']));
-     $_POST['inCommingLevel']               = mysqli_real_escape_string($conn, stripcslashes($_POST['inCommingLevel']));
+     $_POST['inComingLevel']               = mysqli_real_escape_string($conn, stripcslashes($_POST['inComingLevel']));
      $_POST['last-school-attended-grade']   = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-grade']));
      $_POST['last-school-attended-address'] = mysqli_real_escape_string($conn, stripcslashes($_POST['last-school-attended-address']));
      $_POST['contact-person-name']          = mysqli_real_escape_string($conn, stripcslashes($_POST['contact-person-name']));
@@ -530,8 +533,6 @@ Suffix   =  '".$_POST['suffix']."',
 Birthdate   =  '".$_POST['birthdate']."',
 Birthplace   =  '".$_POST['birthplace']."',
 Address   =  '".$_POST['address'] ."',
-Telno   =  '".$_POST['student-phone'] ."',
-Cellphone   =  '".$_POST['student-mobile']."',
 IsEldest   =  '".$isEldest."'
 where studentID = '".$studentID."'";      
 mysqli_query($conn, $insertQuery);
@@ -616,7 +617,7 @@ studentID,
 schoolLastAttended,
 schoolYear,
 schoolAddress,
-inCommingLevel,
+inComingLevel,
 averageGrade
 )     
 VALUES
@@ -626,7 +627,7 @@ VALUES
 '".$_POST['school-last-attended'] ."',
 '".$_POST['last-school-attended-year'] ."',
 '".$_POST['last-school-attended-address']."',
-'".$_POST['inCommingLevel'] ."',
+'".$_POST['inComingLevel'] ."',
 '".$_POST['last-school-attended-grade']."'
 )";
  
