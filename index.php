@@ -331,11 +331,11 @@
           $chkpass = $_POST['password'] ==$pass_row['password'];
 
           if (!$chkpass) {
-            displayMessage("warning","Wrong Password","Please try again ");
+            displayMessage("warning","Wrong Password" ,"Please try again ");
           }
 
           elseif ($chkpass == true) {
-
+           
             $_SESSION['userID'] = $pass_row['userID'];
             $_SESSION['first-name'] = $pass_row['fname'];
             $_SESSION['middle-name'] = $pass_row['mname'];
@@ -354,7 +354,7 @@
 
             // $_SESSION['token'] = $token;
             
-            if ($_SESSION['userType']=='A') {
+            if ($_SESSION['userType']='A') {
               header('Location: u/index.php');
               exit();
             }

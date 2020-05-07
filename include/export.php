@@ -1,10 +1,17 @@
 
 <?php
   require '../include/config.php';
+  require '../u/assets/scripts.php';
 ?>
 
 
 <?php
+
+    //$currentDate = date('Y-m-d H:i:s');
+    $date = date_create();
+    $currentDateTime = date_format($date,"Y-m-d H:i:s");
+    
+   // $datestr = $currentDateTime->format('Y-m-d H:i:s');
     $tagsub = 0;
     $tagexpo = 0;
     $all ="";
@@ -33,7 +40,8 @@
             concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
             s.isEldest as Eldest,u.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID ";
+            on s.userID = u.userID 
+            and timestamp(dateTimeSubmitted) <= timestamp('".$currentDateTime."') ;";
     }
     else
     {
@@ -48,7 +56,10 @@
             concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
             s.isEldest as Eldest,u.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID  where s.isSubmitted = $tagsub and isExported = $tagexpo;";
+            on s.userID = u.userID  where s.isSubmitted = $tagsub and isExported = $tagexpo
+            and timestamp(dateTimeSubmitted) < timestamp('".$currentDateTime."') ;";
+
+    
     };
    // $result=mysqli_query($conn, $sql); //rs.open sql,con
 
@@ -107,6 +118,7 @@
      } 
    exit();
    
+
 ?>
 
 
