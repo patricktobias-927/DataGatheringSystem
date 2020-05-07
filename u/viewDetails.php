@@ -40,13 +40,12 @@
             $Birthdate         = $pass_row['10'];
             $Birthplace        = $pass_row['11'];
             $Address           = $pass_row['12'];
-            $Telno             = $pass_row['13'];
-            $Cellphone         = $pass_row['14'];
             $IsEldest          = $pass_row['15'];
             $familyPlace       = $pass_row['16'];
             $dateTimeSubmitted = $pass_row['17'];
             $isSubmitted       = $pass_row['18'];
             $isExported        = $pass_row['19'];
+            $city              = $pass_row['20'];
             $studentSchoolYearID      = $pass_row['2'];
 
 

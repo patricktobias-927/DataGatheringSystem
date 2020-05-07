@@ -297,7 +297,7 @@ echo'    </button>';
                   </div>
                   <div class="col-lg-6 col-print-6">
                     <div class="row">
-                        <div class="col-sm-auto details-title"><b>Address: </b><?php echo $Address ?></div>
+                        <div class="col-sm-auto details-title"><b>Address: </b><?php echo $Address ." " . $city?></div>
                     </div>
                   </div>
                 </div> 
