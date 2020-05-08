@@ -64,6 +64,7 @@
          order by code ;";
          //where timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."')
 
+         $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;";
     }
     elseif ($all == "exported")
     {
@@ -147,10 +148,10 @@
          order by code ;";
           // and timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."') 
 
+          $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;";
+
     }
 
-    $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1 and
-    timestamp(dateTimeSubmitted) < timestamp('".$currentDateTime."')  ;";
 
     $resultsetinfo = mysqli_query($conn, $queryinfo);
     if ($resultsetinfo->num_rows > 0) {
@@ -178,7 +179,10 @@
             }
             echo implode("\t",  array_values($recordinfo)) . "\n";
         }
-        mysqli_query($conn, $queryupdate);
+        if ($all == "all" || $all  == "submitted")
+        {
+            mysqli_query($conn, $queryupdate);
+        }
     }
     exit();      
 
