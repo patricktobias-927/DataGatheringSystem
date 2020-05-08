@@ -82,9 +82,7 @@
                               <option <?php if($levelCompleted=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
 
                              <?php }
-                              else{
-
-                              }
+                              else{  ?>
                               ?>
                               <option value="Nursery1">Nursery 1</option>
                               <option value="Nursery2">Nursery 2</option>
@@ -102,6 +100,7 @@
                               <option value="Grade10">Grade 10</option>
                               <option value="Grade11">Grade 11</option>
                               <option value="Grade12">Grade 12</option>
+                            <?php }?>
                              </select>
                            </div>
                         </div>  
@@ -531,20 +530,18 @@
                               <option <?php if($sibling1_level=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
                               <option <?php if($sibling1_level=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
                               <option <?php if($sibling1_level=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
-
                              <?php }
-                              else{
-
-                              }
+                              else{  ?>
                               ?>
                               <option value="Nursery1">Nursery 1</option>
                               <option value="Nursery2">Nursery 2</option>
                               <option value="Kinder1">Kinder 1</option>
+                              <option value="Kinder2">Kinder 2</option>
                               <option value="Grade1">Grade 1</option>
                               <option value="Grade2">Grade 2</option>
-                              <option value="Grade5">Grade 5</option>
                               <option value="Grade3">Grade 3</option>
                               <option value="Grade4">Grade 4</option>
+                              <option value="Grade5">Grade 5</option>
                               <option value="Grade6">Grade 6</option>
                               <option value="Grade7">Grade 7</option>
                               <option value="Grade8">Grade 8</option>
@@ -552,6 +549,7 @@
                               <option value="Grade10">Grade 10</option>
                               <option value="Grade11">Grade 11</option>
                               <option value="Grade12">Grade 12</option>
+                            <?php }?>
                                  </select>
                                </div>
                             </div>
@@ -592,18 +590,17 @@
                               <option <?php if($sibling2_level=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
 
                              <?php }
-                              else{
-
-                              }
+                              else{  ?>
                               ?>
                               <option value="Nursery1">Nursery 1</option>
                               <option value="Nursery2">Nursery 2</option>
                               <option value="Kinder1">Kinder 1</option>
+                              <option value="Kinder2">Kinder 2</option>
                               <option value="Grade1">Grade 1</option>
                               <option value="Grade2">Grade 2</option>
-                              <option value="Grade5">Grade 5</option>
                               <option value="Grade3">Grade 3</option>
                               <option value="Grade4">Grade 4</option>
+                              <option value="Grade5">Grade 5</option>
                               <option value="Grade6">Grade 6</option>
                               <option value="Grade7">Grade 7</option>
                               <option value="Grade8">Grade 8</option>
@@ -611,6 +608,7 @@
                               <option value="Grade10">Grade 10</option>
                               <option value="Grade11">Grade 11</option>
                               <option value="Grade12">Grade 12</option>
+                            <?php }?>
                                  </select>
                                </div>
                             </div>

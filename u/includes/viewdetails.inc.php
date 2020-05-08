@@ -263,43 +263,13 @@
             <div>
                 
               <div class="row">
-
+<!-- <p class="lead">Powered by</p><img width="250px;" src="../assets/imgs/PrismLogoLong.jpg"> -->
                 <div class="col-7">
-
+<br><br><br><br><br>
                   <div class="row">
-                    
-                  </div>
-
-                  <div class="row">
-                    
-                  </div>
-
-                </div>
-
-                <div class="col-5">
-
-                  <div class="row">
-                    <div class="col-sm-6 invoice-col float-right"><br>
-                      <b>Student Code: <?php echo $studentCode ?>
-                      <br>
-                      <b>LRN: </b><?php echo $LRN ?>
-                      <br>
-                      <b>User No. :</b> <?php   $userID?><br>
-                      <b>Status:</b> <?php if ($isExported) { echo '<span class=" badge badge-success">Exported</span>'; } elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Submitted</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Un-Submitted</span>';} ?></b>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class=" col-sm-6 invoice-info" style="background-color: #F5F5F5">
-
-                <div class="col-sm-6 invoice-col">
+              <div class=" col-sm-12 invoice-info" style="margin-top: 19px; ">
+<div class="row">
+                <div class="col-5 invoice-col" >
                   <span class="lead">Student Information:</span><br>
                         <b>Name: </b><?php echo combineName($Firstname,$Lastname,$Middlename); ?><br>
 
@@ -308,61 +278,13 @@
                         <b>Suffix: </b><?php echo $Suffix ?><br>
 
                         <b>Birthdate: </b><?php echo date('d/m/Y', strtotime($Birthdate)); ?><br>
-
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6 invoice-col"><br>
-                  <address>
-                    <strong>Address</strong><br>
-                        <?php echo $Address  ?><br>
-
-                        <b>City: </b><?php echo $city ?><br>
+                        <b>Address:</b><?php echo $Address." ".$city  ?><br>
                         <b>Birthplace: </b><?php echo $Birthplace ?><br>
 
-
-                  </address>
                 </div>
-                <!-- /.col -->
-
-                <!-- /.col -->
-
-                </div>
-            </div>
-              <!-- /.row -->
-
-<br>
-              <div class="row">
-                <div class="col-3" style="background-color: #FFF5EE">
-                  <span class="lead">Previous Schoool Information:</span>
-                  <p class=" well well-sm shadow-none" style="margin-top: 2px;">
-                    <?php if ($hasSchoolInfo) { ?>
-                    <b>School: </b><?php echo $schoolLastAttended ?></br>
-
-                    <b>School Year: </b><?php echo $schoolYear ?></br>
-
-                    <b>School Address: </b><?php echo $schoolAddress ?></br>
-
-                    <b>Average Grade: </b><?php echo $averageGrade ?></br>
-
-                    <b>Incoming Level: </b><?php echo $levelCompleted ?></br>
-                    <?php } else{ ?>
-                    <b>School: </b></br>
-
-                    <b>School Year: </b></br>
-
-                    <b>School Address: </b></br>
-
-                    <b>Average Grade: </b></br>
-
-                    <b>Incoming Level: </b></br>
-
-                    <?php }?>
-                  </p>
-                </div>
-                <div class="col-3" style="background-color: #FFF5EE">
+                <div class="col-5 invoice-col">
                   <span class="lead">Contact Information:</span>
-                  <p class=" well well-sm shadow-none" style="margin-top: 2px;">
-
+                  <p class=" well well-sm shadow-none" style="margin-top: 2px; ">
 
                     <?php if ($hasContact) { ?>
                       <b>Full Name: </b> <?php echo $fullName?></br>
@@ -387,8 +309,72 @@
 
                   </p>
                 </div>
+
+</div>
+
+
+                </div>
+                  </div>
+<br>
+                  <div class="row">
+                <div class="col-12">
+                  <span class="lead">Previous Schoool Information:</span>
+                  <p class=" well well-sm shadow-none" style="margin-top: 2px; ">
+
+                    <?php if ($hasSchoolInfo) { ?>
+                    <b>School: </b><?php echo $schoolLastAttended ?></br>
+
+                    <b>School Year: </b><?php echo $schoolYear ?></br>
+
+                    <b>School Address: </b><?php echo $schoolAddress ?></br>
+
+                    <b>Average Grade: </b><?php echo $averageGrade ?></br>
+
+                    <b>Incoming Level: </b><?php echo $levelCompleted ?></br>
+                    <?php } else{ ?>
+                    <b>School: </b></br>
+
+                    <b>School Year: </b></br>
+
+                    <b>School Address: </b></br>
+
+                    <b>Average Grade: </b></br>
+
+                    <b>Incoming Level: </b></br>
+
+                    <?php }?>
+                  </p>
+                </div>
+
+
+                  </div>
+
+                </div>
+
+                <div class="col-5">
+
+                  <div class="row" >
+                    <div class="col-6" style="padding-top: 20px">
+                      <div class="row" >
+                  <img class="col-12"  src="../assets/imgs/PrismLogo.jpg">
+  
+                      </div>
+                    </div>
+                      
+                    <div class="col-6 ">
+
+                      <b>Student Code: <?php echo $studentCode ?>
+                      <br>
+                      <b>LRN: </b><?php echo $LRN ?>
+                      <br>
+                      <b>User No. :</b> <?php   $userID?><br>
+                      <b>Status:</b> <?php if ($isExported) { echo '<span class=" badge badge-success">Exported</span>'; } elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Submitted</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Un-Submitted</span>';} ?></b>
+                    </div>
+                  </div>
+
+                  <div class="row">
                 <!-- /.col -->
-                <div class="col-6" style="background-color: #F5F5DC">
+                <div class="col-12" style="margin-top: 14px;"><br>
                   <span class="lead">Family Background:</span><br>
 
                   <div class="table-responsive">
@@ -437,9 +423,6 @@
                   <th >Name</th>
                   <th>Level&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
                 </tr>
-<!-- $hasSibling1
-$hasSibling2
-$hasSibling3 -->
 
                     <?php if ($hasSibling1) { ?>
                       <tr>
@@ -491,7 +474,18 @@ $hasSibling3 -->
                   </div>
                 </div>
                 <!-- /.col -->
+                  </div>
+
+                </div>
+
               </div>
+
+
+            </div>
+              <!-- /.row -->
+
+<br>
+
               <!-- /.row -->
 <br>
               <!-- this row will not appear when printing -->

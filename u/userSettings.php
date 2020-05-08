@@ -7,7 +7,7 @@
   require 'assets/adminlte.php';
   require '../include/schoolConfig.php';
   require 'assets/scipts/phpfunctions.php';
-  $page="home";
+  $page="AccountSettings";
 
 // $_SESSION['userID']     
 // $_SESSION['first-name'] 
@@ -82,7 +82,7 @@ require 'includes/navAndSide2.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Settings</h1>
+            <h1 class="m-0 text-dark">Settings <?php echo $_SESSION['mobile'] ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -429,15 +429,21 @@ $(document).ready(function() {
 if (isset($_POST['editPass'])) {
   if ($_POST['epassO'] != $_SESSION['userPass']) {
         $message = "Incorrect Password";
-        displayMessage("error", "Invalid Entry", $message);
+        $title = "Invalid Entry";
+        $type = "error";
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
     }
   elseif (strlen($_POST['epass1'])<6){
     $message = "Password is too weak";
-    displayMessage("error", "Invalid Entry", $message);
+    $title = "Invalid Entry";
+    $type = "error";
+    header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
   }
   elseif ($_POST['epass1']!=$_POST['epass2']){
     $message = "Password mismatch";
-    displayMessage("error", "Invalid Entry", $message);
+    $title = "Invalid Entry";
+    $type = "error";
+    header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
   }
   else{
             $insertQuery = "update tbl_parentuser
@@ -450,17 +456,24 @@ where userID =".$_SESSION['userID']."
  $_SESSION['userPass']   = $_POST['epass1'];
  
             mysqli_query($conn, $insertQuery);
-            header('Location: userSettings.php?ChangeSuccess');
+            $message = "Password Changed";
+            $title = "Success";
+            $type = "success";
+            header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
   }
 
 }
 if (isset($_POST['editThis'])) {
     if (strlen(cleanThis($_POST['numberSignup'])) < 11) {
         $message = "Mobile number is invalid";
-        displayMessage("error", "Invalid Entry", $message);
+        $title = "Invalid Entry";
+        $type = "error";
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
     } elseif ($_POST['pass1'] != $_SESSION['userPass']) {
         $message = "Incorrect Password";
-        displayMessage("error", "Invalid Entry", $message);
+        $title = "Invalid Entry";
+        $type = "error";
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
     }
     
     else {
@@ -479,7 +492,7 @@ if (isset($_POST['editThis'])) {
             }
             
         }
-        if ($_POST['numberSignup'] === $_SESSION['mobile']) {
+        if ($_POST['numberSignup'] == $_SESSION['mobile']) {
           $notEdited = true;
         }
         $sql = "select a.* from tbl_parentuser as a where mobile='" . $_POST['numberSignup'] . "'";
@@ -489,7 +502,9 @@ if (isset($_POST['editThis'])) {
         if (mysqli_num_rows($result) > 0 && !$notEdited) {
             
             $message = "This mobile number is already registered";
-            displayMessage("error", "Invalid Entry",$message);
+            $title = "Invalid Entry";
+            $type = "error";
+            header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
             
         } else {
             
@@ -516,7 +531,11 @@ where userID =".$_SESSION['userID']."
  $_SESSION['gender']    = $gender;
  
             mysqli_query($conn, $insertQuery);
-            header('Location: userSettings.php?EditSuccess');
+            $message = "Information Changed";
+            $title = "Success";
+            $type = "success";
+            echo $insertQuery;
+            header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
             
         }
         
@@ -549,6 +568,9 @@ if (isset($_REQUEST['ChangeSuccess'])) {
     echo "});";
     echo "$('#exampleModalCenter').modal('show');</script>";
 
+}
+if (isset($_GET['message'])) {
+  displayMessage($_GET['type'], $_GET['title'], $_GET['message']);
 }
 
 
