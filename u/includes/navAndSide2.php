@@ -62,8 +62,8 @@ function treeOpen($page, $navtitle)
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <span class="brand-link">
-      <img src="<?PHP echo "../".SCHOOL_LOGO_PATH?>" alt="<?PHP echo SCHOOL_ABV?>" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
+      <img  src="<?PHP echo "../".SCHOOL_LOGO_PATH?>" alt="<?PHP echo SCHOOL_ABV?>" class="brand-image img-circle elevation-3"
+           style="opacity: .8;">
       <span class="brand-text font-weight-light title-right"><?PHP echo SCHOOL_ABV?> | PRISM</span>
     </span>
 
@@ -91,7 +91,7 @@ function treeOpen($page, $navtitle)
             </a>
           </li>
           <li class="nav-item">
-            <a href="index.php" class="nav-link">
+            <a href="userSettings.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
                 Account Settings

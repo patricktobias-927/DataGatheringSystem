@@ -12,14 +12,14 @@
 // $_SESSION['first-name'] 
 // $_SESSION['middle-name']
 // $_SESSION['last-name']  
-// $_SESSION['lvl']        
+// $_SESSION['usertype']        
 // $_SESSION['userEmail']  
 // $_SESSION['schoolID']   
 // $_SESSION['userType']   
 
   session_start();
   $user_check = $_SESSION['userID'] ;
-  $levelCheck = $_SESSION['lvl'];
+  $levelCheck = $_SESSION['usertype'];
   if(!isset($user_check) && !isset($password_check))
   {
     session_destroy();

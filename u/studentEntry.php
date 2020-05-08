@@ -16,12 +16,12 @@
   $userFname = $_SESSION['first-name'];
   $userMname = $_SESSION['middle-name'];
   $userLname = $_SESSION['last-name'];
-  $userLvl = $_SESSION['lvl'];
+  $userLvl = $_SESSION['usertype'];
   $userEmail = $_SESSION['userEmail'];
-  $schoolID = $_SESSION['schoolID'];
+   
 
   $user_check = $_SESSION['userID'] ;
-  $levelCheck = $_SESSION['lvl'];
+  $levelCheck = $_SESSION['usertype'];
   if(!isset($user_check) && !isset($password_check))
   {
     session_destroy();
@@ -35,8 +35,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Registration | PRISM</title>
 
- <script type='text/javascript' src='../include/plugins/tipsy/javascripts/jquery.tipsy.js'></script>
- <link rel="stylesheet" href="../include/plugins/tipsy/stylesheets/tipsy.css" type="text/css" />
+
 <!-- customize css -->
   <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
   <!-- sweet alert -->
@@ -394,7 +393,7 @@ require 'assets/scripts.php';
                           </div>
                           <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="unrequired-field">Family Address</label>
+                              <label class="unrequired-field">Complete Address</label>
                               <input value="<?php echo isset($_POST['address']) ? $_POST['address'] : '' ?>"
                               name="address" type="text" class="form-control ">
                             </div>

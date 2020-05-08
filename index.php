@@ -34,7 +34,7 @@
 
 
         <title>
-            <?php echo SCHOOL_NAME?>
+            <?php echo SCHOOL_ABV ."  | PRISM"?>
         </title>
 
 </head>
@@ -326,123 +326,115 @@ function validateEmail(email) {
 
 </html>
 <?php
-  if (isset($_REQUEST['insertsuccess'])){
+if (isset($_REQUEST['insertsuccess'])) {
     $message = "You\'re now register";
-    displayMessage("success","Success",$message);
+    displayMessage("success", "Success", $message);
+    
+}
 
-  }
-
-  if (isset($_POST['login'])) {
-    if (strlen($_POST['number'])<10 || strlen($_POST['number'])>13) {
-      displayMessage("warning","Invalid Mobile Number","Please try again ");
-
-    }
-    else{
-      $_POST['number']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'] )));   
-      $_POST['password']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['password'] )));  
-      
-      $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['number']."'";
-
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) > 0) {
-
-      if ($pass_row = mysqli_fetch_assoc($result)) {
-
-          $chkpass = $_POST['password'] ==$pass_row['password'];
-
-          if (!$chkpass) {
-            displayMessage("warning","Wrong Password" ,"Please try again ");
-          }
-
-          elseif ($chkpass == true) {
-
-
-            $_SESSION['userID']             = $pass_row['userID'];
-            $_SESSION['first-name']         = $pass_row['fname'];
-            $_SESSION['middle-name']        = $pass_row['mname'];
-            $_SESSION['last-name']          = $pass_row['lname'];
-            $_SESSION['lvl']                = $pass_row['mobile'];
-            $_SESSION['userEmail']          = $pass_row['sex'];
-            $_SESSION['schoolID']           = $pass_row['email'];
-            $_SESSION['usertype']           = $pass_row['usertype'];
-
-            // $timeStamp = date("Y-m-d H:i:s");
-            // $token = generateNumericOTP(6);
-            // $accID = $_SESSION['id']; 
-            // $sql = "Insert into tbl_token (token, accountID, timeGen) 
-            // values ('$token','$accID','$timeStamp')";
-            // mysqli_query($conn, $sql);
-
-            // $_SESSION['token'] = $token;
+if (isset($_POST['login'])) {
+    if (strlen($_POST['number']) < 10 || strlen($_POST['number']) > 13) {
+        displayMessage("warning", "Invalid Mobile Number", "Please try again ");
+        
+    } else {
+        $_POST['number']   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'])));
+        $_POST['password'] = mysqli_real_escape_string($conn, stripcslashes($_POST['password']));
+        
+        $sql = "select a.* from tbl_parentuser as a where mobile='" . $_POST['number'] . "'";
+        
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
             
-            if ($_SESSION['usertype'] ==='A') {
-              header('Location: u/index.php');
-              exit();
+            if ($pass_row = mysqli_fetch_assoc($result)) {
+                
+                $chkpass = $_POST['password'] == $pass_row['password'];
+                
+                if (!$chkpass) {
+                    displayMessage("warning", "Wrong Password", "Please try again ");
+                }
+                
+                elseif ($chkpass == true) {
+                    
+                    
+                    $_SESSION['userID']      = $pass_row['userID'];
+                    $_SESSION['first-name']  = $pass_row['fname'];
+                    $_SESSION['middle-name'] = $pass_row['mname'];
+                    $_SESSION['last-name']   = $pass_row['lname'];
+                    $_SESSION['mobile']      = $pass_row['mobile'];
+                    $_SESSION['userEmail']   = $pass_row['email'];
+                    $_SESSION['usertype']    = $pass_row['usertype'];
+                    $_SESSION['gender']       = $pass_row['sex'];
+                    $_SESSION['userPass']     = $pass_row['password'];
+                    
+                    // $timeStamp = date("Y-m-d H:i:s");
+                    // $token = generateNumericOTP(6);
+                    // $accID = $_SESSION['id']; 
+                    // $sql = "Insert into tbl_token (token, accountID, timeGen) 
+                    // values ('$token','$accID','$timeStamp')";
+                    // mysqli_query($conn, $sql);
+                    
+                    // $_SESSION['token'] = $token;
+                    
+                    if ($_SESSION['usertype'] === 'A') {
+                        header('Location: u/index.php');
+                        exit();
+                    } else {
+                        header('Location: u/home.php');
+                        exit();
+                    }
+                    
+                }
             }
-            else{
-              header('Location: u/home.php');
-              exit();
+            
+            else {
+                header('Location: index2.php?tryagain');
+                exit();
             }
-
-          }
-       }
-
-      else {
-      header('Location: index2.php?tryagain');
-      exit();
-      }
+        } else {
+            displayMessage("warning", "This phone number is not registered", "Please try again");
+        }
+        
     }
-    else{
-      displayMessage("warning","This phone number is not register","Please try again");
-    }
-
-    }
-  }
-  if (isset($_POST['Signup'])) {
-    if (strlen(cleanThis($_POST['numberSignup']))<11) {
-      $message="Mobile number is invalid";
-      displayMessage("error","Invalid Entry",$message);
-    }
-    elseif ($_POST['pass1'] != $_POST['pass2']){
-      $message="Password mismatch";
-      displayMessage("error","Invalid Entry",$message);
-    }
-    elseif (strlen($_POST['pass1']) <5){
-      $message="Password is too weak";
-      displayMessage("error","Invalid Entry",$message);
-    }
-
-    else{
-
-     $_POST['first-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
-     $_POST['last-name']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
-     $_POST['email']               = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
-     $_POST['numberSignup']                = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['number'])));
-     $_POST['pass1']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
-    if (isset($_POST['r1'])) {
-      if ($_POST['r1']=="male") {
-        $gender="Male";;
-      }
-      else{
-        $gender="Female";
-      }
-
-    }
-    $sql = "select a.* from tbl_parentuser as a where mobile='".$_POST['numberSignup']."'";
-
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) > 0) {
-
-      $message="This mobile number is already registered";
-      displayMessage("error","Invalid Entry",$message);
-
-    }
-    else{
-
-
-     $insertQuery = "Insert into tbl_parentuser
+}
+if (isset($_POST['Signup'])) {
+    if (strlen(cleanThis($_POST['numberSignup'])) < 11) {
+        $message = "Mobile number is invalid";
+        displayMessage("error", "Invalid Entry", $message);
+    } elseif ($_POST['pass1'] != $_POST['pass2']) {
+        $message = "Password mismatch";
+        displayMessage("error", "Invalid Entry", $message);
+    } 
+    
+    else {
+        
+        $_POST['first-name']   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
+        $_POST['last-name']    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
+        $_POST['email']        = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
+        $_POST['numberSignup'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['numberSignup'])));
+        $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
+        if (isset($_POST['r1'])) {
+            if ($_POST['r1'] == "male") {
+                $gender = "Male";
+                ;
+            } else {
+                $gender = "Female";
+            }
+            
+        }
+        $sql = "select a.* from tbl_parentuser as a where mobile='" . $_POST['numberSignup'] . "'";
+        
+        $result = mysqli_query($conn, $sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            
+            $message = "This mobile number is already registered";
+            displayMessage("error", "Invalid Entry");
+            
+        } else {
+            
+            
+            $insertQuery = "Insert into tbl_parentuser
 (
 fname,
 lname,
@@ -458,54 +450,54 @@ userType
 VALUES 
 (
 
-'".$_POST['first-name']."',
-'".$_POST['last-name']."',
-'".$_POST['number']."',
+'" . $_POST['first-name'] . "',
+'" . $_POST['last-name'] . "',
+'" . $_POST['numberSignup'] . "',
 '$gender',
-'".$_POST['email']."',
-'".$_POST['pass1']."',
+'" . $_POST['email'] . "',
+'" . $_POST['pass1'] . "',
 '1',
 'P'
 
-)";      
-
-mysqli_query($conn, $insertQuery);
-header('Location: index.php?registered');
-
+)";
+            
+            mysqli_query($conn, $insertQuery);
+            header('Location: index.php?registered');
+            
+        }
+        
+        
     }
+}
 
-
-    }
-  }
-
-  if (isset($_REQUEST['registered'])) {
-  echo "<script>";
+if (isset($_REQUEST['registered'])) {
+    echo "<script>";
     echo "Swal.fire({";
-      echo "html: 'Registration Success you can login now',";
-      echo "type: 'success',";
-      echo "title: 'Success',";
-      echo "showConfirmButton: false,";
-      echo "timer: 2700,";
-      echo "customClass: 'swal-sm'";
+    echo "html: 'Registration Success you can login now',";
+    echo "type: 'success',";
+    echo "title: 'Success',";
+    echo "showConfirmButton: false,";
+    echo "timer: 2700,";
+    echo "customClass: 'swal-sm'";
     echo "});";
-  echo "$('#exampleModalCenter').modal('show');</script>";
+    echo "$('#exampleModalCenter').modal('show');</script>";
+    
+}
 
-  }
-
-  if (isset($_REQUEST['logout'])) {
+if (isset($_REQUEST['logout'])) {
     session_destroy();
-  echo "<script>";
-    echo "Swal.fire({";
-      echo "html: 'Logged out',";
-      echo "type: 'info',";
-      echo "title: 'Information',";
-      echo "showConfirmButton: false,";
-      echo "timer: 2700,";
-      echo "customClass: 'swal-sm'";
-    echo "});";
-  echo "</script>";
-
-  }
+    // echo "<script>";
+    //   echo "Swal.fire({";
+    //     echo "html: 'Logged out',";
+    //     echo "type: 'info',";
+    //     echo "title: 'Information',";
+    //     echo "showConfirmButton: false,";
+    //     echo "timer: 2700,";
+    //     echo "customClass: 'swal-sm'";
+    //   echo "});";
+    // echo "</script>";
+    
+}
 
 
 ?>

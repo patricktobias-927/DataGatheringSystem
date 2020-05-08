@@ -34,7 +34,7 @@ if (isset($_POST['mobileno']) && isset($_POST['Password'])) {
             $_SESSION['lname'] = $pass_row['Lastname'];
             $_SESSION['fname'] = $pass_row['Firstname'];
             $_SESSION['mobileno'] = $pass_row['Mobileno'];
-            $_SESSION['lvl'] = $pass_row['Level'];
+            $_SESSION['usertype'] = $pass_row['Level'];
             $_SESSION['userEmail'] = $pass_row['userEmail'];
             
             $timeStamp = date("Y-m-d H:i:s");
