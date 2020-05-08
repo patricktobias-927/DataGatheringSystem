@@ -91,7 +91,7 @@ function treeOpen($page, $navtitle)
             </a>
           </li>
           <li class="nav-item">
-            <a href="userSettings.php" class="nav-link">
+            <a href="userSettings.php" class="nav-link <?php isActive($page,"AccountSettings");?> " >
               <i class="nav-icon fa fa-cog"></i>
               <p>
                 Account Settings
