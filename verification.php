@@ -47,7 +47,7 @@ minTime: 12321,}
             $_SESSION['lname'] = $pass_row['Lastname'];
             $_SESSION['fname'] = $pass_row['Firstname'];
             $_SESSION['mobileno'] = $pass_row['Mobileno'];
-            $_SESSION['lvl'] = $pass_row['Level'];
+            $_SESSION['usertype'] = $pass_row['Level'];
             $_SESSION['userEmail'] = $pass_row['userEmail'];
             $_SESSION['schoolID'] = $pass_row['schoolID'];
             $_SESSION['Schoolname'] = $pass_row['Schoolname'];

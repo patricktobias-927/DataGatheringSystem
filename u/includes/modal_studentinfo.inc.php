@@ -57,7 +57,6 @@
       
                               </div> 
                             </div>  
-
                                                     <div class="col-lg-3">
       
                            <div class="form-group">
@@ -105,7 +104,8 @@
                               <option value="Grade12">Grade 12</option>
                              </select>
                            </div>
-                        </div>                    
+                        </div>  
+
       
                       </div> 
       
@@ -147,7 +147,7 @@
                           </div>
                           <div class="col-lg-6">
                             <div class="form-group">
-                              <label class="unrequired-field">Family Address</label>
+                              <label class="unrequired-field">Complete Address</label>
                               <input value="<?php if(isset($Address)){echo $Address;}?>"
                               name="address" type="text" class="form-control ">
                             </div>

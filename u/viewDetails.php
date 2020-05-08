@@ -73,9 +73,9 @@
   $userFname = $_SESSION['first-name'];
   $userMname = $_SESSION['middle-name'];
   $userLname = $_SESSION['last-name'];
-  $userLvl = $_SESSION['lvl'];
+  $userLvl = $_SESSION['usertype'];
   $userEmail = $_SESSION['userEmail'];
-  $schoolID = $_SESSION['schoolID'];
+   
 
 
 ?>

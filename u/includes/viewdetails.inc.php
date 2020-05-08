@@ -6,7 +6,7 @@
       $sex = $Prefix ;
     }
 
-    $hasContact;
+    $hasContact=false;
     $hasSchoolInfo;
     $hasFather;
     $hasMother;
@@ -208,12 +208,6 @@
 
   ?>
 
-<!-- 
-$dateTimeSubmitted
-$isSubmitted      
-$isExported       
-$schoolYearID     
- -->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -221,38 +215,9 @@ $schoolYearID
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php echo ucfirst(strtolower($Lastname) )?>'s information <?php                   if ($isExported) {                     echo '<span class="status badge badge-success">Exported</span>';                   }                   elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {                     echo '<span class="status badge badge-info">Submitted</span>';                   }                   else{                     echo '<span id="submitBadge" class="status  badge badge-danger">Un-Submitted</span>';                   } ?></h1>
+            <h1><?php echo ucfirst(strtolower($Lastname) )?>'s information<!--  <?php                   if ($isExported) {                     echo '<span class="status badge badge-success">Exported</span>';                   }                   elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {                     echo '<span class="status badge badge-info">Submitted</span>';                   }                   else{                     echo '<span id="submitBadge" class="status  badge badge-danger">Un-Submitted</span>';                   } ?> --></h1>
           </div>
           <div class="col-sm-6">
-            <a href="?page=<?php echo $studentID?>&print" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
-            <?php 
-
-            if(!$isSubmitted||!($isSchoolYearMatch&&$isSubmitted)){
-                  echo'       <a class="btn btn-success submit " id="submitBTN" href="#" value="'.$studentID.'">';
-                  echo'           <i class="fas fa-check-square">';
-                  echo'           </i>';
-                  echo'           &nbspSubmit';
-                  echo'       </a>';
-                  echo'       </a>';
-                  echo'       <a href="#" id="deleteBTN" class="btn delete btn-danger"  value="'.$studentID.'" >';
-                  echo'           <i class="fas fa-trash">';
-                  echo'           </i>';
-                  echo'           Delete';
-                  echo'       </a>';
-                  echo'    <button ';
-                  echo'    data-toggle="modal" data-target="#addstudentmodal"';
-                  echo'    type="button" id="btnEdit" class="btn btn-primary no-print">';
-                  echo'    <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit';
-                  echo'    </button>';
-                  }
-
-            ?> 
-            
-
-            
-            
-            
-
 
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Registration</a></li>
@@ -263,352 +228,300 @@ $schoolYearID
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
-    <section class="content">
 
 
-    <div class="row">
-      <div class="col-lg-6">
-                    <div class="card card-primary card-outline">
-                      <div class="card-header">
-                        <h3 class="card-title">Student Information</h3>
-                        <div class="card-tools">
-                          <!-- Collapse Button -->
-                          <button type="button" data-card-widget="collapse" id="btn-show" class="btn btn-tool no-print" ><i class="fas fa-plus"></i></button>
-                        </div>
-                        <!-- /.card-tools -->
-                      </div>
-                      <!-- /.card-header -->
 
-              <div class="card-body collapse">
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Name: </b><?php echo combineName($Firstname,$Lastname,$Middlename); ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Sex: </b><?php echo $sex ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>LRN: </b><?php echo $LRN ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Student Code: </b><?php echo $studentCode ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Suffix: </b><?php echo $Suffix ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Birthdate: </b><?php echo date('d/m/Y', strtotime($Birthdate)); ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Birthplace: </b><?php echo $Birthplace ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Address: </b><?php echo $Address  ?></div>
-                    </div>
-                  </div>
-                </div> 
 
+
+
+
+
+
+
+<!-- ------------------------------------ -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content" style="-webkit-print-color-adjust: exact !important;">
+    <!-- Content Header (Page header) -->
+
+
+
+
+            <!-- Main content -->
+            <div class="invoice p-3 mb-3" >
+              <!-- title row -->
+              <div class="row" >
+                <div class="col-12" >
+                  <h4>
+                    <img src="<?PHP echo "../".SCHOOL_LOGO_PATH?>" alt="<?PHP echo SCHOOL_ABV?>" class="brand-image img-circle elevation-3 slOnpage"
+                      style="opacity: .8">&nbsp&nbsp<?php echo SCHOOL_NAME?>
+                    <small class="float-right">Date Time Generated: <?php echo date("d/m/Y H:i:s")?></small>
+                  </h4>
+                </div>
+              </div>
+
+            <div>
+                
+              <div class="row">
+
+                <div class="col-7">
 
                   <div class="row">
-                    <div class="col-lg-6 col-print-6">
-                      <div class="row">
-                          <div class="col-sm-auto details-title"><b>Incoming Level: </b><?php echo $levelCompleted ?></div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-print-6">
-                      <div class="row">
-                          <div class="col-sm-auto details-title"><b>City: </b><?php echo $city ?></div>
-                      </div>
-                    </div>
+                    
                   </div>
 
-
-
-                <br>
-
-
-              </div>
-            </div>
-      </div>
-
-<div class="col-lg-6">
-                    <div class="card card-danger card-outline">
-                      <div class="card-header">
-                        <h3 class="card-title">Contact Information</h3>
-                        <div class="card-tools ">
-                          <button type="button" data-card-widget="collapse" id="btn-show" class="btn btn-tool no-print" ><i class="fas fa-plus"></i></button>
-                        </div>
-                        <!-- /.card-tools -->
-                      </div>
-
-                      <!-- /.card-header -->
-
-              <div class="card-body collapse ">
-              <?php if($haveContact){?>
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b> <?php echo $fullName?></div>
-                    </div>
+                  <div class="row">
+                    
                   </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Phone Number: </b>    <?php echo $phone?></div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mobile Number: </b>   <?php echo $mobile?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Email: </b>    <?php echo $email?></div>
-                    </div>
-                  </div>
-                </div> 
-              <?php } else{ echo'<p class="card-text">This Student dont have contact information</p>';}?>
 
-
-
-                
-              </div>
-            </div>
-      </div>
-
-    </div>
-
-    <div class="row">
-<div class="col-lg-6">
-                    <div class="card card-success card-outline">
-                      <div class="card-header">
-                        <h3 class="card-title">Last School Information</h3>
-                        <div class="card-tools">
-                          <!-- Collapse Button -->
-                          <button type="button" data-card-widget="collapse" id="btn-show" class="btn btn-tool no-print" ><i class="fas fa-plus"></i></button>
-                        </div>
-                        <!-- /.card-tools -->
-                      </div>
-                      <!-- /.card-header -->
-            
-
-            <div class="card-body collapse">
-                            <?php if ($hasSchoolInfo) {
-             ?>
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>School: </b><?php echo $schoolLastAttended ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>School Year: </b><?php echo $schoolYear ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>School Address: </b><?php echo $schoolAddress ?></div>
-                    </div>
-                  </div>
                 </div>
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Average Grade: </b><?php echo $averageGrade ?></div>
+
+                <div class="col-5">
+
+                  <div class="row">
+                    <div class="col-sm-6 invoice-col float-right"><br>
+                      <b>Student Code: <?php echo $studentCode ?>
+                      <br>
+                      <b>LRN: </b><?php echo $LRN ?>
+                      <br>
+                      <b>User No. :</b> <?php   $userID?><br>
+                      <b>Status:</b> <?php if ($isExported) { echo '<span class=" badge badge-success">Exported</span>'; } elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Submitted</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Un-Submitted</span>';} ?></b>
                     </div>
                   </div>
-                </div> 
 
-                <?php } else{echo "<p>Last School Attendend information is not set.</p>";}?>
+                  <div class="row">
+                    
+                  </div>
 
+                </div>
 
               </div>
+
+              <div class=" col-sm-6 invoice-info" style="background-color: #F5F5F5">
+
+                <div class="col-sm-6 invoice-col">
+                  <span class="lead">Student Information:</span><br>
+                        <b>Name: </b><?php echo combineName($Firstname,$Lastname,$Middlename); ?><br>
+
+                        <b>Gender: </b><?php echo $sex ?><br>
+
+                        <b>Suffix: </b><?php echo $Suffix ?><br>
+
+                        <b>Birthdate: </b><?php echo date('d/m/Y', strtotime($Birthdate)); ?><br>
+
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6 invoice-col"><br>
+                  <address>
+                    <strong>Address</strong><br>
+                        <?php echo $Address  ?><br>
+
+                        <b>City: </b><?php echo $city ?><br>
+                        <b>Birthplace: </b><?php echo $Birthplace ?><br>
+
+
+                  </address>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+
+                </div>
             </div>
-      </div>
-<div class="col-lg-6">
-                    <div class="card card-warning card-outline">
-                      <div class="card-header">
-                        <h3 class="card-title">Family Information</h3>
-                        <div class="card-tools">
-                          <!-- Collapse Button -->
-                          <button type="button" data-card-widget="collapse" id="btn-show" class="btn btn-tool no-print" value="0" ><i class="fas fa-plus"></i></button>
-                        </div>
-                        <!-- /.card-tools -->
-                      </div>
-                      <!-- /.card-header -->
+              <!-- /.row -->
 
-              <div class="card-body collapse">
-                <a class="dividerFam">Mothers's Information</a>
-                <hr class="hrstyle">
-                <?php 
+<br>
+              <div class="row">
+                <div class="col-3" style="background-color: #FFF5EE">
+                  <span class="lead">Previous Schoool Information:</span>
+                  <p class=" well well-sm shadow-none" style="margin-top: 2px;">
+                    <?php if ($hasSchoolInfo) { ?>
+                    <b>School: </b><?php echo $schoolLastAttended ?></br>
 
-                  if (!$hasFamilyinformation) {
-                    echo "<p >Family information is not set.</p>";
-                  }
-                  else{
-                    if ($hasMother) {
+                    <b>School Year: </b><?php echo $schoolYear ?></br>
+
+                    <b>School Address: </b><?php echo $schoolAddress ?></br>
+
+                    <b>Average Grade: </b><?php echo $averageGrade ?></br>
+
+                    <b>Incoming Level: </b><?php echo $levelCompleted ?></br>
+                    <?php } else{ ?>
+                    <b>School: </b></br>
+
+                    <b>School Year: </b></br>
+
+                    <b>School Address: </b></br>
+
+                    <b>Average Grade: </b></br>
+
+                    <b>Incoming Level: </b></br>
+
+                    <?php }?>
+                  </p>
+                </div>
+                <div class="col-3" style="background-color: #FFF5EE">
+                  <span class="lead">Contact Information:</span>
+                  <p class=" well well-sm shadow-none" style="margin-top: 2px;">
+
+
+                    <?php if ($hasContact) { ?>
+                      <b>Full Name: </b> <?php echo $fullName?></br>
+
+                      <b>Mobile Number: </b>   <?php echo $mobile?></br>
+
+                      <b>Phone Number: </b>    <?php echo $phone?></br>
+
+
+                      <b>Email: </b>    <?php echo $email?></br>
+                    <?php } else{ ?>
+                      <b>Full Name: </b></br>
+
+                      <b>Mobile Number: </b></br>
+
+                      <b>Phone Number: </b></br>
+
+
+                      <b>Email: </b></br>
+                    <?php }?>
+
+
+                  </p>
+                </div>
+                <!-- /.col -->
+                <div class="col-6" style="background-color: #F5F5DC">
+                  <span class="lead">Family Background:</span><br>
+
+                  <div class="table-responsive">
+                    <table class="table">
+                <tr>
+                  <th width="155px;">Parents</th>
+                  <th >Name</th>
+                  <th>Employer</th>
+                </tr>
+                    <?php if ($hasFather) { ?>
+                      <tr>
+                        <th>Father</th>
+                        <td><?php echo $father_fullName; ?></td>
+                        <td><?php echo $father_employerName; ?></td>
+                      </tr>
+                      <?php } else{ ?>
+                      <tr>
+                        <th>Father</th>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                      </tr>
+                    <?php }?>
+
+                    <?php if ($hasMother) { ?>
+                      <tr>
+                        <th>Mother</th>
+                        <td><?php echo $mother_fullName; ?></td>
+                        <td><?php echo $mother_employerName; ?></td>
+                      </tr>
+                    <?php } else{ ?>
+                      <tr>
+                        <th>Mother</th>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                      </tr>
+                    <?php }?>
+
+                    </table>
+                  </div>
+                  <hr>
+
+                  <div class="table-responsive">
+                    <table class="table">
+                <tr>
+                  <th width="155px;">Sibling</th>
+                  <th >Name</th>
+                  <th>Level&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+                </tr>
+<!-- $hasSibling1
+$hasSibling2
+$hasSibling3 -->
+
+                    <?php if ($hasSibling1) { ?>
+                      <tr>
+                        <th>&nbsp</th>
+                        <td><?php echo $sibling1_fullName; ?></td>
+                        <td><?php echo $sibling1_level; ?></td>
+                      </tr>
+                    <?php } else{ ?>
+                      <tr>
+                        <th>&nbsp</th>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                      </tr>
+                    <?php }?>
+
+                    <?php if ($hasSibling2) { ?>
+                      <tr>
+                        <th>&nbsp</th>
+                        <td><?php echo $sibling2_fullName; ?></td>
+                        <td><?php echo $sibling2_level; ?></td>
+                      </tr>
+                    <?php } else{ ?>
+                      <tr>
+                        <th>&nbsp</th>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                      </tr>
+                    <?php }?>
+
+                    <?php if ($hasSibling3) { ?>
+                      <tr>
+                        <th>&nbsp</th>
+                        <td><?php echo $sibling3_fullName; ?></td>
+                        <td><?php echo $sibling3_level; ?></td>
+                      </tr>
+                    <?php } else{ ?>
+                      <tr>
+                        <th>&nbsp</th>
+                        <td>&nbsp</td>
+                        <td>&nbsp</td>
+                      </tr>
+                    <?php }?>
+
                       
-                 ?>
-
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $mother_fullName; ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Employer Name: </b><?php echo $mother_employerName; ?></div>
-                    </div>
-                  </div>
-                </div> 
-                 <br>
-                <a class="dividerFam">Father's Information</a>
-                <hr class="hrstyle">
-                
-  
-                  
-                  <?php } 
-                    if ($hasFather) {
-                  ?>
-
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $father_fullName; ?></div>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Employer Name: </b><?php echo $father_employerName; ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <br>
-                <a class="dividerFam">Guardian's Information</a>
-                <hr class="hrstyle">
-
-                  <?php }
-                  if ($hasGuardian) { ?>
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b> <?php echo $guardian_fullName     ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Relationship: </b>    <?php echo $guardian_relationship ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Mobile Number: </b>   <?php echo $guardian_phone        ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Phone Nubmber: </b>    <?php echo $guardian_mobileNumber ?></div>
-                    </div>
-                  </div>
-                </div> 
-                <br>
-                <a class="dividerFam">Sibling's Information</a>
-                <hr class="hrstyle">
-
-              <?php } 
-                if ($hasSibling1) {
-              ?>
-
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $sibling1_fullName; ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Level: </b><?php echo $sibling1_level; ?></div>
-                    </div>
-                  </div>
-                </div> 
-                  <hr class="hrstyle">
 
 
-              <?php } 
-                if ($hasSibling2) {
-              ?>
 
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $sibling2_fullName; ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Level: </b><?php echo $sibling2_level; ?></div>
-                    </div>
+                    </table>
                   </div>
                 </div>
-                  <hr class="hrstyle">
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+<br>
+              <!-- this row will not appear when printing -->
+              <div class="row no-print">
+                <div class="col-12">
+            <a href="?page=<?php echo $studentID?>&print" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
+                  
+<?php            if(!$isSubmitted||!($isSchoolYearMatch&&$isSubmitted)){
+                  echo'       <a href="#" id="deleteBTN" class="btn delete btn-danger float-right"  value="'.$studentID.'" >';
+                  echo'           <i class="fas fa-trash">';
+                  echo'           </i>';
+                  echo'           Delete';
+                  echo'       </a>';
+                  echo'       <a style="margin-right:10px;" class="btn btn-success submit  float-right" id="submitBTN" href="#" value="'.$studentID.'">';
+                  echo'           <i class="fas fa-check-square">';
+                  echo'           </i>';
+                  echo'           &nbspSubmit';
+                  echo'       </a>';
+                  echo'    <button style="margin-right:10px;" ';
+                  echo'    data-toggle="modal" data-target="#addstudentmodal"';
+                  echo'    type="button" id="btnEdit" class="btn btn-primary no-print float-right">';
+                  echo'    <span class=" fa fa fa-edit">&nbsp&nbsp</span>Edit';
+                  echo'    </button>';
+                  }
 
-
-              <?php } 
-                if ($hasSibling3) {
-              ?>
-
-                <div class="row">                
-                  <div class="col-lg-6 col-print-6" > 
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Full Name: </b><?php echo $sibling3_fullName; ?></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-print-6">
-                    <div class="row">
-                        <div class="col-sm-auto details-title"><b>Level: </b><?php echo $sibling3_level; ?></div>
-                    </div>
-                  </div>
-                </div> 
-                
-                <?php }} ?>
-
-
-          <br>
+            ?> 
+                </div>
               </div>
             </div>
-      </div>
-    </div>
-
-
+            <!-- /.invoice -->
+          </div><!-- /.col -->
+  </div>
+  <!-- /.content-wrapper -->
