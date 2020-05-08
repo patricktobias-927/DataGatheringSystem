@@ -59,8 +59,8 @@
          (select fullname from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3,
         (select level from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3_grade_level
         from tbl_student s 
-        inner JOIN tbl_schoolinfo i  on s.studentID= i.studentID
-        inner JOIN tbl_guardian g  on s.studentID= g.studentID 
+        Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
+        Left JOIN tbl_guardian g  on s.studentID= g.studentID 
          order by code ;";
          //where timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."')
 
@@ -101,8 +101,8 @@
          (select fullname from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3,
         (select level from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3_grade_level
         from tbl_student s 
-        inner JOIN tbl_schoolinfo i  on s.studentID= i.studentID
-        inner JOIN tbl_guardian g  on s.studentID= g.studentID
+        Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
+        Left JOIN tbl_guardian g  on s.studentID= g.studentID
         where isExported = $tagexpo
          order by code ;";
          //and timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."') 
@@ -142,8 +142,8 @@
          (select fullname from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3,
         (select level from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3_grade_level
         from tbl_student s 
-        inner JOIN tbl_schoolinfo i  on s.studentID= i.studentID
-        inner JOIN tbl_guardian g  on s.studentID= g.studentID
+        Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
+        Left JOIN tbl_guardian g  on s.studentID= g.studentID
         where s.isSubmitted =$tagsub and isExported = $tagexpo
          order by code ;";
           // and timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."') 
