@@ -52,8 +52,8 @@
         $query = "select s.studentCode as Code, concat(".$quote."'".$quote.",s.LRN) as LRN,
             (case when s.prefix = 'M' then 'Mr.' when s.prefix = 'F' then 'Ms.' End ) as Prefix,
             s.lastName,s.firstName,s.middleName,s.suffix,
-            s.birthdate as Birthday,(select fullName from tbl_parents 
-            where s.studentID = p.studentID p
+            s.birthdate as Birthday,(select fullName from tbl_parents p
+            where s.studentID = p.studentID 
             order by isFather desc limit 1)  as Parentname,
             concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
             s.isEldest as Eldest,u.email  from tbl_student s 
