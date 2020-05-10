@@ -82,7 +82,7 @@ require 'includes/navAndSide2.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Settings <?php echo $_SESSION['mobile'] ?></h1>
+            <h1 class="m-0 text-dark">Settings</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -478,11 +478,11 @@ if (isset($_POST['editThis'])) {
     
     else {
         $notEdited = false;
-        $_POST['first-name']   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
-        $_POST['last-name']    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
+        $_POST['first-name']   = mysqli_real_escape_string($conn, stripcslashes($_POST['first-name']));
+        $_POST['last-name']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-name']));
         $_POST['email']        = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
         $_POST['numberSignup'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['numberSignup'])));
-        $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
+        $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes($_POST['pass1']));
         if (isset($_POST['r1'])) {
             if ($_POST['r1'] == "male") {
                 $gender = "Male";

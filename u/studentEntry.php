@@ -137,15 +137,15 @@ require 'includes/navAndSide2.php';
                 while($row = mysqli_fetch_array($result1)){
                   $status='';
           echo"<tr class='tRow' id='row".$ctr."'>";
-                  echo"<td><h3>";
+                  echo"<td><h5>";
                     echo ucwords(combineName($row[0],$row[1],$row[2]));
-                  echo"</h3></td>";
-                  echo"<td><h4>";
+                  echo"</h5></td>";
+                  echo"<td><h6>";
                     echo $row[3];
-                  echo"</h4></td>";
-                  echo"<td><h4>";
+                  echo"</h6></td>";
+                  echo"<td><h6>";
                     echo $row[4];
-                  echo"</h4></td>";
+                  echo"</h6></td>";
                   if ($row['isExported']) {
                     echo '<td class="text-center" title="Your information reach the school"><h3><span class="badge badge-success">Exported</span></h3></td>';
                     $status = '1';
@@ -512,7 +512,7 @@ require 'assets/scripts.php';
                             <label class="unrequired-field">Average Grade</label><br>
                             <div class="input-group">
                               <input  value="<?php echo isset($_POST['last-school-attended-grade']) ? $_POST['last-school-attended-grade'] : '' ?>"
-                                name="last-school-attended-grade" type="text" class="form-control" data-inputmask='"mask": "999.99    "' data-mask>
+                                name="last-school-attended-grade" type="text" class="form-control" data-inputmask='"mask": "99.99    "' data-mask>
                              </div>
                            </div>
                           </div> 
@@ -1081,6 +1081,8 @@ $(".interger").inputFilter(function(value) {
   return /^-?\d*$/.test(value); });
 $(".numberOnly").inputFilter(function(value) {
   return /^\d*$/.test(value); });
+$(".numberOnly2").inputFilter(function(value) {
+  return /^\d*$/.test(value); });
 $("#intLimitTextBox").inputFilter(function(value) {
   return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 500); });
 $(".decimal").inputFilter(function(value) {
@@ -1285,9 +1287,9 @@ if (isset($_POST["btn-submit"])) {
      $_POST['city']                         = mysqli_real_escape_string($conn, stripcslashes($_POST['city']));
      $_POST['siblings-order']               = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['siblings-order'])));
      $_POST['student-lrn']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
-     $_POST['first-name']                   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
-     $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['middle-name'])));
-     $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
+     $_POST['first-name']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['first-name']));
+     $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['middle-name']));
+     $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-name']));
      $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
      //$_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
      $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));

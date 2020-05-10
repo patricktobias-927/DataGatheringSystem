@@ -44,8 +44,8 @@
 
 		<div class="row navbar" style="margin-top: -10px;">
 			<div class="col-sm-8" style="padding-left: 30px;">
-			<img class="img-school-logo " src="assets/imgs/PPH LOGO.png" style="width: 55px; height: 70px; margin-bottom: 10px">
-			<span class="lbl-school-name"><b>PRISM</b></span>
+			<img class="img-school-logo " src="<?php echo SCHOOL_LOGO_PATH ?>" style="border-radius: 50%; width: 70px; height: 70px; margin-top: -10px;">
+			<span class="lbl-school-name"><b><?php echo SCHOOL_NAME; ?></b></span>
 			</div>
 			<div class="col-sm-4">
 				<form  action="index.php" method="post">
@@ -408,11 +408,11 @@ if (isset($_POST['Signup'])) {
     
     else {
         
-        $_POST['first-name']   = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['first-name'])));
-        $_POST['last-name']    = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['last-name'])));
+        $_POST['first-name']   = mysqli_real_escape_string($conn, stripcslashes($_POST['first-name']));
+        $_POST['last-name']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-name']));
         $_POST['email']        = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
         $_POST['numberSignup'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['numberSignup'])));
-        $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['pass1'])));
+        $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes($_POST['pass1']));
         if (isset($_POST['r1'])) {
             if ($_POST['r1'] == "male") {
                 $gender = "Male";

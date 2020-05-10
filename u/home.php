@@ -28,6 +28,8 @@
   else if ($levelCheck=='A'){
     header("location: index.php"); 
   }
+
+ // $sql = "sELECT a.* FROM tbl_student AS a WHERE a.studentID = '".$studentID."'";
 ?>
 
 <html lang="en">
@@ -91,42 +93,54 @@ require 'includes/navAndSide2.php';
 <!-- /.card -->
 </div>
 <div class="col-md-4">
-            <!-- Info Boxes Style 2 -->
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-success">
+
+<!--             <div class="info-box mb-3 bg-success">
               <span class="info-box-icon"><i class="far fa-heart"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Exported</span>
                 <span class="info-box-number"></span>
               </div>
-              <!-- /.info-box-content -->
             </div>
-
-            <div class="info-box mb-3 bg-info">
+ -->
+<!--             <div class="info-box mb-3 bg-info">
               <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Submitted</span>
                 <span class="info-box-number">163,921</span>
               </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-            <!-- /.info-box -->
-            <div class="info-box mb-3 bg-danger">
-              <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+            </div> -->
+
+<!--             <div class="info-box mb-3 bg-danger">
+              <span class="info-box-icon"><i class="fas fa-exclamation"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Un-submitted</span>
                 <span class="info-box-number">114,381</span>
               </div>
-              <!-- /.info-box-content -->
+            </div> -->
+
+          <div class="mb-3">
+            <!-- small card -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>WARNING</h3>
+
+                <p>You have unsubmitted students.</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <a href="studentEntry.php" class="small-box-footer">
+                Click here to View <i  class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
+          </div>        
             <!-- /.info-box -->
           <div class="mb-3">
             <!-- small card -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-primary">
               <div class="inner">
                 <h3>Get Started</h3>
 
