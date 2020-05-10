@@ -72,51 +72,81 @@ require 'includes/navAndSide2.php';
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-8">
 
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+<div class="card card-secondary">
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+<div class="card-header">
+     <h3 class="card-title">Welcome! <?php  if($_SESSION['gender']==="Male"){echo "Mr.";} else{echo "Ms.";} echo $_SESSION['last-name'];?> </h3>
+     <div class="card-tools">
+       <span class="badge badge-warning">v1.00.01</span>
+     </div>
+   </div> 
+  
+<img class="col-lg-12" src="../assets/imgs/PrismLogo.jpg">
+  <!-- /.card-body -->
+
+  <!-- /.card-footer -->
+</div>
+<!-- /.card -->
+</div>
+<div class="col-md-4">
+            <!-- Info Boxes Style 2 -->
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-success">
+              <span class="info-box-icon"><i class="far fa-heart"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Exported</span>
+                <span class="info-box-number"></span>
               </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Getting lost ?</h5>
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">
-                <i class="fa fa-book nav-icon"></i>
-                
-                Instruction</a>
-              </div> 
-              <!-- add icon delete dis /!\ -->
+              <!-- /.info-box-content -->
             </div>
 
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
+            <div class="info-box mb-3 bg-info">
+              <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+              <div class="info-box-content">
+                <span class="info-box-text">Submitted</span>
+                <span class="info-box-number">163,921</span>
               </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <!-- /.info-box -->
+            <div class="info-box mb-3 bg-danger">
+              <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Un-submitted</span>
+                <span class="info-box-number">114,381</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          <div class="mb-3">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>Get Started</h3>
+
+                <p>Register a student here</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="studentEntry.php" class="small-box-footer">
+                Click here to start <i  class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
           </div>
+
+          </div>
+
           <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
+
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
