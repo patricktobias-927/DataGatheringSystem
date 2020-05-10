@@ -11,7 +11,7 @@
   require 'assets/generalSandC.php';
   require '../include/schoolConfig.php';
   require '../include/getschoolyear.php';
-//   session_start();
+  session_start();
 //   $userID = $_SESSION['userID'];
 //   $userFname = $_SESSION['first-name'];
 //   $userMname = $_SESSION['middle-name'];
@@ -27,13 +27,16 @@
 //     session_destroy();
 //     header("location: ../index.php");
 //   }
+
+    if (isset($_GET['page'])) { 
+    }
 ?>
 
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Admin Change School Year | PRISM</title>
+  <title>School Year Activated | PRISM</title>
 
 <!-- customize css -->
   <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
@@ -98,7 +101,7 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Admin Change School Year</li>
+                            <li class="breadcrumb-item active">School Year Activated</li>
                             </ol>
                         </div>
                     </div>
@@ -110,100 +113,16 @@
                   <div class="col-lg-3">
                   </div>
                   <div class="col-lg-6">
-                    <div class="card-body display nowrap" style="width:100%;border-radius: 25px;
-                          border: 2px solid gray;text-align: center">
-                       <div class="row mb-4"> <!-- Current School year-->
-                          <div class="col-lg-2">
-                          </div>
-                          <div class="col-lg-8">
-                            <?php
-                                $sql = "select y.schoolYear,s.currentSchoolYear from tbl_schoolyear y join tbl_settings s on y.schoolYearID = s.currentSchoolYear;";
-                                $result=mysqli_query($conn, $sql); //rs.open sql,con
-                                while ($row=mysqli_fetch_assoc($result))
-                                { ?><!--open of while -->
-                                <h4>Current School Year : S.Y. <?php echo $row['schoolYear']; ?></h4><br>
-                              <?php
-                                } //close of while
-                              ?>
-                          </div>
-                          <div class="col-lg-2">
-                          </div>
-                       </div> <!-- Current School year-->
-                       <div class="row mb-4"> <!-- Table of school year -->
-                        <table id="example1" class="table table-striped table-bordered ">	
-                            <thead>
-                              <tr>
-                                <th>School Year</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <?php
 
-                                  $sql = "select y.schoolYear,(Case when s.currentSchoolYear = 1 
-                                  then 'Active' else 'Inactive' end) as Status, y.schoolYearID from tbl_schoolyear y 
-                                  left join tbl_settings s on y.schoolYearID = s.currentSchoolYear; ";
-                                  $result=mysqli_query($conn, $sql); //rs.open sql,con
-                                  $var = 0;
-                                while ($row=mysqli_fetch_assoc($result))
-                                {  $var = $var + 1 ; ?><!--open of while -->
-                                <tr>
-                                  <td><?php echo $row['schoolYear']; ?></td>
-								                  <td><?php echo $row['Status']; ?></td>
-                                  <td class="text-center">
-                                        <!-- <button 
-                                        type="submit" name="btn-submit" class="btn btn-primary add-button">
-                                        <span class=" fas fa-save">&nbsp&nbsp</span>
-                                        Active
-                                         </button> -->
-                                         <?php
-                                            echo'<a class="btn btn-primary btn-sm " href="activateschoolyear.php?page='.$row['schoolYearID'].'">';
-                                            // echo'   <i class="fas fa-folder">';
-                                            // echo'   </i>';
-                                            if ($row['Status'] == 'Active') {
-                                              echo "DeActivate";
-                                            } else {
-                                              echo "Activate";
-                                            }
-                                            echo' </a>';
-                                        ?>                                       
-                                  </td>
-                                </tr>
-                                <?php
-                                  } //close of while
-                                ?>
-                            </tbody>
-                        </table>
-                       </div><!-- Table of school year -->
-                       <div class="row mb-2"> <!-- old password-->
-                                <div class="col-lg-3">
-                                  <label class="unrequired-field">(New) S.Y. From :</label><br>
-                                </div>
-                                <div class="col-lg-2">
-                                  <div class="input-group">
-                                      <input 
-                                      name="oldpassword" id="oldpassword" type="text" class="form-control">
-                                  </div>
-                                </div>
-                                <div class="col-lg-1">
-                                  <label class="unrequired-field">to :</label><br>
-                                </div>
-                                <div class="col-lg-2">
-                                  <div class="input-group">
-                                      <input 
-                                      name="oldpassword" id="oldpassword" type="text" class="form-control">
-                                  </div>
-                                </div>
-                                <div class="col-lg-3">
-                                      <button 
-                                      type="submit" class="btn btn-primary add-button">
-                                      <span class=" fas fa-file-alt">&nbsp&nbsp</span>Add New
-                                      </button>
-                                </div>
-                                <div class="col-lg-1">
-                                </div>
-                          </div>
+                    <div class="row mb-4"> <!-- Current School year-->
+                        <h1> School Year Activated!</h1>
+                    </div> <!-- Current School year-->
+                    <div class="row mb-12"> <!-- Current School year-->
+                        <a class="btn btn-primary btn-sm " href="adminchangeschoolyear.php">
+                            <i class="fas fa-folder">&nbsp&nbsp
+                            </i> 
+                            Go Back
+                        </a>
                     </div>
                   </div>
                   <div class="col-lg-3">
