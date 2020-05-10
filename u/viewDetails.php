@@ -144,7 +144,6 @@ else if ($haveAccess=='0'){
 require 'assets/scripts.php';
 
 if (isset($_REQUEST['print'])){
-    echo '<script>$(".collapse").collapse("show");</script>';
     echo '<script type="text/javascript"> window.addEventListener("load", window.print());</script>';
   }
 if (isset($_REQUEST['EditSuccess'])){
@@ -215,7 +214,19 @@ $(document).ready(function() {
     $('.yearselect').select2();
 });
 
+$( "#siblings-order" ).keyup(function() {
 
+  var orderBirth = $("#siblings-order"). val();
+  if (orderBirth==1) {
+    $('#checkboxPrimary1').prop('checked', true);
+
+   }
+   else{
+    $('#checkboxPrimary1').prop('checked', false);
+
+   }
+
+});
 
 
 
@@ -238,6 +249,16 @@ Swal.fire({
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, Submit my registration!'
 }).then((result) => {
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Submitting..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
   if (result.value) {
         $.ajax({
             url: "submit.php",
@@ -262,6 +283,8 @@ Swal.fire({
         });
   }
 })
+e.preventDefault();
+
 });
 
 $(document).on("click", "#deleteBTN", function() {
@@ -277,6 +300,16 @@ Swal.fire({
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.value) {
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Submitting..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
         $.ajax({
             url: "remove.php",
             type: "POST",
@@ -294,6 +327,8 @@ Swal.fire({
         });
   }
 })
+e.preventDefault();
+
 });
 
 (function($) {
@@ -306,7 +341,7 @@ Swal.fire({
       } else if (this.hasOwnProperty("oldValue")) {
         this.value = this.oldValue;
         this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-      } else {
+      } else { 
         this.value = "";
       }
     });

@@ -103,7 +103,6 @@ require 'includes/navAndSide2.php';
           <div class="card">
             <div class="card-header">
               <p>
-
               <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
                 <span class="fa fa-undo  ref-btn ref-btn2" aria-hidden="true">&nbsp&nbsp</span>Refresh
                 </a>&nbsp&nbsp
@@ -603,7 +602,7 @@ require 'assets/scripts.php';
                   <!-- Family Information -->
 
                     <div class="card-header d-flex p-0">
-                      <a class="  p-3 modal-myheading2">Family Information</a>
+                      <a class="  p-3 modal-myheading2">Family Background</a>
                     </div>
 
                     <div class="card-body">
@@ -733,9 +732,14 @@ require 'assets/scripts.php';
                             <div class="col-lg-8" >
                               <div class="icheck-primary d-inline">
                               <div class="input-group">
-                                <input value="<?php echo isset($_POST['siblings-order']) ? $_POST['siblings-order'] : '' ?>"
+                                <input value=" <?php 
+                                if (isset($_POST['isEldest']) && $_POST['isEldest'] == 'Yes') {
+                                  echo "value='1' disabled='true' ";
+                                }
+                                else if(isset($_POST['siblings-order'])){echo $_POST['siblings-order'] ;}
+                                ?>"
                                name="siblings-order" class="form-control form-control-sm col-sm-1 numberOnly" id="siblings-order" type="text" maxlength="2" style="text-align: center">
-                                <span class="col-sm-8">&nbsp &nbspChronological order of birth among his/her siblings &nbsp&nbsp&nbsp </span>
+                                <span class="col-sm-8">&nbsp &nbsp Order of birth &nbsp&nbsp&nbsp </span>
                                 
                                 </div>
                               </div>
@@ -978,6 +982,20 @@ $(document).ready(function() {
 <script src="../include/plugins/fastclick/fastclick.js"></script>
 <script>
 
+$( "#siblings-order" ).keyup(function() {
+
+  var orderBirth = $("#siblings-order"). val();
+  if (orderBirth==1) {
+    $('#checkboxPrimary1').prop('checked', true);
+
+   }
+   else{
+    $('#checkboxPrimary1').prop('checked', false);
+
+   }
+
+});  
+
 $(document).ready(function() {
     $('#example1').DataTable( {
         "scrollX": true,
@@ -1000,8 +1018,20 @@ Swal.fire({
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
+
   if (result.value) {
-        $.ajax({
+
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Deleting..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
+            $.ajax({
             url: "remove.php",
             type: "POST",
             cache: false,
@@ -1018,6 +1048,7 @@ Swal.fire({
         });
   }
 })
+e.preventDefault();
 });
 
 $(document).on("click", ".submit", function() {
@@ -1035,6 +1066,17 @@ Swal.fire({
   confirmButtonText: 'Yes, Submit my registration!'
 }).then((result) => {
   if (result.value) {
+
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Submitting..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
         $.ajax({
             url: "submit.php",
             type: "POST",
@@ -1056,6 +1098,7 @@ Swal.fire({
         });
   }
 })
+e.preventDefault();
 });
 
 
@@ -1105,23 +1148,31 @@ if (isset($_POST["btn-submit"])) {
       //if lrn is not equal to 12
       if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])!=0){
         displayMessage("warning","LRN is Invalid","Please try again");
+        $('#addstudentmodal').modal('show');
+
         }
 
       //bday is in future
       else if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
         displayMessage("warning","Birthdate Invalid","Please try again");
         echo "<script> console.log('bday'); </script>";
+        $('#addstudentmodal').modal('show');
+
         }
 
       //student mobile validation 
       elseif (isset($_POST['student-mobile'])&& strlen(cleanThis($_POST['student-mobile']))!=11 && cleanThis($_POST['student-mobile']) != "") {
         displayMessage("warning","Invalid Student Mobile","Student Mobile Number");
         echo "<script> console.log('contact Monile invalid'); </script>";
+        $('#addstudentmodal').modal('show');
+
       }
        //contact person mobile validation 
       elseif (strlen(cleanThis($_POST['contact-person-mobile']))!=11) {
         displayMessage("warning","Invalid Mobile Number","Contact Person Mobile Number");
         echo "<script> console.log('contact Monile invalid'); </script>";
+        $('#addstudentmodal').modal('show');
+        
       }
       else{
         $lrn=cleanThis($_POST['student-lrn']);
