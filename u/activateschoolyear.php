@@ -29,6 +29,10 @@
 //   }
 
     if (isset($_GET['page'])) { 
+      $schoolYearId = $_GET['page'];
+      $queryupdatepass = " update tbl_settings set currentSchoolYear = " . $schoolYearId ;
+      mysqli_query($conn, $queryupdatepass);              
+      displayMessage("success", "Password Changed", "Success!"); 
     }
 ?>
 
@@ -115,12 +119,10 @@
                   <div class="col-lg-6">
 
                     <div class="row mb-4"> <!-- Current School year-->
-                        <h1> School Year Activated!</h1>
+                        <h1> New School Year Activated!</h1>
                     </div> <!-- Current School year-->
                     <div class="row mb-12"> <!-- Current School year-->
                         <a class="btn btn-primary btn-sm " href="adminchangeschoolyear.php">
-                            <i class="fas fa-folder">&nbsp&nbsp
-                            </i> 
                             Go Back
                         </a>
                     </div>

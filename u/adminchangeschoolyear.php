@@ -107,9 +107,9 @@
             <section class="content">
                 <form action="" method="POST" enctype="multipart/form-data" class="noEnterOnSubmit">
                 <div class="row">
-                  <div class="col-lg-3">
+                  <div class="col-lg-2">
                   </div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-8">
                     <div class="card-body display nowrap" style="width:100%;border-radius: 25px;
                           border: 2px solid gray;text-align: center">
                        <div class="row mb-4"> <!-- Current School year-->
@@ -141,7 +141,7 @@
                             <tbody>
                               <?php
 
-                                  $sql = "select y.schoolYear,(Case when s.currentSchoolYear = 1 
+                                  $sql = "select y.schoolYear,(Case when s.currentSchoolYear = y.schoolYearID  
                                   then 'Active' else 'Inactive' end) as Status, y.schoolYearID from tbl_schoolyear y 
                                   left join tbl_settings s on y.schoolYearID = s.currentSchoolYear; ";
                                   $result=mysqli_query($conn, $sql); //rs.open sql,con
@@ -158,13 +158,11 @@
                                         Active
                                          </button> -->
                                          <?php
+                                           if ($row['Status'] == 'Inactive') {
                                             echo'<a class="btn btn-primary btn-sm " href="activateschoolyear.php?page='.$row['schoolYearID'].'">';
                                             // echo'   <i class="fas fa-folder">';
                                             // echo'   </i>';
-                                            if ($row['Status'] == 'Active') {
-                                              echo "DeActivate";
-                                            } else {
-                                              echo "Activate";
+                                            echo "Activate";
                                             }
                                             echo' </a>';
                                         ?>                                       
@@ -183,7 +181,9 @@
                                 <div class="col-lg-2">
                                   <div class="input-group">
                                       <input 
-                                      name="oldpassword" id="oldpassword" type="text" class="form-control">
+                                      name="syfrom" id="syfrom"   maxlength="4"
+                                      onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));"
+                                      type="number"  class="form-control">
                                   </div>
                                 </div>
                                 <div class="col-lg-1">
@@ -192,21 +192,23 @@
                                 <div class="col-lg-2">
                                   <div class="input-group">
                                       <input 
-                                      name="oldpassword" id="oldpassword" type="text" class="form-control">
+                                      name="syto" id="syto" type="number"   maxlength="4" 
+                                      onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));"
+                                      class="form-control">
                                   </div>
                                 </div>
                                 <div class="col-lg-3">
-                                      <button 
-                                      type="submit" class="btn btn-primary add-button">
-                                      <span class=" fas fa-file-alt">&nbsp&nbsp</span>Add New
-                                      </button>
+                                        <button 
+                                        type="submit" name="btn-submit" class="btn btn-primary add-button">
+                                        <span class=" fas fa-save">&nbsp&nbsp</span>Add New
+                                        </button>
                                 </div>
                                 <div class="col-lg-1">
                                 </div>
                           </div>
                     </div>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-2">
                   </div>                  
                 </div>
                 </form>
@@ -249,8 +251,46 @@
 
 <?php 
 if (isset($_POST["btn-submit"])) { 
-  displayMessage("warning","New/Confirm password must not be empty " . $_POST['schoolYear']  ,"Please try again");
+  $_POST['syfrom'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['syfrom'])));
+  $_POST['syto'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['syto'])));
+  $newSY = $_POST['syfrom'] . ' - ' . $_POST['syto'];
 
+  if (empty($_POST['syfrom']) || empty( $_POST['syto'])) {
+    displayMessage("warning","School Year must not be empty"  ,"Please try again");
+  }
+  elseif ($_POST['syfrom'] ===  $_POST['syto']) {
+    displayMessage("warning","School Year must not be same"  ,"Please try again");
+  }
+  elseif ($_POST['syfrom'] >  $_POST['syto']) {
+    displayMessage("warning","Start of School Year must less than end of School year "  ,"Please try again");
+  }
+  elseif (($_POST['syto'] - $_POST['syfrom']) != 1) {
+    displayMessage("warning","Duration of School must be 1 year "  ,"Please try again");
+  }
+  else{
+    $sql = "select * from tbl_schoolyear where schoolYear='" . $newSY . "'";
+        
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+      displayMessage("warning", $newSY . " - School Year already exist", "Please try again ");
+    }
+    else
+    {
+      $sql = "select schoolYearID from tbl_schoolyear order by schoolYearID desc limit 1;";
+      $result = mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) > 0) {
+          if ($ctr_row = mysqli_fetch_assoc($result)) {
+            $newctr = $ctr_row['schoolYearID'] + 1;
+            $sql = "insert into tbl_schoolyear (schoolYearID,schoolYear) values(".$newctr.", '" .$newSY. "');";
+            $result = mysqli_query($conn, $sql);
+            displayMessage("success", " New School Year inserted " , "Success! ");
+            echo "<meta http-equiv='refresh' content='0'>";
+          }
+        }
+    }
+  }
+  
+  
 }
 
 ?>
