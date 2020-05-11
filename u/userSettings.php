@@ -156,7 +156,7 @@ require 'includes/navAndSide2.php';
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
-                <input name="pass1" type="password" class="input form-control" required="true" placeholder="Enter Old Password">
+                <input name="pass1" type="password" class="input form-control" required="true" placeholder="Enter Current Password">
               </div>
             </div>
           </div>
@@ -501,7 +501,7 @@ if (isset($_POST['editThis'])) {
         
         if (mysqli_num_rows($result) > 0 && !$notEdited) {
             
-            $message = "This mobile number is already registered";
+            $message = "Registered, Phone number hasn't change";
             $title = "Invalid Entry";
             $type = "error";
             header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);

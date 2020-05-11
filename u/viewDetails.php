@@ -144,7 +144,6 @@ else if ($haveAccess=='0'){
 require 'assets/scripts.php';
 
 if (isset($_REQUEST['print'])){
-    echo '<script>$(".collapse").collapse("show");</script>';
     echo '<script type="text/javascript"> window.addEventListener("load", window.print());</script>';
   }
 if (isset($_REQUEST['EditSuccess'])){
@@ -215,7 +214,19 @@ $(document).ready(function() {
     $('.yearselect').select2();
 });
 
+$( "#siblings-order" ).keyup(function() {
 
+  var orderBirth = $("#siblings-order"). val();
+  if (orderBirth==1) {
+    $('#checkboxPrimary1').prop('checked', true);
+
+   }
+   else{
+    $('#checkboxPrimary1').prop('checked', false);
+
+   }
+
+});
 
 
 
@@ -238,6 +249,16 @@ Swal.fire({
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, Submit my registration!'
 }).then((result) => {
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Submitting..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
   if (result.value) {
         $.ajax({
             url: "submit.php",
@@ -262,6 +283,8 @@ Swal.fire({
         });
   }
 })
+e.preventDefault();
+
 });
 
 $(document).on("click", "#deleteBTN", function() {
@@ -277,6 +300,16 @@ Swal.fire({
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.value) {
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Submitting..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
         $.ajax({
             url: "remove.php",
             type: "POST",
@@ -294,6 +327,8 @@ Swal.fire({
         });
   }
 })
+e.preventDefault();
+
 });
 
 (function($) {
@@ -306,7 +341,7 @@ Swal.fire({
       } else if (this.hasOwnProperty("oldValue")) {
         this.value = this.oldValue;
         this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-      } else {
+      } else { 
         this.value = "";
       }
     });
@@ -342,25 +377,27 @@ if (isset($_POST["btn-submit"])) {
       $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
 
       //if lrn is not equal to 12
-      if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])!=0){
-        displayMessage("warning","LRN is Invalid","Please try again");
-        }
-
+      if ($_POST['student-lrn']="" ||$_POST['student-lrn'] = " ") {
+        if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])>0){
+          displayMessage("warning","LRN is Invalid","Please try again");
+          echo "<script>$('#addstudentmodal').modal('show');  </script>";
+          }
+      }
       //bday is in future
       else if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
         displayMessage("warning","Birthdate Invalid","Please try again");
-        echo "<script> console.log('bday'); </script>";
+        echo "<script>$('#addstudentmodal').modal('show');  </script>";
         }
 
       //student mobile validation 
       elseif (isset($_POST['student-mobile'])&& strlen(cleanThis($_POST['student-mobile']))!=11 && cleanThis($_POST['student-mobile']) != "") {
         displayMessage("warning","Invalid Student Mobile","Student Mobile Number");
-        echo "<script> console.log('contact Monile invalid'); </script>";
+        echo "<script>$('#addstudentmodal').modal('show');  </script>";
       }
        //contact person mobile validation 
       elseif (strlen(cleanThis($_POST['contact-person-mobile']))!=11) {
         displayMessage("warning","Invalid Mobile Number","Contact Person Mobile Number");
-        echo "<script> console.log('contact Monile invalid'); </script>";
+        echo "<script>$('#addstudentmodal').modal('show');  </script>";
       }
       else{
         $lrn=cleanThis($_POST['student-lrn']);
@@ -384,6 +421,7 @@ if (isset($_POST["btn-submit"])) {
             $isCODEMatch=true;
             $message="There is existing record <br> CODE:".$code."<br> Name: ".$CODEName;
             displayMessage("error","Duplicate Entry",$message);
+            echo "<script>$('#addstudentmodal').modal('show');  </script>";
             }
       
           else{
@@ -411,6 +449,7 @@ if (isset($_POST["btn-submit"])) {
             $isLRNMatch=true;
             $message="There is existing record <br> LRN:".$lrn."<br> Name: ".$LRNName;
             displayMessage("error","Duplicate Entry",$message);
+            echo "<script>$('#addstudentmodal').modal('show');  </script>";
             }
       
           else{

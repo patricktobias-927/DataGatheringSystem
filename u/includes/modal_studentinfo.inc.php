@@ -254,7 +254,6 @@
       
                                ?>
       
-      
                              </select>
                            </div>
                         </div>
@@ -264,8 +263,8 @@
                           <div class="form-group">
                             <label class="unrequired-field">Average Grade</label><br>
                             <div class="input-group">
-                              <input  value="<?php if(isset($averageGrade)){echo$averageGrade;}?>"
-                                name="last-school-attended-grade" type="text" class="form-control" data-inputmask='"mask": "999.99    "' data-mask>
+                                <input  value="<?php if(isset($averageGrade)){echo$averageGrade;}?>"
+                                name="last-school-attended-grade" type="text" class="form-control" data-inputmask='"mask": "99.99    "' data-mask>
                              </div>
                            </div>
                           </div> 
@@ -477,8 +476,10 @@
                           <div class="row"> 
                             <div class="col-lg-3">
                               <div class="icheck-primary d-inline ">
-                                <input class="unrequired-field" name ="isEldest" type="checkbox" id="checkboxPrimary1" <?php 
-                                if (isset($IsEldest )) {echo 'checked';} ?> >
+                                <input class="unrequired-field" name ="isEldest" type="checkbox" id="checkboxPrimary1" 
+                                <?php 
+                                if (isset($IsEldest) && $IsEldest == 'Yes') {echo 'checked';} 
+                                ?> >
                                 <label class="unrequired-field" for="checkboxPrimary1">Eldest?
                                 </label>
                               </div>
@@ -486,9 +487,14 @@
                             <div class="col-lg-8" >
                               <div class="icheck-primary d-inline">
                               <div class="input-group">
-                                <input value="<?php if(isset($familyPlace )){echo $familyPlace ;}?>""
+                                <input <?php 
+                                if (isset($IsEldest) && $IsEldest == 'Yes') {
+                                  echo "value='1' disabled='true' ";
+                                }
+                                else if(isset($familyPlace )){echo $familyPlace ;}
+                                ?>
                                name="siblings-order" class="form-control form-control-sm col-sm-1 numberOnly" id="siblings-order" type="text" maxlength="2" style="text-align: center">
-                                <span class="col-sm-8">&nbsp &nbspChronological order of birth among his/her siblings &nbsp&nbsp&nbsp </span>
+                                <span class="col-sm-8">&nbsp &nbsp Order of birth &nbsp&nbsp&nbsp </span>
                                 
                                 </div>
                               </div>

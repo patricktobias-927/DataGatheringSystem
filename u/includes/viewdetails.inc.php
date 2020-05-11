@@ -6,7 +6,6 @@
       $sex = $Prefix ;
     }
 
-    $hasContact=false;
     $hasSchoolInfo;
     $hasFather;
     $hasMother;
@@ -265,7 +264,7 @@
               <div class="row">
 <!-- <p class="lead">Powered by</p><img width="250px;" src="../assets/imgs/PrismLogoLong.jpg"> -->
                 <div class="col-7">
-<br><br><br><br><br>
+<br><br><br><br><br><br><br>
                   <div class="row">
               <div class=" col-sm-12 invoice-info" style="margin-top: 19px; ">
 <div class="row">
@@ -286,7 +285,7 @@
                   <span class="lead">Contact Information:</span>
                   <p class=" well well-sm shadow-none" style="margin-top: 2px; ">
 
-                    <?php if ($hasContact) { ?>
+                    <?php if (isset($fullName)&&trim($fullName)!= "") { ?>
                       <b>Full Name: </b> <?php echo $fullName?></br>
 
                       <b>Mobile Number: </b>   <?php echo $mobile?></br>
@@ -353,15 +352,16 @@
 
                 <div class="col-5">
 
-                  <div class="row" >
-                    <div class="col-6" style="padding-top: 20px">
+                  <div class="row">
+                    <div class="col-8">
                       <div class="row" >
-                  <img class="col-12"  src="../assets/imgs/PrismLogo.jpg">
-  
+                        <div class="col-12 col-lg-10">
+                  <img  src="../assets/imgs/PrismLogoWhite.png" width="100%;" height="140px">
+  </div>  
                       </div>
                     </div>
                       
-                    <div class="col-6 ">
+                    <div class="col-4 col-sm-4">
 
                       <b>Student Code: <?php echo $studentCode ?>
                       <br>
