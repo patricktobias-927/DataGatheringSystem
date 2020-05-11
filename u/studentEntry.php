@@ -1146,13 +1146,12 @@ if (isset($_POST["btn-submit"])) {
       $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
 
       //if lrn is not equal to 12
-      if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])!=0){
-        displayMessage("warning","LRN is Invalid","Please try again");
-        echo "<script>$('#addstudentmodal').modal('show');  </script>";
-
-
-
-        }
+      if ($_POST['student-lrn']="" ||$_POST['student-lrn'] = " ") {
+        if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])>0){
+          displayMessage("warning","LRN is Invalid","Please try again");
+          echo "<script>$('#addstudentmodal').modal('show');  </script>";
+          }
+      }
 
       //bday is in future
       else if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {

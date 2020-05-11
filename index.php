@@ -316,7 +316,7 @@
     $('[data-mask]').inputmask();
 
 function forgotpass() {
- alert("click");
+ alert("under dev");
 }
 
 function valCheck(form) {
