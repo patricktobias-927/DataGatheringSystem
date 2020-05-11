@@ -76,7 +76,7 @@ require 'includes/navAndSide2.php';
         <div class="row">
           <div class="col-lg-8">
 
-<div class="card card-secondary">
+<!-- <div class="card card-secondary">
 
 <div class="card-header">
      <h3 class="card-title">Welcome! <?php  if($_SESSION['gender']==="Male"){echo "Mr.";} else{echo "Ms.";} echo $_SESSION['last-name'];?> </h3>
@@ -86,13 +86,10 @@ require 'includes/navAndSide2.php';
    </div> 
   
 <img class="col-lg-12" src="../assets/imgs/PrismLogo.jpg">
-  <!-- /.card-body -->
 
-  <!-- /.card-footer -->
 </div>
-<!-- /.card -->
-</div>
-<div class="col-md-4">
+</div> -->
+<div class="col-md-6">
 
 <!--             <div class="info-box mb-3 bg-success">
               <span class="info-box-icon"><i class="far fa-heart"></i></span>
@@ -121,25 +118,23 @@ require 'includes/navAndSide2.php';
               </div>
             </div> -->
 
-          <div class="mb-3">
-            <!-- small card -->
+          <div class="col-12">
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>WARNING</h3>
+                <h3>Under Development</h3>
 
-                <p>You have unsubmitted students.</p>
+                <p>We would like to apologize for the inconvenience</p>
               </div>
               <div class="icon">
                 <i class="fas fa-exclamation-triangle"></i>
               </div>
-              <a href="studentEntry.php" class="small-box-footer">
+<!--               <a href="studentEntry.php" class="small-box-footer">
                 Click here to View <i  class="fas fa-arrow-circle-right"></i>
-              </a>
+              </a> -->
             </div>
           </div>        
             <!-- /.info-box -->
-          <div class="mb-3">
-            <!-- small card -->
+<!--           <div class="mb-3">
             <div class="small-box bg-primary">
               <div class="inner">
                 <h3>Get Started</h3>
@@ -153,7 +148,7 @@ require 'includes/navAndSide2.php';
                 Click here to start <i  class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
-          </div>
+          </div> -->
 
           </div>
 

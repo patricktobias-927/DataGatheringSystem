@@ -57,7 +57,7 @@
               <div class="col-sm-5">
                 <label for="input-password" class="log-label">Password</label>
                 <input name="password" type="password" class="form-control" id="exampleInputPassword1" id="input-password">
-                <a href="#" class="fPassword">Forgot Password ?</a>
+                <a href="#" class="fPassword" onclick="forgotpass()">Forgot Password ?</a>
               </div>
               <div class="col-sm-2">
                 <label for="loginbtn" class="log-label" style="visibility: hidden;">jxrn</label>
@@ -136,7 +136,7 @@
     </div>
 
     <div class="col-lg-5 main-reg-form">
-<form  action="index.php" method="post">
+<form  action="index.php" method="post" onsubmit="valCheck(this)">
       <div class="container col-lg-10 reg-form"> 
 
         <div class="row">
@@ -167,7 +167,7 @@
                 <div class="input-group-prepend">
                    <span class="input-group-text"><i class="fas fa-mobile" style="width: 14px;"> </i></span>
                 </div>
-                <input <?php if(isset($_POST['number']))echo "value='".$_POST['number']."'"; ?>
+                <input <?php if(isset($_POST['numberSignup']))echo "value='".$_POST['numberSignup']."'"; ?>
                 name="numberSignup"  type="text" class=" form-control" placeholder="Mobile Number" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
               </div>
             </div>
@@ -236,6 +236,43 @@
           </div>
         </div>
 
+                          <div class="row">
+      
+                            <div class="col-lg-10">
+        
+                               <div class="form-group">
+                                 <select name="question" class="form-control select2bs4">
+                              <option value="invalid" selected="true">------------------- Choose a security Question -------------------</option>
+
+<?php 
+          $sql = "select * FROM tbl_securityquestions";
+           $result1 = mysqli_query($conn, $sql);
+            $ctr=0;
+              if (mysqli_num_rows($result1) > 0) {
+                while($row = mysqli_fetch_array($result1)){
+                  echo '<option value="'.$row[0].'">'.$row[1].'</option>';
+                }
+              }
+ ?>
+                                 </select>
+                               </div>
+                            </div>
+      
+                          </div>
+              
+                      <div class="row">
+                        <div class="col-lg-10">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" title="This will be use on your password reset."><i class="fas fa-question-circle primary" style="width: 14px;" ></i></span>
+                              </div>
+                              <input  name="answer" type="text" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Security Answer" required="true">
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+
         <div class="row">
           <div class="col-sm-10">
             <div class="icheck-primary">
@@ -278,7 +315,31 @@
 <script type="text/javascript">
     $('[data-mask]').inputmask();
 
+function forgotpass() {
+ alert("click");
+}
 
+function valCheck(form) {
+  var question = form.question.value;
+  var answer   = $.trim(form.answer.value);
+
+  if (question=='invalid') {
+    $(form.question).addClass("is-invalid").removeClass("is-valid");
+    $(form.question).attr('title', "Please select a question");
+    $(form.question).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    return false;
+  }
+  if (answer.length == 0 ) {
+    $(form.answer).addClass("is-invalid").removeClass("is-valid");
+    $(form.answer).attr('title', "Please answer a question");
+    $(form.answer).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    return false;
+  }
+  else{
+    return true;
+  }
+
+}
 
 (function($) {
   $.fn.inputFilter = function(inputFilter) {
@@ -319,6 +380,8 @@ function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
+
+
 
 
 </script>
@@ -413,6 +476,8 @@ if (isset($_POST['Signup'])) {
         $_POST['email']        = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
         $_POST['numberSignup'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['numberSignup'])));
         $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes($_POST['pass1']));
+        $_POST['question']     = mysqli_real_escape_string($conn, stripcslashes($_POST['question']));
+        $_POST['answer']       = mysqli_real_escape_string($conn, stripcslashes($_POST['answer']));
         if (isset($_POST['r1'])) {
             if ($_POST['r1'] == "male") {
                 $gender = "Male";
@@ -443,7 +508,9 @@ sex,
 email,
 password,
 isEnabled,
-userType
+userType,
+sqID,
+sqAnswer
 
 
 ) 
@@ -457,12 +524,15 @@ VALUES
 '" . $_POST['email'] . "',
 '" . $_POST['pass1'] . "',
 '1',
-'P'
+'P',
+'" . $_POST['question'] . "',
+'" . $_POST['answer'] . "'
 
 )";
             
             mysqli_query($conn, $insertQuery);
-            header('Location: index.php?registered');
+            echo "<script>window.location.href='index.php?registered';</script>";
+            exit;
             
         }
         
@@ -480,7 +550,7 @@ if (isset($_REQUEST['registered'])) {
     echo "timer: 2700,";
     echo "customClass: 'swal-sm'";
     echo "});";
-    echo "$('#exampleModalCenter').modal('show');</script>";
+    echo "</script>";
     
 }
 
