@@ -476,8 +476,11 @@ if (isset($_POST['Signup'])) {
         $_POST['email']        = mysqli_real_escape_string($conn, stripcslashes($_POST['email']));
         $_POST['numberSignup'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['numberSignup'])));
         $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes($_POST['pass1']));
+<<<<<<< Updated upstream
         $_POST['question']     = mysqli_real_escape_string($conn, stripcslashes($_POST['question']));
         $_POST['answer']       = mysqli_real_escape_string($conn, stripcslashes($_POST['answer']));
+=======
+>>>>>>> Stashed changes
         if (isset($_POST['r1'])) {
             if ($_POST['r1'] == "male") {
                 $gender = "Male";
