@@ -117,7 +117,7 @@
                                 <div class="col-lg-1">
                                 </div>
                                 <div class="col-lg-4">
-                                  <label class="unrequired-field">Old Password:</label><br>
+                                  <label class="unrequired-field">Current Password:</label><br>
                                 </div>
                                 <div class="col-lg-6">
                                   <div class="input-group">
