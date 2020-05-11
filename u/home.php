@@ -88,12 +88,8 @@ require 'includes/navAndSide2.php';
 <img class="col-lg-12" src="../assets/imgs/PrismLogo.jpg">
 
 </div>
-<<<<<<< Updated upstream
 </div> -->
-<div class="col-md-6">
-=======
 <div class="col-md-4">
->>>>>>> Stashed changes
 
 <!--             <div class="info-box mb-3 bg-success">
               <span class="info-box-icon"><i class="far fa-heart"></i></span>
@@ -122,44 +118,23 @@ require 'includes/navAndSide2.php';
               </div>
             </div> -->
 
-<<<<<<< Updated upstream
-          <div class="col-12">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>Under Development</h3>
-
-                <p>We would like to apologize for the inconvenience</p>
-=======
           <div class="mb-3">
-            <!-- small card -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>WARNING</h3>
 
-                <p>You have unsubmitted students.</p>
->>>>>>> Stashed changes
+                <p>Under Development</p>
               </div>
               <div class="icon">
                 <i class="fas fa-exclamation-triangle"></i>
               </div>
-<<<<<<< Updated upstream
-<!--               <a href="studentEntry.php" class="small-box-footer">
-                Click here to View <i  class="fas fa-arrow-circle-right"></i>
-              </a> -->
-            </div>
-          </div>        
-            <!-- /.info-box -->
-<!--           <div class="mb-3">
-=======
               <a href="studentEntry.php" class="small-box-footer">
                 Click here to View <i  class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>        
             <!-- /.info-box -->
-          <div class="mb-3">
-            <!-- small card -->
->>>>>>> Stashed changes
+<!--           <div class="mb-3">
             <div class="small-box bg-primary">
               <div class="inner">
                 <h3>Get Started</h3>
