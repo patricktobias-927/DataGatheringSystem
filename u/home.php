@@ -169,6 +169,5 @@ require 'includes/navAndSide2.php';
 require 'assets/scripts.php';
 
 ?>
-
 </body>
 </html>

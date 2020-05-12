@@ -20,7 +20,7 @@ function treeOpen($page, $navtitle)
 }
  function titlePage()
 {
-	echo SCHOOL_NAME . " ~ " . SCHOOL_ADDRESS;
+	echo SCHOOL_NAME;
 }
   require '../include/getschoolyear.php';
 
@@ -35,7 +35,7 @@ function treeOpen($page, $navtitle)
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo $page.".php"?>" class="nav-link nav-link-2"><?php titlePage();?></a>
+        <b class="text-secondary"><h3><?php titlePage();?></h3></b>
       </li>
     </ul>
 
@@ -61,10 +61,10 @@ function treeOpen($page, $navtitle)
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <span class="brand-link lead">
+    <span class="brand-link ">
       <img  src="<?PHP echo "../".SCHOOL_LOGO_PATH?>" alt="<?PHP echo SCHOOL_ABV?>" class="brand-image img-circle elevation-3"
            style="opacity: .8;">
-      <span class="brand-text font-weight-light title-right"><?PHP echo SCHOOL_ABV?> | PRISM</span>
+      <span class="brand-text font-weight-light title-right lead"><?PHP echo SCHOOL_ABV?> | PRISM</span>
     </span>
 
     <!-- Sidebar -->

@@ -5,7 +5,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <?php 
     require 'include/schoolConfig.php';
     require 'include/config.php';
@@ -13,7 +12,9 @@
     require 'assets/phpfunctions.php';
     session_start();
     ob_start();
+
   ?>
+
 
         <script src="assets/js/sweetalert2.all.min.js"></script>
         <!-- Font Awesome -->
@@ -36,6 +37,8 @@
         <title>
             <?php echo SCHOOL_ABV ."  | PRISM"?>
         </title>
+    <link rel="shortcut icon" href="assets/imgs/favicon.ico">
+        
 
 </head>
 
@@ -57,7 +60,7 @@
               <div class="col-sm-5">
                 <label for="input-password" class="log-label">Password</label>
                 <input name="password" type="password" class="form-control" id="exampleInputPassword1" id="input-password">
-                <a href="#" class="fPassword" onclick="forgotpass()">Forgot Password ?</a>
+                <a data-toggle="modal" data-target="#modal-default" class="fPassword forgotPassLink" href="#">Forgot Password ?</a>
               </div>
               <div class="col-sm-2">
                 <label for="loginbtn" class="log-label" style="visibility: hidden;">jxrn</label>
@@ -267,7 +270,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text" title="This will be use on your password reset."><i class="fas fa-question-circle primary" style="width: 14px;" ></i></span>
                               </div>
-                              <input  name="answer" type="text" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Security Answer" required="true">
+                              <input autocomplete="off" name="answer" type="text" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Security Answer" required="true">
                            </div>
                          </div>
                        </div>
@@ -300,6 +303,43 @@
   </div>
 
 </div>
+
+
+      <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <form action="forgotpassword.php" method="get" onsubmit=" return forgotNumberValid(this)">
+              <div class="modal-header">
+                <h4 class="modal-title">Password Recovery</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                     <div class="form-group">
+                       <label class="required-field">Mobile Number</label><br>
+                       <div class="input-group">
+                         <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-mobile"></i></span>
+                          </div>
+                         <input value="<?php if(isset($_GET['mobilenr'])){ echo $_GET['mobilenr']; } ?>"
+                         name="forgotNumber" required type="text" class="form-control" data-inputmask='"mask": "9999-999-9999"' data-mask>
+                        </div>
+                      </div> 
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" name="forgotpass" value="true">Next</button>
+              </div>
+
+              </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 </body>
 
 
@@ -313,11 +353,28 @@
 <script src="include/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 
 <script type="text/javascript">
+
     $('[data-mask]').inputmask();
 
-function forgotpass() {
- alert("under dev");
-}
+
+function forgotNumberValid(form) {
+    var forgotNumber = form.forgotNumber.value;
+    forgotNumber = forgotNumber.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '');
+    forgotNumber = $.trim(forgotNumber);
+
+
+    if (forgotNumber.length <11) {
+      $(form.forgotNumber).addClass("is-invalid").removeClass("is-invalid");
+      $(form.forgotNumber).attr('title', "Invalid Number");
+      $(form.forgotNumber).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      return false;
+    }
+  else{
+    //return true;
+  }
+
+}      
+
 
 function valCheck(form) {
   var question = form.question.value;
@@ -394,6 +451,16 @@ if (isset($_REQUEST['insertsuccess'])) {
     displayMessage("success", "Success", $message);
     
 }
+
+if (isset($_REQUEST['cps'])) {
+    $message = "Password Changed";
+    displayMessage("success", "Success", $message);
+}
+if (isset($_REQUEST['mobilenr'])) {
+    $message = "This mobile number is not register";
+    displayMessage("error", "No Match", $message);
+}
+
 
 if (isset($_POST['login'])) {
     if (strlen($_POST['number']) < 10 || strlen($_POST['number']) > 13) {
