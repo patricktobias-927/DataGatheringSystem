@@ -108,7 +108,7 @@ function treeOpen($page, $navtitle)
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../u/undermaintenance.php" class="nav-link <?php isActive($page,"studentinfo");?>">
+                <a href="../u/filterreport.php" class="nav-link <?php isActive($page,"studentinfo");?>">
                   <i class="nav-icon fas fa-file-alt"></i>
                   <p>Filter</p>
                 </a>
