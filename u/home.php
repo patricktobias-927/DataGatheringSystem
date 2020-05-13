@@ -29,6 +29,18 @@
     header("location: index.php"); 
   }
 
+  $query = "SELECT (SELECT COUNT(userID) FROM tbl_student WHERE userID = 7 AND isSubmitted = 1 AND schoolYearID = 1) AS submitted,
+ (SELECT COUNT(userID) FROM tbl_student WHERE userID = 7 AND isExported = 1 AND schoolYearID = 1) AS exported,
+  (SELECT COUNT(userID) FROM tbl_student WHERE userID = 7 AND isSubmitted = 1 AND schoolYearID != 1) AS draft,
+ sex, fname,lname FROM tbl_parentuser WHERE userId =7
+"
+
+  $name;
+  $prefix;
+  $submitted;
+  $draft;
+
+
  // $sql = "sELECT a.* FROM tbl_student AS a WHERE a.studentID = '".$studentID."'";
 ?>
 
@@ -39,6 +51,11 @@
   <title><?php echo SCHOOL_NAME; ?></title>
 
   <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
+  <style type="text/css">
+    .small-box{
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -51,124 +68,144 @@ require 'includes/navAndSide2.php';
 <!-- nav bar & side bar -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Home Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-              <!-- <li class="breadcrumb-item active">Starter Page</li> -->
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+  <div class="content-wrapper ">
+ 
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-8">
-
-<!-- <div class="card card-secondary">
-
-<div class="card-header">
-     <h3 class="card-title">Welcome! <?php  if($_SESSION['gender']==="Male"){echo "Mr.";} else{echo "Ms.";} echo $_SESSION['last-name'];?> </h3>
-     <div class="card-tools">
-       <span class="badge badge-warning">v1.00.01</span>
-     </div>
-   </div> 
-  
-<img class="col-lg-12" src="../assets/imgs/PrismLogo.jpg">
-
-</div>
-</div> -->
-<div class="col-md-4">
-
-<!--             <div class="info-box mb-3 bg-success">
-              <span class="info-box-icon"><i class="far fa-heart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Exported</span>
-                <span class="info-box-number"></span>
+<div class="container-fluid ">
+  <div class="content">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-12" >
+        <div class="col-lg-12 bannerprism" style="">
+          <div class="row">
+            <div class="col-sm-3" >
+              <img src="../assets/imgs/prismLogo.png">
+            </div>
+            <div class="col-sm-6" >
+            </div>
+            <div class="col-sm-3 " >
+              <div class="float-right">
+                <button class="btn btn-warning "style="position: absolute; right: 4px; bottom: 4px; border-radius: 50px;">
+                  Get Started
+                </button>
               </div>
             </div>
- -->
-<!--             <div class="info-box mb-3 bg-info">
-              <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Submitted</span>
-                <span class="info-box-number">163,921</span>
-              </div>
-            </div> -->
-
-<!--             <div class="info-box mb-3 bg-danger">
-              <span class="info-box-icon"><i class="fas fa-exclamation"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Un-submitted</span>
-                <span class="info-box-number">114,381</span>
-              </div>
-            </div> -->
-
-          <div class="mb-3">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>WARNING</h3>
-
-                <p>Under Development</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-exclamation-triangle"></i>
-              </div>
-              <a href="studentEntry.php" class="small-box-footer">
-                Click here to View <i  class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div>        
-            <!-- /.info-box -->
-<!--           <div class="mb-3">
-            <div class="small-box bg-primary">
-              <div class="inner">
-                <h3>Get Started</h3>
-
-                <p>Register a student here</p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-user-plus"></i>
-              </div>
-              <a href="studentEntry.php" class="small-box-footer">
-                Click here to start <i  class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
-          </div> -->
-
           </div>
-
-          <!-- /.col-md-6 -->
         </div>
-        <!-- /.row -->
-
-      </div><!-- /.container-fluid -->
+      </div>
     </div>
-    <!-- /.content -->
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="welcome-lbl">Welcome, Mr. Pangilinan</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="small-box" style="padding: 50px 0;">
+              <div class="inner" style="text-align: center">
+              <div class="">
+                <i class="fas fa-check-circle" style="color: #0091BD; font-size: 85px;"></i></br></br>
+              </div>
+                <h3>53<sup style="font-size: 20px"></sup></h3>
+                <p class="lead" style="color: gray; font-size: 21px;">SUBMITTED</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="small-box" style="padding: 50px 0;">
+              <div class="inner" style="text-align: center">
+                <i class="fas fa-inbox" style="color: #FF7A21; font-size: 85px;"></i></br></br>
+                <h3>53<sup style="font-size: 20px"></sup></h3>
+
+                <p class="lead" style="color: gray; font-size: 21px;">DRAFT</p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+          <div class="col-lg-12" style="padding-top: 4px">
+            </br></br>
+          </div>
+<div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Announcements</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <ul class="products-list product-list-in-card pl-2 pr-2">
+                  <li class="item">
+                    <div class="product-img">
+                      <img src="dist/img/default-150x150.png" alt="" class="img-size-50">
+                    </div>
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">Class card release
+                        <span class="badge badge-warning float-right">May 15, 2020</span></a>
+                      <span class="product-description">
+                        Moved Schedule because of the Extended community quarantine
+                      </span>
+                    </div>
+                  </li>
+                  <!-- /.item -->
+                  <li class="item">
+                    <div class="product-img">
+                      <img src="dist/img/default-150x150.png" alt="" class="img-size-50">
+                    </div>
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">High School Final Exam
+                        <span class="badge badge-warning float-right">December 12, 2020</span></a>
+                      <span class="product-description">
+                        
+                      </span>
+                    </div>
+                  </li>
+                  <!-- /.item -->
+                  <li class="item">
+                    <div class="product-img">
+                      <img src="dist/img/default-150x150.png" alt="" class="img-size-50">
+                    </div>
+                    <div class="product-info">
+                      <a href="javascript:void(0)" class="product-title">Diploma release
+                        <span class="badge badge-warning float-right">September 15, 2020</span></a>
+                      <span class="product-description">
+                        Incomming 1st year highschool student
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer text-center">
+                <a href="javascript:void(0)" class="uppercase">View All Announcement</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
   <!-- /.content-wrapper -->
 
-<!-- ./wrapper -->
 
 <?php 
 
 require 'assets/scripts.php';
 
 ?>
-
 </body>
 </html>

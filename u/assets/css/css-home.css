@@ -9,3 +9,19 @@
 .nav-link-2:hover{
 	color: #800000 ;
 }
+.welcome-lbl{
+	font-size: 16px;
+	letter-spacing: 1px;
+	padding-top: 10px;
+	padding-bottom: -5px;
+	font-weight: bold;
+	color: rgb(5,41,89);
+}
+.bannerprism{
+  background: url(../../../assets/imgs/sample.gif) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: red;
+}
