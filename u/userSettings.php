@@ -31,6 +31,16 @@
   else if ($levelCheck=='A'){
     header("location: index.php"); 
   }
+
+          $sql = "sELECT  a.*, b.userID,  b.password,  b.sqAnswer  FROM tbl_securityquestions AS a INNER JOIN tbl_parentuser AS b ON b.sqID = a.sqID where userid = ".$user_check." LIMIT 1";
+           $result1 = mysqli_query($conn, $sql);
+            $ctr=0;
+              if (mysqli_num_rows($result1) > 0) {
+                $row = mysqli_fetch_array($result1);
+                $sqID = $row[0];
+                  $sqAnswer = $row[4];
+                  $userID = $row[2];
+                }
 ?>
 
 <html lang="en">
@@ -236,6 +246,66 @@ name="editThis" value="editThis" type="submit">Save</button> </form> </div>
 name="editPass" value="editPass" type="submit">Save</button> </form> </div>
 </div><!-- /.card --> 
 </form>
+
+
+<div class="card card-danger card-outline">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo "Change Security Question"?></h5>
+<form action="" method="post" >
+<br>
+
+                          <div class="row">
+      
+                            <div class="col-lg-12">
+        
+                               <div class="form-group">
+                                 <select name="question" class="form-control select2bs4">
+
+<?php 
+          $sql = "select * FROM tbl_securityquestions";
+           $result1 = mysqli_query($conn, $sql);
+            $ctr=0;
+              if (mysqli_num_rows($result1) > 0) {
+                while($row = mysqli_fetch_array($result1)){
+                  if($sqID==$row[0]){$selected = " selected ";}else{$selected="";} 
+                  echo '<option value="'.$row[0].'" '.$selected.' >'.$row[1].'</option>';
+                }
+              }
+ ?>
+                                 </select>
+                               </div>
+                            </div>
+                            </div>
+
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" title="This will be use on your password reset."><i class="fas fa-question-circle primary" style="width: 14px;" ></i></span>
+                              </div>
+                              <input autocomplete="off" name="answer" type="text" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Security Answer" required="true">
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-lock"></i></span>
+                </div>
+                <input name="qpass1" type="password" class="input form-control" required="true" placeholder="Enter Current Password">
+              </div>
+            </div>
+          </div>
+        </div>
+                      </div> <div class="card-footer"> <button class="btn btn-primary"
+name="editQuestion" value="editPass" type="submit">Save</button> </form> </div>
+</div><!-- /.card --> 
+</form>
 </div>
 </div>
 
@@ -426,6 +496,32 @@ $(document).ready(function() {
 
 </script>
 <?php 
+if (isset($_POST['editQuestion'])) {
+  if ($_POST['qpass1'] != $_SESSION['userPass']) {
+        $message = "Incorrect Password";
+        $title = "Invalid Entry";
+        $type = "error";
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
+    }
+  else{
+            $insertQuery = "update tbl_parentuser
+set
+sqid = '" . $_POST['question'] . "',
+sqAnswer = '" . $_POST['answer'] . "'
+where userID =".$_SESSION['userID']."
+
+";
+     
+ 
+            mysqli_query($conn, $insertQuery);
+            $message = "Security Question Changed";
+            $title = "Success";
+            $type = "success";
+            header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
+  }
+
+}
+
 if (isset($_POST['editPass'])) {
   if ($_POST['epassO'] != $_SESSION['userPass']) {
         $message = "Incorrect Password";

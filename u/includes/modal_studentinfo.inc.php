@@ -64,42 +64,42 @@
                              <select name="inComingLevel" class="form-control select2bs4 ">
                               <?php 
                               if (isset($levelCompleted)){?>
-                              <option <?php if($levelCompleted=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($levelCompleted=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($levelCompleted=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($levelCompleted=="Grade2") {echo' selected ="true"';}?>value="Grade2">Grade 1</option>
-                              <option <?php if($levelCompleted=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($levelCompleted=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($levelCompleted=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($levelCompleted=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($levelCompleted=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($levelCompleted=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($levelCompleted=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($levelCompleted=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($levelCompleted=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($levelCompleted=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($levelCompleted=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($levelCompleted=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+                              <option <?php if($levelCompleted=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
+                              <option <?php if($levelCompleted=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
+                              <option <?php if($levelCompleted=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
+                              <option <?php if($levelCompleted=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
+                              <option <?php if($levelCompleted=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
+                              <option <?php if($levelCompleted=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
+                              <option <?php if($levelCompleted=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
+                              <option <?php if($levelCompleted=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
+                              <option <?php if($levelCompleted=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
+                              <option <?php if($levelCompleted=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
+                              <option <?php if($levelCompleted=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
+                              <option <?php if($levelCompleted=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
+                              <option <?php if($levelCompleted=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
+                              <option <?php if($levelCompleted=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
+                              <option <?php if($levelCompleted=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
+                              <option <?php if($levelCompleted=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
 
                              <?php }
                               else{  ?>
                               ?>
-                              <option value="Nursery1">Nursery 1</option>
-                              <option value="Nursery2">Nursery 2</option>
-                              <option value="Kinder1">Kinder 1</option>
-                              <option value="Kinder2">Kinder 2</option>
-                              <option value="Grade1">Grade 1</option>
-                              <option value="Grade2">Grade 2</option>
-                              <option value="Grade3">Grade 3</option>
-                              <option value="Grade4">Grade 4</option>
-                              <option value="Grade5">Grade 5</option>
-                              <option value="Grade6">Grade 6</option>
-                              <option value="Grade7">Grade 7</option>
-                              <option value="Grade8">Grade 8</option>
-                              <option value="Grade9">Grade 9</option>
-                              <option value="Grade10">Grade 10</option>
-                              <option value="Grade11">Grade 11</option>
-                              <option value="Grade12">Grade 12</option>
+                              <option value="Nursery 1">Nursery 1</option>
+                              <option value="Nursery 2">Nursery 2</option>
+                              <option value="Kinder 1">Kinder 1</option>
+                              <option value="Kinder 2">Kinder 2</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11">Grade 11</option>
+                              <option value="Grade 12">Grade 12</option>
                             <?php }?>
                              </select>
                            </div>
@@ -491,7 +491,7 @@
                                 if (isset($IsEldest) && $IsEldest == 'Yes') {
                                   echo "value='1' disabled='true' ";
                                 }
-                                else if(isset($familyPlace )){echo $familyPlace ;}
+                                else if(isset($familyPlace )){echo "value='".$familyPlace."'" ;}
                                 ?>
                                name="siblings-order" class="form-control form-control-sm col-sm-1 numberOnly" id="siblings-order" type="text" maxlength="2" style="text-align: center">
                                 <span class="col-sm-8">&nbsp &nbsp Order of birth &nbsp&nbsp&nbsp </span>
@@ -521,40 +521,41 @@
                                  <select name="sibling1-level" class="form-control select2bs4">
                            <?php 
                               if (isset($sibling1_level)){?>
-                              <option <?php if($sibling1_level=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($sibling1_level=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($sibling1_level=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($sibling1_level=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($sibling1_level=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($sibling1_level=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($sibling1_level=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($sibling1_level=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($sibling1_level=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($sibling1_level=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($sibling1_level=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($sibling1_level=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($sibling1_level=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($sibling1_level=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($sibling1_level=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+                              <option <?php if($sibling1_level=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
+                              <option <?php if($sibling1_level=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
+                              <option <?php if($sibling1_level=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
+                              <option <?php if($sibling1_level=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
+                              <option <?php if($sibling1_level=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
+                              <option <?php if($sibling1_level=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
+                              <option <?php if($sibling1_level=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
+                              <option <?php if($sibling1_level=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
+                              <option <?php if($sibling1_level=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
+                              <option <?php if($sibling1_level=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
+                              <option <?php if($sibling1_level=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
+                              <option <?php if($sibling1_level=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
+                              <option <?php if($sibling1_level=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
+                              <option <?php if($sibling1_level=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
+                              <option <?php if($sibling1_level=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
+                              <option <?php if($sibling1_level=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
                              <?php }
                               else{  ?>
                               ?>
-                              <option value="Nursery1">Nursery 1</option>
-                              <option value="Nursery2">Nursery 2</option>
-                              <option value="Kinder1">Kinder 1</option>
-                              <option value="Kinder2">Kinder 2</option>
-                              <option value="Grade1">Grade 1</option>
-                              <option value="Grade2">Grade 2</option>
-                              <option value="Grade3">Grade 3</option>
-                              <option value="Grade4">Grade 4</option>
-                              <option value="Grade5">Grade 5</option>
-                              <option value="Grade6">Grade 6</option>
-                              <option value="Grade7">Grade 7</option>
-                              <option value="Grade8">Grade 8</option>
-                              <option value="Grade9">Grade 9</option>
-                              <option value="Grade10">Grade 10</option>
-                              <option value="Grade11">Grade 11</option>
-                              <option value="Grade12">Grade 12</option>
+                              <option value="Nursery 1">Nursery 1</option>
+                              <option value="Nursery 2">Nursery 2</option>
+                              <option value="Kinder 1">Kinder 1</option>
+                              <option value="Kinder 2">Kinder 2</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11">Grade 11</option>
+                              <option value="Grade 12">Grade 12</option>
                             <?php }?>
                                  </select>
                                </div>
@@ -579,41 +580,42 @@
                                  <select name="sibling2-level" class="form-control select2bs4">
                            <?php 
                               if (isset($sibling2_level)){?>
-                              <option <?php if($sibling2_level=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($sibling2_level=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($sibling2_level=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($sibling2_level=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($sibling2_level=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($sibling2_level=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($sibling2_level=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($sibling2_level=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($sibling2_level=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($sibling2_level=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($sibling2_level=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($sibling2_level=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($sibling2_level=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($sibling2_level=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($sibling2_level=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+                              <option <?php if($sibling2_level=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
+                              <option <?php if($sibling2_level=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
+                              <option <?php if($sibling2_level=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
+                              <option <?php if($sibling2_level=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
+                              <option <?php if($sibling2_level=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
+                              <option <?php if($sibling2_level=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
+                              <option <?php if($sibling2_level=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
+                              <option <?php if($sibling2_level=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
+                              <option <?php if($sibling2_level=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
+                              <option <?php if($sibling2_level=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
+                              <option <?php if($sibling2_level=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
+                              <option <?php if($sibling2_level=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
+                              <option <?php if($sibling2_level=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
+                              <option <?php if($sibling2_level=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
+                              <option <?php if($sibling2_level=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
+                              <option <?php if($sibling2_level=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
 
                              <?php }
                               else{  ?>
                               ?>
-                              <option value="Nursery1">Nursery 1</option>
-                              <option value="Nursery2">Nursery 2</option>
-                              <option value="Kinder1">Kinder 1</option>
-                              <option value="Kinder2">Kinder 2</option>
-                              <option value="Grade1">Grade 1</option>
-                              <option value="Grade2">Grade 2</option>
-                              <option value="Grade3">Grade 3</option>
-                              <option value="Grade4">Grade 4</option>
-                              <option value="Grade5">Grade 5</option>
-                              <option value="Grade6">Grade 6</option>
-                              <option value="Grade7">Grade 7</option>
-                              <option value="Grade8">Grade 8</option>
-                              <option value="Grade9">Grade 9</option>
-                              <option value="Grade10">Grade 10</option>
-                              <option value="Grade11">Grade 11</option>
-                              <option value="Grade12">Grade 12</option>
+                              <option value="Nursery 1">Nursery 1</option>
+                              <option value="Nursery 2">Nursery 2</option>
+                              <option value="Kinder 1">Kinder 1</option>
+                              <option value="Kinder 2">Kinder 2</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11">Grade 11</option>
+                              <option value="Grade 12">Grade 12</option>
                             <?php }?>
                                  </select>
                                </div>
@@ -638,44 +640,44 @@
                                  <select name="sibling3-level" class="form-control select2bs4">
                            <?php 
                               if (isset($sibling3_level)){?>
-                              <option <?php if($sibling3_level=="Nursery1") {echo' selected ="true"';}?>value="Nursery1">Nursery 1</option>
-                              <option <?php if($sibling3_level=="Nursery2") {echo' selected ="true"';}?>value="Nursery2">Nursery 2</option>
-                              <option <?php if($sibling3_level=="Kinder1") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($sibling3_level=="Kinder2") {echo' selected ="true"';}?>value="Kinder1">Kinder 1</option>
-                              <option <?php if($sibling3_level=="Grade1") {echo' selected ="true"';}?>value="Grade1">Grade 1</option>
-                              <option <?php if($sibling3_level=="Grade2"){echo' selected ="true"';}?>value="Grade2">Grade 2</option>
-                              <option <?php if($sibling3_level=="Grade3"){echo' selected ="true"';}?>value="Grade3">Grade 3</option>
-                              <option <?php if($sibling3_level=="Grade4"){echo' selected ="true"';}?>value="Grade4">Grade 4</option>
-                              <option <?php if($sibling3_level=="Grade5"){echo' selected ="true"';}?>value="Grade5">Grade 5</option>
-                              <option <?php if($sibling3_level=="Grade6"){echo' selected ="true"';}?>value="Grade6">Grade 6</option>
-                              <option <?php if($sibling3_level=="Grade7"){echo' selected ="true"';}?>value="Grade7">Grade 7</option>
-                              <option <?php if($sibling3_level=="Grade8"){echo' selected ="true"';}?>value="Grade8">Grade 8</option>
-                              <option <?php if($sibling3_level=="Grade9"){echo' selected ="true"';}?>value="Grade9">Grade 9</option>
-                              <option <?php if($sibling3_level=="Grade10") {echo' selected ="true"';}?>value="Grade10">Grade 10</option>
-                              <option <?php if($sibling3_level=="Grade11") {echo' selected ="true"';}?>value="Grade11">Grade 11</option>
-                              <option <?php if($sibling3_level=="Grade12") {echo' selected ="true"';}?>value="Grade12">Grade 12</option>
+                              <option <?php if($sibling3_level=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
+                              <option <?php if($sibling3_level=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
+                              <option <?php if($sibling3_level=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
+                              <option <?php if($sibling3_level=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
+                              <option <?php if($sibling3_level=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
+                              <option <?php if($sibling3_level=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
+                              <option <?php if($sibling3_level=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
+                              <option <?php if($sibling3_level=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
+                              <option <?php if($sibling3_level=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
+                              <option <?php if($sibling3_level=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
+                              <option <?php if($sibling3_level=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
+                              <option <?php if($sibling3_level=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
+                              <option <?php if($sibling3_level=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
+                              <option <?php if($sibling3_level=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
+                              <option <?php if($sibling3_level=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
+                              <option <?php if($sibling3_level=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
 
                              <?php }
                               else{
 
                               }
                               ?>
-                              <option value="Nursery1">Nursery 1</option>
-                              <option value="Nursery2">Nursery 2</option>
-                              <option value="Kinder1">Kinder 1</option>
-                              <option value="Kinder1">Kinder 2</option>
-                              <option value="Grade1">Grade 1</option>
-                              <option value="Grade2">Grade 2</option>
-                              <option value="Grade3">Grade 3</option>
-                              <option value="Grade4">Grade 4</option>
-                              <option value="Grade5">Grade 5</option>
-                              <option value="Grade6">Grade 6</option>
-                              <option value="Grade7">Grade 7</option>
-                              <option value="Grade8">Grade 8</option>
-                              <option value="Grade9">Grade 9</option>
-                              <option value="Grade10">Grade 10</option>
-                              <option value="Grade11">Grade 11</option>
-                              <option value="Grade12">Grade 12</option>
+                              <option value="Nursery 1">Nursery 1</option>
+                              <option value="Nursery 2">Nursery 2</option>
+                              <option value="Kinder 1">Kinder 1</option>
+                              <option value="Kinder 2">Kinder 2</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11">Grade 11</option>
+                              <option value="Grade 12">Grade 12</option>
                                  </select>
                                </div>
                             </div>

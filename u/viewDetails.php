@@ -376,15 +376,10 @@ require 'assets/scripts.php';
 if (isset($_POST["btn-submit"])) { 
       $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
 
-      //if lrn is not equal to 12
-      if ($_POST['student-lrn']="" ||$_POST['student-lrn'] = " ") {
-        if (strlen($_POST['student-lrn'])!=12 && strlen($_POST['student-lrn'])>0){
-          displayMessage("warning","LRN is Invalid","Please try again");
-          echo "<script>$('#addstudentmodal').modal('show');  </script>";
-          }
-      }
+
+
       //bday is in future
-      else if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
+       if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
         displayMessage("warning","Birthdate Invalid","Please try again");
         echo "<script>$('#addstudentmodal').modal('show');  </script>";
         }
@@ -435,7 +430,7 @@ if (isset($_POST["btn-submit"])) {
         }
 
         //check length
-        if (isset($_POST['student-lrn'])&&  $lrn != $_POST['student-lrn']) {  
+        if (isset($_POST['student-lrn'])&&strlen(trim($_POST['student-lrn']))!=0&&$lrn != $_POST['student-lrn']) {   
           $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename  from `tbl_student` where lrn = '".  $lrn."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -745,7 +740,7 @@ mysqli_query($conn, $insertQuery2);
 }
     
 
-else if ($hasSchoolAttended2) {
+else if ($hasSchoolAttended2||isset($_POST['inComingLevel'])) {
  $insertQuery2 = "Insert into tbl_schoolinfo
 (
 userID,
