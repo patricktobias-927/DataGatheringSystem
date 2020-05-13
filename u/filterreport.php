@@ -138,20 +138,38 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="unrequired-field">Grade Level  :</label>
+                                    <label class="unrequired-field">Grade Level  :&nbsp&nbsp</label>
+                                    <select name="gradelevel" >
+                                    <option value="Nursery1">Nursery 1</option>
+                                    <option value="Nursery2">Nursery 2</option>
+                                    <option value="Kinder1">Kinder 1</option>
+                                    <option value="Kinder2">Kinder 2</option>
+                                    <option value="Grade1">Grade 1</option>
+                                    <option value="Grade2">Grade 2</option>
+                                    <option value="Grade3">Grade 3</option>
+                                    <option value="Grade4">Grade 4</option>
+                                    <option value="Grade5">Grade 5</option>
+                                    <option value="Grade6">Grade 6</option>
+                                    <option value="Grade7">Grade 7</option>
+                                    <option value="Grade8">Grade 8</option>
+                                    <option value="Grade9">Grade 9</option>
+                                    <option value="Grade10">Grade 10</option>
+                                    <option value="Grade11">Grade 11</option>
+                                    <option value="Grade12">Grade 12</option>
                                     <?php
-                                            $sql = "select distinct inComingLevel from tbl_schoolinfo order by inComingLevel;";
-                                            $result=mysqli_query($conn, $sql); //rs.open sql,con
+                                            // $sql = "select distinct inComingLevel from tbl_schoolinfo order by inComingLevel;";
+                                            // $result=mysqli_query($conn, $sql); //rs.open sql,con
                                             
-                                            echo "<select name='gradelevel'>";
-                                            while ($row = mysqli_fetch_array($result)) {
-                                                $rows[] = $row;
-                                            }
-                                            foreach ($rows as $row) {
-                                                echo "<option value='" . $row['inComingLevel'] . "'>" . $row['inComingLevel'] . "</option>";
-                                            }
-
-                                        ?>  
+                                            // echo "<select name='gradelevel'>";
+                                            // while ($row = mysqli_fetch_array($result)) {
+                                            //     $rows[] = $row;
+                                            // }
+                                            // foreach ($rows as $row) {
+                                            //     echo "<option value='" . $row['inComingLevel'] . "'>" . $row['inComingLevel'] . "</option>";
+                                            // } 
+                                    ?> 
+                                       
+ 
                                     </select>            
                                 </div>
                             </div><!-- criteria-->

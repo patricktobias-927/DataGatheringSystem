@@ -145,7 +145,7 @@
                                     <div class="icheck-primary d-inline">
                                         <input 
                                         value="submitted" type="radio" id="radioPrimary1" name="r1" checked>
-                                        <label for="radioPrimary1">Submitted/Not yet Exported
+                                        <label for="radioPrimary1">Not yet Exported
                                         </label>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                     <div class="icheck-primary d-inline">
                                         <input 
                                         value="submitted" type="radio" id="radioPrimary11" name="r2" checked>
-                                        <label for="radioPrimary11">Submitted/Not yet Exported
+                                        <label for="radioPrimary11">Not yet Exported
                                         </label>
                                     </div>
                                 </div>

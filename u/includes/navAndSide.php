@@ -82,7 +82,7 @@ function treeOpen($page, $navtitle)
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="adminchangepass.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
               <p>
@@ -90,6 +90,7 @@ function treeOpen($page, $navtitle)
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="adminchangeschoolyear.php" class="nav-link">
               <i class="nav-icon fa fa-cog"></i>
@@ -97,6 +98,30 @@ function treeOpen($page, $navtitle)
                 Change School Year
               </p>
             </a>
+          </li> -->
+ 
+          <li class="nav-item has-treeview <?php treeOpen($page,"info");?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+              <p>
+                Settings
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="adminchangepass.php" class="nav-link <?php isActive($page,"studentinfo");?>">
+                  <i class="nav-icon fa fa-cog"></i>
+                  <p>Change Password</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adminchangeschoolyear.php" class="nav-link">
+                  <i class="nav-icon fa fa-cog"></i>
+                  <p>Change School Year</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview <?php treeOpen($page,"info");?>">
             <a href="#" class="nav-link">
@@ -119,16 +144,8 @@ function treeOpen($page, $navtitle)
                   <p>Export</p>
                 </a>
               </li>
-             
-          <!-- <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li> -->
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
