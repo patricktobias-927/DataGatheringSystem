@@ -10,6 +10,7 @@
     require 'include/config.php';
     include 'include/fonts.php';
     require 'assets/phpfunctions.php';
+    
     session_start();
     ob_start();
 

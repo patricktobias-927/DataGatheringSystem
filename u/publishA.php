@@ -27,8 +27,8 @@
     session_destroy();
     header("location: ../index.php");
   }
-  else if ($levelCheck=='A'){
-    header("location: index.php"); 
+  else if ($levelCheck=='P'){
+    header("location: home.php"); 
   }
 
 
@@ -40,7 +40,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title><?php echo SCHOOL_NAME; ?></title>
+  <title>Create Announcement | PRISM</title>
+  <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
   <link rel="stylesheet" href="../include/plugins/summernote/summernote-bs4.css">
   <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
@@ -83,7 +84,7 @@
 
 <!-- nav bar & side bar -->
 <?php 
-require 'includes/navAndSide2.php';
+require 'includes/navAndSide.php';
 ?>
 <!-- nav bar & side bar -->
 

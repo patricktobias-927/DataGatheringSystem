@@ -6,7 +6,7 @@
   require 'assets/fonts.php';
   require 'assets/adminlte.php';
   require '../include/config.php';
-  $page = "adminchangeschoolyear";
+  $page = "filterreport";
   require 'assets/scipts/phpfunctions.php';
   require 'assets/generalSandC.php';
   require '../include/schoolConfig.php';
@@ -19,6 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Admin Change School Year | PRISM</title>
+  <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
 <!-- customize css -->
   <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">

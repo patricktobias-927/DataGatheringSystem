@@ -8,6 +8,7 @@
   require 'assets/scipts/phpfunctions.php';
   require 'assets/generalSandC.php';
   require '../include/schoolConfig.php';
+  $page= 'exportpage';
 
 ?>
 
@@ -15,7 +16,8 @@
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>PPH DGS</title>
+    <title>Export | PRISM</title>
+    <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/css-home.css"> -->
     <!-- customize css -->
     <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">

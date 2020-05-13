@@ -37,7 +37,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
-  <title><?php echo SCHOOL_NAME; ?></title>
+  <title>Account Setting | Prism</title>
+  <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
 </head>
 

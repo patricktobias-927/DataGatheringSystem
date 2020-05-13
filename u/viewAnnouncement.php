@@ -68,7 +68,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title><?php echo SCHOOL_NAME; ?></title>
+  <title>Announcement | PRIMS</title>
+  <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
   <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
   <style type="text/css">

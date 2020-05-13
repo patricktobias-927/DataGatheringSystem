@@ -12,6 +12,21 @@
   require '../include/schoolConfig.php';
   require '../include/getschoolyear.php';
   session_start();
+
+
+  session_start();
+  $user_check = $_SESSION['userID'] ;
+  $levelCheck = $_SESSION['usertype'];
+  if(!isset($user_check) && !isset($password_check))
+  {
+    session_destroy();
+    header("location: ../index.php");
+  }
+  else if ($levelCheck=='P'){
+    header("location: home.php"); 
+  }
+
+
 //   $userID = $_SESSION['userID'];
 //   $userFname = $_SESSION['first-name'];
 //   $userMname = $_SESSION['middle-name'];
@@ -41,6 +56,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>School Year Activated | PRISM</title>
+  <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
 <!-- customize css -->
   <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">

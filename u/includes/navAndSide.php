@@ -18,9 +18,9 @@ function treeOpen($page, $navtitle)
 		echo "";
 	}
 }
- function titlePage($page)
+ function titlePage()
 {
-	echo SCHOOL_NAME . " ~ " . SCHOOL_ADDRESS;
+	echo SCHOOL_NAME;
 }
   require '../include/getschoolyear.php';
 
@@ -35,7 +35,7 @@ function treeOpen($page, $navtitle)
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo $page.".php"?>" class="nav-link nav-link-2"><?php titlePage('page');?></a>
+        <b class="text-secondary"><h3><?php titlePage();?></h3></b>
       </li>
     </ul>
 
@@ -61,10 +61,10 @@ function treeOpen($page, $navtitle)
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <span class="brand-link">
-      <img src="../assets/imgs/pphlogohq.png" alt="PPH" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light title-right">PPH | DGS</span>
+    <span class="brand-link ">
+      <img  src="<?PHP echo "../".SCHOOL_LOGO_PATH?>" alt="<?PHP echo SCHOOL_ABV?>" class="brand-image img-circle elevation-3"
+           style="opacity: .8;">
+      <span class="brand-text font-weight-light title-right lead"><?PHP echo SCHOOL_ABV?> | PRISM</span>
     </span>
 
     <!-- Sidebar -->
@@ -75,7 +75,7 @@ function treeOpen($page, $navtitle)
       <nav class="mt-2">
         <ul class="nav nav-pills nav-child-indent nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="index.php" class="nav-link <?php isActive($page,"index");?>">
+            <a href="index.php" class="nav-link <?php isActive($page,'index'); ?>">
               <i class="nav-icon fa fa-home"></i>
               <p>
                 Home
@@ -100,30 +100,30 @@ function treeOpen($page, $navtitle)
             </a>
           </li> -->
  
-          <li class="nav-item has-treeview <?php treeOpen($page,"info");?>">
+          <li class="nav-item has-treeview <?php treeOpen($page,"announce");?>">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+              <i class="nav-icon fa fa-bullhorn" aria-hidden="true"></i>
               <p>
-                Settings
+                Announcement
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="adminchangepass.php" class="nav-link <?php isActive($page,"studentinfo");?>">
-                  <i class="nav-icon fa fa-cog"></i>
-                  <p>Change Password</p>
+                <a href="publishA.php" class="nav-link <?php isActive($page,"adminchangepass");?>">
+                  <i class="nav-icon fa fa-pencil-alt"></i>
+                  <p>Add Announcement</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="adminchangeschoolyear.php" class="nav-link">
-                  <i class="nav-icon fa fa-cog"></i>
-                  <p>Change School Year</p>
+                <a href="#" class="nav-link <?php isActive($page,"adminchangeschoolyear");?>">
+                  <i class="nav-icon fa fa-bullseye"></i>
+                  <p>View Announcement</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview <?php treeOpen($page,"info");?>">
+          <li class="nav-item has-treeview <?php treeOpen($page,"port");?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt" aria-hidden="true"></i>
               <p>
@@ -133,15 +133,38 @@ function treeOpen($page, $navtitle)
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../u/filterreport.php" class="nav-link <?php isActive($page,"studentinfo");?>">
+                <a href="../u/filterreport.php" class="nav-link <?php isActive($page,"filterreport");?>">
                   <i class="nav-icon fas fa-file-alt"></i>
                   <p>Filter</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../u/exportpage.php" class="nav-link">
+                <a href="../u/exportpage.php" class="nav-link <?php isActive($page,"exportpage");?>">
                   <i class="nav-icon fas fa-file-alt"></i>
                   <p>Export</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview <?php treeOpen($page,"change");?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
+              <p>
+                Settings
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="adminchangepass.php" class="nav-link <?php isActive($page,"adminchangepass");?>">
+                  <i class="nav-icon fa fa-cog"></i>
+                  <p>Change Password</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adminchangeschoolyear.php" class="nav-link <?php isActive($page,"adminchangeschoolyear");?>">
+                  <i class="nav-icon fa fa-cog"></i>
+                  <p>Change School Year</p>
                 </a>
               </li>
             </ul>

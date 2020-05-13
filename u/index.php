@@ -8,6 +8,7 @@
   require 'assets/scipts/phpfunctions.php';
   require 'assets/generalSandC.php';
   require '../include/schoolConfig.php';
+  $page = "index";
 
 ?>
 
@@ -15,7 +16,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>PPH DGS</title>
+  <title>Home | PRISM</title>
+  <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
   <!-- <link rel="stylesheet" type="text/css" href="assets/css/css-home.css"> -->
 <!-- customize css -->
 <link rel="stylesheet" type="text/css" href="assets/css/hideAndNext.css">
@@ -53,6 +55,17 @@
 <!-- nav bar & side bar -->
 <?php
 require 'includes/navAndSide.php';
+  session_start();
+  $user_check = $_SESSION['userID'] ;
+  $levelCheck = $_SESSION['usertype'];
+  if(!isset($user_check) && !isset($password_check))
+  {
+    session_destroy();
+    header("location: ../index.php");
+  }
+  else if ($levelCheck=='P'){
+    header("location: home.php"); 
+  }
 ?>
 <!-- nav bar & side bar -->
 
