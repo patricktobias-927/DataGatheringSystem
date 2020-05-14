@@ -162,7 +162,7 @@ require 'includes/navAndSide2.php';
               <div class="card-body p-0">
                 <ul class="products-list product-list-in-card pl-2 pr-2 card-overflow">
 <?php 
-          $sql = "select * FROM tbl_announcement where dateEnd >= CAST(NOW() AS DATE)";
+          $sql = "select * FROM tbl_announcement where dateEnd >= CAST(NOW() AS DATE) && dateStart <= CAST(NOW() AS DATE) ORDER BY dateCreated DESC ";
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {

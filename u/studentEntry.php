@@ -1244,12 +1244,11 @@ if (isset($_POST["btn-submit"])) {
               $hasSibling1;
               $hasSibling2;
               $hasSibling3;
-              $hasSchoolAttended;
               $numberOfSiblings=0;
+              $hasSchoolAttended;
           
               if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
                 $_POST['last-school-attended-year']='';
-                $_POST['inComingLevel']='';
                 $_POST['last-school-attended-grade']='';
                 $_POST['last-school-attended-address']='';
                 $hasSchoolAttended = false;

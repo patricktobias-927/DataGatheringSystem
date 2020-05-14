@@ -240,14 +240,13 @@
 <!-- ------------------------------------ -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content" style="-webkit-print-color-adjust: exact !important;">
+  <div class="content" style="-webkit-print-color-adjust: exact !important; ">
     <!-- Content Header (Page header) -->
 
-
-
-
+<div class="row">
+<div class="col-lg-1"><br></div>
             <!-- Main content -->
-            <div class="invoice p-3 mb-3" >
+            <div class="invoice p-3 mb-3 col-lg-10" >
               <!-- title row -->
               <div class="row" >
                 <div class="col-12" >
@@ -263,7 +262,7 @@
                 
               <div class="row">
 <!-- <p class="lead">Powered by</p><img width="250px;" src="../assets/imgs/PrismLogoLong.jpg"> -->
-                <div class="col-7">
+                <div class="col-6">
 <br><br><br><br><br><br><br>
                   <div class="row">
               <div class=" col-sm-12 invoice-info" style="margin-top: 19px; ">
@@ -350,7 +349,7 @@
 
                 </div>
 
-                <div class="col-5">
+                <div class="col-6">
 
                   <div class="row">
                     <div class="col-8">
@@ -519,3 +518,4 @@
           </div><!-- /.col -->
   </div>
   <!-- /.content-wrapper -->
+  </div>

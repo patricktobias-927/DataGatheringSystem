@@ -303,7 +303,7 @@ Swal.fire({
   if (result.value) {
             swal.fire({
                 title: 'Please Wait..!',
-                text: 'Submitting..',
+                text: 'Deleting..',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 allowEnterKey: false,
@@ -473,7 +473,6 @@ if (isset($_POST["btn-submit"])) {
           
               if ($_POST['school-last-attended']==''||$_POST['school-last-attended']==' ') {
                 $_POST['last-school-attended-year']='';
-                $_POST['inComingLevel']='';
                 $_POST['last-school-attended-grade']='';
                 $_POST['last-school-attended-address']='';
                 $hasSchoolAttended2 = false;

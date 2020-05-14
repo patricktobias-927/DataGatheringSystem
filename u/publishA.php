@@ -8,7 +8,8 @@
   require '../include/schoolConfig.php';
   require '../include/getschoolyear.php';
   require '../assets/phpfunctions.php';
-  $page="home";
+  $page="AddAnnouncement";
+  
 
 // $_SESSION['userID']     
 // $_SESSION['first-name'] 
@@ -238,8 +239,8 @@ if (isset($_POST['gothis'])) {
 
 
  )";      
- echo $insertQuery;
 mysqli_query($conn, $insertQuery); 
+displayMessage("success","Success","Announcement has been made");
   }
 
 
@@ -289,6 +290,7 @@ toolbar: [
           'This Month'  : [moment().startOf('month'), moment().endOf('month')],
         },
         startDate: moment().subtract(29, 'days'),
+        minDate:new Date(),
         endDate  : moment()
       },
       function (start, end) {
