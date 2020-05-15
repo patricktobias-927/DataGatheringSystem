@@ -8,7 +8,7 @@
   require '../include/schoolConfig.php';
   require '../include/getschoolyear.php';
   require '../assets/phpfunctions.php';
-  $page="AddAnnouncement";
+  $page = "viewallAnnouncement";
   
 
 // $_SESSION['userID']     
@@ -52,20 +52,21 @@
                   //For Posting
                   if (date("Y/m/d")<date_format(date_create($row[6]),"Y/m/d")) 
                   {
-                  	$status		= 1;
+                  	$status		= '<td class="text-center" title="Your information reach the school"><h3><span class="badge badge-success">For Posting</span></h3></td>';
                   }
 
                   //Posted
                   elseif (date("Y/m/d")>=date_format(date_create($row[6]),"Y/m/d")&&date("Y/m/d")<=date_format(date_create($row[5]),"Y/m/d"))
                   {
-                    $status 	= 2;
+                    $status 	= '<td class="text-center" title="Your information has been save."><h3><span class="badge badge-info">Posted</span></h3></td>';
                   }
 
                   //expired
                   else{
-                    echo '<td class="text-center" title="Press submit to confirm your registration."><h3><span id="badge'.$ctr.'" class=" badge badge-danger">Expired</span></h3></td>';
-                    $status 	= 0;
+                    $status 	= '<td class="text-center" title="Press submit to confirm your registration."><h3><span class=" badge badge-danger">Expired</span></h3></td>';
                   }
+
+                  $haveAccess = 1;
 
 
             }
@@ -149,6 +150,17 @@ require 'includes/navAndSide.php';
 
 <div class="container-fluid ">
     <!-- Main content -->
+
+    <?php 
+    if (!$haveAccess) {
+      require 'includes/4043.php';
+    }
+else{
+    ?>
+
+
+
+
     <section class="content">
       <div class="row">
         <div class="col-md-12">
@@ -174,17 +186,23 @@ require 'includes/navAndSide.php';
                           <div class="col-lg-4">  
                             <div class="form-group">
                               <label class="unrequired-field">Title</label>
-                              <input value="<?php echo isset($_POST['title']) ? $_POST['title'] : '' ?>"
+                              <input value="<?php echo $title  ?>"
                               name="title" id="title" type="text" class="form-control" placeholder="">
                             </div>
                           </div>
                           <div class="col-lg-4">  
                             <div class="form-group">
                               <label class="unrequired-field">Subtitle</label>
-                              <input value="<?php echo isset($_POST['subtitle']) ? $_POST['subtitle'] : '' ?>"
+                              <input value="<?php echo $subtitle?>"
                               name="subtitle" type="text" class="form-control" placeholder="">
                             </div>
                           </div>
+<!--                           <div class="col-lg-4">  
+                            <div class="form-group">
+                              <label class="unrequired-field">Status</label>
+                              <?php echo $status?>
+                            </div>
+                          </div> -->
                    </div>
 
                    <div class="row">
@@ -203,13 +221,13 @@ require 'includes/navAndSide.php';
                           <div class="col-lg-4">  
                             <div class="form-group">
                               <label class="unrequired-field">Start Date</label>
-                          <input type="text" name="startdate" class="form-control" readonly="true" id="startdate">
+                          <input type="text" value="<?php echo $startDate?>" name="startdate" class="form-control" readonly="true" id="startdate">
                             </div>
                           </div>
                           <div class="col-lg-4">  
                             <div class="form-group">
                               <label class="unrequired-field">End Date</label>
-                          <input type="text" name="enddate" class="form-control" readonly="true" id="enddate">
+                          <input type="text" value="<?php echo $endDate  ?>" name="enddate" class="form-control" readonly="true" id="enddate">
                             </div>
                           </div>
 
@@ -219,20 +237,17 @@ require 'includes/navAndSide.php';
 
 
 
-      
-
-
 
 
 
               <div class="mb-3">
                 <textarea value="" name="htmlcode" class="textarea" 
-                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php if(isset($_POST['htmlcode'])){
-                  echo htmlentities($_POST['htmlcode']);
-                } 
+                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php 
+                  echo html_entity_decode(htmlspecialchars_decode($html));
+                
                 ?></textarea>
               </div>
-              <button type="submit" class="btn btn-primary float-right" name="gothis">Create</button>
+              <button type="submit" class="btn btn-primary float-right" name="gothis">Save</button>
               </form>
 
             </div>
@@ -251,7 +266,7 @@ require 'includes/navAndSide.php';
 
 
 <?php 
-
+}
 require 'assets/scripts.php';
 
 if (isset($_POST['gothis'])) {
@@ -270,39 +285,27 @@ if (isset($_POST['gothis'])) {
     displayMessage("warning","Range Date Invalid","Please try again");
   }
   else{
- $insertQuery = "Insert into tbl_announcement
- (
- title,
- subtitle,
- htmlcode,
- dateCreated,
- dateEnd,
- dateStart,
- userID
- ) 
- VALUES 
- (
-  '".$_POST['title'] ."',
-  '".$_POST['subtitle']."',
-  '".$htmlcode."',
-  now(),
-  '".$newDateEnd."',
-  '".$newDateStart."',
-  '".$_SESSION['userID']  ."'
-
-
-
- )";      
+ $insertQuery = "Update tbl_announcement
+ Set
+ title ='".$_POST['title'] ."',
+ subtitle ='".$_POST['subtitle']."',
+ htmlcode ='".$htmlcode."',
+ dateCreated =now(),
+ dateEnd ='".$newDateEnd."',
+ dateStart ='".$newDateStart."',
+ userID ='".$_SESSION['userID']  ."'
+ where announceID = '".$announceID."'
+";      
 mysqli_query($conn, $insertQuery); 
-header('Location: publishA.php?AnnouncementCreated');
+header('Location: publishA.php?editAnnouncement.php?editsuccess&page='.$announceID);
   }
 
 
 
 
 }
-if (isset($_REQUEST['AnnouncementCreated'])) {
-  displayMessage("success","Success","Announcement has been made");
+if (isset($_REQUEST['editsuccess'])) {
+  displayMessage("success","Success","Announcement has been change");
 }
 ?>
 <!-- Summernote -->

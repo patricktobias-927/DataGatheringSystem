@@ -176,7 +176,7 @@ require 'includes/navAndSide.php';
 
                   if ($status==1||$status==2) {
                    echo'   <td class="text-center">';
-                   echo'       <a class="btn btn-primary btn-sm " href="#">'; //href="editAnnouncement.php?page='.$row[0].'">';
+                   echo'       <a class="btn btn-primary btn-sm " href="editAnnouncement.php?page='.$row[0].'">';
                    echo'           <i class="fas fa-folder">';
                    echo'           </i>';
                    echo'           View';
