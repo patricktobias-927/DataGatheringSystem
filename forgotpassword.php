@@ -87,7 +87,7 @@ div.card {
 <div class="card col-lg-8" style="margin-top: 30px;">
   <form method="post">
   <div class="card-header">
-    <h1 class="card-title" style="font-size: 30px;">Change Password <?php echo " ".$userID; ?></h1>
+    <h1 class="card-title" style="font-size: 30px;">Change Password</h1>
     <!-- /.card-tools -->
   </div>
   <!-- /.card-header -->
@@ -289,7 +289,7 @@ if (isset($_POST['passRecov'])) {
             $insertQuery = "update tbl_parentuser
 set
 password = '" . $_POST['epass1'] . "'
-where userID =".$_SESSION['userID']."
+where userID =".$userID."
 
 ";
      

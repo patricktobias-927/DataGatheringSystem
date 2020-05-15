@@ -145,16 +145,13 @@ require 'includes/navAndSide2.php';
                   echo"<td><h6>";
                     echo $row[4];
                   echo"</h6></td>";
-                  if ($row['isExported']) {
-                    echo '<td class="text-center" title="Your information reach the school"><h3><span class="badge badge-success">Exported</span></h3></td>';
-                    $status = '1';
-                  }
-                  elseif ($row['isSubmitted']&&$row['schoolYearID']==$schoolYearID) {
-                    echo '<td class="text-center" title="Your information has been save."><h3><span class="badge badge-info">Submitted</span></h3></td>';
+
+                  if ($row['isSubmitted']&&$row['schoolYearID']==$schoolYearID) {
+                    echo '<td class="text-center" title="Your information has been save."><h3><span class="badge badge-info">Registered</span></h3></td>';
                     $status = '2';
                   }
                   else{
-                    echo '<td class="text-center" title="Press submit to confirm your registration."><h3><span id="badge'.$ctr.'" class=" badge badge-danger">Un-Submitted</span></h3></td>';
+                    echo '<td class="text-center" title="Press submit to confirm your registration."><h3><span id="badge'.$ctr.'" class=" badge badge-danger">Pending Registration</span></h3></td>';
                     $status = '3';
                   }
 
@@ -178,7 +175,7 @@ require 'includes/navAndSide2.php';
                    echo'       <a class="btn btn-success btn-sm submit " id="submit'.$ctr.'" ctrIdentifier="'.$ctr.'" badgeIdentifier="badge'.$ctr.'" href="#" value="'.$row[5].'">';
                    echo'           <i class="fas fa-check-square">';
                    echo'           </i>';
-                   echo'           Submit';
+                   echo'           Register';
                    echo'       </a>';
                    echo'       <a href="#" class="btn delete btn-sm btn-danger" id="delete'.$ctr.'" rowIdentifier="row'.$ctr.'"  value="'.$row[5].'" >';
                    echo'           <i class="fas fa-trash">';

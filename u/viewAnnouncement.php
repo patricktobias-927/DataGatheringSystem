@@ -38,7 +38,7 @@
     if ($result) {
       if (mysqli_num_rows($result) > 0) {
         if ($row = mysqli_fetch_array ($result)) {
-        	if (date("Y/m/d")<=date_format(date_create($row[4]),"Y/m/d")) {
+        	if (date("Y/m/d")<=date_format(date_create($row[5]),"Y/m/d")) {
                   $announceID   = $row[0];
                   $title        = $row[1];
                   $html         = $row[3];
@@ -47,7 +47,9 @@
                   $haveAccess=1;
 
         	}
+
         	else{
+
         	 $haveAccess=0;
 
         	}

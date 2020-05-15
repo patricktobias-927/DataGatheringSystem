@@ -214,7 +214,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><?php echo ucfirst(strtolower($Lastname) )?>'s information<!--  <?php                   if ($isExported) {                     echo '<span class="status badge badge-success">Exported</span>';                   }                   elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {                     echo '<span class="status badge badge-info">Submitted</span>';                   }                   else{                     echo '<span id="submitBadge" class="status  badge badge-danger">Un-Submitted</span>';                   } ?> --></h1>
+            <h1><?php echo ucfirst(strtolower($Lastname) )?>'s information</h1>
           </div>
           <div class="col-sm-6">
 
@@ -367,7 +367,7 @@
                       <b>LRN: </b><?php echo $LRN ?>
                       <br>
                       <b>User No. :</b> <?php   $userID?><br>
-                      <b>Status:</b> <?php if ($isExported) { echo '<span class=" badge badge-success">Exported</span>'; } elseif ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Submitted</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Un-Submitted</span>';} ?></b>
+                      <b>Status:</b> <?php if ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Registred</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Pending Registration</span>';} ?></b>
                     </div>
                   </div>
 
@@ -501,7 +501,7 @@
                   echo'       <a style="margin-right:10px;" class="btn btn-success submit  float-right" id="submitBTN" href="#" value="'.$studentID.'">';
                   echo'           <i class="fas fa-check-square">';
                   echo'           </i>';
-                  echo'           &nbspSubmit';
+                  echo'           &nbspRegister';
                   echo'       </a>';
                   echo'    <button style="margin-right:10px;" ';
                   echo'    data-toggle="modal" data-target="#addstudentmodal"';

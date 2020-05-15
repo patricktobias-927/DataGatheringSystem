@@ -154,8 +154,8 @@ if (isset($_REQUEST['EditSuccess'])){
 if (isset($_REQUEST['insertsuccess'])) {
   echo '<script>$(".collapse").collapse("show");
   Swal.fire(
-  "Input Save Successfully!",
-  "Review Information then submit to finalize your submission!",
+  "Input Saved Successfully!",
+  "Review Information then register to finalize your submission!",
   "success"
 )</script>';
 }
@@ -163,7 +163,7 @@ if (isset($_REQUEST['editsuccess'])) {
   echo '<script>$(".collapse").collapse("show");
   Swal.fire(
   "Edit Successfully!",
-  "Review Information then submit to finalize your submission!",
+  "Review Information then register to finalize your submission!",
   "success"
 )</script>';
 }

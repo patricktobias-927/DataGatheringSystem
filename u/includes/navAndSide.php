@@ -116,7 +116,7 @@ function treeOpen($page, $navtitle)
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link <?php isActive($page,"adminchangeschoolyear");?>">
+                <a href="viewAllAnnouncement.php" class="nav-link <?php isActive($page,"viewallAnnouncement");?>">
                   <i class="nav-icon fa fa-bullseye"></i>
                   <p>View Announcement</p>
                 </a>

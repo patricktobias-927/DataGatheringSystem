@@ -32,6 +32,60 @@
     header("location: home.php"); 
   }
 
+  if (isset($_GET['page'])) {
+
+  $query = "select * from tbl_announcement where announceID =".$_GET['page'];
+    $result = mysqli_query($conn,  $query);
+    if ($result) {
+      if (mysqli_num_rows($result) > 0) {
+        if ($row = mysqli_fetch_array ($result)) {
+                  $announceID   = $row[0];
+                  $title        = $row[1];
+                  $html         = $row[3];
+                  $subtitle     = $row[2];    
+                  $startDate    = date_format(date_create($row[6]),"M d, Y");
+                  $endDate      = date_format(date_create($row[5]),"M d, Y");
+                  $dateCreated  = date_format(date_create($row[4]),"M d, Y");
+                  $status		= 0;
+                  $haveAccess=1;
+
+                  //For Posting
+                  if (date("Y/m/d")<date_format(date_create($row[6]),"Y/m/d")) 
+                  {
+                  	$status		= 1;
+                  }
+
+                  //Posted
+                  elseif (date("Y/m/d")>=date_format(date_create($row[6]),"Y/m/d")&&date("Y/m/d")<=date_format(date_create($row[5]),"Y/m/d"))
+                  {
+                    $status 	= 2;
+                  }
+
+                  //expired
+                  else{
+                    echo '<td class="text-center" title="Press submit to confirm your registration."><h3><span id="badge'.$ctr.'" class=" badge badge-danger">Expired</span></h3></td>';
+                    $status 	= 0;
+                  }
+
+
+            }
+     	}
+     	else
+     	{
+     		$haveAccess = 0; //not Found
+     	}
+ 	}  
+ 	else
+ 	{
+ 		$haveAccess = 0; //not Found
+ 	}   
+}
+
+else
+{
+	header("location: viewAnnouncement.php");
+}
+
 
 
  // $sql = "sELECT a.* FROM tbl_student AS a WHERE a.studentID = '".$studentID."'";
@@ -41,7 +95,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Create Announcement | PRISM</title>
+  <title>Edit Announcement | PRISM</title>
   <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
   <link rel="stylesheet" href="../include/plugins/summernote/summernote-bs4.css">
@@ -101,7 +155,7 @@ require 'includes/navAndSide.php';
           <div class="card card-outline card-info">
             <div class="card-header">
               <h3 class="card-title">
-                Announcement Creation
+                Edit Announcement
                 <small></small>
               </h3>
               <!-- tools box -->

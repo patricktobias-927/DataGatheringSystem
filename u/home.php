@@ -90,16 +90,16 @@ require 'includes/navAndSide2.php';
   <div class="content">
     <div class="row" style="margin-top: 20px;">
       <div class="col-lg-12" >
-        <div class="col-lg-12 bannerprism" style="">
+        <div class="col-lg-12 bannerprism" style="height: 280px;">
           <br><br>
           <div class="row">
             <div class="col-sm-3" >
-              <img class="logo" src="../assets/imgs/prismLogo.png">
+              <img class="logo" src="../assets/imgs/prismLogo.png" width="220px;" style="padding-left: 20px;" >
             </div>
             <div class="col-sm-6" >
             </div>
-            <div class="col-sm-3 " >
-              <div class="float-right">
+            <div class="col-sm-3 " style="height: 230px;">
+              <div class="float-right" >
                 <a href="studentEntry.php?getstarted" class="btn btn-warning btn-getstarted">
                   Get Started
                 </a>
@@ -110,7 +110,7 @@ require 'includes/navAndSide2.php';
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-lg-5">
         <div class="row">
           <div class="col-lg-12">
             <p class="welcome-lbl">Welcome! <?php echo $prefix." ".$lname; ?></p>
@@ -121,10 +121,10 @@ require 'includes/navAndSide2.php';
             <div class="small-box" style="padding: 50px 0;">
               <div class="inner" style="text-align: center">
               <div class="">
-                <i class="fas fa-check-circle" style="color: #0091BD; font-size: 95px;"></i></br></br></br>
+                <i class="fas fa-check-circle" style="color: #0091BD; font-size: 80px;"></i></br></br></br>
               </div>
                 <h3><?php echo $submitted?><sup style="font-size: 20px"></sup></h3>
-                <p class="lead" style="color: gray; font-size: 21px;">SUBMITTED</p>
+                <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Student </p>
               </div>
 
             </div>
@@ -132,10 +132,10 @@ require 'includes/navAndSide2.php';
           <div class="col-lg-6">
             <div class="small-box" style="padding: 50px 0;">
               <div class="inner" style="text-align: center">
-                <i class="fas fa-inbox" style="color: #FF7A21; font-size: 95px;"></i></br></br></br>
+                <i class="fas fa-inbox" style="color: #FF7A21; font-size: 80px;"></i></br></br></br>
                 <h3><?php echo $draft?><sup style="font-size: 20px"></sup></h3>
 
-                <p class="lead" style="color: gray; font-size: 21px;">DRAFT</p>
+                <p class="lead" style="color: gray; font-size: 18px;">No. of Pending Registration</p>
               </div>
 
 
@@ -143,7 +143,7 @@ require 'includes/navAndSide2.php';
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-7">
           <div class="col-lg-12" style="padding-top: 4px">
             </br></br>
           </div>
