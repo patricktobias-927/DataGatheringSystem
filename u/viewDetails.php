@@ -162,7 +162,7 @@ if (isset($_REQUEST['insertsuccess'])) {
 if (isset($_REQUEST['editsuccess'])) {
   echo '<script>$(".collapse").collapse("show");
   Swal.fire(
-  "Edit Successfully!",
+  "Edit Successful!",
   "Review Information then register to finalize your submission!",
   "success"
 )</script>';

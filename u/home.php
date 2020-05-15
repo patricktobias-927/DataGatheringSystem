@@ -94,11 +94,11 @@ require 'includes/navAndSide2.php';
           <br><br>
           <div class="row">
             <div class="col-sm-3" >
-              <img class="logo" src="../assets/imgs/prismLogo.png" width="220px;" style="padding-left: 20px;" >
+              <img class="logo" src="../assets/imgs/prismLogo.png" width="180px;" style="padding-left: 10px;padding-top: 50px;" >
             </div>
             <div class="col-sm-6" >
             </div>
-            <div class="col-sm-3 " style="height: 230px;">
+            <div class="col-sm-3 " >
               <div class="float-right" >
                 <a href="studentEntry.php?getstarted" class="btn btn-warning btn-getstarted">
                   Get Started

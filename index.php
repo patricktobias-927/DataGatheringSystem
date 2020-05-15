@@ -56,7 +56,7 @@
           <div class="row">
               <div class="col-sm-5">
                 <label for="log-number" class="log-label">Mobile Number</label>
-                <input type="text" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control numberOnly" id="txtf-lrn"  id="log-number">
+                <input placeholder="09xx-xxx-xxxx" type="text" name="number" <?php if(isset($_POST['number'])) echo " value='".$_POST['number']."' ";?> class="form-control numberOnly" id="txtf-lrn"  id="log-number">
               </div>
               <div class="col-sm-5">
                 <label for="input-password" class="log-label">Password</label>
@@ -169,13 +169,20 @@
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
+                  
                    <span class="input-group-text"><i class="fas fa-mobile" style="width: 14px;"> </i></span>
                 </div>
+
                 <input <?php if(isset($_POST['numberSignup']))echo "value='".$_POST['numberSignup']."'"; ?>
-                name="numberSignup"  type="text" class=" form-control" placeholder="Mobile Number" required="true" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                name="numberSignup"  type="text" class=" form-control" placeholder="Mobile Number (09xx-xxx-xxxx)" required="true" data-inputmask='"mask": "0999-999-9999    "' data-mask>
+
               </div>
             </div>
           </div> 
+        </div>
+        <div class="row">
+          <div class="col-lg-10">                <div>
+                </div></div>
         </div>
 
         <div class="row">
