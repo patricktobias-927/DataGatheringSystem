@@ -122,23 +122,25 @@
                                 </div>
                             </div><!-- criteria-->  
                             <div class="row mb-2"> <!-- criteria-->
-                                <div class="col-lg-3">
+                                <div class="col-lg-6">
                                     <div class="icheck-primary d-inline">
                                         <input 
                                         value="submitted" type="radio" id="radioPrimary1" name="r1" checked>
-                                        <label for="radioPrimary1">Submitted
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="icheck-primary d-inline">
-                                        <input
-                                        value="unsubmitted" type="radio" id="radioPrimary3" name="r1">
-                                        <label for="radioPrimary3">UnSubmitted
+                                        <label for="radioPrimary1">Registered Students
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
+                                    <div class="icheck-primary d-inline">
+                                        <input
+                                        value="unsubmitted" type="radio" id="radioPrimary3" name="r1">
+                                        <label for="radioPrimary3" >Pending Registration
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2"> <!-- criteria-->
+                                <div class="col-lg-12">
                                     <label class="unrequired-field">Grade Level  :&nbsp&nbsp</label>
                                     <select name="gradelevel" >
                                     <option value="Nursery1">Nursery 1</option>
@@ -174,7 +176,6 @@
                                     </select>            
                                 </div>
                             </div><!-- criteria-->
-                            <br></br>
                             <div></div>
                             <div class="row mb-8"> <!--Export button-->
                                     <div class="col-lg-6">  
