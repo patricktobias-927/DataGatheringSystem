@@ -147,7 +147,7 @@
                                     <div class="icheck-primary d-inline">
                                         <input 
                                         value="submitted" type="radio" id="radioPrimary1" name="r1" checked>
-                                        <label for="radioPrimary1">Not yet Exported
+                                        <label for="radioPrimary1">Pending Export to Excel
                                         </label>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                     <div class="icheck-primary d-inline">
                                         <input
                                         value="exported" type="radio" id="radioPrimary3" name="r1">
-                                        <label for="radioPrimary3">Exported only
+                                        <label for="radioPrimary3">Exported to Excel
                                         </label>
                                     </div>
                                 </div>
@@ -247,7 +247,7 @@
                                     <div class="icheck-primary d-inline">
                                         <input 
                                         value="submitted" type="radio" id="radioPrimary11" name="r2" checked>
-                                        <label for="radioPrimary11">Not yet Exported
+                                        <label for="radioPrimary11">Pending Export to Excel
                                         </label>
                                     </div>
                                 </div>
@@ -255,7 +255,7 @@
                                     <div class="icheck-primary d-inline">
                                         <input
                                         value="exported" type="radio" id="radioPrimary33" name="r2">
-                                        <label for="radioPrimary33">Exported only
+                                        <label for="radioPrimary33">Exported to Excel
                                         </label>
                                     </div>
                                 </div>
