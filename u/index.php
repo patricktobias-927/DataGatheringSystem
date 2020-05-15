@@ -126,7 +126,7 @@ require 'includes/navAndSide.php';
 							<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 							<thead>
 								<tr>
-									<th style="background-color:#b66dc0;font-size: 80%">Registered</th>
+									<th style="background-color:#b66dc0;font-size: 80%">Registered Students</th>
 								</tr>
 							</thead>
 							<tbody>
