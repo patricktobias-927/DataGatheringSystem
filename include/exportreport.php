@@ -21,12 +21,12 @@ if (isset($_POST["btn-submit"])) {
       $sql = " select s.studentCode,concat(".$quote."'".$quote.",s.LRN) as LRN,s.prefix as gender, s.lastName, s.firstName,
           s.middleName, s.suffix, s.birthdate, s.Address,concat(".$quote."'".$quote.",s.Telno) as Telno,
           concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
-          s.dateTimeSubmitted, i.inComingLevel, i.averageGrade
+          s.datetimePosted, i.inComingLevel, i.averageGrade
           from tbl_student s join tbl_schoolinfo i
           on s.studentID = i.studentID
           where s.isSubmitted = " . $submitted . " and i.inComingLevel = '" . $_POST['gradelevel'] . "'
-          and date(s.dateTimeSubmitted) >= '"  . $_POST['subfrom'] . "'
-          and date(s.dateTimeSubmitted) <= '"  . $_POST['subto'] . "'
+          and date(s.datetimePosted) >= '"  . $_POST['subfrom'] . "'
+          and date(s.datetimePosted) <= '"  . $_POST['subto'] . "'
           and schoolYearID = " . $schoolYearID . " order by s.lastName;";
   
       $resultset = mysqli_query($conn, $sql);

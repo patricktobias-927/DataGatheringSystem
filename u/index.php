@@ -228,14 +228,14 @@ require 'includes/navAndSide.php';
 								  <th>Middle Name</th>
 								  <th>LRN</th>
                   					<th>Date Enrolled</th>
-									<th>Submitted</th>
+									<th>Registered</th>
 									<th>Exported</th>
 							  </tr>
 						  </thead>
 						  <tbody>
 							<?php
 
-								$sql = "SELECT * FROM tbl_student  ORDER BY dateTimeSubmitted ";
+								$sql = "SELECT * FROM tbl_student  ORDER BY datetimeRegistered ";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 
 							while ($row=mysqli_fetch_assoc($result))
@@ -245,7 +245,7 @@ require 'includes/navAndSide.php';
 								<td><?php echo $row['firstName']; ?></td>
 								<td><?php echo $row['middleName']; ?></td>
 								<td><?php echo $row['lrn']; ?></td>
-								<td><?php echo $row['dateTimeSubmitted']; ?></td>
+								<td><?php echo $row['datetimeRegistered']; ?></td>
 								<td><?php
 								if ($row['isSubmitted'] == 1){
 									echo "Yes";
