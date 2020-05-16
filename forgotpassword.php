@@ -284,7 +284,7 @@ if (isset($_POST['passRecov'])) {
   }
   else{
      $_POST['answer']              = mysqli_real_escape_string($conn, stripcslashes($_POST['answer']));
-     $_POST['epass1']               = mysqli_real_escape_string($conn, stripcslashes($_POST['epass1']));
+     $_POST['epass1']              = password_hash(mysqli_real_escape_string($conn, stripcslashes($_POST['epass1'])), PASSWORD_DEFAULT); 
 
             $insertQuery = "update tbl_parentuser
 set

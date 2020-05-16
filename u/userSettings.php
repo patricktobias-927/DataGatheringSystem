@@ -40,6 +40,7 @@
                 $sqID = $row[0];
                   $sqAnswer = $row[4];
                   $userID = $row[2];
+                  $userPass = $row[3];
                 }
 ?>
 
@@ -498,7 +499,8 @@ $(document).ready(function() {
 </script>
 <?php 
 if (isset($_POST['editQuestion'])) {
-  if ($_POST['qpass1'] != $_SESSION['userPass']) {
+  $chkpass = password_verify($_POST['qpass1'], $userPass);
+  if (!$chkpass) {
         $message = "Incorrect Password";
         $title = "Invalid Entry";
         $type = "error";
@@ -524,7 +526,8 @@ where userID =".$_SESSION['userID']."
 }
 
 if (isset($_POST['editPass'])) {
-  if ($_POST['epassO'] != $_SESSION['userPass']) {
+   $chkpass = password_verify($_POST['epassO'], $userPass);
+  if (!$chkpass) {
         $message = "Incorrect Password";
         $title = "Invalid Entry";
         $type = "error";
@@ -545,32 +548,33 @@ if (isset($_POST['editPass'])) {
   else{
             $insertQuery = "update tbl_parentuser
 set
-password = '" . $_POST['epass1'] . "'
+password = '" . password_hash($_POST['epass1'], PASSWORD_DEFAULT) . "'
 where userID =".$_SESSION['userID']."
 
 ";
      
- $_SESSION['userPass']   = $_POST['epass1'];
+ $_SESSION['userPass']   = password_hash($_POST['epass1'], PASSWORD_DEFAULT);
  
             mysqli_query($conn, $insertQuery);
             $message = "Password Changed";
             $title = "Success";
             $type = "success";
-            header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
+            header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message."eto". var_dump(password_verify($_POST['epassO'], $userPass)) );
   }
 
 }
 if (isset($_POST['editThis'])) {
+  $chkpass = password_verify($_POST['pass1'], $userPass);
     if (strlen(cleanThis($_POST['numberSignup'])) < 11) {
         $message = "Mobile number is invalid";
         $title = "Invalid Entry";
         $type = "error";
         header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
-    } elseif ($_POST['pass1'] != $_SESSION['userPass']) {
+    } elseif (!$chkpass) {
         $message = "Incorrect Password";
         $title = "Invalid Entry";
         $type = "error";
-        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message.password_verify($_POST['pass1'], $userPass));
     }
     
     else {
@@ -613,7 +617,6 @@ lname = '" . $_POST['last-name'] . "',
 mobile = '" . $_POST['numberSignup'] . "',
 sex = '$gender',
 email = '" . $_POST['email'] . "',
-password = '" . $_POST['pass1'] . "',
 isEnabled = '1',
 userType = 'P'
 where userID =".$_SESSION['userID']."
@@ -624,7 +627,6 @@ where userID =".$_SESSION['userID']."
  $_SESSION['last-name']=  $_POST['last-name'] ;
  $_SESSION['mobile']     = $_POST['numberSignup'];
  $_SESSION['userEmail']  = $_POST['email'];
- $_SESSION['userPass']   = $_POST['pass1'] ;
  $_SESSION['gender']    = $gender;
  
             mysqli_query($conn, $insertQuery);

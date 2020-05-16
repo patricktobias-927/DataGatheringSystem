@@ -1382,7 +1382,8 @@ Birthplace,
 Address,
 city,
 IsEldest,
-familyPlace
+familyPlace,
+datetimeRegistered
 ) 
 VALUES 
 (
@@ -1398,7 +1399,8 @@ VALUES
 '".$_POST['address'] ."',
 '".$_POST['city'] ."',
 '".$isEldest."',
-'".$_POST['siblings-order']."'
+'".$_POST['siblings-order']."',
+'".$nowtime."'
 
 
 )";      

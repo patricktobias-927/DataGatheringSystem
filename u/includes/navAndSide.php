@@ -104,7 +104,7 @@ function treeOpen($page, $navtitle)
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-bullhorn" aria-hidden="true"></i>
               <p>
-                Announcement
+                Announcements
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -118,7 +118,7 @@ function treeOpen($page, $navtitle)
               <li class="nav-item">
                 <a href="viewAllAnnouncement.php" class="nav-link <?php isActive($page,"viewallAnnouncement");?>">
                   <i class="nav-icon fa fa-bullseye"></i>
-                  <p>View Announcement</p>
+                  <p>View Announcements</p>
                 </a>
               </li>
             </ul>

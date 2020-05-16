@@ -273,7 +273,7 @@ if (isset($_POST["btn-submit"])) {
               
           if ($pass_row = mysqli_fetch_assoc($result)) {
               
-              $chkpass = $_POST['oldpassword'] == $pass_row['password'];
+              $chkpass = $password_verify($_POST['oldpassword'], $pass_row['password']);
               
               if (!$chkpass) {
                   displayMessage("warning", "Wrong Current Password", "Please try again ");

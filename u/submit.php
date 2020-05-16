@@ -40,7 +40,7 @@ if($id > 0){
 
 
     $nowtime = date("Y-m-d H:i:s");
- 	  $query = "update tbl_student set isSubmitted =  '1', studentCode = '".$studentCode."' , dateTimeSubmitted = '".$nowtime."', schoolYearID ='".$schoolYearID."'  WHERE studentID='".$id."'";
+ 	  $query = "update tbl_student set isSubmitted =  '1', studentCode = '".$studentCode."' , datetimePosted = '".$nowtime."', schoolYearID ='".$schoolYearID."'  WHERE studentID='".$id."'";
 	  mysqli_query($conn,$query);
 
   }

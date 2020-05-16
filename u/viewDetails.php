@@ -608,7 +608,8 @@ Birthplace  = '".$_POST['birthplace']."',
 Address  = '".$_POST['address'] ."',
 city  = '".$_POST['city'] ."',
 IsEldest  = '".$isEldest."',
-familyPlace = '".$_POST['siblings-order']."'
+familyPlace = '".$_POST['siblings-order']."',
+datetimeRegistered = '".$nowtime."'
 where studentID = '".$studentID."'";  
 mysqli_query($conn, $insertQuery);
 

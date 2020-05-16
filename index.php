@@ -485,8 +485,10 @@ if (isset($_POST['login'])) {
         if (mysqli_num_rows($result) > 0) {
             
             if ($pass_row = mysqli_fetch_assoc($result)) {
+                //$_POST['password'] == $pass_row['password']
                 
-                $chkpass = $_POST['password'] == $pass_row['password'];
+                $chkpass = password_verify($_POST['password'], $pass_row['password']);
+
                 
                 if (!$chkpass) {
                     displayMessage("warning", "Wrong Password", "Please try again ");
@@ -503,7 +505,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['userEmail']   = $pass_row['email'];
                     $_SESSION['usertype']    = $pass_row['usertype'];
                     $_SESSION['gender']       = $pass_row['sex'];
-                    $_SESSION['userPass']     = $pass_row['password'];
+                    $_SESSION['userPass']     = $_POST['password'];
                     
                     // $timeStamp = date("Y-m-d H:i:s");
                     // $token = generateNumericOTP(6);
@@ -545,6 +547,8 @@ if (isset($_POST['Signup'])) {
     } 
     
     else {
+
+
         
         $_POST['first-name']   = mysqli_real_escape_string($conn, stripcslashes($_POST['first-name']));
         $_POST['last-name']    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-name']));
@@ -553,6 +557,7 @@ if (isset($_POST['Signup'])) {
         $_POST['pass1']        = mysqli_real_escape_string($conn, stripcslashes($_POST['pass1']));
         $_POST['question']     = mysqli_real_escape_string($conn, stripcslashes($_POST['question']));
         $_POST['answer']       = mysqli_real_escape_string($conn, stripcslashes($_POST['answer']));
+        $hashedPassword = password_hash($_POST['pass1'], PASSWORD_DEFAULT);
         if (isset($_POST['r1'])) {
             if ($_POST['r1'] == "male") {
                 $gender = "Male";
@@ -597,7 +602,7 @@ VALUES
 '" . $_POST['numberSignup'] . "',
 '$gender',
 '" . $_POST['email'] . "',
-'" . $_POST['pass1'] . "',
+'" . $hashedPassword . "',
 '1',
 'P',
 '" . $_POST['question'] . "',
