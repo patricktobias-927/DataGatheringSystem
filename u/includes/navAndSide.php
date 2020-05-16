@@ -100,7 +100,7 @@ function treeOpen($page, $navtitle)
             </a>
           </li> -->
  
-          <li class="nav-item has-treeview <?php treeOpen($page,"Announce");?>">
+          <li class="nav-item has-treeview <?php treeOpen($page,"disable");?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-bullhorn" aria-hidden="true"></i>
               <p>
@@ -123,7 +123,7 @@ function treeOpen($page, $navtitle)
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview <?php treeOpen($page,"port");?>">
+          <li class="nav-item has-treeview <?php treeOpen($page,"disable");?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt" aria-hidden="true"></i>
               <p>

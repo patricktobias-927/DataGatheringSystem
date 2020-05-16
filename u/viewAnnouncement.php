@@ -45,6 +45,7 @@
                   $subtitle     = $row[2];    
                   $dateCreated  = date_format(date_create($row[4]),"M d, Y");
                   $haveAccess=1;
+                  $startDate    = date_format(date_create($row[6]),"M d, Y");
 
         	}
 
@@ -104,17 +105,25 @@ if ($haveAccess=='2') {
   require 'includes/4042.php';
 }
 else if($haveAccess=='1'){?>
-	<br>
+	<br><br>
 	<div class="container">
 		<div class="container-fluid">
 			<div class="content">
         <div class="col-lg-12">
-<div class="card card-danger card-outline">
+<div class="card card-dark">
+    <div class="card-header">
+    <h3 class="card-title"><?php echo $title; ?></h3>
+    <div class="card-tools">
+    <button type="button" class="btn btn-tool float-right" data-card-widget="maximize" style="padding-top: 12px;"><i class="fas fa-expand"></i></button>
+    <span class="badge badge-warning float-right">Posted: <?php echo $startDate; ?></span></a>
+
+  </div>
+</div>
               <div class="card-body">
 <form action="" method="post" >
 <br>
 <?php echo html_entity_decode(htmlspecialchars_decode($html));   ?>   
-
+<br>
 </form>
 
 <?php }
