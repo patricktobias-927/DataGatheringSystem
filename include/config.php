@@ -1,5 +1,5 @@
 <?php 
-$database = "dgsdb2";
+$database = "testDB";
 $host = "52.74.3.44";
 $username = "smsuser";
 $password = "smspass";
