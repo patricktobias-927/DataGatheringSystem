@@ -201,9 +201,13 @@
   if (!$hasSibling1 && !$hasSibling2 && !$hasSibling3 && !$hasFather && !$hasMother) {
     $hasFamilyinformation='0';
   }
+
+if ($studentSchoolYearID==0) {
+  $isSchoolYearMatch = false;
+}
+else{
                         $isSchoolYearMatch = $schoolYearID == $studentSchoolYearID;
-
-
+                        }
 
   ?>
 
@@ -367,7 +371,7 @@
                       <b>LRN: </b><?php echo $LRN ?>
                       <br>
                       <b>User No. :</b> <?php   $userID?><br>
-                      <b>Status:</b> <?php if (($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Registred</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Pending Registration</span>';} ?></b>
+                      <b>Status:</b> <?php if ($isSchoolYearMatch&&$isSubmitted) {  echo '<span class=" badge badge-info">Registred</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Pending Registration</span>';} ?></b>
                     </div>
                   </div>
 
@@ -492,7 +496,7 @@
                 <div class="col-12">
             <a href="?page=<?php echo $studentID?>&print" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
                   
-<?php            if(!$isSubmitted||!($isSchoolYearMatch&&$isSubmitted)){
+<?php            if(!($isSchoolYearMatch&&$isSubmitted)){
                   echo'       <a href="#" id="deleteBTN" class="btn delete btn-danger float-right"  value="'.$studentID.'" >';
                   echo'           <i class="fas fa-trash">';
                   echo'           </i>';

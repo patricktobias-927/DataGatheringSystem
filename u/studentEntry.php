@@ -1087,12 +1087,12 @@ Swal.fire({
                 {"studentidx" : x},
             dataType: "html",
             success: function () {
-                $("#"+badge).addClass('badge-info').removeClass('badge-danger').text('Submitted') ;
+                $("#"+badge).addClass('badge-info').removeClass('badge-danger').text('Registered') ;
                 $("#delete"+ctr).delay( 100 ).animate({ opacity: "hide" }, "slow");
                 $("#submit"+ctr).delay( 100 ).animate({ opacity: "hide" }, "slow");
                 $("#view"+ctr).text('View') ;
 
-                swal.fire("Submitted", "It was succesfully stored to the database!", "success");
+                swal.fire("Registered", "It was succesfully stored to the database!", "success");
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 swal.fire("Error submitting!", "Please try again", "error");
@@ -1146,7 +1146,7 @@ $("#hexTextBox").inputFilter(function(value) {
 <?php 
 if (isset($_POST["btn-submit"])) { 
       $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
-      $code=cleanThis($_POST['student-code']);
+      
 
 
 
@@ -1180,7 +1180,7 @@ if (isset($_POST["btn-submit"])) {
         $genderprefix;
         $noLRN=false;
 
-        if (isset($code)&&strlen(trim($code))!=0) {  
+        if (isset($_POST['student-code'])&&strlen(trim($_POST['student-code']))!=0) {  
           $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename  from `tbl_student` where studentCODE = '".$code."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -1235,7 +1235,7 @@ if (isset($_POST["btn-submit"])) {
         }
 
       
-           if (!$isLRNMatch && !$isCodeMatch) {
+           if ((!$isLRNMatch) && (!$isCODEMatch)) {
 
               $isEldest;
               $hasMother;

@@ -43,7 +43,8 @@
             $isSubmitted       = $pass_row['18'];
             $isExported        = $pass_row['19'];
             $city              = $pass_row['20'];
-            $studentSchoolYearID      = $pass_row['2'];
+
+            $studentSchoolYearID = $pass_row[2];
 
 
             
@@ -273,10 +274,10 @@ Swal.fire({
                 $("#deleteBTN").delay( 100 ).animate({ opacity: "hide" }, "slow");
                 $("#btnEdit").delay( 100 ).animate({ opacity: "hide" }, "slow");
                 
-                $("#submitBadge").addClass('badge-info').removeClass('badge-danger').text('Submitted') ;
+                $("#submitBadge").addClass('badge-info').removeClass('badge-danger').text('Registered') ;
 
 
-                swal.fire("Submitted", "It was succesfully stored to the database!", "success");
+                swal.fire("Registered", "It was succesfully stored to the database!", "success");
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 swal.fire("Error submitting!", "Please try again", "error");
@@ -379,6 +380,7 @@ if (isset($_POST["btn-submit"])) {
 
 
 
+
       //bday is in future
        if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
         displayMessage("warning","Birthdate Invalid","Please try again");
@@ -404,7 +406,7 @@ if (isset($_POST["btn-submit"])) {
         $genderprefix;
         $noLRN=false;
 
-        if (isset($code)) {  
+        if (isset($_POST['student-code'])&&strlen(trim($_POST['student-code']))!=0&&(!($studentCode==$_POST['student-code']))) {  
           $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename  from `tbl_student` where studentCODE = '".$code."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -431,7 +433,7 @@ if (isset($_POST["btn-submit"])) {
         }
 
         //check length
-        if (isset($_POST['student-lrn'])&&strlen(trim($_POST['student-lrn']))!=0&&$lrn != $_POST['student-lrn']) {   
+        if (isset($_POST['student-lrn'])&&strlen(trim($_POST['student-lrn']))!=0&&(!($LRN==$_POST['student-lrn']))) {  
           $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename  from `tbl_student` where lrn = '".  $lrn."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -457,9 +459,8 @@ if (isset($_POST["btn-submit"])) {
         else{
           $isLRNMatch=false;
         }
-
       
-           if (!$isLRNMatch && !$isCodeMatch) {
+           if ((!$isLRNMatch) && (!$isCodeMatch)) {
 
               $isEldest;
               $hasMother;
