@@ -13,13 +13,13 @@ if($id > 0){
 
   if($totalrows > 0){
     $getStudentID = mysqli_fetch_assoc($checkRecord);
-  	$sql = "select a.schoolYearID from tbl_schoolyear as a ";
+    $sql = "select a.currentSchoolYear from tbl_settings as a ";
 
     $result = mysqli_query($conn, $sql);
 
     $pass_row = mysqli_fetch_assoc($result);
 
-    $schoolYearID = $pass_row['schoolYearID'];
+    $schoolYearID = $pass_row['currentSchoolYear'];
     
     if (strlen(trim($getStudentID['studentCode']))<=0 ) {
     function genStudCode()

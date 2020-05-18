@@ -258,7 +258,7 @@ require 'assets/scripts.php';
       
                       <div class="row">
                         
-<!--                             <div class="col-lg-4">
+                            <div class="col-lg-4">
                               <div class="form-group" >
                                 <label class="unrequired-field">Student Code</label><br>
                                 <div class="input-group">
@@ -266,7 +266,7 @@ require 'assets/scripts.php';
                                   name="student-code" type="text" class="form-control">
                                  </div>
                                </div>
-                              </div> -->
+                              </div>
       
                             <div class="col-lg-4">
                               <div class="form-group">
@@ -300,53 +300,7 @@ require 'assets/scripts.php';
                               </div> 
                             </div>  
 
-                                                    <div class="col-lg-3">
-      
-                           <div class="form-group">
-                             <label class="unrequired-field">Incoming Level</label>
-                             <select name="inComingLevel" class="form-control select2bs4 ">
-                              <?php 
-                              if (isset($_POST['inComingLevel'])){?>
-                              <option <?php if($_POST['inComingLevel']=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
-                              <option <?php if($_POST['inComingLevel']=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
-                              <option <?php if($_POST['inComingLevel']=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
-                              <option <?php if($_POST['inComingLevel']=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
-                              <option <?php if($_POST['inComingLevel']=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
-
-                             <?php }
-                              else{  ?>
-                              ?>
-                              <option value="Nursery 1">Nursery 1</option>
-                              <option value="Nursery 2">Nursery 2</option>
-                              <option value="Kinder 1">Kinder 1</option>
-                              <option value="Kinder 2">Kinder 2</option>
-                              <option value="Grade 1">Grade 1</option>
-                              <option value="Grade 2">Grade 2</option>
-                              <option value="Grade 3">Grade 3</option>
-                              <option value="Grade 4">Grade 4</option>
-                              <option value="Grade 5">Grade 5</option>
-                              <option value="Grade 6">Grade 6</option>
-                              <option value="Grade 7">Grade 7</option>
-                              <option value="Grade 8">Grade 8</option>
-                              <option value="Grade 9">Grade 9</option>
-                              <option value="Grade 10">Grade 10</option>
-                              <option value="Grade 11">Grade 11</option>
-                              <option value="Grade 12">Grade 12</option>
-                            <?php }?>
-                             </select>
-                           </div>
-                        </div>                    
+                   
       
                       </div> 
       
@@ -452,6 +406,54 @@ require 'assets/scripts.php';
                               name="birthplace" type="text" class="form-control" placeholder="">
                             </div>
                           </div>
+
+                                                    <div class="col-lg-3">
+      
+                           <div class="form-group">
+                             <label class="unrequired-field">Incoming Level</label>
+                             <select name="inComingLevel" class="form-control select2bs4 ">
+                              <?php 
+                              if (isset($_POST['inComingLevel'])){?>
+                              <option <?php if($_POST['inComingLevel']=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
+                              <option <?php if($_POST['inComingLevel']=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
+
+                             <?php }
+                              else{  ?>
+                              ?>
+                              <option value="Nursery 1">Nursery 1</option>
+                              <option value="Nursery 2">Nursery 2</option>
+                              <option value="Kinder 1">Kinder 1</option>
+                              <option value="Kinder 2">Kinder 2</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11">Grade 11</option>
+                              <option value="Grade 12">Grade 12</option>
+                            <?php }?>
+                             </select>
+                           </div>
+                        </div> 
       
                       </div>
                       <br>
@@ -1144,6 +1146,7 @@ $("#hexTextBox").inputFilter(function(value) {
 <?php 
 if (isset($_POST["btn-submit"])) { 
       $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
+      $code=cleanThis($_POST['student-code']);
 
 
 
@@ -1170,14 +1173,14 @@ if (isset($_POST["btn-submit"])) {
       }
       else{
         $lrn=cleanThis($_POST['student-lrn']);
-       // $code=$_POST['student-code'];
+       $code=$_POST['student-code'];
         $isLRNMatch=false;
         $isCodeMatch=false;
         $gender;
         $genderprefix;
         $noLRN=false;
 
-        if (isset($code)) {  
+        if (isset($code)&&strlen(trim($code))!=0) {  
           $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename  from `tbl_student` where studentCODE = '".$code."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -1204,7 +1207,7 @@ if (isset($_POST["btn-submit"])) {
         }
 
         //check length
-        if (isset($_POST['student-lrn'])&&strlen(trim($_POST['student-lrn']))!=0&&$lrn != $_POST['student-lrn']) {  
+        if (isset($_POST['student-lrn'])&&strlen(trim($_POST['student-lrn']))!=0) {  
           $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename  from `tbl_student` where lrn = '".  $lrn."'";
           $result1 = mysqli_query($conn, $sql);
           $rowcount=mysqli_num_rows($result1);
@@ -1337,7 +1340,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['middle-name']));
      $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-name']));
      $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
-     //$_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
+     $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
      $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));
      $_POST['birthdate']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['birthdate']));
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
@@ -1371,6 +1374,7 @@ if (isset($_POST["btn-submit"])) {
 $insertQuery = "Insert into tbl_student
 (
 userID,
+studentCode,
 LRN,
 Prefix,
 Lastname,
@@ -1388,6 +1392,7 @@ datetimeRegistered
 VALUES 
 (
 '".$userID."',
+'".$_POST['student-code']."',
 '".$_POST['student-lrn']."',
 '".$gender."',
 '".$_POST['last-name']."',

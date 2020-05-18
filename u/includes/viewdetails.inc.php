@@ -367,7 +367,7 @@
                       <b>LRN: </b><?php echo $LRN ?>
                       <br>
                       <b>User No. :</b> <?php   $userID?><br>
-                      <b>Status:</b> <?php if ($isSubmitted||($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Registred</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Pending Registration</span>';} ?></b>
+                      <b>Status:</b> <?php if (($isSchoolYearMatch&&$isSubmitted)) {  echo '<span class=" badge badge-info">Registred</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Pending Registration</span>';} ?></b>
                     </div>
                   </div>
 

@@ -397,7 +397,7 @@ if (isset($_POST["btn-submit"])) {
       }
       else{
         $lrn=cleanThis($_POST['student-lrn']);
-       // $code=$_POST['student-code'];
+       $code=$_POST['student-code'];
         $isLRNMatch=false;
         $isCodeMatch=false;
         $gender;
@@ -564,7 +564,7 @@ if (isset($_POST["btn-submit"])) {
      $_POST['middle-name']                  = mysqli_real_escape_string($conn, stripcslashes($_POST['middle-name']));
      $_POST['last-name']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['last-name']));
      $_POST['suffix']                       = mysqli_real_escape_string($conn, stripcslashes($_POST['suffix']));
-     //$_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
+     $_POST['student-code']                 = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
      $_POST['r1']                           = mysqli_real_escape_string($conn, stripcslashes($_POST['r1']));
      $_POST['birthdate']                    = mysqli_real_escape_string($conn, stripcslashes($_POST['birthdate']));
      $_POST['birthplace']                   = mysqli_real_escape_string($conn, stripcslashes($_POST['birthplace']));
@@ -597,6 +597,7 @@ if (isset($_POST["btn-submit"])) {
 
 $insertQuery = "update tbl_student
 set
+studentCode = '".$_POST['student-code'] ."',
 LRN  = '".$_POST['student-lrn']."',
 Prefix  = '".$gender."',
 Lastname  = '".$_POST['last-name']."',

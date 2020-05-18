@@ -16,15 +16,15 @@
       
                       <div class="row">
                         
-<!--                             <div class="col-lg-4">
+                            <div class="col-lg-4">
                               <div class="form-group" >
                                 <label class="unrequired-field">Student Code</label><br>
                                 <div class="input-group">
-                                  <input title="We will fill this up for you" value="<?php echo isset($_POST['student-code']) ? $_POST['student-code'] : '' ?>"
+                                  <input title="We will fill this up for you" value="<?php echo isset($studentCode ) ? $studentCode  : '' ?>"
                                   name="student-code" type="text" class="form-control">
                                  </div>
                                </div>
-                              </div> -->
+                              </div>
       
                             <div class="col-lg-4">
                               <div class="form-group">
