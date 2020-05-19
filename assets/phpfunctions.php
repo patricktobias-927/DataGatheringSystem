@@ -2,12 +2,9 @@
 function displayMessage($type,$title,$message){
   echo "<script>";
     echo "Swal.fire({";
-      echo "position: 'bottom-end',";
       echo "html: '$message',";
       echo "type: '$type',";
       echo "title: '$title',";
-      echo "showConfirmButton: false,";
-      echo "timer: 3400,";
       echo "customClass: 'swal-sm'";
     echo "})";
   echo "</script>";

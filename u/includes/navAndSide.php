@@ -146,7 +146,7 @@ function treeOpen($page, $navtitle)
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview <?php treeOpen($page,"change");?>">
+          <li class="nav-item has-treeview <?php treeOpen($page,"disable");?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cog" aria-hidden="true"></i>
               <p>
@@ -157,13 +157,13 @@ function treeOpen($page, $navtitle)
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="adminchangepass.php" class="nav-link <?php isActive($page,"adminchangepass");?>">
-                  <i class="nav-icon fa fa-cog"></i>
+                  <i class="nav-icon fa fa-lock"></i>
                   <p>Change Password</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="adminchangeschoolyear.php" class="nav-link <?php isActive($page,"adminchangeschoolyear");?>">
-                  <i class="nav-icon fa fa-cog"></i>
+                  <i class="nav-icon fa fa-calendar"></i>
                   <p>Change School Year</p>
                 </a>
               </li>

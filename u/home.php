@@ -117,22 +117,22 @@ require 'includes/navAndSide2.php';
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-6">
-            <div class="small-box" style="padding: 50px 0;">
+          <div class="col-lg-6" >
+            <div class="small-box" style="padding: 50px 0;height:344.3px">
               <div class="inner" style="text-align: center">
               <div class="">
-                <i class="fas fa-check-circle" style="color: #0091BD; font-size: 80px;"></i></br></br></br>
+                <i class="fas fa-check-circle" style="color: #0091BD; font-size: 80px; "></i>
               </div>
                 <h3><?php echo $submitted?><sup style="font-size: 20px"></sup></h3>
-                <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Student </p>
+                <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Student</p>
               </div>
-
+s
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="small-box" style="padding: 50px 0;">
+          <div class="col-lg-6" style="">
+            <div class="small-box" style="padding: 50px 0;height:344.3px">
               <div class="inner" style="text-align: center">
-                <i class="fas fa-inbox" style="color: #FF7A21; font-size: 80px;"></i></br></br></br>
+                <i class="fas fa-inbox" style="color: #FF7A21; font-size: 80px;"></i>
                 <h3><?php echo $draft?><sup style="font-size: 20px"></sup></h3>
 
                 <p class="lead" style="color: gray; font-size: 18px;">No. of Pending Registration</p>

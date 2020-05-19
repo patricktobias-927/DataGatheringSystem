@@ -2,12 +2,9 @@
 function displayMessage($type,$title,$message){
   echo "<script>";
     echo "Swal.fire({";
-      echo "position: 'bottom-end',";
       echo "html: '$message',";
       echo "type: '$type',";
       echo "title: '$title',";
-      echo "showConfirmButton: false,";
-      echo "timer: 2700,";
       echo "customClass: 'swal-sm'";
     echo "})";
   echo "</script>";
@@ -30,15 +27,15 @@ function cleanData($data)
 
 function combineName($fName,$lName,$mName)
 {
-	if ($mName == ' ' || $mName =='') {
-		$combinedName = $lName . ", " . $fName;
-	}
-	else{
-		$mInitial = substr($mName, 0,1);
-		$combinedName = $lName . ", " . $fName .' '. $mInitial . '.';
-	}
+  if ($mName == ' ' || $mName =='') {
+    $combinedName = ucfirst($lName) . ", " . ucfirst($fName);
+  }
+  else{
+    $mInitial = substr($mName, 0,1);
+    $combinedName = ucfirst(strtolower($lName)) . ", " . ucfirst(strtolower($fName)) .' '. ucfirst(strtolower($mInitial)) . '.';
+  }
 
-	return $combinedName;
+  return $combinedName;
 }
 
 function clean($string) {
@@ -62,6 +59,21 @@ function generateNumericOTP($n) {
   
   
     $result = ""; 
+  
+    for ($i = 1; $i <= $n; $i++) { 
+        $result .= substr($generator, (rand()%(strlen($generator))), 1); 
+    } 
+  
+   
+    return $result; 
+} 
+
+function generateStudentCode() { 
+      
+    $generator = "1357902468"; 
+    $n = rand(1,7);
+  
+    $result = "Student-"; 
   
     for ($i = 1; $i <= $n; $i++) { 
         $result .= substr($generator, (rand()%(strlen($generator))), 1); 
