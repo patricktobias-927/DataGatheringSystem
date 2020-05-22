@@ -126,7 +126,6 @@ require 'includes/navAndSide2.php';
                 <h3><?php echo $submitted?><sup style="font-size: 20px"></sup></h3>
                 <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Student</p>
               </div>
-s
             </div>
           </div>
           <div class="col-lg-6" style="">
@@ -144,7 +143,7 @@ s
         </div>
       </div>
       <div class="col-lg-7">
-          <div class="col-lg-12" style="padding-top: 4px">
+          <div class="col-lg-12" style="padding-top: 9px">
             </br></br>
           </div>
 <div class="card addshadow">
@@ -180,10 +179,10 @@ s
                   echo '<img src="dist/img/default-150x150.png" alt="" class="img-size-50">';
                   echo '</div>';
                   echo '<div class="product-info">';
-                  echo '<a href="viewAnnouncement.php?Aid='.$announceID.'" class="product-title">'.$title;
-                  echo '<span class="badge badge-warning float-right">'.$dateCreated.'</span></a>';
-                  echo '<span class="product-description">'.$subtitle;
-                  echo '</span>';
+                  echo '<a href="viewAnnouncement.php?Aid='.$announceID.'" class="product-title" ><span style="font-size:21px;">'.$title;
+                  echo '</span><span class="badge badge-warning float-right">'.$dateCreated.'</span></a>';
+                  echo '<span class="product-description "><span style="font-size:21px;">'.$subtitle;
+                  echo '</span></span>';
                   echo '</div>';
                   echo '</li>';
 

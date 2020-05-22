@@ -329,7 +329,7 @@
                             <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                           </div>
                          <input value="<?php if(isset($mobile)){echo$mobile;}?>"
-                         name="contact-person-mobile" required type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                         name="contact-person-mobile" required type="text" class="form-control" data-inputmask='"mask": "0\\999-999-9999    "' data-mask>
                         </div>
                       </div>  
                      </div> 
@@ -463,7 +463,7 @@
                                     <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                                   </div>
                                  <input value="<?php if(isset($guardian_mobileNumber)){echo$guardian_mobileNumber;}?>" 
-                                 name="guardian-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                                 name="guardian-mobile" type="text" class="form-control" data-inputmask='"mask": "0\\999-999-9999    "' data-mask>
                                 </div>
                               </div>  
                             </div> 

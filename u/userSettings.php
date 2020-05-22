@@ -574,8 +574,20 @@ if (isset($_POST['editThis'])) {
         $message = "Incorrect Password";
         $title = "Invalid Entry";
         $type = "error";
-        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message.password_verify($_POST['pass1'], $userPass));
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
     }
+    elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $message = "Email is invalid";
+        $title = "Invalid Entry";
+        $type = "error";
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
+    }
+    elseif (strlen(strtok($_POST['email'], '@'))<7) {
+        $message = "Email is invalid";
+        $title = "Invalid Entry";
+        $type = "error";
+        header('Location: userSettings.php?title='.$title.'&type='.$type.'&message='.$message);
+    } 
     
     else {
         $notEdited = false;

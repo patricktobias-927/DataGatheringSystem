@@ -10,7 +10,7 @@
 	color: #800000 ;
 }
 .welcome-lbl{
-	font-size: 16px;
+	font-size: 21px;
 	letter-spacing: 1px;
 	padding-top: 10px;
 	padding-bottom: -5px;
@@ -40,7 +40,7 @@
 
 }
 .card-overflow{
-  height:292.5px;
+  height:295.5px;
   overflow-y: scroll;
 }
 .addshadow{
@@ -59,3 +59,9 @@
     width: 6px;
     background-color: #F5F5F5;
 } 
+.product-title2{
+  font-style: 21;
+}
+.product-description2{
+  font-style: 21;
+}

@@ -78,7 +78,6 @@
   $userEmail = $_SESSION['userEmail'];
    
 
-
 ?>
 
 <html lang="en">
@@ -275,7 +274,7 @@ Swal.fire({
                 $("#deleteBTN").delay( 100 ).animate({ opacity: "hide" }, "slow");
                 $("#btnEdit").delay( 100 ).animate({ opacity: "hide" }, "slow");
                 
-                $("#submitBadge").addClass('badge-info').removeClass('badge-danger').text('Registered') ;
+                $("#submitBadge").addClass('badge-info').removeClass('badge-danger').text('Registered').prop('title', 'Your information has been save.');  ;
 
 
                 swal.fire("Registered", "It was succesfully stored to the database!", "success");
@@ -377,18 +376,19 @@ $("#hexTextBox").inputFilter(function(value) {
 <?php 
 require 'assets/scripts.php';
 if (isset($_POST["btn-submit"])) { 
+  $LRNName;
+$CODEName;
+
+      $_POST['student-code']  = mysqli_real_escape_string($conn, stripcslashes($_POST['student-code']));
+      $code=$_POST['student-code'];
+      $haveCode; 
+      $haveCode = isset($_POST['student-code'])&&strlen(trim($_POST['student-code']))>0;  
+
+      $_POST['student-lrn'] = mysqli_real_escape_string($conn, stripcslashes(cleanThis($_POST['student-lrn'])));
       $_POST['student-lrn'] = cleanThis($_POST['student-lrn']);
-      $iscodeChange; 
-      $islrnChange;
-    
-      $iscodeChange = trim($studentCode)===trim($_POST['student-code']);
-      $islrnChange = trim($LRN)==trim($_POST['student-lrn']);
-
-
-
-
-
-
+      $lrn=$_POST['student-lrn'];
+      $haveLRN;
+      $haveLRN  = isset($_POST['student-lrn '])&&strlen(trim(cleanThis($_POST['student-lrn '])))>0;
 
       //bday is in future
        if (substr($_POST['birthdate'],6)>date('Y') && $_POST['birthdate']!="" && $_POST['birthdate']!=" ") {
@@ -406,66 +406,63 @@ if (isset($_POST["btn-submit"])) {
         displayMessage("warning","Invalid Mobile Number","Contact Person Mobile Number");
         echo "<script>$('#addstudentmodal').modal('show');  </script>";
       }
-      else{
-        $lrn=cleanThis($_POST['student-lrn']);
-       $code=$_POST['student-code'];
-        $isLRNMatch=false;
-        $isCodeMatch=false;
-        $gender;
-        $genderprefix;
-        $noLRN=false;
 
-        if (isset($_POST['student-code'])&&strlen(trim($_POST['student-code']))!=0) {  
-          if ($iscodeChange) {
-            $isCODEMatch=false;
-          }
-          else{
-            $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename  from `tbl_student` where studentCODE = '".$code."'";
+
+
+      if ($haveCode) {  
+
+            $sql = "select studentCODE as matchedCODE, Lastname, Firstname, Middlename ,studentCode,studentID from `tbl_student` where studentCODE = '".$code."'";
             $result1 = mysqli_query($conn, $sql);
             $rowcount=mysqli_num_rows($result1);
-            //check if theres a result
+
             if ($result1) {
               $query1 = mysqli_fetch_assoc($result1);
-              
+
               if ($rowcount>0) {
-              $CODEName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
-              $isCODEMatch=true;
-              $message= "There is existing record <br> CODE:".$code."<br> Name: ".$CODEName;
-              displayMessage("error","Duplicate Entry",$message);
-              echo "<script>$('#addstudentmodal').modal('show');  </script>";
-              }
-        
+                if ($query1['studentID']==$studentID&&$rowcount<2) {
+                  $isCODEMatch=false;
+                }
+                else{
+                  $CODEName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
+                  $isCODEMatch=true;
+
+                }
+              } 
               else{
                 $isCODEMatch=false;
-                  }
-              }
-          }
 
+              }
+            }
+            else{
+              $isCODEMatch=false;
+            }
         }
-        else{
+        else
+        {
           $isCODEMatch=false;
         }
 
-        //check length
-        if (isset($_POST['student-lrn'])&&strlen(trim($_POST['student-lrn']))!=0) {  
-          if ($islrnChange) {
-            $isLRNMatch=false;
-          }
-          else{
-            $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename  from `tbl_student` where lrn = '".  $LRN."'";
+
+
+        if ($haveLRN) {  
+
+            $sql = "select lrn as matchedLRN, Lastname, Firstname, Middlename,studentID  from `tbl_student` where lrn = '".  $LRN."'";
             $result1 = mysqli_query($conn, $sql);
             $rowcount=mysqli_num_rows($result1);
-            //check if theres a result
+
             if ($result1) {
               $query1 = mysqli_fetch_assoc($result1);
               
               if ($rowcount>0) {
-                echo '<script>console.log("duplicate");</script>';
-              $LRNName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
-              $isLRNMatch=true;
-              $message=var_dump($islrnChange). "There is existing record <br> LRN:".$LRN."<br> Name: ".$LRNName;
-              displayMessage("error","Duplicate Entry",$message);
-              echo "<script>$('#addstudentmodal').modal('show');  </script>";
+                if ($query1['studentID']==$studentID&&$rowcount<2) {
+                  $isLRNMatch=false;
+                }
+
+                else{
+                $LRNName = combineName($query1['Firstname'],$query1['Lastname'],$query1['Middlename']);
+                $isLRNMatch=true;
+
+                }
 
               }
         
@@ -473,15 +470,29 @@ if (isset($_POST["btn-submit"])) {
                 $isLRNMatch=false;
               }
             }
-          }
 
         }
-        else{
+        else
+        {
           $isLRNMatch=false;
         }
-      
-           if ((!$isLRNMatch) && (!$isCodeMatch)) {
 
+      if ($isLRNMatch) {
+                $message="There is existing record <br> LRN:".$_POST['student-lrn']."<br> Name: ".$LRNName;
+                displayMessage("error","Duplicate Entry",$message);
+                echo "<script>$('#addstudentmodal').modal('show');  </script>";
+      }
+
+      elseif ($isCODEMatch) {
+                  $message= "There is existing record <br> CODE:".$code."<br> Name: ".$CODEName;
+                  displayMessage("error","Duplicate Entry",$message);
+                  echo "<script>$('#addstudentmodal').modal('show');  </script>";
+
+      }
+
+
+
+      else{
               $isEldest;
               $hasMother;
               $hasFather;
@@ -787,18 +798,6 @@ VALUES
  
 mysqli_query($conn, $insertQuery2);
 }
-// $hasSibling1='1';
-// $sibling1_siblingID
-// $sibling1_fullName 
-// $sibling1_level    
-// $hasSibling2='1';
-// $sibling2_siblingID
-// $sibling2_fullName 
-// $sibling2_level    
-// $hasSibling3='1';
-// $sibling3_siblingID
-// $sibling3_fullName 
-// $sibling3_level   
 
 if (isset($sibling1_siblingID ) && strlen(trim($sibling1_siblingID)) >0) {
  $insertQuery2 = "Update tbl_siblings
@@ -891,11 +890,13 @@ VALUES
 mysqli_query($conn, $insertQuery2);
 }
 
- //header('Location: viewDetails.php?editsuccess&page='.$studentID);
 
-   }
+ header('Location: viewDetails.php?editsuccess&page='.$studentID);
+
   }
+
+
             
-}
+}//button-submit
 
 ?>

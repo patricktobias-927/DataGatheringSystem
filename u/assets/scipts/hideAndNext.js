@@ -106,6 +106,9 @@ function nxtCont() {
 	}
 
 	var x = $.trim($('input[name ="contact-person-phone"]').val());
+
+	var email = $('input[name ="contact-person-email"]').val();
+	var emailUser= email.substr(0, email.indexOf('@')); 
 	x = x.replace(/_/g, "");
 	if ( x.length > 12) {
   		$('input[name ="contact-person-phone"]').addClass("is-valid").removeClass("is-invalid");
@@ -121,6 +124,12 @@ function nxtCont() {
 	if ($.trim($('input[name ="contact-person-email"]').val()).length = 0) {
 		$('input[name ="contact-person-email"]').addClass("is-invalid").removeClass("is-valid");
   		$('input[name ="contact-person-email"]').attr('title', "This Field Is Required");
+  		$('input[name ="contact-person-email"]').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+  		noError2 = false;
+	}
+	else if (emailUser.length < 6){
+		$('input[name ="contact-person-email"]').addClass("is-invalid").removeClass("is-valid");
+  		$('input[name ="contact-person-email"]').attr('title', "Your Email Username is too short");
   		$('input[name ="contact-person-email"]').fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
   		noError2 = false;
 	}

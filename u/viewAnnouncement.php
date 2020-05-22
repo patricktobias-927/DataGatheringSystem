@@ -73,6 +73,33 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Announcement | PRIMS</title>
   <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
+  <style type="text/css">
+    #myBtn {
+      border-radius: 50%;
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: grey; /* Set a background color */
+  color: black; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding-top: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 18px; /* Increase font size */
+  zoom: 1;
+  filter: alpha(opacity=75);
+  opacity: 0.75;
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+  </style>
 
   <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
   <style type="text/css">
@@ -112,10 +139,10 @@ else if($haveAccess=='1'){?>
         <div class="col-lg-12">
 <div class="card card-dark">
     <div class="card-header">
-    <h3 class="card-title"><?php echo $title; ?></h3>
-    <div class="card-tools">
-    <button type="button" class="btn btn-tool float-right" data-card-widget="maximize" style="padding-top: 12px;"><i class="fas fa-expand"></i></button>
-    <span class="badge badge-warning float-right">Posted: <?php echo $startDate; ?></span></a>
+    <span class="card-title"><span style="font-size: 31px;"><?php echo $title; ?></span></span>
+    <div class="card-tools" style="padding-top: 6.5px;">
+    <button type="button" class="btn btn-tool float-right" data-card-widget="maximize" style="padding-top: 12px; font-size: 21px;"><i class="fas fa-expand"></i></button>
+    <span class="badge badge-warning float-right" style="font-size: 21px;">Posted: <?php echo $startDate; ?></span></a>
 
   </div>
 </div>
@@ -149,5 +176,28 @@ else if ($haveAccess=='0'){
 require 'assets/scripts.php';
 
 ?>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><h3><span class="fa fa-arrow-up"></span></h3></button>
+<script type="text/javascript">
+  //Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+</script>
 </body>
 </html>

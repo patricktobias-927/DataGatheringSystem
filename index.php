@@ -14,6 +14,8 @@
     session_start();
     ob_start();
 
+
+
   ?>
 
 
@@ -174,7 +176,7 @@
                 </div>
 
                 <input <?php if(isset($_POST['numberSignup']))echo "value='".$_POST['numberSignup']."'"; ?>
-                name="numberSignup"  type="text" class=" form-control" placeholder="Mobile Number (09xx-xxx-xxxx)" required="true" data-inputmask='"mask": "0999-999-9999    "' data-mask>
+                name="numberSignup"  type="text" class=" form-control" placeholder="Mobile Number (09xx-xxx-xxxx)" required="true" data-inputmask='"mask": "0\\999-999-9999    "' data-mask>
 
               </div>
             </div>
@@ -392,16 +394,17 @@ function valCheck(form) {
     $(form.question).addClass("is-invalid").removeClass("is-valid");
     $(form.question).attr('title', "Please select a question");
     $(form.question).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-    return false;
+    event.preventDefault();
   }
   if (answer.length == 0 ) {
     $(form.answer).addClass("is-invalid").removeClass("is-valid");
     $(form.answer).attr('title', "Please answer a question");
     $(form.answer).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
-    return false;
+    event.preventDefault();
   }
   else{
-    return true;
+    return confirm('Are you sure?')
+    
   }
 
 }
@@ -544,7 +547,12 @@ if (isset($_POST['Signup'])) {
     } elseif ($_POST['pass1'] != $_POST['pass2']) {
         $message = "Password mismatch";
         displayMessage("error", "Invalid Entry", $message);
+    }
+    elseif (strlen(strtok($_POST['email'], '@'))<7) {
+        $message = "Invalid Email";
+        displayMessage("error", "Invalid Entry", $message);
     } 
+    
     
     else {
 

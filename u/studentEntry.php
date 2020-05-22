@@ -134,17 +134,18 @@ require 'includes/navAndSide2.php';
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {
                 while($row = mysqli_fetch_array($result1)){
-                  $status='';
+                  $status='';$haveStudentCode='';
           echo"<tr class='tRow' id='row".$ctr."'>";
                   echo"<td><h5>";
                     echo ucwords(combineName($row[0],$row[1],$row[2]));
                   echo"</h5></td>";
-                  echo"<td><h6>";
+                  echo"<td id='studCode".$ctr."'><h6 >";
                     echo $row[3];
                   echo"</h6></td>";
                   echo"<td><h6>";
                     echo $row[4];
                   echo"</h6></td>";
+
 
                   if ($row['isSubmitted']&&$row['schoolYearID']==$schoolYearID) {
                     echo '<td class="text-center" title="Your information has been save."><h3><span class="badge badge-info">Registered</span></h3></td>';
@@ -575,7 +576,7 @@ require 'assets/scripts.php';
                             <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                           </div>
                          <input value="<?php echo isset($_POST['contact-person-mobile']) ? $_POST['contact-person-mobile'] : '' ?>"
-                         name="contact-person-mobile" required type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                         name="contact-person-mobile" required type="text" class="form-control" data-inputmask='"mask": "0\\999-999-9999    "' data-mask>
                         </div>
                       </div>  
                      </div> 
@@ -709,7 +710,7 @@ require 'assets/scripts.php';
                                     <span class="input-group-text"><i class="fas fa-mobile"></i></span>
                                   </div>
                                  <input value="<?php echo isset($_POST['guardian-mobile']) ? $_POST['guardian-mobile'] : '' ?>" 
-                                 name="guardian-mobile" type="text" class="form-control" data-inputmask='"mask": "9999-999-9999    "' data-mask>
+                                 name="guardian-mobile" type="text" class="form-control" data-inputmask='"mask": "0\\999-999-9999    "' data-mask>
                                 </div>
                               </div>  
                             </div> 
@@ -1057,6 +1058,7 @@ $(document).on("click", ".submit", function() {
     var x = $(this).attr('value');
     var badge = $(this).attr('badgeIdentifier');
     var ctr = $(this).attr('ctrIdentifier');
+    var hasSC = $(this).attr('hasStudentCode');
 
 Swal.fire({
   title: 'Are you sure?',
@@ -1080,17 +1082,18 @@ Swal.fire({
                 }
             })
         $.ajax({
-            url: "submit.php",
+            url: "submit2.php",
             type: "POST",
             cache: false,
             "data": 
                 {"studentidx" : x},
             dataType: "html",
-            success: function () {
-                $("#"+badge).addClass('badge-info').removeClass('badge-danger').text('Registered') ;
+            success: function (studentCode2) {
+                $("#"+badge).addClass('badge-info').removeClass('badge-danger').text('Registered').prop('title', 'Your information has been save.'); 
                 $("#delete"+ctr).delay( 100 ).animate({ opacity: "hide" }, "slow");
                 $("#submit"+ctr).delay( 100 ).animate({ opacity: "hide" }, "slow");
                 $("#view"+ctr).text('View') ;
+                $("#studCode"+ctr).html(studentCode2) ;
 
                 swal.fire("Registered", "It was succesfully stored to the database!", "success");
             },
