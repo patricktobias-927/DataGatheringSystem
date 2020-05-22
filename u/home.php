@@ -148,7 +148,7 @@ require 'includes/navAndSide2.php';
           </div>
 <div class="card addshadow">
               <div class="card-header">
-                <h3 class="card-title">Announcements</h3>
+                <h2 class="card-title" style="font-size: 21px;">Announcements</h2>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -179,9 +179,9 @@ require 'includes/navAndSide2.php';
                   echo '<img src="dist/img/default-150x150.png" alt="" class="img-size-50">';
                   echo '</div>';
                   echo '<div class="product-info">';
-                  echo '<a href="viewAnnouncement.php?Aid='.$announceID.'" class="product-title" ><span style="font-size:21px;">'.$title;
+                  echo '<a href="viewAnnouncement.php?Aid='.$announceID.'" class="product-title" ><span style="font-size:18px;">'.$title;
                   echo '</span><span class="badge badge-warning float-right">'.$dateCreated.'</span></a>';
-                  echo '<span class="product-description "><span style="font-size:21px;">'.$subtitle;
+                  echo '<span class="product-description "><span style="font-size:18px;">'.$subtitle;
                   echo '</span></span>';
                   echo '</div>';
                   echo '</li>';

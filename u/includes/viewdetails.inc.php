@@ -356,21 +356,21 @@ else{
                 <div class="col-6">
 
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-7">
                       <div class="row" >
                         <div class="col-12 col-lg-10">
-                  <img  src="../assets/imgs/PrismLogoWhite.png" width="100%;" height="140px">
+                  <img  src="../assets/imgs/prismLogo.png" style="width: 150px" class="float-right">
   </div>  
                       </div>
                     </div>
                       
-                    <div class="col-4 col-sm-4">
+                    <div class="col-5 col-sm-5" style="">
 
                       <b>Student Code: <?php echo $studentCode ?>
                       <br>
                       <b>LRN: </b><?php echo $LRN ?>
                       <br>
-                      <b>User No. :</b> <?php   $userID?><br>
+                      <b>User No. :</b> <?php echo  $userID?><br>
                       <b>Status:</b> <?php if ($isSchoolYearMatch&&$isSubmitted) {  echo '<span class=" badge badge-info">Registred</span>'; } else{ echo '<span id="submitBadge" class="  badge badge-danger">Pending Registration</span>';} ?></b>
                     </div>
                   </div>

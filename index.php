@@ -291,7 +291,7 @@
             <div class="icheck-primary">
               <input name=icheckbox type="checkbox" id="remember" required <?php if(isset($_POST['remember'])){echo " checked";} ?>>
               <label for="remember" class='lbl-datapolicy' style="font-family: sans-serif; font-weight: normal;">
-                I acknowledge that I have read and understood PPH Inc. privacy notice and gives consent that the personal data I provided will be collected, stored, used, and processed for the purpose of enrollment
+                I acknowledge that I have read and understood PPH Inc. privacy notice and gives consent that the personal data I provided will be collected, stored, used, and processed for the purpose of enrollment.
               </label>
             </div>
           </div>
@@ -404,7 +404,7 @@ function valCheck(form) {
   }
   else{
     return confirm('Are you sure?')
-    
+
   }
 
 }

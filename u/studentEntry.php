@@ -1143,6 +1143,11 @@ $(".textOnly2").inputFilter(function(value) {
   return /^[a-z-' '-\.]*$/i.test(value); });
 $("#hexTextBox").inputFilter(function(value) {
   return /^[0-9a-f]*$/i.test(value); });
+
+$('form input').on('keypress', function(e) {
+    return e.which !== 13;
+});
+
 </script>
 </html>
 
