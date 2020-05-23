@@ -124,7 +124,7 @@
                             <div class="row mb-2"> <!-- criteria-->
                                 <div class="col-lg-6">
                                     <div class="icheck-primary d-inline">
-                                        <input 
+                                        <input onclick="ChangeFileNametoReg()"
                                         value="submitted" type="radio" id="radioPrimary1" name="r1" checked>
                                         <label for="radioPrimary1">Registered Students
                                         </label>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="icheck-primary d-inline">
-                                        <input
+                                        <input  onclick="ChangeFileNametoPending()"
                                         value="unsubmitted" type="radio" id="radioPrimary3" name="r1">
                                         <label for="radioPrimary3" >Pending Registration
                                         </label>
@@ -142,7 +142,7 @@
                             <div class="row mb-2"> <!-- criteria-->
                                 <div class="col-lg-12">
                                     <label class="unrequired-field">Grade Level  :&nbsp&nbsp</label>
-                                    <select name="gradelevel" >
+                                    <select name="gradelevel" id="gradelevel" onchange="ChangeFileNametoReg()">
                                     <option value="Nursery 1">Nursery 1</option>
                                     <option value="Nursery 2">Nursery 2</option>
                                     <option value="Kinder 1">Kinder 1</option>
@@ -181,8 +181,8 @@
                                     <div class="col-lg-6">  
                                         <div class="input-group">
                                         <label class="unrequired-field">File Name  :&nbsp&nbsp</label>
-                                        <input title="We will fill this up for you" value="<?php echo "Report_".date('Ymd')  ?>"
-                                        name="filenameinfo" value="RegisteredStudentsInfo" type="text" class="form-control">
+                                        <input title="We will fill this up for you" value="<?php echo "RegisteredStudents_".date('Ymd')  ?>"
+                                        id="filenameinfo" name="filenameinfo" value="RegisteredStudentsInfo" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-1"> 
@@ -229,6 +229,23 @@
 
        
         $("#date").mask("99/99/9999");
+
+        function ChangeFileNametoReg(){
+            var gradeLevel=document.getElementById('gradelevel').value;
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filenameinfo").prop("value", "RegisteredStudents_" + gradeLevel + "_ " + FinalDateStr );
+        }
+        function ChangeFileNametoPending(){
+            var gradeLevel=document.getElementById('gradelevel').value;
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filenameinfo").prop("value", "PendingRegistration_" + gradeLevel + "_ " + FinalDateStr );
+        }
     </script>
 
 

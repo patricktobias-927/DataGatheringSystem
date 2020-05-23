@@ -137,7 +137,7 @@
                             <div class="row mb-4"> <!-- criteria-->
                                 <div class="col-lg-3">
                                     <div class="icheck-primary d-inline">
-                                        <input 
+                                        <input onclick="ChangeFileNametoAll()"
                                         value="all" type="radio" id="radioPrimary2" name="r1" >
                                         <label for="radioPrimary2">All Records
                                         </label>
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="icheck-primary d-inline">
-                                        <input 
+                                        <input onclick="ChangeFileNametoPending()"
                                         value="submitted" type="radio" id="radioPrimary1" name="r1" checked>
                                         <label for="radioPrimary1">Pending Export to Excel
                                         </label>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="icheck-primary d-inline">
-                                        <input
+                                        <input onclick="ChangeFileNametoExported()"
                                         value="exported" type="radio" id="radioPrimary3" name="r1">
                                         <label for="radioPrimary3">Exported to Excel
                                         </label>
@@ -167,8 +167,8 @@
                                 <div class="col-lg-6">
                                     <label class="unrequired-field">File Name:</label><br>
                                     <div class="input-group">
-                                    <input title="We will fill this up for you" value="<?php echo "RegisteredStudents_".date('Ymd')  ?>"
-                                    name="filename" value="RegisteredStudents" type="text" class="form-control">
+                                    <input title="We will fill this up for you" value="<?php echo "General_PendingExport_".date('Ymd')  ?>"
+                                    id="filename" name="filename" value="RegisteredStudents" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -237,7 +237,7 @@
                             <div class="row mb-4"> <!-- criteria-->
                                 <div class="col-lg-3">
                                     <div class="icheck-primary d-inline">
-                                        <input 
+                                        <input onclick="ChangeFileNametoDetAll()"
                                         value="all" type="radio" id="radioPrimary22" name="r2" >
                                         <label for="radioPrimary22">All Records
                                         </label>
@@ -245,7 +245,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="icheck-primary d-inline">
-                                        <input 
+                                        <input onclick="ChangeFileNametoDetPending()"
                                         value="submitted" type="radio" id="radioPrimary11" name="r2" checked>
                                         <label for="radioPrimary11">Pending Export to Excel
                                         </label>
@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="icheck-primary d-inline">
-                                        <input
+                                        <input onclick="ChangeFileNametoDetExported()"
                                         value="exported" type="radio" id="radioPrimary33" name="r2">
                                         <label for="radioPrimary33">Exported to Excel
                                         </label>
@@ -267,8 +267,8 @@
                                 <div class="col-lg-6">
                                     <label class="unrequired-field">File Name:</label><br>
                                     <div class="input-group">
-                                    <input title="We will fill this up for you" value="<?php echo "RegisteredStudentsInfo_".date('Ymd')  ?>"
-                                    name="filenameinfo" value="RegisteredStudentsInfo" type="text" class="form-control">
+                                    <input title="We will fill this up for you" value="<?php echo "Details_PendingExport_".date('Ymd')  ?>"
+                                    id="filenameinfo" name="filenameinfo" value="RegisteredStudentsInfo" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
@@ -333,6 +333,48 @@
             }
         }
 
+        function ChangeFileNametoAll(){
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filename").prop("value", "General_ALLStudents_"  + FinalDateStr );
+        }
+        function ChangeFileNametoPending(){
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filename").prop("value", "General_PendingExport_"  + FinalDateStr );
+        }
+        function ChangeFileNametoExported(){
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filename").prop("value", "General_Exported_"  + FinalDateStr );
+        }
+        function ChangeFileNametoDetAll(){
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filenameinfo").prop("value", "Details_ALLStudents_"  + FinalDateStr );
+        }
+        function ChangeFileNametoDetPending(){
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filenameinfo").prop("value", "Details_PendingExport_"  + FinalDateStr );
+        }
+        function ChangeFileNametoDetExported(){
+            var today = new Date();
+            var FinalDateStr = String(today.getMonth() + 1).padStart(2, '0') + 
+                                String(today.getDate()).padStart(2, '0') + 
+                                today.getFullYear();
+            $("#filenameinfo").prop("value", "Details_Exported_"  + FinalDateStr );
+        }
     </script>
 
     <?php

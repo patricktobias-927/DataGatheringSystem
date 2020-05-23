@@ -104,7 +104,7 @@ require 'includes/navAndSide.php';
 								 font-size: 150%;font-weight:bold;">	
 							<thead>
 								<tr>
-									<th style="background-color:#00FF00;font-size: 60%">Masterlist</th>
+									<th style="background-color:#DA70D6;font-size: 60%">Masterlist</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -130,7 +130,7 @@ require 'includes/navAndSide.php';
 								 font-size: 150%;font-weight:bold;">	
 							<thead>
 								<tr>
-									<th style="background-color:#1e73b0;font-size: 60%">Pending Registration</th>
+									<th style="background-color:#FFFF66;font-size: 60%">Pending Registration</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -155,7 +155,7 @@ require 'includes/navAndSide.php';
 							<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 							<thead>
 								<tr>
-									<th style="background-color:#b66dc0;font-size: 60%">Registered Students</th>
+									<th style="background-color:#7FFF00;font-size: 60%">Registered Students</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -180,7 +180,7 @@ require 'includes/navAndSide.php';
               			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 						  <thead>
 							  <tr>
-								  <th style="background-color:#ff6c7f;font-size: 60%">Exported to Excel</th>
+								  <th style="background-color:#00BFFF;font-size: 60%">Exported to Excel</th>
 							  </tr>
 						  </thead>
 						  <tbody>
@@ -205,7 +205,7 @@ require 'includes/navAndSide.php';
               			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 						  <thead>
 							  <tr>
-								  <th style="background-color:#ffaf19;font-size: 60%">Pending Export </th>
+								  <th style="background-color: #FF0000;font-size: 60%">Pending Export </th>
 							  </tr>
 						  </thead>
 						  <tbody>
