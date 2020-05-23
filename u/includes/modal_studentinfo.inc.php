@@ -57,53 +57,7 @@
       
                               </div> 
                             </div>  
-                                                    <div class="col-lg-3">
-      
-                           <div class="form-group">
-                             <label class="unrequired-field">Incoming Level</label>
-                             <select name="inComingLevel" class="form-control select2bs4 ">
-                              <?php 
-                              if (isset($levelCompleted)){?>
-                              <option <?php if($levelCompleted=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
-                              <option <?php if($levelCompleted=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
-                              <option <?php if($levelCompleted=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
-                              <option <?php if($levelCompleted=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
-                              <option <?php if($levelCompleted=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
-                              <option <?php if($levelCompleted=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
-                              <option <?php if($levelCompleted=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
-                              <option <?php if($levelCompleted=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
-                              <option <?php if($levelCompleted=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
-                              <option <?php if($levelCompleted=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
-                              <option <?php if($levelCompleted=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
-                              <option <?php if($levelCompleted=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
-                              <option <?php if($levelCompleted=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
-                              <option <?php if($levelCompleted=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
-                              <option <?php if($levelCompleted=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
-                              <option <?php if($levelCompleted=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
 
-                             <?php }
-                              else{  ?>
-                              ?>
-                              <option value="Nursery 1">Nursery 1</option>
-                              <option value="Nursery 2">Nursery 2</option>
-                              <option value="Kinder 1">Kinder 1</option>
-                              <option value="Kinder 2">Kinder 2</option>
-                              <option value="Grade 1">Grade 1</option>
-                              <option value="Grade 2">Grade 2</option>
-                              <option value="Grade 3">Grade 3</option>
-                              <option value="Grade 4">Grade 4</option>
-                              <option value="Grade 5">Grade 5</option>
-                              <option value="Grade 6">Grade 6</option>
-                              <option value="Grade 7">Grade 7</option>
-                              <option value="Grade 8">Grade 8</option>
-                              <option value="Grade 9">Grade 9</option>
-                              <option value="Grade 10">Grade 10</option>
-                              <option value="Grade 11">Grade 11</option>
-                              <option value="Grade 12">Grade 12</option>
-                            <?php }?>
-                             </select>
-                           </div>
-                        </div>  
 
       
                       </div> 
@@ -210,6 +164,53 @@
                               name="birthplace" type="text" class="form-control" placeholder="">
                             </div>
                           </div>
+                                                                              <div class="col-lg-3">
+      
+                           <div class="form-group">
+                             <label class="unrequired-field">Incoming Level</label>
+                             <select name="inComingLevel" class="form-control select2bs4 ">
+                              <?php 
+                              if (isset($levelCompleted)){?>
+                              <option <?php if($levelCompleted=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
+                              <option <?php if($levelCompleted=="Nursery 2") {echo' selected ="true"';}?>value="Nursery 2">Nursery 2</option>
+                              <option <?php if($levelCompleted=="Kinder 1") {echo' selected ="true"';}?>value="Kinder 1">Kinder 1</option>
+                              <option <?php if($levelCompleted=="Kinder 2") {echo' selected ="true"';}?>value="Kinder 2">Kinder 2</option>
+                              <option <?php if($levelCompleted=="Grade 1") {echo' selected ="true"';}?>value="Grade 1">Grade 1</option>
+                              <option <?php if($levelCompleted=="Grade 2"){echo' selected ="true"';}?>value="Grade 2">Grade 2</option>
+                              <option <?php if($levelCompleted=="Grade 3"){echo' selected ="true"';}?>value="Grade 3">Grade 3</option>
+                              <option <?php if($levelCompleted=="Grade 4"){echo' selected ="true"';}?>value="Grade 4">Grade 4</option>
+                              <option <?php if($levelCompleted=="Grade 5"){echo' selected ="true"';}?>value="Grade 5">Grade 5</option>
+                              <option <?php if($levelCompleted=="Grade 6"){echo' selected ="true"';}?>value="Grade 6">Grade 6</option>
+                              <option <?php if($levelCompleted=="Grade 7"){echo' selected ="true"';}?>value="Grade 7">Grade 7</option>
+                              <option <?php if($levelCompleted=="Grade 8"){echo' selected ="true"';}?>value="Grade 8">Grade 8</option>
+                              <option <?php if($levelCompleted=="Grade 9"){echo' selected ="true"';}?>value="Grade 9">Grade 9</option>
+                              <option <?php if($levelCompleted=="Grade 10") {echo' selected ="true"';}?>value="Grade 10">Grade 10</option>
+                              <option <?php if($levelCompleted=="Grade 11") {echo' selected ="true"';}?>value="Grade 11">Grade 11</option>
+                              <option <?php if($levelCompleted=="Grade 12") {echo' selected ="true"';}?>value="Grade 12">Grade 12</option>
+
+                             <?php }
+                              else{  ?>
+                              ?>
+                              <option value="Nursery 1">Nursery 1</option>
+                              <option value="Nursery 2">Nursery 2</option>
+                              <option value="Kinder 1">Kinder 1</option>
+                              <option value="Kinder 2">Kinder 2</option>
+                              <option value="Grade 1">Grade 1</option>
+                              <option value="Grade 2">Grade 2</option>
+                              <option value="Grade 3">Grade 3</option>
+                              <option value="Grade 4">Grade 4</option>
+                              <option value="Grade 5">Grade 5</option>
+                              <option value="Grade 6">Grade 6</option>
+                              <option value="Grade 7">Grade 7</option>
+                              <option value="Grade 8">Grade 8</option>
+                              <option value="Grade 9">Grade 9</option>
+                              <option value="Grade 10">Grade 10</option>
+                              <option value="Grade 11">Grade 11</option>
+                              <option value="Grade 12">Grade 12</option>
+                            <?php }?>
+                             </select>
+                           </div>
+                        </div>  
       
                       </div>
                       <br>

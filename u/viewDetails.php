@@ -638,6 +638,7 @@ $insertQuery = "update tbl_student
 set
 studentCode = '".$_POST['student-code'] ."',
 LRN  = '".$_POST['student-lrn']."',
+schoolYearID = '".$schoolYearID."',
 Prefix  = '".$gender."',
 Lastname  = '".$_POST['last-name']."',
 Firstname  = '".$_POST['first-name']."',

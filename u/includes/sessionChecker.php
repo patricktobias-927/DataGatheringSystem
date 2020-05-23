@@ -14,6 +14,7 @@ $minutesInSeconds = $minutes * 60;
     echo json_encode(array(2,$mSecondsWarningLast));
   }
   elseif ($passedSeconds >= $minutesInSeconds) {
+  	session_destroy();
   	echo json_encode(array(1,$mSecondsWarningLast));
   }
   else{
