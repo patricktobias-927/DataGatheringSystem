@@ -96,13 +96,15 @@ require 'includes/navAndSide.php';
 
 			<!-- /Dashboard -->
 			<div class="row">
+					<div class="col-lg-1">
+					</div>
 					<div class="col-lg-2">
 						<div class="card-body display nowrap" style="width:100%;">
 							<table class="table table-striped table-bordered " style="text-align:center;
 								 font-size: 150%;font-weight:bold;">	
 							<thead>
 								<tr>
-									<th style="background-color:#00FF00;font-size: 80%">Masterlist</th>
+									<th style="background-color:#00FF00;font-size: 60%">Masterlist</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -122,13 +124,13 @@ require 'includes/navAndSide.php';
 						</div>
 					</div>
 
-					<div class="col-lg-2.5">
+					<div class="col-lg-2">
 						<div class="card-body display nowrap" style="width:100%;">
 							<table class="table table-striped table-bordered " style="text-align:center;
 								 font-size: 150%;font-weight:bold;">	
 							<thead>
 								<tr>
-									<th style="background-color:#1e73b0;font-size: 80%">Pending Registration</th>
+									<th style="background-color:#1e73b0;font-size: 60%">Pending Registration</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -148,12 +150,12 @@ require 'includes/navAndSide.php';
 						</div>
 					</div>
 
-					<div class="col-lg-2.5">
+					<div class="col-lg-2">
 						<div class="card-body display nowrap" style="width:100%">
 							<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 							<thead>
 								<tr>
-									<th style="background-color:#b66dc0;font-size: 80%">Registered Students</th>
+									<th style="background-color:#b66dc0;font-size: 60%">Registered Students</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -173,12 +175,12 @@ require 'includes/navAndSide.php';
 					</div>
 				</div>
 
-				<div class="col-lg-2.5">
+				<div class="col-lg-2">
 					<div class="card-body display nowrap" style="width:100%">
               			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 						  <thead>
 							  <tr>
-								  <th style="background-color:#ff6c7f;font-size: 80%">Exported to Excel</th>
+								  <th style="background-color:#ff6c7f;font-size: 60%">Exported to Excel</th>
 							  </tr>
 						  </thead>
 						  <tbody>
@@ -198,12 +200,12 @@ require 'includes/navAndSide.php';
 					</div>
 				</div>
 
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<div class="card-body display nowrap" style="width:100%">
               			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 						  <thead>
 							  <tr>
-								  <th style="background-color:#ffaf19;font-size: 80%">Pending Export to Excel</th>
+								  <th style="background-color:#ffaf19;font-size: 60%">Pending Export </th>
 							  </tr>
 						  </thead>
 						  <tbody>
@@ -221,6 +223,8 @@ require 'includes/navAndSide.php';
 						  </tbody>
 					  </table>
 					</div>
+				</div>
+				<div class="col-lg-1">
 				</div>
 			</div><!--/row / Dashboard-->
 
