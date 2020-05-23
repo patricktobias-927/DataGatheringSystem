@@ -14,7 +14,7 @@
   session_start();
 
 
-  session_start();
+  
   $user_check = $_SESSION['userID'] ;
   $levelCheck = $_SESSION['usertype'];
   if(!isset($user_check) && !isset($password_check))

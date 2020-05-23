@@ -266,7 +266,7 @@ require 'includes/navAndSide.php';
 						  <tbody>
 							<?php
 
-								$sql = "SELECT * FROM tbl_student  ORDER BY datetimeRegistered ";
+								$sql = "SELECT * FROM tbl_student where schoolYearID = " . $schoolYearID . " ORDER BY datetimeRegistered ";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 
 							while ($row=mysqli_fetch_assoc($result))
