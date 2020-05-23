@@ -169,7 +169,13 @@ else if ($haveAccess=='0'){
 	</div>
 
   <!-- /.content-wrapper -->
-
+<script src="includes/sessionChecker.js"></script>
+<script type="text/javascript">
+    extendSession();
+    var isPosted;
+    var isDisplayed = false; 
+setInterval(function(){sessionChecker();}, 1000);//time in milliseconds 
+</script>
 
 <?php 
 

@@ -509,7 +509,7 @@ if (isset($_POST['login'])) {
                     $_SESSION['usertype']    = $pass_row['usertype'];
                     $_SESSION['gender']       = $pass_row['sex'];
                     $_SESSION['userPass']     = $_POST['password'];
-                    
+                    $_SESSION['last-time-stamp'] = time();
                     // $timeStamp = date("Y-m-d H:i:s");
                     // $token = generateNumericOTP(6);
                     // $accID = $_SESSION['id']; 
