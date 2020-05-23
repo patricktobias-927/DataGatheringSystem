@@ -8,6 +8,7 @@
   require 'assets/scipts/phpfunctions.php';
   require 'assets/generalSandC.php';
   require '../include/schoolConfig.php';
+  require '../include/getschoolyear.php';
   $page = "index";
 
 ?>
@@ -95,18 +96,18 @@ require 'includes/navAndSide.php';
 
 			<!-- /Dashboard -->
 			<div class="row">
-					<div class="col-lg-3">
+					<div class="col-lg-2">
 						<div class="card-body display nowrap" style="width:100%;">
 							<table class="table table-striped table-bordered " style="text-align:center;
 								 font-size: 150%;font-weight:bold;">	
 							<thead>
 								<tr>
-									<th style="background-color:#1e73b0;font-size: 80%">Masterlist</th>
+									<th style="background-color:#00FF00;font-size: 80%">Masterlist</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
-									$sql = "select count(*) as preEnrolled from tbl_student ";
+									$sql = "select count(*) as preEnrolled from tbl_student where schoolYearID = " . $schoolYearID . "";
 									$result=mysqli_query($conn, $sql); //rs.open sql,con
 								while ($row=mysqli_fetch_assoc($result))
 								{ ?><!--open of while -->
@@ -120,8 +121,34 @@ require 'includes/navAndSide.php';
 							</table>
 						</div>
 					</div>
-		
-					<div class="col-lg-3">
+
+					<div class="col-lg-2.5">
+						<div class="card-body display nowrap" style="width:100%;">
+							<table class="table table-striped table-bordered " style="text-align:center;
+								 font-size: 150%;font-weight:bold;">	
+							<thead>
+								<tr>
+									<th style="background-color:#1e73b0;font-size: 80%">Pending Registration</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+									$sql = "select count(*) as pending from tbl_student where isSubmitted = 0 and schoolYearID = " . $schoolYearID . "";
+									$result=mysqli_query($conn, $sql); //rs.open sql,con
+								while ($row=mysqli_fetch_assoc($result))
+								{ ?><!--open of while -->
+								<tr>
+									<td><?php echo $row['pending']; ?></td>
+								</tr>
+								<?php
+								} //close of while
+								?>
+							</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="col-lg-2.5">
 						<div class="card-body display nowrap" style="width:100%">
 							<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 							<thead>
@@ -131,7 +158,7 @@ require 'includes/navAndSide.php';
 							</thead>
 							<tbody>
 							<?php
-								$sql = "select count(*) as submitted from tbl_student where isSubmitted = 1 ";
+								$sql = "select count(*) as submitted from tbl_student where isSubmitted	 = 1 and schoolYearID = " . $schoolYearID . "";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 							while ($row=mysqli_fetch_assoc($result))
 							{ ?><!--open of while -->
@@ -146,7 +173,7 @@ require 'includes/navAndSide.php';
 					</div>
 				</div>
 
-				<div class="col-lg-3">
+				<div class="col-lg-2.5">
 					<div class="card-body display nowrap" style="width:100%">
               			<table class="table table-striped table-bordered " style="text-align:center; font-size: 150%;font-weight:bold">	
 						  <thead>
@@ -156,7 +183,7 @@ require 'includes/navAndSide.php';
 						  </thead>
 						  <tbody>
 							<?php
-								$sql = "select count(*) as exported from tbl_student where isExported = 1 ";
+								$sql = "select count(*) as exported from tbl_student where isExported = 1 and schoolYearID = " . $schoolYearID . "";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 							while ($row=mysqli_fetch_assoc($result))
 							{ ?><!--open of while -->
@@ -181,7 +208,7 @@ require 'includes/navAndSide.php';
 						  </thead>
 						  <tbody>
 							<?php
-								$sql = "select count(*) as Notexported from tbl_student where isSubmitted = 1 and isExported = 0";
+								$sql = "select count(*) as Notexported from tbl_student where isSubmitted = 1 and isExported = 0 and schoolYearID = " . $schoolYearID . "";
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 							while ($row=mysqli_fetch_assoc($result))
 							{ ?><!--open of while -->
