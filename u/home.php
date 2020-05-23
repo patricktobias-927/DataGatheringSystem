@@ -19,6 +19,8 @@
 // $_SESSION['userType']   
 
   session_start();
+
+
   $user_check = $_SESSION['userID'] ;
   $levelCheck = $_SESSION['usertype'];
   if(!isset($user_check) && !isset($password_check))
@@ -66,6 +68,9 @@
   <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
 
   <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
+  <!-- sweet alert -->
+  <script type="text/javascript" src="../include/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../include/plugins/sweetalert2/sweetalert2.min.css">
   <style type="text/css">
     .small-box{
        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -219,7 +224,42 @@ require 'includes/navAndSide2.php';
   </div>
   <!-- /.content-wrapper -->
 
-
+<!-- <script type="text/javascript">
+  let timerInterval
+Swal.fire({
+  title: 'Auto close alert!',
+  html: 'I will close in <b></b> milliseconds.',
+  timer: 2000,
+  timerProgressBar: true,
+  onBeforeOpen: () => {
+    Swal.showLoading()
+    timerInterval = setInterval(() => {
+      const content = Swal.getContent()
+      if (content) {
+        const b = content.querySelector('b')
+        if (b) {
+          b.textContent = Swal.getTimerLeft()
+        }
+      }
+    }, 100)
+  },
+  onClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
+</script> -->
+<script src="includes/sessionChecker.js"></script>
+<script type="text/javascript">
+  extendSession();
+    var isPosted;
+    var isDisplayed = false; 
+setInterval(function(){sessionChecker();}, 1000);//time in milliseconds 
+</script>
 <?php 
 
 require 'assets/scripts.php';

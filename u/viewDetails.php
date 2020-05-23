@@ -369,6 +369,13 @@ $("#hexTextBox").inputFilter(function(value) {
   return /^[0-9a-f]*$/i.test(value); });
 </script>
 <script type="text/javascript" src="assets/scipts/hideAndNext.js"></script>
+<script src="includes/sessionChecker.js"></script>
+<script type="text/javascript">
+    extendSession();
+    var isPosted;
+    var isDisplayed = false; 
+setInterval(function(){sessionChecker();}, 1000);//time in milliseconds 
+</script>
 </body>
 
 </html>
