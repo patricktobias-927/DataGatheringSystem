@@ -357,6 +357,13 @@
     <script src="../include/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Bootstrap Switch -->
     <script src="../include/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="includes/sessionChecker.js"></script>
+<script type="text/javascript">
+    extendSession();
+    var isPosted;
+    var isDisplayed = false; 
+setInterval(function(){sessionChecker();}, 1000);//time in milliseconds 
+</script>
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" type="text/css" href="../include/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 </body>
