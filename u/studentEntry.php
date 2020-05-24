@@ -103,6 +103,8 @@ require 'includes/navAndSide2.php';
           <div class="card">
             <div class="card-header">
               <p>
+              <span class="h2">Student For this School Year</span>
+
               <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
                 <span class="fa fa-undo  ref-btn ref-btn2" aria-hidden="true">&nbsp&nbsp</span>Refresh
                 </a>&nbsp&nbsp
@@ -129,7 +131,7 @@ require 'includes/navAndSide2.php';
                 <tbody>
           <?php 
 
-          $sql = "select Firstname, Lastname, Middlename, studentCode, LRN, studentID, isSubmitted, isExported, schoolYearID FROM tbl_student where userID =".$userID;
+          $sql = "select a.Firstname, a.Lastname, a.Middlename, a.studentCode, a.LRN, a.studentID, a.isSubmitted, a.isExported, a.schoolYearID, b.schoolYear  FROM tbl_student as a inner join tbl_schoolyear as b on a.schoolYearID = b.schoolYearID where userID =".$userID." AND b.schoolyearid = ".$schoolYearID;
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {
@@ -206,11 +208,78 @@ require 'includes/navAndSide2.php';
           </div>
     </section>
     <!-- /.content -->
+<?php           $sql = "select a.Firstname, a.Lastname, a.Middlename, a.studentID, a.schoolYearID, b.schoolYear  FROM tbl_student as a inner join tbl_schoolyear as b on a.schoolYearID = b.schoolYearID where userID =".$userID." AND b.schoolyearid != ".$schoolYearID;
+           $result1 = mysqli_query($conn, $sql);
+            $ctr=0;
+              if (mysqli_num_rows($result1) > 0) {?>
+      <!-- Default box -->
+          <div class="card col-xl-6 float-right" style="margin: 0px 10px;">
+            <div class="card-header">
+              <h2>Old Student</h2>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body" style="width: 100%;">
+              <table id="example1" class="table table-bordered" style="table-layout: fixed; width: 100%;">
+                <thead>
+                <tr>
+                  <th>Full Name</th>
+                  <th>School Year Applied</th>
+                  <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody id="p_scents">
+          <?php 
+
+
+
+
+                while($row = mysqli_fetch_array($result1)){
+                  $status='';$haveStudentCode='';
+          echo"<tr class='tRow' id='row".$ctr."'>";
+                  echo"<td><h5>";
+                    echo ucwords(combineName($row[0],$row[1],$row[2]));
+                  echo"</h5></td>";
+
+
+
+                    echo '<td class="text-center"><h3>S.Y. '.$row['schoolYear'].'</h3></td>';
+
+                   echo'   <td class="text-center">';
+                   echo'       <a class="btn btn-warning btn-sm " value="'.$row['studentID'].'" id="copyData" ctrIdentifier="'.$ctr.'">';
+                   echo'           <i class="fas fa-copy">';
+                   echo'           </i>';
+                   echo'           Copy Data';
+                   echo'       </a>';
+                   echo'   </td>';
+
+
+                  
+          echo"</tr>";
+                    $ctr++;
+
+                }
+
+?>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+            <?php               }
+
+
+          ?>
+
+
+
+
   </div>
   <!-- /.content-wrapper -->
 
 
-<!-- ./wrapper -->
+
+
+
 
 
 <?php 
@@ -1047,6 +1116,52 @@ Swal.fire({
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 swal.fire("Error deleting!", "Please try again", "error");
+            }
+        });
+  }
+})
+e.preventDefault();
+});
+
+$(document).on("click", "#copyData", function() {
+    var x = $(this).attr('value');
+
+Swal.fire({
+  title: 'Are you sure?',
+  text: "This will preregister the student",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Copy this!'
+}).then((result) => {
+  if (result.value) {
+
+            swal.fire({
+                title: 'Please Wait..!',
+                text: 'Pulling old data..',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
+                onOpen: () => {
+                    swal.showLoading()
+                }
+            })
+        $.ajax({
+            url: "copyData.php",
+            type: "POST",
+            cache: false,
+            "data": 
+                {"studentidx" : x},
+            dataType: "html",
+            success: function (htmlcodes) {
+
+
+                swal.fire("Success", "It was succesfully added to pre-registered students.", "success");
+                window.location.href = "studentEntry.php";
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal.fire("Error Coppying data!", "Please try again", "error");
             }
         });
   }

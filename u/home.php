@@ -35,7 +35,7 @@
 
   $query = "sELECT (SELECT COUNT(userID) FROM tbl_student WHERE userID = ".$user_check." AND isSubmitted = 1 AND schoolYearID = ".$schoolYearID.") AS submitted,
  (SELECT COUNT(userID) FROM tbl_student WHERE userID = ".$user_check." AND isExported = 1 AND schoolYearID = ".$schoolYearID.") AS exported,
-  (SELECT COUNT(userID) FROM tbl_student WHERE userID = ".$user_check." AND (isSubmitted = 0 || schoolYearID != ".$schoolYearID.")) AS draft,
+  (SELECT COUNT(userID) FROM tbl_student WHERE userID = ".$user_check." AND (isSubmitted = 0 && schoolYearID = ".$schoolYearID.")) AS draft,
  sex, fname,lname FROM tbl_parentuser WHERE userId =".$user_check;
     $result = mysqli_query($conn,  $query);
     if ($result) {
