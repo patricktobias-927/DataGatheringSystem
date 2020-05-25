@@ -21,7 +21,7 @@ if($id > 0){
 
 
     $nowtime = date("Y-m-d H:i:s");
- 	  $query = "update tbl_student set isSubmitted =  '0' , datetimePosted = '".$nowtime."', schoolYearID ='".$schoolYearID."'  WHERE studentID='".$id."'";
+ 	  $query = "update tbl_student set isSubmitted =  '0' , isExported =  '0' , datetimePosted = null, datetimeRegistered = '".$nowtime."', schoolYearID ='".$schoolYearID."'  WHERE studentID='".$id."'";
 	  mysqli_query($conn,$query);
 
 
