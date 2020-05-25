@@ -1,7 +1,7 @@
 
 <?php
   require '../include/config.php';
- 
+  require '../include/getschoolyear.php';
 ?>
 
 <?php
@@ -60,8 +60,7 @@
         (select level from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3_grade_level
         from tbl_student s 
         Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
-        Left JOIN tbl_guardian g  on s.studentID= g.studentID 
-         order by code ;";
+        Left JOIN tbl_guardian g  on s.studentID= g.studentID where s.schoolYearID = " . $schoolYearID . " order by code ;";
          //where timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."')
 
          $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;";
@@ -103,7 +102,7 @@
         from tbl_student s 
         Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
         Left JOIN tbl_guardian g  on s.studentID= g.studentID
-        where isExported = $tagexpo
+        where isExported = $tagexpo and schoolYearID = $schoolYearID
          order by code ;";
          //and timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."') 
     }
@@ -144,7 +143,7 @@
         from tbl_student s 
         Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
         Left JOIN tbl_guardian g  on s.studentID= g.studentID
-        where s.isSubmitted =$tagsub and isExported = $tagexpo
+        where s.isSubmitted =$tagsub and isExported = $tagexpo and schoolYearID = $schoolYearID
          order by code ;";
           // and timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."') 
 

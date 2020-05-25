@@ -2,6 +2,7 @@
 <?php
   require '../include/config.php';
   require '../u/assets/scripts.php';
+  require '../include/getschoolyear.php';
 ?>
 
 
@@ -41,7 +42,7 @@
             concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
             s.isEldest as Eldest,u.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID  order by code;";
+            on s.userID = u.userID  where s.schoolYearID = " . $schoolYearID . " order by code;";
            // and timestamp(dateTimeSubmitted) <= timestamp('".$currentDateTime."') ;";
     }
     elseif ($all == "exported")
@@ -58,7 +59,7 @@
             concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
             s.isEldest as Eldest,u.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID where isExported = $tagexpo  order by code;";
+            on s.userID = u.userID where isExported = $tagexpo and schoolYearID = $schoolYearID order by code;";
            // and timestamp(dateTimeSubmitted) <= timestamp('".$currentDateTime."') ;";
     }
     else
@@ -75,7 +76,8 @@
             concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
             s.isEldest as Eldest,u.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID  where s.isSubmitted = $tagsub and isExported = $tagexpo  order by code;";
+            on s.userID = u.userID  where s.isSubmitted = $tagsub and isExported = $tagexpo 
+            and schoolYearID = $schoolYearID  order by code;";
            //and timestamp(dateTimeSubmitted) < timestamp('".$currentDateTime."') ;";
 
     
