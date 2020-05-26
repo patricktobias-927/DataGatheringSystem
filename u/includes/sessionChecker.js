@@ -28,7 +28,7 @@ function sessionChecker() {
             let timerInterval;
             var timerLeft=data[1];
           Swal.fire({
-            title: 'Session will Expire!',
+            title: 'Session will Expired!',
             html: 'You Will be Log out <b></b> Seconds.',
             footer: '<button class="btn btn-primary " onclick="retrieveSession()">Continue Session</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="includes/logout.php" class="btn btn-danger">Log out</a>',
             timer: timerLeft,
