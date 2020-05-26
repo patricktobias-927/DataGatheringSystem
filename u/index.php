@@ -270,13 +270,13 @@ require 'includes/navAndSide.php';
 								$result=mysqli_query($conn, $sql); //rs.open sql,con
 
 							while ($row=mysqli_fetch_assoc($result))
-							{ ?><!--open of while -->
+							{ ?><!--open of while  --> 
 							<tr>
 								<td><?php echo $row['lastName']; ?></td>
 								<td><?php echo $row['firstName']; ?></td>
 								<td><?php echo $row['middleName']; ?></td>
 								<td><?php echo $row['lrn']; ?></td>
-								<td><?php echo $row['datetimeRegistered']; ?></td>
+								<td><?php echo $row['datetimePosted']; ?></td> 
 								<td><?php
 								if ($row['isSubmitted'] == 1){
 									echo "Yes";

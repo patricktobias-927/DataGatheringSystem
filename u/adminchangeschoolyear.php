@@ -301,7 +301,7 @@ if (isset($_POST["btn-submit"])) {
         if (mysqli_num_rows($result) > 0) {
           if ($ctr_row = mysqli_fetch_assoc($result)) {
             $newctr = $ctr_row['schoolYearID'] + 1;
-            $sql = "insert into tbl_schoolyear (schoolYearID,schoolYear) values(".$newctr.", '" .$newSY. "');";
+            $sql = "insert into tbl_schoolyear (schoolYear) values('" .$newSY. "');";
             $result = mysqli_query($conn, $sql);
             displayMessage("success", " New School Year inserted " , "Success! ");
             echo "<meta http-equiv='refresh' content='0'>";

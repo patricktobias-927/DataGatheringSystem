@@ -17,7 +17,7 @@
     // $sub = $_POST['r1'];
     // $expo = $_POST['r1'];
     if ($all  == "submitted")
-    {
+    {       
         $tagsub = 1;
     }
     if ($all  == "exported")
@@ -28,7 +28,7 @@
     {
         $quote = '"';
         //$query = "select cast(concat(".$quote."'".$quote.",cellphone)  as char) as cellphone  from tbl_student";
-
+        $tagsub = 1;
         $queryinfo = "select  s.studentCode as Code, s.birthdate as Birthdate,
         s.birthplace as birthplace, '' as siblingNo, s.familyplace as family_place,
         s.prefix as gender,concat(s.Address,',',(case when s.city is null then '' Else s.city End)) as Address,
@@ -60,10 +60,10 @@
         (select level from tbl_siblings where s.studentID=studentiD and siblingNo = 3 limit 1) as sibling3_grade_level
         from tbl_student s 
         Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
-        Left JOIN tbl_guardian g  on s.studentID= g.studentID where s.schoolYearID = " . $schoolYearID . " order by code ;";
+        Left JOIN tbl_guardian g  on s.studentID= g.studentID where s.schoolYearID = " . $schoolYearID . " and s.isSubmitted = $tagsub order by code ;";
          //where timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."')
 
-         $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;";
+         $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;"; //tag ALL even not yet submitted per Sir Jov 05262020
     }
     elseif ($all == "exported")
     {
@@ -143,11 +143,11 @@
         from tbl_student s 
         Left JOIN tbl_schoolinfo i  on s.studentID= i.studentID
         Left JOIN tbl_guardian g  on s.studentID= g.studentID
-        where s.isSubmitted =$tagsub and isExported = $tagexpo and schoolYearID = $schoolYearID
+        where s.isSubmitted =$tagsub and isExported = $tagexpo  and schoolYearID = $schoolYearID
          order by code ;";
           // and timestamp(s.dateTimeSubmitted) <= timestamp('".$currentDateTime."') 
 
-          $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;";
+        $queryupdate = " update tbl_student set isExported = 1 where  isSubmitted = 1;";
 
     }
 
