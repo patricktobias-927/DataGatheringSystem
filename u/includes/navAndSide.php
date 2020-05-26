@@ -127,7 +127,7 @@ function treeOpen($page, $navtitle)
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt" aria-hidden="true"></i>
               <p>
-                Report
+                Reports
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -135,13 +135,13 @@ function treeOpen($page, $navtitle)
               <li class="nav-item">
                 <a href="../u/filterreport.php" class="nav-link <?php isActive($page,"filterreport");?>">
                   <i class="nav-icon fas fa-file-alt"></i>
-                  <p>Filter</p>
+                  <p>Registration Status</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="../u/exportpage.php" class="nav-link <?php isActive($page,"exportpage");?>">
                   <i class="nav-icon fas fa-file-alt"></i>
-                  <p>Export</p>
+                  <p>Export Data</p>
                 </a>
               </li>
             </ul>
