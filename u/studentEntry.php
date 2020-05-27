@@ -206,16 +206,15 @@ require 'includes/navAndSide2.php';
             </div>
             <!-- /.card-body -->
           </div>
-    </section>
     <!-- /.content -->
 <?php           $sql = "select a.Firstname, a.Lastname, a.Middlename, a.studentID, a.schoolYearID, b.schoolYear  FROM tbl_student as a inner join tbl_schoolyear as b on a.schoolYearID = b.schoolYearID where userID =".$userID." AND b.schoolyearid != ".$schoolYearID;
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {?>
       <!-- Default box -->
-          <div class="card col-xl-6 float-right" style="margin: 0px 10px;">
+          <div class="card col-xl-12 " >
             <div class="card-header">
-              <h2>Old Student</h2>
+              <h2>Previously Registered Student</h2>
             </div>
             <!-- /.card-header -->
             <div class="card-body" style="width: 100%;">
@@ -223,6 +222,8 @@ require 'includes/navAndSide2.php';
                 <thead>
                 <tr>
                   <th>Full Name</th>
+                  <th>Code</th>
+                  <th>LRN</th>
                   <th>School Year Applied</th>
                   <th>Action</th>
 
@@ -240,6 +241,13 @@ require 'includes/navAndSide2.php';
                   echo"<td><h5>";
                     echo ucwords(combineName($row[0],$row[1],$row[2]));
                   echo"</h5></td>";
+                  echo"<td><h6 >";
+                    echo $row[3];
+                  echo"</h6></td>";
+                  echo"<td><h6>";
+                    echo $row[4];
+                  echo"</h6></td>";
+
 
 
 
@@ -277,6 +285,7 @@ require 'includes/navAndSide2.php';
   <!-- /.content-wrapper -->
 
 
+    </section>
 
 
 
