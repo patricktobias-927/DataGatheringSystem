@@ -28,9 +28,9 @@ function sessionChecker() {
             let timerInterval;
             var timerLeft=data[1];
           Swal.fire({
-            title: 'Session will Expire!',
-            html: 'You Will be Log out in <b></b> Seconds.',
-            footer: '<button class="btn btn-primary " onclick="retrieveSession()">Continue Session</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="includes/logout.php" class="btn btn-danger">Log out</a>',
+            title: 'Session will expire!',
+            html: 'You will be logged out in <b></b> seconds.',
+            footer: '<button class="btn btn-primary " onclick="retrieveSession()">Continue session</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="includes/logout.php" class="btn btn-danger">Log out</a>',
             timer: timerLeft,
             timerProgressBar: true,
 
@@ -59,9 +59,9 @@ function sessionChecker() {
       }
       else if (data[0]==1&&isPosted==null) {
         Swal.fire({
-          title: 'Session Expired',
+          title: 'Session expired',
           icon: 'info',
-          html: 'Please Login again',
+          html: 'Please login again',
           allowOutsideClick:false,
           allowEscapeKey: false
         }).then((result) => {document.location.href = 'includes/logout.php?';});

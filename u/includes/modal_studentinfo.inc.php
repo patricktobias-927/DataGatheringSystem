@@ -301,7 +301,7 @@
                     <div class="form-group">
                       <label class="required-field">Full Name</label>
                       <input value="<?php if(isset($fullName)){echo$fullName;}?>"
-                      name="contact-person-name" required type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                      name="contact-person-name" required type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                     </div>
                   </div>
       
@@ -371,7 +371,7 @@
                               <div class="form-group">
                                 <label >Full Name</label>
                                 <input value="<?php if(isset($mother_fullName)){echo$mother_fullName;}?>"
-                                name="mother-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                                name="mother-name" type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                               </div>
                             </div>
   
@@ -384,7 +384,7 @@
                               <div class="form-group">
                                 <label >Employer Name</label>
                                 <input value="<?php if(isset($mother_employerName)){echo$mother_employerName;}?>"
-                                name="mother-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
+                                name="mother-employer-name" type="text" class="form-control" placeholder="Firstname Lastname / Company Name">
                               </div>
                             </div>
       
@@ -398,7 +398,7 @@
                               <div class="form-group">
                                 <label >Full Name</label>
                                 <input value="<?php if(isset($father_fullName)){echo$father_fullName;}?>"
-                                name="father-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                                name="father-name" type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                               </div>
                             </div>
 
@@ -412,7 +412,7 @@
                               <div class="form-group">
                                 <label >Employer Name</label>
                                 <input value="<?php if(isset($father_employerName)){echo$father_employerName;}?>"
-                                name="father-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
+                                name="father-employer-name" type="text" class="form-control" placeholder="Firstname Lastname / Company Name">
                               </div>
                             </div>
       
@@ -427,7 +427,7 @@
                               <div class="form-group">
                                 <label >Full Name</label>
                                 <input value="<?php if(isset($guardian_fullName)){echo$guardian_fullName;}?>"
-                                name="guardian-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                                name="guardian-name" type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                               </div>
                             </div>
       
@@ -512,7 +512,7 @@
                               <div class="form-group">
                                 <label class="unrequired-field">Name</label>
                                 <input value="<?php if(isset($sibling1_fullName)){echo$sibling1_fullName;}?>" 
-                                name="sibling1-name" type="text" class="form-control textOnly" placeholder="FirstName LastName">
+                                name="sibling1-name" type="text" class="form-control textOnly" placeholder="Firstname Lastname">
                               </div>
                             </div>  
                             <div class="col-lg-3">
@@ -570,7 +570,7 @@
                               <div class="form-group">
                                 <label class="unrequired-field">Name</label>
                                 <input value="<?php if(isset($sibling2_fullName)){echo$sibling2_fullName;}?>" 
-                                name="sibling2-name" type="text" class="form-control textOnly" placeholder="FirstName LastName">
+                                name="sibling2-name" type="text" class="form-control textOnly" placeholder="Firstname Lastname">
                               </div>
                             </div>
       
@@ -630,7 +630,7 @@
                               <div class="form-group">
                                 <label class="unrequired-field">Name</label>
                                 <input value="<?php if(isset($sibling3_fullName)){echo$sibling3_fullName;}?>" 
-                                name="sibling3-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="sibling3-name" type="text" class="form-control" placeholder="Firstname Lastname">
                               </div>
                             </div>
       

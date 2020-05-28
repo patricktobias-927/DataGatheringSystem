@@ -103,7 +103,7 @@ require 'includes/navAndSide2.php';
           <div class="card">
             <div class="card-header">
               <p>
-              <span class="h2">Student For this School Year</span>
+              <span class="h2">Students for this School Year</span>
 
               <a href="?" type="button" class="btn btn-success add-button buttonDelete ">
                 <span class="fa fa-undo  ref-btn ref-btn2" aria-hidden="true">&nbsp&nbsp</span>Refresh
@@ -207,14 +207,14 @@ require 'includes/navAndSide2.php';
             <!-- /.card-body -->
           </div>
     <!-- /.content -->
-<?php           $sql = "select a.Firstname, a.Lastname, a.Middlename, a.studentID, a.schoolYearID, b.schoolYear  FROM tbl_student as a inner join tbl_schoolyear as b on a.schoolYearID = b.schoolYearID where userID =".$userID." AND b.schoolyearid != ".$schoolYearID;
+<?php           $sql = "select a.Firstname, a.Lastname, a.Middlename, a.studentID, a.schoolYearID, b.schoolYear  FROM tbl_student as a inner join tbl_schoolyear as b on a.schoolYearID = b.schoolYearID where userID =".$userID." AND b.schoolyearid < ".$schoolYearID;
            $result1 = mysqli_query($conn, $sql);
             $ctr=0;
               if (mysqli_num_rows($result1) > 0) {?>
       <!-- Default box -->
           <div class="card col-xl-12 " >
             <div class="card-header">
-              <h2>Previously Registered Student</h2>
+              <h2>Previously Registered Students</h2>
             </div>
             <!-- /.card-header -->
             <div class="card-body" style="width: 100%;">
@@ -608,7 +608,7 @@ require 'assets/scripts.php';
 
                         </div>
             <div class="modal-footer">
-              <a type="button" class="btn btn-danger" id="next-stud-cancel" data-dismiss="modal">Cancel</a>
+              <a type="button"  class="btn btn-danger" id="next-stud-cancel" data-dismiss="modal">Cancel</a>
               <a class="btn btn-primary" onclick="nxtStud()" id="next-stud">Next</a>
             </div>
                       </div>
@@ -625,7 +625,7 @@ require 'assets/scripts.php';
                     <div class="form-group">
                       <label class="required-field">Full Name</label>
                       <input value="<?php echo isset($_POST['contact-person-name']) ? $_POST['contact-person-name'] : '' ?>"
-                      name="contact-person-name" required type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                      name="contact-person-name" required type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                     </div>
                   </div>
       
@@ -695,7 +695,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label >Full Name</label>
                                 <input value="<?php echo isset($_POST['mother-name']) ? $_POST['mother-name'] : '' ?>"
-                                name="mother-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                                name="mother-name" type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                               </div>
                             </div>
   
@@ -708,7 +708,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label >Employer Name</label>
                                 <input value="<?php echo isset($_POST['mother-employer-name']) ? $_POST['mother-employer-name'] : '' ?>"
-                                name="mother-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
+                                name="mother-employer-name" type="text" class="form-control" placeholder="Firstname Lastname / Company Name">
                               </div>
                             </div>
       
@@ -722,7 +722,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label >Full Name</label>
                                 <input value="<?php echo isset($_POST['father-name']) ? $_POST['father-name'] : '' ?>"
-                                name="father-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                                name="father-name" type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                               </div>
                             </div>
 
@@ -736,7 +736,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label >Employer Name</label>
                                 <input value="<?php echo isset($_POST['father-employer-name']) ? $_POST['father-employer-name'] : '' ?>"
-                                name="father-employer-name" type="text" class="form-control" placeholder="FirstName LastName / Company Name">
+                                name="father-employer-name" type="text" class="form-control" placeholder="Firstname Lastname / Company Name">
                               </div>
                             </div>
       
@@ -751,7 +751,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label >Full Name</label>
                                 <input value="<?php echo isset($_POST['guardian-name']) ? $_POST['guardian-name'] : '' ?>"
-                                name="guardian-name" type="text" class="form-control textOnly2" placeholder="FirstName LastName">
+                                name="guardian-name" type="text" class="form-control textOnly2" placeholder="Firstname Lastname">
                               </div>
                             </div>
       
@@ -834,7 +834,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label class="unrequired-field">Name</label>
                                 <input value="<?php echo isset($_POST['sibling1-name']) ? $_POST['sibling1-name'] : '' ?>" 
-                                name="sibling1-name" type="text" class="form-control textOnly" placeholder="FirstName LastName">
+                                name="sibling1-name" type="text" class="form-control textOnly" placeholder="Firstname Lastname">
                               </div>
                             </div>  
                             <div class="col-lg-3">
@@ -893,7 +893,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label class="unrequired-field">Name</label>
                                 <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
-                                name="sibling2-name" type="text" class="form-control textOnly" placeholder="FirstName LastName">
+                                name="sibling2-name" type="text" class="form-control textOnly" placeholder="Firstname Lastname">
                               </div>
                             </div>
       
@@ -954,7 +954,7 @@ require 'assets/scripts.php';
                               <div class="form-group">
                                 <label class="unrequired-field">Name</label>
                                 <input value="<?php echo isset($_POST['sibling2-name']) ? $_POST['sibling2-name'] : '' ?>" 
-                                name="sibling3-name" type="text" class="form-control" placeholder="FirstName LastName">
+                                name="sibling3-name" type="text" class="form-control" placeholder="Firstname Lastname">
                               </div>
                             </div>
       

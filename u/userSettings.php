@@ -168,7 +168,7 @@ require 'includes/navAndSide2.php';
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
-                <input name="pass1" type="password" class="input form-control" required="true" placeholder="Enter Current Password">
+                <input name="pass1" type="password" class="input form-control" required="true" placeholder="Enter current password">
               </div>
             </div>
           </div>
@@ -215,7 +215,7 @@ name="editThis" value="editThis" type="submit">Save</button> </form> </div>
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
-                <input name="epassO" type="password" class="input form-control" required="true" placeholder="Enter Old Password">
+                <input name="epassO" type="password" class="input form-control" required="true" placeholder="Enter old password">
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@ name="editThis" value="editThis" type="submit">Save</button> </form> </div>
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
-                <input name="epass1" type="password" class="input form-control" required="true" placeholder=" New Password">
+                <input name="epass1" type="password" class="input form-control" required="true" placeholder="Enter new password">
               </div>
             </div>
           </div>
@@ -239,7 +239,7 @@ name="editThis" value="editThis" type="submit">Save</button> </form> </div>
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
-                <input name="epass2" type="password" class="input form-control" required="true" placeholder="Re-Type New Password">
+                <input name="epass2" type="password" class="input form-control" required="true" placeholder="Re-type new password">
               </div>
             </div>
           </div>
@@ -286,7 +286,7 @@ name="editPass" value="editPass" type="submit">Save</button> </form> </div>
                               <div class="input-group-prepend">
                                 <span class="input-group-text" title="This will be use on your password reset."><i class="fas fa-question-circle primary" style="width: 14px;" ></i></span>
                               </div>
-                              <input autocomplete="off" name="answer" type="text" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Security Answer" required="true">
+                              <input autocomplete="off" name="answer" type="text" class="input thisNumber form-control" id="exampleInputEmail1" placeholder="Security answer" required="true">
                            </div>
                          </div>
                        </div>
@@ -299,7 +299,7 @@ name="editPass" value="editPass" type="submit">Save</button> </form> </div>
                 <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-lock"></i></span>
                 </div>
-                <input name="qpass1" type="password" class="input form-control" required="true" placeholder="Enter Current Password">
+                <input name="qpass1" type="password" class="input form-control" required="true" placeholder="Enter current password">
               </div>
             </div>
           </div>

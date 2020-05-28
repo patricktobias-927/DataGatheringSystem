@@ -255,7 +255,7 @@
         
                                <div class="form-group">
                                  <select name="question" class="form-control select2bs4">
-                              <option value="invalid" selected="true">------------------- Choose a security Question -------------------</option>
+                              <option value="invalid" selected="true">------------------- Choose a security question -------------------</option>
 
 <?php 
           $sql = "select * FROM tbl_securityquestions";
@@ -291,7 +291,7 @@
             <div class="icheck-primary">
               <input name=icheckbox type="checkbox" id="remember" required <?php if(isset($_POST['remember'])){echo " checked";} ?>>
               <label for="remember" class='lbl-datapolicy' style="font-family: sans-serif; font-weight: normal;">
-                I acknowledge that I have read and understood PPH Inc. privacy notice and gives consent that the personal data I provided will be collected, stored, used, and processed for the purpose of enrollment.
+                I acknowledge that I have read and understood Phoenix Publishing House, Inc. privacy notice and gives consent that the personal data I provided will be collected, stored, used, and processed for the purpose of enrollment.
               </label>
             </div>
           </div>

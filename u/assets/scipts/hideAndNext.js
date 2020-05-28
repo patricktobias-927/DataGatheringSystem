@@ -1,5 +1,6 @@
 function nxtStud() {
 	var noError = true;
+	extendSession();
 	if ($.trim($('input[name ="first-name"]').val()).length > 0) {
   		$('input[name ="first-name"]').addClass("is-valid").removeClass("is-invalid");
 		$('input[name ="first-name"]').attr('title', "Valid");
@@ -73,6 +74,7 @@ function nxtStud() {
 
 
 function nxtCont() {
+	extendSession();
 	var noError2 = true;
 
 	if ($.trim($('input[name ="contact-person-name"]').val()).length > 0) {
@@ -152,16 +154,19 @@ function nxtCont() {
   	}
 }
 function backCont() {
+	extendSession();
 		$("#next-cont-card").slideUp(625).fadeOut(1250);
   		$("#next-stud-card").delay( 250 ).slideDown( 1250 ).fadeIn( 625 );
 }
 function backFami() {
+	extendSession();
 		$("#next-fami-card").slideUp(625).fadeOut(1250);
   		$("#next-cont-card").delay( 250 ).slideDown( 1250 ).fadeIn( 625 );
 }
 
 function lastValidation(argument) {
 	var noError3 = true;
+	extendSession();
 
 	var x = $.trim($('input[name ="contact-person-mobile"]').val());
 	x = x.replace(/_/g, "")

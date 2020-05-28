@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+
 <?php
   require '../include/config.php';
   require 'assets/fonts.php';
@@ -66,17 +67,20 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><?php echo SCHOOL_NAME; ?></title>
   <link rel="shortcut icon" href="../assets/imgs/favicon.ico">
-
-  <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
-  <!-- sweet alert -->
+    <!-- sweet alert -->
   <script type="text/javascript" src="../include/plugins/sweetalert2/sweetalert2.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../include/plugins/sweetalert2/sweetalert2.min.css">
-  <style type="text/css">
+
+  <link rel="stylesheet" type="text/css" href="assets/css/css-home.css">
+
+    <style type="text/css">
     .small-box{
        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
   </style>
+
 </head>
+
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -118,7 +122,7 @@ require 'includes/navAndSide2.php';
       <div class="col-lg-5">
         <div class="row">
           <div class="col-lg-12">
-            <p class="welcome-lbl">Welcome! <?php echo $prefix." ".$lname; ?></p>
+            <p class="welcome-lbl">Welcome! <?php echo $prefix." ".$lname; ?>!</p>
           </div>
         </div>
         <div class="row">
@@ -129,7 +133,7 @@ require 'includes/navAndSide2.php';
                 <i class="fas fa-check-circle" style="color: #0091BD; font-size: 80px; "></i>
               </div>
                 <h3><?php echo $submitted?><sup style="font-size: 20px"></sup></h3>
-                <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Student</p>
+                <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Students</p>
               </div>
             </div>
           </div>
@@ -253,9 +257,10 @@ Swal.fire({
   }
 })
 </script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="includes/sessionChecker.js"></script>
 <script type="text/javascript">
-  extendSession();
+    extendSession();
     var isPosted;
     var isDisplayed = false; 
 setInterval(function(){sessionChecker();}, 1000);//time in milliseconds 
