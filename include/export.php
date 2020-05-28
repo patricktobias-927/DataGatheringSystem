@@ -36,14 +36,16 @@
         $query = "select s.studentCode as Code, concat(".$quote."'".$quote.",s.LRN) as LRN,
             (case when s.prefix = 'M' then 'Mr.' when s.prefix = 'F' then 'Ms.' End ) as Prefix,
             s.lastName,s.firstName,s.middleName,s.suffix,
-            s.birthdate as Birthday,(select fullName from tbl_parents p
-            where s.studentID = p.studentID 
-            order by isFather desc limit 1)  as Parentname,
-            concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
-            s.isEldest as Eldest,u.email  from tbl_student s 
+            s.birthdate as Birthday,c.fullName as Parentname,
+            concat(".$quote."'".$quote.",c.mobile) as Mobileno,
+            s.isEldest as Eldest,c.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID  where s.schoolYearID = " . $schoolYearID . " and s.isSubmitted = $tagsub order by code;";
+            on s.userID = u.userID  
+            join tbl_contact c
+			on c.studentID = s.studentID
+            where s.schoolYearID = " . $schoolYearID . " and s.isSubmitted = $tagsub order by code;";
            // and timestamp(dateTimeSubmitted) <= timestamp('".$currentDateTime."') ;";
+           //(select fullName from tbl_parents p where s.studentID = p.studentID  order by isFather desc limit 1)  as Parentname,
     }
     elseif ($all == "exported")
     {
@@ -53,13 +55,14 @@
         $query = "select s.studentCode as Code, concat(".$quote."'".$quote.",s.LRN) as LRN,
             (case when s.prefix = 'M' then 'Mr.' when s.prefix = 'F' then 'Ms.' End ) as Prefix,
             s.lastName,s.firstName,s.middleName,s.suffix,
-            s.birthdate as Birthday,(select fullName from tbl_parents p
-            where s.studentID = p.studentID 
-            order by isFather desc limit 1)  as Parentname,
-            concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
-            s.isEldest as Eldest,u.email  from tbl_student s 
+            s.birthdate as Birthday,c.fullName  as Parentname,
+            concat(".$quote."'".$quote.",c.mobile) as Mobileno,
+            s.isEldest as Eldest,c.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID where isExported = $tagexpo and schoolYearID = $schoolYearID order by code;";
+            on s.userID = u.userID 
+            join tbl_contact c
+			on c.studentID = s.studentID
+            where isExported = $tagexpo and schoolYearID = $schoolYearID order by code;";
            // and timestamp(dateTimeSubmitted) <= timestamp('".$currentDateTime."') ;";
     }
     else
@@ -70,13 +73,14 @@
         $query = "select s.studentCode as Code, concat(".$quote."'".$quote.",s.LRN) as LRN,
             (case when s.prefix = 'M' then 'Mr.' when s.prefix = 'F' then 'Ms.' End ) as Prefix,
             s.lastName,s.firstName,s.middleName,s.suffix,
-            s.birthdate as Birthday,(select fullName from tbl_parents p
-            where s.studentID = p.studentID
-            order by isFather desc limit 1)  as Parentname,
-            concat(".$quote."'".$quote.",s.Cellphone) as Mobileno,
-            s.isEldest as Eldest,u.email  from tbl_student s 
+            s.birthdate as Birthday,c.fullName  as Parentname,
+            concat(".$quote."'".$quote.",c.mobile) as Mobileno,
+            s.isEldest as Eldest,c.email  from tbl_student s 
             join tbl_parentuser u
-            on s.userID = u.userID  where s.isSubmitted = $tagsub and  isExported = $tagexpo
+            on s.userID = u.userID  
+            join tbl_contact c
+			on c.studentID = s.studentID
+            where s.isSubmitted = $tagsub and  isExported = $tagexpo
             and schoolYearID = $schoolYearID  order by code;";
            //and timestamp(dateTimeSubmitted) < timestamp('".$currentDateTime."') ;";
 
