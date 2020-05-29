@@ -146,7 +146,7 @@
       <div class="container col-lg-10 reg-form"> 
 
         <div class="row">
-          <div class="col-lg-10 signup-label" >Sign UP</div>
+          <div class="col-lg-10 signup-label" >Sign Up</div>
           <div class="col-lg-10 signup-sublabel">Sign up to start your session</div>
         </div>
 <br>
