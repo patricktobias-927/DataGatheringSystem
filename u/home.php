@@ -122,7 +122,7 @@ require 'includes/navAndSide2.php';
       <div class="col-lg-5">
         <div class="row">
           <div class="col-lg-12">
-            <p class="welcome-lbl">Welcome! <?php echo $prefix." ".$lname; ?>!</p>
+            <p class="welcome-lbl">Welcome, <?php echo $prefix." ".$lname; ?></p>
           </div>
         </div>
         <div class="row">

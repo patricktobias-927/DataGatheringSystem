@@ -291,7 +291,8 @@
             <div class="icheck-primary">
               <input name=icheckbox type="checkbox" id="remember" required <?php if(isset($_POST['remember'])){echo " checked";} ?>>
               <label for="remember" class='lbl-datapolicy' style="font-family: sans-serif; font-weight: normal;">
-                I acknowledge that I have read and understood Phoenix Publishing House, Inc. privacy notice and gives consent that the personal data I provided will be collected, stored, used, and processed for the purpose of enrollment.
+By clicking 'Submit', I consent to my personal information being used for the 
+purpose of providing pre-registration services offered in the ARALinks portal. This includes being able to enter my child's information, update it in case there are records in existence and to be notified via SMS and other means for security confirmations and school announcements,
               </label>
             </div>
           </div>
