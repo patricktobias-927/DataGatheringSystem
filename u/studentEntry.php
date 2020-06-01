@@ -490,7 +490,7 @@ require 'assets/scripts.php';
       
                            <div class="form-group">
                              <label class="unrequired-field">Incoming Level</label>
-                             <select name="inComingLevel" class="form-control select2bs4 ">
+                             <select name="inComingLevel" class="form-control select2bs4 " id="inComingLevel">
                               <?php 
                               if (isset($_POST['inComingLevel'])){?>
                               <option <?php if($_POST['inComingLevel']=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
@@ -1751,4 +1751,11 @@ if (isset($_REQUEST['getstarted'])) {
     var isPosted;
     var isDisplayed = false; 
 setInterval(function(){sessionChecker();}, 1000);//time in milliseconds 
+
+
 </script>
+<!-- <script type="text/javascript">
+  $('#inComingLevel').on('change', function() {
+  alert( this.value );
+});
+</script> -->

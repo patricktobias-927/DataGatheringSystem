@@ -297,7 +297,7 @@ if (isset($_POST['gothis'])) {
  where announceID = '".$announceID."'
 ";      
 mysqli_query($conn, $insertQuery); 
-header('Location: publishA.php?editAnnouncement.php?editsuccess&page='.$announceID);
+header('Location: editAnnouncement.php?editsuccess&page='.$announceID);
   }
 
 
