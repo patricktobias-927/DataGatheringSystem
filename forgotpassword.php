@@ -149,7 +149,7 @@ div.card {
   </div>
   <!-- /.card-body -->
   <div class="card-footer ">
-<button class="btn btn-primary float-right" type="submit"  name="passRecov">Enter</button>
+<button class="btn btn-primary float-right" type="submit"  name="passRecov">Save</button>
   </div>
 
 </form>

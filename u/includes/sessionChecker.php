@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$minutes = 2;
+$minutes = 10;
 $secondsBeforeWarning = 30;
 $secondsWarningLast =30;
 
