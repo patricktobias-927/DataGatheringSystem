@@ -133,7 +133,7 @@ require 'includes/navAndSide2.php';
                 <i class="fas fa-check-circle" style="color: #0091BD; font-size: 80px; "></i>
               </div>
                 <h3><?php echo $submitted?><sup style="font-size: 20px"></sup></h3>
-                <p class="lead" style="color: gray; font-size: 18px;">No. of Registred Students</p>
+                <p class="lead" style="color: gray; font-size: 18px;">No. of Registered Students</p>
               </div>
             </div>
           </div>

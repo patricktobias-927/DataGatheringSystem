@@ -63,7 +63,7 @@
               <div class="col-sm-5">
                 <label for="input-password" class="log-label">Password</label>
                 <input name="password" type="password" class="form-control" id="exampleInputPassword1" id="input-password">
-                <a data-toggle="modal" data-target="#modal-default" class="fPassword forgotPassLink" href="#">Forgot Password ?</a>
+                <a data-toggle="modal" data-target="#modal-default" class="fPassword forgotPassLink" href="#">Forgot Password?</a>
               </div>
               <div class="col-sm-2">
                 <label for="loginbtn" class="log-label" style="visibility: hidden;">jxrn</label>
@@ -583,7 +583,7 @@ if (isset($_POST['Signup'])) {
         if (mysqli_num_rows($result) > 0) {
             
             $message = "This mobile number is already registered";
-            displayMessage("error", "Invalid Entry");
+            displayMessage("error", "Invalid Entry", $message);
             
         } else {
             

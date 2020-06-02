@@ -120,7 +120,7 @@ require 'includes/navAndSide.php';
               <table id="example1" class="table table-bordered" style="table-layout: fixed; width: 100%;">
                 <thead>
                 <tr>
-                  <th>Tittle</th>
+                  <th>Title</th>
                   <th>Subtitle</th>
                   <th>Start Date</th>
                   <th>End Date</th>
