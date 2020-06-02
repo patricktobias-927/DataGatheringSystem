@@ -144,7 +144,7 @@
       
 
 
-                          <div class="col-lg-4">
+                          <div class="col-lg-2">
                             <div class="form-group">
                                <label class="unrequired-field">Birthdate</label>
                               <div class="input-group">
@@ -168,7 +168,7 @@
       
                            <div class="form-group">
                              <label class="unrequired-field">Incoming Level</label>
-                             <select name="inComingLevel" class="form-control select2bs4 ">
+                             <select name="inComingLevel" class="form-control select2bs4 " id="inComingLevel">
                               <?php 
                               if (isset($levelCompleted)){?>
                               <option <?php if($levelCompleted=="Nursery 1") {echo' selected ="true"';}?>value="Nursery 1">Nursery 1</option>
@@ -212,6 +212,38 @@
                            </div>
                         </div>  
       
+
+
+                                                                            <div class="col-lg-3">
+      
+                           <div class="form-group 
+                           <?php if ($strand==''||$strand==' '){echo "hiddenCard";}?>
+                           " 
+                           id="inComingStrand">
+                             <label class="unrequired-field">Strands</label>
+                             <select name="inComingStrand" class="form-control select2bs4 " id="inComingStrand2">
+                              <?php 
+                              if ($strand!=''||$strand!=' '){?>
+
+                              <option <?php if($strand=="GA") {echo' selected ="true"';}?>value="GA">GA</option>
+                              <option <?php if($strand=="HUMMS") {echo' selected ="true"';}?>value="HUMMS">HUMMS</option>
+                              <option <?php if($strand=="STEM") {echo' selected ="true"';}?>value="STEM">STEM</option>
+                              <option <?php if($strand=="ABM") {echo' selected ="true"';}?>value="ABM">ABM</option>
+
+                             <?php }
+                              else{  ?>
+                              ?>
+                              <option value="GA">GA</option>
+                              <option value="HUMMS">HUMMS</option>
+                              <option value="STEM">STEM</option>
+                              <option value="ABM">ABM</option>
+                            <?php }?>
+                             </select>
+                           </div>
+                        </div> 
+
+
+
                       </div>
                       <br>
                       <a class="modal-myheading">Previous School Information</a>
@@ -706,4 +738,5 @@
         </div>
       </div>
     </div>
+
 <!-- Modal -->

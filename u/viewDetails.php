@@ -171,6 +171,9 @@ if (isset($_REQUEST['editsuccess'])) {
 
 
 ?>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
 <script src="../include/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../include/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -211,9 +214,7 @@ if (isset($_REQUEST['editsuccess'])) {
     $('[data-mask]').inputmask()
 
 
-$(document).ready(function() {
     $('.yearselect').select2();
-});
 
 $( "#siblings-order" ).keyup(function() {
 
@@ -226,6 +227,20 @@ $( "#siblings-order" ).keyup(function() {
     $('#checkboxPrimary1').prop('checked', false);
 
    }
+
+});
+
+  $('#inComingLevel').on('change', function() {
+    var selectedStrand =this.value;
+    if (selectedStrand=='Grade 11' || selectedStrand=='Grade 12') {
+      $('#inComingStrand').fadeIn(1000);
+    }
+    else{
+     $('#inComingStrand').fadeOut(1000);
+
+
+    }
+    
 
 });
 
@@ -770,16 +785,33 @@ mysqli_query($conn, $insertQuery2);
 }
 
 if (isset($schoolInfoID  ) && strlen(trim($schoolInfoID)) >0) {
- $insertQuery2 = "update tbl_schoolinfo
-set
-schoolLastAttended  = '".$_POST['school-last-attended'] ."',
-schoolYear  = '".$_POST['last-school-attended-year'] ."',
-schoolAddress  = '".$_POST['last-school-attended-address']."',
-inComingLevel  = '".$_POST['inComingLevel'] ."',
-averageGrade  = '".$_POST['last-school-attended-grade']."'
-where schoolInfoID = '".$schoolInfoID  ."'"; 
-mysqli_query($conn, $insertQuery2);
+
+  if ($_POST['inComingLevel']!='Grade 11' && $_POST['inComingLevel']!='Grade 12') {
+     $insertQuery2 = "update tbl_schoolinfo
+      set
+      schoolLastAttended  = '".$_POST['school-last-attended'] ."',
+      schoolYear  = '".$_POST['last-school-attended-year'] ."',
+      schoolAddress  = '".$_POST['last-school-attended-address']."',
+      inComingLevel  = '".$_POST['inComingLevel'] ."',
+      averageGrade  = '".$_POST['last-school-attended-grade']."',
+      inComingStrand = null 
+      where schoolInfoID = '".$schoolInfoID  ."'";  
+      mysqli_query($conn, $insertQuery2);
+  }
+  else{
+     $insertQuery2 = "update tbl_schoolinfo
+      set
+      schoolLastAttended  = '".$_POST['school-last-attended'] ."',
+      schoolYear  = '".$_POST['last-school-attended-year'] ."',
+      schoolAddress  = '".$_POST['last-school-attended-address']."',
+      inComingLevel  = '".$_POST['inComingLevel'] ."',
+      averageGrade  = '".$_POST['last-school-attended-grade']."',
+      inComingStrand = '".$_POST['inComingStrand']."'
+      where schoolInfoID = '".$schoolInfoID  ."'"; 
+      mysqli_query($conn, $insertQuery2);
+  }
 }
+
     
 
 else if ($hasSchoolAttended2||isset($_POST['inComingLevel'])) {

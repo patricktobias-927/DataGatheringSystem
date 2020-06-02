@@ -465,7 +465,7 @@ require 'assets/scripts.php';
       
 
       
-                          <div class="col-lg-4">
+                          <div class="col-lg-2">
                             <div class="form-group">
                                <label class="unrequired-field">Birthdate</label>
                               <div class="input-group">
@@ -529,6 +529,31 @@ require 'assets/scripts.php';
                               <option value="Grade 10">Grade 10</option>
                               <option value="Grade 11">Grade 11</option>
                               <option value="Grade 12">Grade 12</option>
+                            <?php }?>
+                             </select>
+                           </div>
+                        </div> 
+
+                                                                            <div class="col-lg-3">
+      
+                           <div class="form-group hiddenCard" id="inComingStrand">
+                             <label class="unrequired-field">Strands</label>
+                             <select name="inComingStrand" class="form-control select2bs4 " id="inComingStrand2">
+                              <?php 
+                              if (isset($_POST['inComingStrand'])){?>
+
+                              <option <?php if($_POST['inComingStrand']=="GA") {echo' selected ="true"';}?>value="GA">GA</option>
+                              <option <?php if($_POST['inComingStrand']=="HUMMS") {echo' selected ="true"';}?>value="HUMMS">HUMMS</option>
+                              <option <?php if($_POST['inComingStrand']=="STEM") {echo' selected ="true"';}?>value="STEM">STEM</option>
+                              <option <?php if($_POST['inComingStrand']=="ABM") {echo' selected ="true"';}?>value="ABM">ABM</option>
+
+                             <?php }
+                              else{  ?>
+                              ?>
+                              <option value="GA">GA</option>
+                              <option value="HUMMS">HUMMS</option>
+                              <option value="STEM">STEM</option>
+                              <option value="ABM">ABM</option>
                             <?php }?>
                              </select>
                            </div>
@@ -1460,6 +1485,9 @@ if (isset($_POST["btn-submit"])) {
                   $genderprefix="Ms."; 
                 }
               }
+              if ($_POST['inComingLevel']!='Grade 11' && $_POST['inComingLevel']!='Grade 12') {
+                $_POST['inComingStrand']='null';
+              }
               $formatedBirthdate = $_POST['birthdate'];
               $date = str_replace('/', '-', $formatedBirthdate);
               $_POST['birthdate'] = date('Y-m-d', strtotime($date));
@@ -1645,7 +1673,7 @@ VALUES
 mysqli_query($conn, $insertQuery2);
 }
 
-
+if ($_POST['inComingStrand']=='null') {
  $insertQuery2 = "Insert into tbl_schoolinfo
 (
 userID,
@@ -1654,7 +1682,8 @@ schoolLastAttended,
 schoolYear,
 schoolAddress,
 inComingLevel,
-averageGrade
+averageGrade,
+inComingStrand
 )     
 VALUES
 (
@@ -1664,7 +1693,56 @@ VALUES
 '".$_POST['last-school-attended-year'] ."',
 '".$_POST['last-school-attended-address']."',
 '".$_POST['inComingLevel'] ."',
-'".$_POST['last-school-attended-grade']."'
+'".$_POST['last-school-attended-grade']."',
+null
+)";
+}
+else{
+ $insertQuery2 = "Insert into tbl_schoolinfo
+(
+userID,
+studentID,
+schoolLastAttended,
+schoolYear,
+schoolAddress,
+inComingLevel,
+averageGrade,
+inComingStrand
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['school-last-attended'] ."',
+'".$_POST['last-school-attended-year'] ."',
+'".$_POST['last-school-attended-address']."',
+'".$_POST['inComingLevel'] ."',
+'".$_POST['last-school-attended-grade']."',
+'".$_POST['inComingStrand']."'
+)";
+}
+
+ $insertQuery2 = "Insert into tbl_schoolinfo
+(
+userID,
+studentID,
+schoolLastAttended,
+schoolYear,
+schoolAddress,
+inComingLevel,
+averageGrade,
+inComingStrand
+)     
+VALUES
+(
+'".$userID."',
+'".$studentID."',
+'".$_POST['school-last-attended'] ."',
+'".$_POST['last-school-attended-year'] ."',
+'".$_POST['last-school-attended-address']."',
+'".$_POST['inComingLevel'] ."',
+'".$_POST['last-school-attended-grade']."',
+'".$_POST['inComingStrand']."'
 )";
  
 mysqli_query($conn, $insertQuery2);
@@ -1754,8 +1832,19 @@ setInterval(function(){sessionChecker();}, 1000);//time in milliseconds
 
 
 </script>
-<!-- <script type="text/javascript">
+
+<script type="text/javascript">
   $('#inComingLevel').on('change', function() {
-  alert( this.value );
+    var selectedStrand =this.value;
+    if (selectedStrand=='Grade 11' || selectedStrand=='Grade 12') {
+      $('#inComingStrand').fadeIn(1000);
+    }
+    else{
+     $('#inComingStrand').fadeOut(1000);
+
+
+    }
+    
+
 });
-</script> -->
+</script>

@@ -65,6 +65,7 @@
             $schoolAddress      = $pass_row['5'];
             $levelCompleted     = $pass_row['6'];
             $averageGrade       = $pass_row['7'];
+            $strand             = $pass_row['8'];
         }
         else{
           $hasSchoolInfo ='0';
@@ -332,7 +333,9 @@ else{
 
                     <b>Average Grade: </b><?php echo $averageGrade ?></br>
 
-                    <b>Incoming Level: </b><?php echo $levelCompleted ?></br>
+                    <b>Incoming Level: </b><?php echo $levelCompleted ?>
+                    <?php if ($strand!=''&&$strand!=' '){echo "<b>-</b> <i>".$strand."</i></br>";}?>
+                    
                     <?php } else{ ?>
                     <b>School: </b></br>
 
@@ -342,7 +345,9 @@ else{
 
                     <b>Average Grade: </b></br>
 
-                    <b>Incoming Level: </b></br>
+                    <b>Incoming Level: </b>
+
+                    <b>Strand: </b></br>
 
                     <?php }?>
                   </p>
@@ -523,3 +528,4 @@ else{
   </div>
   <!-- /.content-wrapper -->
   </div>
+
